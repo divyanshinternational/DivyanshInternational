@@ -11,7 +11,6 @@
  */
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { z } from "zod";
 
 import Timeline from "@/components/Timeline";
@@ -24,20 +23,10 @@ import {
   WalnutIcon,
   PeanutIcon,
 } from "@/components/assets/Decorations";
-import { urlForImage } from "@/lib/sanity/image";
-import type { SanityImageSource } from "@sanity/image-url";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
 // =============================================================================
-
-const TeamMemberSchema = z.object({
-  _id: z.string(),
-  name: z.string(),
-  role: z.string(),
-  image: z.unknown().optional(),
-  bio: z.string().optional(),
-});
 
 const TimelineEntrySchema = z.object({
   _id: z.string(),
@@ -185,11 +174,6 @@ const SiteSettingsSchema = z.object({
     .optional(),
 });
 
-// =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
-// =============================================================================
-
-type TeamMember = z.infer<typeof TeamMemberSchema>;
 type TimelineEntry = z.infer<typeof TimelineEntrySchema>;
 type AboutData = z.infer<typeof AboutDataSchema>;
 type SiteSettings = z.infer<typeof SiteSettingsSchema>;
@@ -236,16 +220,6 @@ function parseAboutData(data: unknown): AboutData | null {
   return result.data;
 }
 
-function parseTeamMembers(data: unknown): TeamMember[] {
-  if (!Array.isArray(data)) return [];
-  const result = z.array(TeamMemberSchema).safeParse(data);
-  if (!result.success) {
-    console.error("[AboutContent] Team members validation failed:", result.error.format());
-    return [];
-  }
-  return result.data;
-}
-
 function parseTimelineEntries(data: unknown): TimelineEntry[] {
   if (!Array.isArray(data)) return [];
   const result = z.array(TimelineEntrySchema).safeParse(data);
@@ -270,14 +244,12 @@ function parseSiteSettings(data: unknown): SiteSettings | null {
 // =============================================================================
 
 export default function AboutContent({
-  initialTeamMembers,
   initialTimeline,
   initialAbout,
   siteSettings: rawSiteSettings,
 }: AboutContentProps) {
   // Validate and parse all incoming data with Zod
   const about = parseAboutData(initialAbout);
-  const teamMembers = parseTeamMembers(initialTeamMembers);
   const timelineEntries = parseTimelineEntries(initialTimeline);
   const siteSettings = parseSiteSettings(rawSiteSettings);
 
@@ -580,29 +552,6 @@ export default function AboutContent({
           </div>
         ) : null}
 
-        {/* Team Section */}
-        {teamMembers.length > 0 && about.teamSection ? (
-          <section className="mb-24" aria-labelledby="team-heading">
-            <div className="text-center mb-12">
-              <p className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-3">
-                {about.teamSection.eyebrow}
-              </p>
-              <h2
-                id="team-heading"
-                className="text-3xl md:text-4xl font-bold text-deep-brown font-heading"
-              >
-                {about.teamSection.title}
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {teamMembers.map((member, index) => (
-                <TeamMemberCard key={member._id} member={member} index={index} />
-              ))}
-            </div>
-          </section>
-        ) : null}
-
         {/* Journey / Legacy Animation */}
         {timelineEntries.length > 0 && about.journeySection ? (
           <section className="mb-16" aria-labelledby="journey-heading">
@@ -652,53 +601,6 @@ export default function AboutContent({
 // =============================================================================
 // HELPER COMPONENTS
 // =============================================================================
-
-interface TeamMemberCardProps {
-  member: TeamMember;
-  index: number;
-}
-
-function TeamMemberCard({ member, index }: TeamMemberCardProps) {
-  const getImageSrc = (): string | null => {
-    if (!member.image) return null;
-    if (typeof member.image === "string") return member.image;
-    try {
-      return urlForImage(member.image as SanityImageSource).url();
-    } catch {
-      return null;
-    }
-  };
-
-  const imageSrc = getImageSrc();
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="group"
-    >
-      <div className="relative aspect-3/4 mb-6 rounded-2xl overflow-hidden bg-sand">
-        {imageSrc ? (
-          <Image
-            src={imageSrc}
-            alt={member.name}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        ) : null}
-        {member.bio ? (
-          <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-            <p className="text-white font-medium">&quot;{member.bio}&quot;</p>
-          </div>
-        ) : null}
-      </div>
-      <h3 className="text-xl font-bold text-deep-brown font-heading">{member.name}</h3>
-      <p className="text-gold-dark font-medium text-sm uppercase tracking-wider">{member.role}</p>
-    </motion.div>
-  );
-}
 
 function DecorativeCorners() {
   return (

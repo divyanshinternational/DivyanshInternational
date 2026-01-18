@@ -124,10 +124,9 @@ interface ProductDetailProps {
 // HELPER FUNCTIONS
 // =============================================================================
 
-function extractVisualType(title: string): "almonds" | "makhana" | "coconut" | "nuts" {
+function extractVisualType(title: string): "almonds" | "coconut" | "nuts" {
   const t = title.toLowerCase();
   if (t.includes("almond")) return "almonds";
-  if (t.includes("makhana") || t.includes("lotus")) return "makhana";
   if (t.includes("coconut")) return "coconut";
   return "nuts";
 }

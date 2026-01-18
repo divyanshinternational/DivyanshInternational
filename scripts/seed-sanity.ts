@@ -77,7 +77,7 @@ const products = [
         "Divyansh International is one of India's most reliable importers and bulk distributors of premium almonds, serving modern trade, wholesalers, food manufacturers and institutional buyers across the country."
       ),
       createLocaleText(
-        "We directly source high-quality raw almonds from trusted growers worldwide — ensuring consistency, freshness and fair pricing for B2B clients seeking long-term supply partnerships."
+        "We directly source high-quality raw almonds from trusted growers worldwide — ensuring consistency, freshness and fair pricing for clients seeking long-term supply partnerships."
       ),
     ],
     listSections: [
@@ -238,7 +238,7 @@ const products = [
         "Divyansh International supplies premium-grade walnuts in bulk, sourced from the best farms across the globe."
       ),
       createLocaleText(
-        "As a long-standing B2B importer and distributor, we cater to modern trade buyers, wholesale traders, dry fruit packers, food manufacturers and institutional procurement teams across India."
+        "As a long-standing importer and distributor, we cater to modern trade buyers, wholesale traders, dry fruit packers, food manufacturers and institutional procurement teams across India."
       ),
     ],
     listSections: [
@@ -262,7 +262,7 @@ const products = [
           createLocaleString("Multiple origins under one roof"),
           createLocaleString("Consistent bulk availability"),
           createLocaleString("Stringent sizing, grading & moisture control"),
-          createLocaleString("Dedicated B2B pricing and quick dispatch"),
+          createLocaleString("Dedicated pricing and quick dispatch"),
           createLocaleString("Ideal for resellers, repackers and institutional tenders"),
         ],
       },
@@ -297,7 +297,7 @@ const products = [
     ),
     introParagraphs: [
       createLocaleText(
-        "Divyansh International supplies high-quality pistachios catering to India's B2B requirements in modern trade, HORECA, wholesale, institutional consumption and gifting segments."
+        "Divyansh International supplies high-quality pistachios catering to India's requirements in modern trade, HORECA, wholesale, institutional consumption and gifting segments."
       ),
       createLocaleText(
         "Our pistachios are carefully sourced, size-graded and packed to meet the standards of retail chains, gourmet brands and food service operators across the country."
@@ -372,7 +372,7 @@ const products = [
     heroHeading: createLocaleString("Bulk Kishmish Supplier – India"),
     introParagraphs: [
       createLocaleText(
-        "Divyansh International has established itself as a reliable importer and wholesale supplier of raisins (kishmish) for B2B buyers across India."
+        "Divyansh International has established itself as a reliable importer and wholesale supplier of raisins (kishmish) for buyers across India."
       ),
       createLocaleText(
         "We source premium-quality harvests to offer multiple grades, price points and flavour profiles under one roof. Our raisins are sorted, cleaned and packed hygienically – making them ideal for packagers, bakeries, mithai/confectionery units, retailers and institutional procurement."
@@ -740,130 +740,129 @@ const testimonials = [
 const communityData = {
   _id: "community",
   _type: "community",
-
   header: {
-    eyebrow: "Community at Divyansh International",
-    title: "Responsibility That Grows Alongside the Business",
+    eyebrow: "BUILDING TOGETHER",
+    title: "Community & CSR",
     subtitle:
-      "Divyansh International was built on the belief that a business does not grow in isolation. Every milestone achieved carries a responsibility towards the people and ecosystems that make that growth possible.",
+      "At Divyansh International, we believe in growing together with our community, supporting sustainable practices, and creating positive impact.",
   },
-
   corePhilosophy: {
     paragraph:
-      "Community, for the organisation, is not limited to external initiatives. It begins with employees, extends to their families, supports education, strengthens industry collaboration, and respects the environment.",
+      "Divyansh International was built on the belief that a business does not grow in isolation. Every milestone achieved carries a responsibility towards the people and ecosystems that make that growth possible.",
     highlight:
-      "This people-first approach reflects the values that guide Divyansh International as a responsible and purpose-driven organisation.",
+      "Community, for the organisation, is not limited to external initiatives. It begins with employees, extends to their families, supports education, strengthens industry collaboration, and respects the environment. This people-first approach reflects the values that guide Divyansh International as a responsible and purpose-driven organisation.",
   },
-
   educationSection: {
-    icon: "📚",
-    title: "Giving Back Through Education",
+    icon: "🎓",
+    title: "Giving Back Through Education and Social Participation",
     paragraphs: [
       "As part of its broader commitment to social responsibility, Divyansh International actively associates with government schools that serve underprivileged communities. The focus is on consistent involvement rather than one-time support.",
-      "The organisation contributes wherever there is a genuine need — participating in initiatives, addressing essential requirements, and supporting learning environments through ongoing engagement.",
+      "The organisation contributes wherever there is a genuine need — participating in initiatives, addressing essential requirements, and supporting learning environments through ongoing engagement. These efforts align with the company’s belief that education is a long-term investment in stronger communities.",
     ],
-    quote:
-      "These efforts align with the company's belief that education is a long-term investment in stronger communities.",
+    quote: "Education is a long-term investment in stronger communities.",
   },
-
   womenEmpowerment: {
     icon: "👩‍💼",
     title: "Women at the Core of Our Workforce",
     paragraphs: [
       "People are central to everything at Divyansh International, and women form a vital part of that foundation.",
       "The organisation maintains close, personal relationships with its women employees, creating a work environment that prioritises trust, respect, and continuity. Beyond providing employment, Divyansh International has nurtured a supportive community where women share experiences, encourage one another, and build confidence together.",
-      "A dedicated digital platform allows women employees to voice their journeys and motivate each other to step into the workforce and sustain their careers. This initiative reflects the company's commitment to women empowerment and inclusive growth.",
+      "A dedicated digital platform allows women employees to voice their journeys and motivate each other to step into the workforce and sustain their careers. This initiative reflects the company’s commitment to women empowerment and inclusive growth.",
     ],
   },
-
   childcareSection: {
-    icon: "🧒",
+    icon: "🧸",
     title: "Supporting Families Through Childcare and Learning",
     paragraphs: [
-      "Understanding the realities faced by working mothers, Divyansh International has created a dedicated activity and learning centre for employees' children.",
+      "Understanding the realities faced by working mothers, Divyansh International has created a dedicated activity and learning centre for employees’ children.",
       "This space includes supervised play areas for younger children and academic guidance through an assigned tutor. By providing this support, the organisation enables women employees to work with peace of mind while ensuring their children receive care and learning assistance in a safe environment.",
     ],
     highlight:
-      "Such initiatives reinforce Divyansh International's employee-centric culture and commitment to work-life balance.",
+      "Such initiatives reinforce Divyansh International’s employee-centric culture and commitment to work-life balance.",
   },
-
   industryCollaboration: {
     icon: "🤝",
     title: "Building Stronger Industry Communities",
     paragraphs: [
       "Divyansh International actively participates in industry-level collaboration through its association with a national trade council representing the nuts and dry fruits sector.",
-      "By engaging in discussions, trade roadshows, and collective initiatives, the organisation contributes to addressing common industry challenges and promoting responsible trade practices.",
+      "By engaging in discussions, trade roadshows, and collective initiatives, the organisation contributes to addressing common industry challenges and promoting responsible trade practices. This involvement reflects the company’s belief in shared progress and ethical industry growth.",
     ],
   },
-
   environmentalSection: {
     icon: "🌱",
-    title: "Environmental Responsibility",
+    title: "Environmental Responsibility as a Way of Operating",
     introText: "Sustainability is integrated into the daily operations at Divyansh International.",
     initiatives: [
-      { _key: "env-1", icon: "☀️", text: "Solar energy systems to reduce environmental footprint" },
-      { _key: "env-2", icon: "💧", text: "Rainwater harvesting for responsible water usage" },
-      { _key: "env-3", icon: "🏠", text: "Residential accommodation near workplace" },
       {
-        _key: "env-4",
-        icon: "🎓",
-        text: "Partnerships with nearby schools for employees' children",
+        _key: "solar",
+        icon: "☀️",
+        text: "Invested in solar energy systems to reduce environmental footprint",
+      },
+      {
+        _key: "water",
+        icon: "💧",
+        text: "Implemented rainwater harvesting solutions to promote responsible water usage",
+      },
+      {
+        _key: "housing",
+        icon: "🏠",
+        text: "Residential accommodation provided close to the workplace to reduce commute-related strain",
+      },
+      {
+        _key: "school",
+        icon: "🏫",
+        text: "Partnerships with nearby schools to support education of employees’ children",
       },
     ],
   },
-
+  closingMessage: {
+    title: "Growing With Purpose",
+    paragraphs: [
+      "At Divyansh International, community responsibility is not a separate chapter from business, it is part of the same story.",
+      "By supporting education, empowering women, caring for families, participating in industry dialogue, and investing in environmental sustainability, the organisation continues to grow with purpose, integrity, and empathy.",
+    ],
+    finalHighlight:
+      "This is how Divyansh International builds long-term value, for its people, its partners, and the communities it serves.",
+  },
   tradeEventsSection: {
     title: "Trade Events & Exhibitions",
     subtitle: "Meet us at leading industry events across India",
   },
-
   tradeEvents: [
     {
-      _key: "evt-1",
+      _key: "aahar2024",
       name: "AAHAR International Food & Hospitality Fair",
       date: "2024-03-15",
       location: "New Delhi, India",
     },
     {
-      _key: "evt-2",
+      _key: "iitf2024",
       name: "India International Trade Fair",
       date: "2024-11-14",
       location: "Pragati Maidan, New Delhi",
     },
     {
-      _key: "evt-3",
+      _key: "wfi2024",
       name: "World Food India",
       date: "2024-09-20",
       location: "India",
     },
   ],
-
-  closingMessage: {
-    title: "Growing With Purpose",
-    paragraphs: [
-      "At Divyansh International, community responsibility is not a separate chapter from business—it is part of the same story.",
-      "By supporting education, empowering women, caring for families, participating in industry dialogue, and investing in environmental sustainability, the organisation continues to grow with purpose, integrity, and empathy.",
-    ],
-    finalHighlight:
-      "This is how Divyansh International builds long-term value—for its people, its partners, and the communities it serves.",
-  },
-
-  teamPhotos: [],
   csrInitiatives: [
     {
-      _key: "csr-1",
+      _key: "farmer",
       title: "Farmer Welfare Program",
       description:
         "Supporting almond and walnut farmers with fair pricing, training on sustainable practices, and direct procurement partnerships.",
     },
     {
-      _key: "csr-2",
+      _key: "employment",
       title: "Local Employment",
       description:
         "Creating employment opportunities in Ludhiana and surrounding areas with focus on skill development and inclusive hiring.",
     },
     {
-      _key: "csr-3",
+      _key: "safety",
       title: "Food Safety Education",
       description:
         "Conducting workshops on food safety standards and quality management for small-scale processors and traders.",
@@ -904,7 +903,7 @@ const processSteps = [
     _id: "5",
     title: "Packaging & Labeling",
     detail:
-      "Flexible packaging options from bulk cartons to vacuum packs. Private label and custom branding available for B2B clients.",
+      "Flexible packaging options from bulk cartons to vacuum packs. Private label and custom branding available for clients.",
     order: 5,
   },
   {
@@ -984,7 +983,7 @@ const testimonialsSectionData = {
   title: "Trusted by Leading Businesses",
   droneSection: {
     eyebrow: "Behind the Scenes",
-    title: "Drone Diaries: Our Facility",
+    title: "Our Facility",
     placeholderText: "Aerial view of our processing facility",
     videoUrl: "",
     videos: [
@@ -1017,7 +1016,7 @@ const testimonialsSectionData = {
       "ISO 22000 certified processing unit",
       "10,000+ sq ft temperature-controlled storage",
       "Daily processing capacity: 20 MT",
-      "Serving 1000+ B2B clients across India",
+      "Serving 1000+ clients across India",
     ],
     note: "Virtual tour coming soon",
   },
@@ -1142,7 +1141,7 @@ const aboutData = {
   },
   productRangeSection: {
     title: "Premium Product Range",
-    products: ["Almonds", "Walnuts", "Pistachios", "Makhana", "Desiccated Coconut Powder"],
+    products: ["Almonds", "Walnuts", "Pistachios", "Desiccated Coconut Powder"],
     description:
       "Available in various packaging options, quantities, and varieties to meet your specific requirements.",
   },
@@ -1156,7 +1155,7 @@ const aboutData = {
   whoWeAre: {
     title: "Who We Are",
     description:
-      "Divyansh International is a premier importer, processor, and B2B distributor of high-quality dry fruits. With over two decades of experience, we have mastered the art of sourcing the finest nuts and dried fruits from around the globe. Our commitment goes beyond business; it's about building lasting relationships with our partners and consumers through transparency and consistent quality.",
+      "Divyansh International is a premier importer, processor, and distributor of high-quality dry fruits. With over two decades of experience, we have mastered the art of sourcing the finest nuts and dried fruits from around the globe. Our commitment goes beyond business; it's about building lasting relationships with our partners and consumers through transparency and consistent quality.",
   },
   mission: {
     title: "Our Mission",
@@ -1274,7 +1273,7 @@ const siteSettingsData = {
     name: "Divyansh International",
     url: "https://www.divyanshinternational.com",
     logoUrl: "https://www.divyanshinternational.com/logo.png",
-    description: "Leading importer, processor and B2B distributor of premium dry fruits in India.",
+    description: "Leading importer, processor and distributor of premium dry fruits in India.",
     address: {
       streetAddress: "K-2, Kismat Complex, Miller Ganj, G.T. Road",
       addressLocality: "Ludhiana",
@@ -1529,8 +1528,7 @@ const siteSettingsData = {
     isoLabel: "ISO Certified",
     fssaiLabel: "FSSAI",
     copyrightText: "© 2026 Divyansh International. All rights reserved.",
-    servingText:
-      "Serving B2B dry fruit buyers across Punjab, North India and pan-India since 1999.",
+    servingText: "Serving dry fruit buyers across Punjab, North India and pan-India since 1999.",
     privacyPolicyText: "Privacy Policy",
     privacyNote: "Your data is secure with us.",
   },
@@ -1644,7 +1642,7 @@ const contactPageData = {
   tradeEnquiryLabel: "Trade / Bulk Enquiry",
   contactDetailsTitle: "Contact Details",
   businessHoursTitle: "Business Hours",
-  footerNote: "Serving B2B dry fruit buyers across Punjab, North India and pan-India since 1999.",
+  footerNote: "Serving dry fruit buyers across Punjab, North India and pan-India since 1999.",
   contactDetails: {
     address: "K-2, Kismat Complex, Miller Ganj, G.T. Road,\nLudhiana – 141003, Punjab, India",
     phone: ["+91-9878122400", "+91-161-4662156"],
@@ -1931,7 +1929,7 @@ const homePageData = {
     eyebrow: "Product Programs",
     title: "Bulk dry fruit supply for trade, institutional and export buyers",
     description:
-      "Preview our almond, walnut, pistachio, raisin and desiccated coconut programs built for dependable B2B sourcing. Each profile links to detailed specs and ready-to-share enquiry flows.",
+      "Preview our almond, walnut, pistachio, raisin and desiccated coconut programs built for dependable sourcing. Each profile links to detailed specs and ready-to-share enquiry flows.",
   },
   spiralQuoteSection: {
     buttonText: "Discover Our Story",
@@ -1975,13 +1973,13 @@ const homePageData = {
   aboutSection: {
     whoWeAre: {
       eyebrow: "Who We Are",
-      title: "Leading importer, processor and B2B distributor of premium dry fruits in India",
+      title: "Leading importer, processor and distributor of premium dry fruits in India",
       description:
-        "Divyansh International is a leading importer, processor and B2B distributor of premium dry fruits in India, with a strong foothold across Punjab, North India and pan-India markets.",
+        "Divyansh International is a leading importer, processor and distributor of premium dry fruits in India, with a strong foothold across Punjab, North India and pan-India markets.",
       stats: [
         { _key: "years", value: "25+", label: "Years in Business" },
         { _key: "countries", value: "15+", label: "Countries Sourced" },
-        { _key: "partners", value: "1000+", label: "B2B Partners" },
+        { _key: "partners", value: "1000+", label: "Partners" },
       ],
     },
     mission: {
@@ -1993,7 +1991,7 @@ const homePageData = {
       eyebrow: "Our Vision & Purpose",
       title: "Vision & Purpose",
       description:
-        "To become India's most reliable B2B dry fruits partner, known for integrity and excellence in supply.",
+        "To become India's most reliable dry fruits partner, known for integrity and excellence in supply.",
     },
     commitment: {
       title: "Our Commitment to Excellence",

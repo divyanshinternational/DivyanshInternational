@@ -7,7 +7,7 @@ import { z } from "zod";
 
 const VisualVariantsSchema = z.enum(["default", "hero", "section", "footer"]);
 const DensitySchema = z.enum(["light", "medium", "heavy"]);
-const ProductTypeSchema = z.enum(["makhana", "coconut", "nuts", "almonds", "general"]);
+const ProductTypeSchema = z.enum(["coconut", "nuts", "almonds", "general"]);
 const SizeSchema = z.enum(["sm", "md", "lg"]);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -194,15 +194,6 @@ export function ProductVisual({ productType, size = "md", className = "" }: Prod
   const baseSize = SIZE_CLASSES[size] || SIZE_CLASSES.md;
 
   switch (productType) {
-    case "makhana":
-      return (
-        <div
-          className={`${baseSize} bg-white rounded-full border-2 border-amber-300 flex items-center justify-center ${className}`}
-          aria-hidden="true"
-        >
-          <div className="w-1/2 h-1/2 bg-amber-400 rounded-full"></div>
-        </div>
-      );
     case "coconut":
       return (
         <div

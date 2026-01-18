@@ -31,11 +31,11 @@ const productSchema = z
     category: z.string().optional(),
     description: z.unknown().optional(), // LocaleText type
     heroHeading: z.unknown().optional(),
-    introParagraphs: z.array(z.unknown()).optional(),
-    listSections: z.array(z.unknown()).optional(),
+    introParagraphs: z.array(z.unknown()).nullable().optional(),
+    listSections: z.array(z.unknown()).nullable().optional(),
     ctaLine: z.unknown().optional(),
     heroImage: z.unknown().optional(),
-    gallery: z.array(z.unknown()).optional(),
+    gallery: z.array(z.unknown()).nullable().optional(),
     microVideo: z.string().nullable().optional(),
   })
   .passthrough()

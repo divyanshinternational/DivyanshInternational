@@ -12,29 +12,13 @@ import { communityQuery, siteSettingsQuery } from "@/lib/sanity/queries";
 // =============================================================================
 
 /**
- * Sanity image schema
+ * Environmental Initiative schema
  */
-const sanityImageSchema = z
-  .object({
-    _key: z.string().optional(),
-    _type: z.literal("image").optional(),
-    asset: z
-      .object({
-        _ref: z.string(),
-      })
-      .optional(),
-  })
-  .passthrough();
-
-/**
- * CSR Initiative schema
- */
-const csrInitiativeSchema = z
+const environmentalInitiativeSchema = z
   .object({
     _key: z.string(),
-    title: z.string().optional(),
-    description: z.string().optional(),
-    image: sanityImageSchema.optional(),
+    icon: z.string(),
+    text: z.string(),
   })
   .passthrough();
 
@@ -44,10 +28,20 @@ const csrInitiativeSchema = z
 const tradeEventSchema = z
   .object({
     _key: z.string(),
-    name: z.string().optional(),
-    date: z.string().optional(),
-    location: z.string().optional(),
-    image: sanityImageSchema.optional(),
+    name: z.string(),
+    date: z.string(),
+    location: z.string(),
+  })
+  .passthrough();
+
+/**
+ * CSR Initiative schema
+ */
+const csrInitiativeSchema = z
+  .object({
+    _key: z.string(),
+    title: z.string(),
+    description: z.string(),
   })
   .passthrough();
 
@@ -57,9 +51,72 @@ const tradeEventSchema = z
 const communityDataSchema = z
   .object({
     _id: z.string(),
-    teamPhotos: z.array(sanityImageSchema).optional(),
-    csrInitiatives: z.array(csrInitiativeSchema).optional(),
+    header: z
+      .object({
+        eyebrow: z.string(),
+        title: z.string(),
+        subtitle: z.string(),
+      })
+      .optional(),
+    corePhilosophy: z
+      .object({
+        paragraph: z.string(),
+        highlight: z.string(),
+      })
+      .optional(),
+    educationSection: z
+      .object({
+        icon: z.string(),
+        title: z.string(),
+        paragraphs: z.array(z.string()),
+        quote: z.string(),
+      })
+      .optional(),
+    womenEmpowerment: z
+      .object({
+        icon: z.string(),
+        title: z.string(),
+        paragraphs: z.array(z.string()),
+      })
+      .optional(),
+    childcareSection: z
+      .object({
+        icon: z.string(),
+        title: z.string(),
+        paragraphs: z.array(z.string()),
+        highlight: z.string(),
+      })
+      .optional(),
+    industryCollaboration: z
+      .object({
+        icon: z.string(),
+        title: z.string(),
+        paragraphs: z.array(z.string()),
+      })
+      .optional(),
+    environmentalSection: z
+      .object({
+        icon: z.string(),
+        title: z.string(),
+        introText: z.string(),
+        initiatives: z.array(environmentalInitiativeSchema),
+      })
+      .optional(),
+    tradeEventsSection: z
+      .object({
+        title: z.string(),
+        subtitle: z.string(),
+      })
+      .optional(),
     tradeEvents: z.array(tradeEventSchema).optional(),
+    closingMessage: z
+      .object({
+        title: z.string(),
+        paragraphs: z.array(z.string()),
+        finalHighlight: z.string(),
+      })
+      .optional(),
+    csrInitiatives: z.array(csrInitiativeSchema).optional(),
   })
   .nullable();
 
@@ -91,17 +148,54 @@ const siteSettingsSchema = z
 
 interface CommunityDataProp {
   _id: string;
-  csrInitiatives?: Array<{
-    _key: string;
+  header?: {
+    eyebrow: string;
     title: string;
-    description: string;
-  }>;
-  tradeEvents?: Array<{
-    _key: string;
-    name: string;
-    date: string;
-    location: string;
-  }>;
+    subtitle: string;
+  };
+  corePhilosophy?: {
+    paragraph: string;
+    highlight: string;
+  };
+  educationSection?: {
+    icon: string;
+    title: string;
+    paragraphs: string[];
+    quote: string;
+  };
+  womenEmpowerment?: {
+    icon: string;
+    title: string;
+    paragraphs: string[];
+  };
+  childcareSection?: {
+    icon: string;
+    title: string;
+    paragraphs: string[];
+    highlight: string;
+  };
+  industryCollaboration?: {
+    icon: string;
+    title: string;
+    paragraphs: string[];
+  };
+  environmentalSection?: {
+    icon: string;
+    title: string;
+    introText: string;
+    initiatives: { _key: string; icon: string; text: string }[];
+  };
+  tradeEventsSection?: {
+    title: string;
+    subtitle: string;
+  };
+  tradeEvents?: { _key: string; name: string; date: string; location: string }[];
+  closingMessage?: {
+    title: string;
+    paragraphs: string[];
+    finalHighlight: string;
+  };
+  csrInitiatives?: { _key: string; title: string; description: string }[];
 }
 
 // =============================================================================

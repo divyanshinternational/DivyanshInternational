@@ -371,9 +371,17 @@ export const valuesQuery = groq`
 export const communityQuery = groq`
   *[_type == "community"][0] {
     _id,
-    teamPhotos,
-    csrInitiatives,
-    tradeEvents
+    header,
+    corePhilosophy,
+    educationSection,
+    womenEmpowerment,
+    childcareSection,
+    industryCollaboration,
+    environmentalSection,
+    tradeEventsSection,
+    tradeEvents,
+    closingMessage,
+    csrInitiatives
   }
 `;
 

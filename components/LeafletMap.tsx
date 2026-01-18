@@ -79,7 +79,7 @@ export default function LeafletMap({
   useEffect(() => {
     const timer = setTimeout(() => {
       window.dispatchEvent(new Event("resize"));
-    }, 100);
+    }, 300);
     return () => clearTimeout(timer);
   }, []);
 
