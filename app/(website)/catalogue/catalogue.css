@@ -30,7 +30,27 @@
   --catalogue-flip-duration: 0.8s;
   --catalogue-hover-duration: 0.3s;
   --catalogue-settle-duration: 0.6s;
-  --catalogue-easing-smooth: cubic-bezier(0.42, 0, 0.58, 1);
+  --catalogue-easing-smooth: ease-in-out;
+}
+
+/* =============================================================================
+   3D PAGE FLIP ANIMATION FOR SINGLE PAGE VIEW
+   ============================================================================= */
+
+@keyframes pageFlip {
+  0% {
+    transform: perspective(1200px) rotateY(-90deg);
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: perspective(1200px) rotateY(0deg);
+    opacity: 1;
+  }
 }
 
 /* =============================================================================
@@ -47,6 +67,21 @@
    PAGE BASE STYLES
    Core page element with 3D transforms
    ============================================================================= */
+
+/* Force hide all react-pageflip internal shadows */
+.stf__block,
+.stf__item,
+.stf__leaf {
+  box-shadow: none !important;
+  background: white !important;
+  /* Force white background to hide potential spine gaps */
+  border: none !important;
+}
+
+/* Hide the spine shadow specifically if it exists as a separate element */
+.stf__spine {
+  display: none !important;
+}
 
 .catalogue-page {
   transition: transform var(--catalogue-flip-duration) var(--catalogue-easing-smooth);
@@ -69,21 +104,17 @@
 .page-texture {
   background-image:
     /* Vertical paper grain */
-    repeating-linear-gradient(
-      0deg,
+    repeating-linear-gradient(0deg,
       var(--catalogue-texture-overlay) 0px,
       transparent 1px,
       transparent 2px,
-      var(--catalogue-texture-overlay) 3px
-    ),
+      var(--catalogue-texture-overlay) 3px),
     /* Horizontal fiber lines */
-    repeating-linear-gradient(
-        90deg,
-        var(--catalogue-texture-fiber) 0px,
-        transparent 1px,
-        transparent 2px,
-        var(--catalogue-texture-fiber) 3px
-      );
+    repeating-linear-gradient(90deg,
+      var(--catalogue-texture-fiber) 0px,
+      transparent 1px,
+      transparent 2px,
+      var(--catalogue-texture-fiber) 3px);
   background-size:
     4px 4px,
     100px 2px;
@@ -92,12 +123,10 @@
 
 /* Paper surface with gradient and subtle spots */
 .paper-surface {
-  background: linear-gradient(
-    to bottom,
-    var(--catalogue-paper-light) 0%,
-    var(--catalogue-paper-mid) 50%,
-    var(--catalogue-paper-light) 100%
-  );
+  background: linear-gradient(to bottom,
+      var(--catalogue-paper-light) 0%,
+      var(--catalogue-paper-mid) 50%,
+      var(--catalogue-paper-light) 100%);
   position: relative;
 }
 
@@ -115,13 +144,11 @@
 .paper-overlay {
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    var(--catalogue-texture-fiber) 2px,
-    var(--catalogue-texture-fiber) 4px
-  );
+  background-image: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      var(--catalogue-texture-fiber) 2px,
+      var(--catalogue-texture-fiber) 4px);
   pointer-events: none;
   mix-blend-mode: multiply;
   opacity: 0.3;

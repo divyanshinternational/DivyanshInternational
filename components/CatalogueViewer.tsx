@@ -161,15 +161,15 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
         className={cn(
           "bg-white flex items-center justify-center overflow-hidden relative user-select-none h-full w-full",
           // Base styles for all pages
-          "border-gray-100",
+          "",
           // Hard cover styling
           isCover ? "hard-cover z-20" : "soft-page bg-white",
           // Rounded corners on outer edges
-          isCover && isRight ? "rounded-r-lg border-l-4 border-l-gray-300" : "", // Front cover
-          isCover && !isRight ? "rounded-l-lg border-r-4 border-r-gray-300" : "", // Back cover
+          isCover && isRight ? "rounded-r-lg" : "", // Front cover
+          isCover && !isRight ? "rounded-l-lg" : "", // Back cover
           // Inner thickness simulation
-          !isCover && isRight ? "rounded-r-sm shadow-[inset_1px_0_2px_rgba(0,0,0,0.05)]" : "",
-          !isCover && !isRight ? "rounded-l-sm shadow-[inset_-1px_0_2px_rgba(0,0,0,0.05)]" : ""
+          !isCover && isRight ? "rounded-r-sm" : "",
+          !isCover && !isRight ? "rounded-l-sm" : ""
         )}
         style={{
           // Add 3D perspective effect for covers
@@ -177,26 +177,11 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
         }}
       >
         {/* Paper texture overlay for all pages */}
-        <div className="absolute inset-0 bg-stone-50/10 pointer-events-none z-10 mix-blend-multiply" />
 
-        {/* Spine Shadow Gradient - Stronger near the spine */}
-        {!isCover && (
-          !isRight ? (
-            // Left page: Spine is on the RIGHT
-            <div className="absolute top-0 right-0 bottom-0 w-10 bg-linear-to-l from-black/20 to-transparent z-20 pointer-events-none mix-blend-multiply" />
-          ) : (
-            // Right page: Spine is on the LEFT
-            <div className="absolute top-0 left-0 bottom-0 w-10 bg-linear-to-r from-black/20 to-transparent z-20 pointer-events-none mix-blend-multiply" />
-          )
-        )}
 
-        {/* 3D Thickness effect for covers */}
-        {isCover && (
-          <div className={cn(
-            "absolute top-0 bottom-0 w-1 bg-gray-300 z-30",
-            isRight ? "left-0" : "right-0"
-          )} />
-        )}
+
+
+
 
         <PdfPage
           pageNumber={pageNumber}
@@ -205,7 +190,7 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
           renderAnnotationLayer={false}
           className={cn(
             "max-w-full max-h-full flex items-center justify-center",
-            isCover ? "scale-95 transition-transform origin-center" : "" // Slight margin for covers to show "binding"
+            isCover ? "transition-transform origin-center" : "" // Removed scale-95
           )}
         />
 
@@ -245,7 +230,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const [dimensions, setDimensions] = useState({ width: 400, height: 550 });
+  const [dimensions, setDimensions] = useState({ width: 900, height: 500 });
 
   // PDF State
   const [numPages, setNumPages] = useState<number | null>(null);
@@ -274,12 +259,12 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
       setIsMobile(mobile);
 
       if (mobile) {
-        const width = Math.min(window.innerWidth - 48, 320);
-        setDimensions({ width, height: Math.round(width * 1.4) });
+        const width = Math.min(window.innerWidth - 48, 450);
+        setDimensions({ width, height: Math.round(width * 1.2) });
       } else if (window.innerWidth < 1024) {
-        setDimensions({ width: 350, height: 490 });
+        setDimensions({ width: 700, height: 500 });
       } else {
-        setDimensions({ width: 420, height: 580 });
+        setDimensions({ width: 1000, height: 600 });
       }
     };
 
@@ -350,15 +335,16 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
     document.body.removeChild(link);
   }, [pdfUrl, settings?.pdfFile?.asset?.originalFilename]);
 
+  const flipNext = useCallback(() => {
+    const flipBook = flipBookRef.current as { pageFlip?: () => { flipNext: () => void } } | null;
+    flipBook?.pageFlip?.()?.flipNext();
+  }, []);
+
   const flipPrev = useCallback(() => {
     const flipBook = flipBookRef.current as { pageFlip?: () => { flipPrev: () => void } } | null;
     flipBook?.pageFlip?.()?.flipPrev();
   }, []);
 
-  const flipNext = useCallback(() => {
-    const flipBook = flipBookRef.current as { pageFlip?: () => { flipNext: () => void } } | null;
-    flipBook?.pageFlip?.()?.flipNext();
-  }, []);
 
 
   // Check if we have content
@@ -590,23 +576,23 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                   height={dimensions.height}
                   size="fixed"
                   minWidth={280}
-                  maxWidth={500}
+                  maxWidth={1050}
                   minHeight={400}
-                  maxHeight={700}
-                  showCover={false}
+                  maxHeight={1000}
+                  showCover={true}
                   mobileScrollSupport={true}
                   onFlip={handleFlip}
                   onInit={() => setIsLoading(false)}
                   className="catalogue-flipbook"
                   style={{ display: 'block' }}
                   startPage={0}
-                  drawShadow={true}
-                  flippingTime={600}
-                  usePortrait={isMobile}
+                  drawShadow={false}
+                  flippingTime={1000}
+                  usePortrait={true}
                   startZIndex={0}
                   autoSize={true}
-                  maxShadowOpacity={0.5}
-                  showPageCorners={true}
+                  maxShadowOpacity={0}
+                  showPageCorners={false}
                   disableFlipByClick={false}
                   swipeDistance={30}
                   clickEventForward={true}
