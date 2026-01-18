@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { z } from "zod";
-import TextReveal from "@/components/ui/TextReveal";
+
 import { urlFor } from "@/lib/sanity/client-browser";
 import type { SanityImageSource } from "@sanity/image-url";
 import { getLocalized, type LocaleString, type LocaleText } from "@/lib/i18n";
@@ -55,7 +55,6 @@ const LabelsSchema = z.object({
 
 const ProductCardPropsSchema = z.object({
   product: ProductSchema,
-  onViewSpecs: z.function(),
   onAddToEnquiry: z.function(),
   labels: LabelsSchema,
 });
@@ -69,7 +68,6 @@ type Labels = z.infer<typeof LabelsSchema>;
 
 interface ProductCardProps {
   product: Product;
-  onViewSpecs: () => void;
   onAddToEnquiry: () => void;
   labels: Labels;
 }
@@ -93,17 +91,11 @@ function extractListInfo(
 // COMPONENT
 // =============================================================================
 
-export default function ProductCard({
-  product,
-  onViewSpecs,
-  onAddToEnquiry,
-  labels,
-}: ProductCardProps) {
+export default function ProductCard({ product, onAddToEnquiry, labels }: ProductCardProps) {
   // Runtime validation in development
   if (process.env.NODE_ENV === "development") {
     const result = ProductCardPropsSchema.safeParse({
       product,
-      onViewSpecs,
       onAddToEnquiry,
       labels,
     });
@@ -167,9 +159,15 @@ export default function ProductCard({
         <span className="inline-flex items-center px-3 py-1 text-xs uppercase tracking-[0.3em] text-(--color-muted) bg-white rounded-full border border-[#efe3d2] mb-4">
           {product.category}
         </span>
-        <TextReveal as="h3" className="text-xl font-bold text-deep-brown mb-3" delay={0.1}>
+        <motion.h3
+          className="text-xl font-bold text-deep-brown mb-3"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+        >
           {heroHeading || productTitle}
-        </TextReveal>
+        </motion.h3>
         <p className="text-(--color-muted) text-sm mb-4 leading-relaxed line-clamp-3">{intro}</p>
 
         {/* Product Specifications Card */}
@@ -255,15 +253,8 @@ export default function ProductCard({
       {/* Footer Buttons */}
       <div className="px-6 pb-6 mt-auto flex flex-col sm:flex-row gap-2">
         <button
-          onClick={onViewSpecs}
-          className="flex-1 border-2 border-almond-gold text-deep-brown hover:bg-cashew-cream hover:border-gold-dark px-4 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 focus:outline-2 focus:outline-gold focus:outline-offset-2"
-          aria-label={`${labels.common.viewSpecs || "View Specs"} for ${productTitle}`}
-        >
-          {labels.common.viewSpecs || "View Specs"}
-        </button>
-        <button
           onClick={onAddToEnquiry}
-          className="flex-1 bg-linear-to-r from-almond-gold to-gold-dark hover:shadow-lg text-white px-4 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 focus:outline-2 focus:outline-gold-dark focus:outline-offset-2"
+          className="w-full bg-linear-to-r from-almond-gold to-gold-dark hover:shadow-lg text-white px-4 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 focus:outline-2 focus:outline-gold-dark focus:outline-offset-2"
           aria-label={`${labels.common.addToEnquiry || "Add to Enquiry"} - ${productTitle}`}
         >
           {labels.common.addToEnquiry || "Add to Enquiry"}

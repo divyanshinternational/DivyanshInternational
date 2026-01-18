@@ -51,20 +51,21 @@ export default function AnimationWrapper({
   children,
   className,
   delay = 0,
-  duration = 0.7,
-  viewportAmount = 0.2, // Default threshold
+  duration = 0.5,
+  viewportAmount = 0.1, // Trigger sooner
   ...motionProps
 }: AnimationWrapperProps) {
   // Validate props during development
   if (process.env.NODE_ENV === "development") {
-    validateProps({ children, className, delay, duration, viewportAmount });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    validateProps({ children, className, delay, duration, viewportAmount } as any);
   }
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }} // slightly more movement for visibility
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: viewportAmount, margin: "0px 0px -50px 0px" }}
+      viewport={{ once: true, amount: viewportAmount, margin: "-20px" }} // Trigger almost immediately upon entering viewport
       transition={{
         duration,
         delay,

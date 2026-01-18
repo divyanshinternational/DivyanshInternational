@@ -14,9 +14,10 @@ import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
-import TextReveal from "@/components/ui/TextReveal";
+
 import { urlForImage } from "@/lib/sanity/image";
 import type { SanityImageSource } from "@sanity/image-url";
+import { getGoogleDriveVideoUrl, getYouTubeEmbedUrl, isYouTubeUrl } from "@/lib/utils";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
@@ -104,14 +105,14 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.06, // Standard fast stagger
     },
   },
 };
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
 };
 
 const slideInRight = {
@@ -185,20 +186,22 @@ function TestimonialsList({ testimonials, eyebrow, title }: TestimonialsListProp
       ) : null}
 
       {title ? (
-        <TextReveal
-          as="h2"
+        <motion.h2
           className="text-3xl md:text-4xl font-semibold text-(--color-graphite) mb-6"
-          delay={0.2}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {title}
-        </TextReveal>
+        </motion.h2>
       ) : null}
 
       <motion.div
         className="space-y-6"
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
         variants={staggerContainer}
       >
         {testimonials.map((testimonial) => (
@@ -243,7 +246,7 @@ function DroneVideoShowcase({ sectionSettings }: DroneVideoShowcaseProps) {
       className="bg-linear-to-br from-white to-ivory border-2 border-gold-light p-8 rounded-3xl shadow-xl space-y-6"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={slideInRight}
     >
       {droneSettings?.eyebrow ? (
@@ -252,7 +255,7 @@ function DroneVideoShowcase({ sectionSettings }: DroneVideoShowcaseProps) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6 }}
         >
           {droneSettings.eyebrow}
         </motion.p>
@@ -341,19 +344,30 @@ function VideoPlayer({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full h-full"
+              className="w-full h-full aspect-video"
             >
-              <video
-                className="w-full h-full object-cover"
-                src={activeVideo.videoUrl}
-                controls
-                autoPlay
-                poster={
-                  activeVideo.thumbnail ? urlForImage(activeVideo.thumbnail).url() : undefined
-                }
-              >
-                Your browser does not support the video tag.
-              </video>
+              {isYouTubeUrl(activeVideo.videoUrl) ? (
+                <iframe
+                  className="w-full h-full"
+                  src={`${getYouTubeEmbedUrl(activeVideo.videoUrl) || ""}&controls=1`}
+                  title={activeVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ border: "none" }}
+                />
+              ) : (
+                <video
+                  className="w-full h-full object-cover"
+                  src={getGoogleDriveVideoUrl(activeVideo.videoUrl)}
+                  controls
+                  autoPlay
+                  poster={
+                    activeVideo.thumbnail ? urlForImage(activeVideo.thumbnail).url() : undefined
+                  }
+                >
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </motion.div>
           ) : activeVideo?.thumbnail ? (
             <motion.div

@@ -89,7 +89,7 @@ const DEFAULTS = {
   },
   emailTemplates: {
     fromName: "Divyansh International",
-    fromEmail: "noreply@divyanshinternational.com",
+    fromEmail: "onboarding@resend.dev",
     tradeSubject: "New Trade Enquiry from",
     newTradeEnquiryTitle: "New Trade Enquiry",
     nameLabel: "Name",

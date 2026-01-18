@@ -256,12 +256,11 @@ export default async function Home() {
         <AnimationWrapper delay={0.2}>
           <CapabilitiesSection
             initialCapabilities={capabilities}
-            initialCertificates={certificates}
             sectionSettings={homePage?.capabilitiesSection}
           />
         </AnimationWrapper>
 
-        <AnimationWrapper delay={0.4}>
+        <AnimationWrapper delay={0.1}>
           <ProcessSection
             initialProcessSteps={processSteps}
             sectionSettings={homePage?.processSection}
@@ -269,7 +268,7 @@ export default async function Home() {
           />
         </AnimationWrapper>
 
-        <AnimationWrapper delay={0.3}>
+        <AnimationWrapper delay={0.1}>
           <ProductShowcase
             initialProducts={products}
             siteSettings={siteSettings}
@@ -277,7 +276,7 @@ export default async function Home() {
           />
         </AnimationWrapper>
 
-        <AnimationWrapper delay={0.5}>
+        <AnimationWrapper delay={0.1}>
           <VideoTestimonialsSection
             initialTestimonials={testimonials}
             sectionSettings={testimonialsSection}
@@ -285,7 +284,7 @@ export default async function Home() {
           />
         </AnimationWrapper>
 
-        <AnimationWrapper delay={0.6}>
+        <AnimationWrapper delay={0.1}>
           <SustainabilitySection
             initialPillars={sustainabilityPillars}
             sectionSettings={homePage?.sustainabilitySection}
@@ -293,7 +292,7 @@ export default async function Home() {
           />
         </AnimationWrapper>
 
-        <AnimationWrapper delay={0.7}>
+        <AnimationWrapper delay={0.1}>
           <TrustSection
             initialCertificates={certificates}
             sectionSettings={homePage?.trustSection}
@@ -301,7 +300,7 @@ export default async function Home() {
           />
         </AnimationWrapper>
 
-        <AnimationWrapper delay={0.8}>
+        <AnimationWrapper delay={0.1}>
           <CTASection initialCTA={cta} />
         </AnimationWrapper>
       </div>

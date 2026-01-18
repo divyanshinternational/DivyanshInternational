@@ -13,7 +13,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { z } from "zod";
-import TextReveal from "@/components/ui/TextReveal";
+
 import type { SanityImageSource } from "@sanity/image-url";
 import { urlForImage } from "@/lib/sanity/image";
 
@@ -86,7 +86,7 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.05, // Very fast stagger
     },
   },
 };
@@ -96,15 +96,15 @@ const staggerContainerDelayed = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.2,
+      staggerChildren: 0.05,
+      delayChildren: 0.05,
     },
   },
 };
 
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.95 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.4 } }, // Faster
 };
 
 const fadeInUp = {
@@ -169,34 +169,40 @@ interface SectionHeaderProps {
 function SectionHeader({ settings }: SectionHeaderProps) {
   return (
     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 mb-10">
-      <div>
+      <div className="flex-1">
         {settings.eyebrow ? (
           <motion.p
-            className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4"
+            className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4 font-bold"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             {settings.eyebrow}
           </motion.p>
         ) : null}
         {settings.title ? (
-          <TextReveal
-            as="h2"
+          <motion.h2
             className="text-3xl font-semibold text-(--color-graphite)"
-            delay={0.2}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             {settings.title}
-          </TextReveal>
+          </motion.h2>
         ) : null}
       </div>
       {settings.description ? (
-        <div className="text-(--color-slate) max-w-xl">
-          <TextReveal as="p" delay={0.4}>
-            {settings.description}
-          </TextReveal>
-        </div>
+        <motion.div
+          className="text-(--color-slate) max-w-xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <p>{settings.description}</p>
+        </motion.div>
       ) : null}
     </div>
   );
@@ -229,15 +235,18 @@ interface CertificateCardProps {
 function CertificateCard({ certificate }: CertificateCardProps) {
   return (
     <motion.article
-      className="p-6 rounded-xl border-2 border-gold/30 bg-white relative overflow-hidden group hover:border-gold transition-colors hover:shadow-lg"
+      className="p-6 rounded-xl border border-sand bg-white relative overflow-hidden group hover:border-gold transition-all duration-500 hover:shadow-xl"
       variants={scaleIn}
     >
+      {/* Shine Effect */}
+      <div className="absolute inset-0 bg-linear-to-br from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
       <div
-        className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity"
+        className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-100 transition-opacity duration-500"
         aria-hidden="true"
       >
         {certificate.image ? (
-          <div className="w-16 h-16 relative">
+          <div className="w-16 h-16 relative grayscale group-hover:grayscale-0 transition-all duration-500">
             <Image
               src={urlForImage(certificate.image).url()}
               alt=""
@@ -249,17 +258,24 @@ function CertificateCard({ certificate }: CertificateCardProps) {
           <ShieldIcon />
         )}
       </div>
-      <p className="text-sm uppercase tracking-[0.3em] text-gold-dark mb-2 font-bold">
+      <p className="text-sm uppercase tracking-[0.3em] text-gold-dark mb-2 font-bold group-hover:text-gold transition-colors">
         {certificate.label}
       </p>
-      <p className="text-(--color-graphite) font-medium">{certificate.description}</p>
+      <p className="text-(--color-graphite) font-medium group-hover:text-deep-brown transition-colors">
+        {certificate.description}
+      </p>
     </motion.article>
   );
 }
 
 function ShieldIcon() {
   return (
-    <svg className="w-16 h-16 text-gold" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <svg
+      className="w-16 h-16 text-gold transition-transform duration-500 group-hover:scale-110"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
       <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
     </svg>
   );
@@ -292,7 +308,7 @@ interface SegmentCardProps {
 function SegmentCard({ segment }: SegmentCardProps) {
   return (
     <motion.div
-      className="min-h-[80px] flex items-center justify-center rounded-xl border border-[#efe3d2] bg-white/80 text-center px-4 text-sm font-semibold text-(--color-slate) hover:bg-white hover:shadow-md transition-all"
+      className="min-h-[80px] flex items-center justify-center rounded-xl border border-[#efe3d2] bg-white/80 text-center px-4 text-sm font-semibold text-(--color-slate) hover:bg-white hover:shadow-lg hover:border-gold/50 hover:-translate-y-1 transition-all duration-300"
       variants={fadeInUp}
     >
       {segment}

@@ -12,7 +12,7 @@
 
 import { motion } from "framer-motion";
 import { z } from "zod";
-import TextReveal from "@/components/ui/TextReveal";
+
 import { AlmondIcon, CashewIcon, WalnutIcon, PeanutIcon } from "@/components/assets/Decorations";
 
 // =============================================================================
@@ -74,14 +74,14 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.06, // Standard fast stagger
     },
   },
 };
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } }, // Snappier
 };
 
 // =============================================================================
@@ -131,35 +131,45 @@ interface SectionHeaderProps {
   settings: SectionSettings;
 }
 
+interface SectionHeaderProps {
+  settings: SectionSettings;
+}
+
 function SectionHeader({ settings }: SectionHeaderProps) {
   return (
     <div className="max-w-2xl mb-12">
       {settings.eyebrow ? (
         <motion.p
-          className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4"
+          className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4 font-bold"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {settings.eyebrow}
         </motion.p>
       ) : null}
       {settings.title ? (
-        <TextReveal
-          as="h2"
-          className="text-3xl md:text-4xl font-semibold text-(--color-graphite) mb-4"
-          delay={0.2}
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-(--color-graphite) mb-4 font-heading"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {settings.title}
-        </TextReveal>
+        </motion.h2>
       ) : null}
       {settings.description ? (
-        <div className="text-lg text-(--color-slate)">
-          <TextReveal as="p" delay={0.4}>
-            {settings.description}
-          </TextReveal>
-        </div>
+        <motion.div
+          className="text-lg text-(--color-slate) leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <p>{settings.description}</p>
+        </motion.div>
       ) : null}
     </div>
   );
@@ -175,7 +185,7 @@ function ProcessStepsGrid({ steps }: ProcessStepsGridProps) {
       className="grid md:grid-cols-2 gap-6"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
       variants={staggerContainer}
     >
       {steps.map((step) => (
@@ -195,13 +205,15 @@ function ProcessStepCard({ step }: ProcessStepCardProps) {
       className="bg-linear-to-br from-white to-ivory p-6 rounded-3xl border-2 border-sand shadow-lg hover:shadow-xl hover:border-gold-light transition-all duration-300"
       variants={fadeInUp}
     >
-      <TextReveal
-        as="h3"
-        className="text-lg font-semibold text-(--color-graphite) mb-2"
-        delay={0.1}
+      <motion.h3
+        className="text-lg font-bold text-(--color-graphite) mb-2"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
       >
         {step.title}
-      </TextReveal>
+      </motion.h3>
       <p className="text-(--color-slate)">{step.detail}</p>
     </motion.article>
   );

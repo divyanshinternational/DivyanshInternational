@@ -13,7 +13,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { z } from "zod";
-import TextReveal from "@/components/ui/TextReveal";
+
 import {
   AlmondIcon,
   CashewIcon,
@@ -98,13 +98,13 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.01,
+      staggerChildren: 0.06, // Standard fast stagger
     },
   },
 };
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 5 },
+  hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
 };
 
@@ -176,30 +176,36 @@ function SectionHeader({ settings }: SectionHeaderProps) {
     <div className="max-w-3xl mb-12">
       {settings.eyebrow ? (
         <motion.p
-          className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4"
+          className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4 font-bold"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {settings.eyebrow}
         </motion.p>
       ) : null}
       {settings.title ? (
-        <TextReveal
-          as="h2"
-          className="text-3xl md:text-4xl font-semibold text-(--color-graphite) mb-4"
-          delay={0.2}
+        <motion.h2
+          className="text-3xl md:text-5xl font-bold text-(--color-graphite) mb-6 font-heading leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {settings.title}
-        </TextReveal>
+        </motion.h2>
       ) : null}
       {settings.description ? (
-        <div className="text-lg text-(--color-slate)">
-          <TextReveal as="p" delay={0.4}>
-            {settings.description}
-          </TextReveal>
-        </div>
+        <motion.div
+          className="text-lg text-(--color-slate) leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <p>{settings.description}</p>
+        </motion.div>
       ) : null}
     </div>
   );
@@ -215,7 +221,7 @@ function CapabilitiesGrid({ capabilities }: CapabilitiesGridProps) {
       className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "100px" }}
+      viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
       variants={staggerContainer}
     >
       {capabilities.map((capability) => (
@@ -235,16 +241,18 @@ function CapabilityCard({ capability }: CapabilityCardProps) {
       className="bg-linear-to-br from-white to-ivory p-6 h-full rounded-3xl border-2 border-gold-light shadow-lg hover:shadow-xl hover:border-almond-gold transition-all duration-300"
       variants={fadeInUp}
     >
-      <div className="text-sm uppercase tracking-[0.3em] text-(--color-muted) mb-4">
+      <div className="text-sm uppercase tracking-[0.3em] text-(--color-muted) mb-4 font-bold">
         {capability.metric}
       </div>
-      <TextReveal
-        as="h3"
-        className="text-xl font-semibold text-(--color-graphite) mb-3"
-        delay={0.1}
+      <motion.h3
+        className="text-xl font-bold text-(--color-graphite) mb-3"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
       >
         {capability.title}
-      </TextReveal>
+      </motion.h3>
       <p className="text-(--color-slate)">{capability.description}</p>
     </motion.div>
   );
@@ -267,13 +275,15 @@ function CertificatesSection({ certificates, title, description }: CertificatesS
     >
       <div className="text-center mb-10">
         {title ? (
-          <TextReveal
-            as="h3"
+          <motion.h3
             className="text-2xl font-bold text-deep-brown mb-4 font-heading"
-            delay={0.2}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
           >
             {title}
-          </TextReveal>
+          </motion.h3>
         ) : null}
         {description ? (
           <motion.p
@@ -281,7 +291,7 @@ function CertificatesSection({ certificates, title, description }: CertificatesS
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
             {description}
           </motion.p>

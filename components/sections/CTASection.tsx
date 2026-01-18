@@ -13,7 +13,7 @@
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { z } from "zod";
-import TextReveal from "@/components/ui/TextReveal";
+
 import { AlmondIcon, CashewIcon, WalnutIcon, PeanutIcon } from "@/components/assets/Decorations";
 
 // =============================================================================
@@ -143,26 +143,32 @@ function WalkthroughCard({ walkthrough, contactPath }: WalkthroughCardProps) {
   return (
     <div className="bg-linear-to-br from-white to-cashew-cream p-8 rounded-3xl border-2 border-gold-light shadow-xl hover:shadow-2xl transition-all duration-300">
       <motion.p
-        className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4"
+        className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4 font-bold"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {walkthrough.subtitle}
       </motion.p>
-      <TextReveal
-        as="h3"
-        className="text-2xl font-semibold text-(--color-graphite) mb-4"
-        delay={0.2}
+      <motion.h3
+        className="text-2xl font-bold text-(--color-graphite) mb-4"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {walkthrough.title}
-      </TextReveal>
-      <div className="text-(--color-slate) mb-6">
-        <TextReveal as="p" delay={0.4}>
-          {walkthrough.description}
-        </TextReveal>
-      </div>
+      </motion.h3>
+      <motion.div
+        className="text-(--color-slate) mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <p>{walkthrough.description}</p>
+      </motion.div>
       <button
         type="button"
         onClick={handleClick}
@@ -197,26 +203,32 @@ function PricingCard({ pricing, contactPath, tradeType }: PricingCardProps) {
   return (
     <div className="bg-linear-to-br from-white to-cashew-cream p-8 rounded-3xl border-2 border-gold-light shadow-xl hover:shadow-2xl transition-all duration-300">
       <motion.p
-        className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4"
+        className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4 font-bold"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {pricing.subtitle}
       </motion.p>
-      <TextReveal
-        as="h3"
-        className="text-2xl font-semibold text-(--color-graphite) mb-4"
-        delay={0.2}
+      <motion.h3
+        className="text-2xl font-bold text-(--color-graphite) mb-4"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {pricing.title}
-      </TextReveal>
-      <div className="text-(--color-slate) mb-6">
-        <TextReveal as="p" delay={0.4}>
-          {pricing.description}
-        </TextReveal>
-      </div>
+      </motion.h3>
+      <motion.div
+        className="text-(--color-slate) mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        <p>{pricing.description}</p>
+      </motion.div>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <label htmlFor="cta-email" className="sr-only">
           Email Address

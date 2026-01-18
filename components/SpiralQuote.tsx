@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { NutIcon } from "@/components/assets/Decorations";
-import { z } from "zod";
 import TextReveal from "@/components/ui/TextReveal";
+import { z } from "zod";
 
 // =============================================================================
 // ZOD SCHEMAS
@@ -88,13 +88,17 @@ export default function SpiralQuote({ initialQuote, labels }: SpiralQuoteProps) 
               className="text-6xl text-gold font-serif leading-none block mb-2"
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6 }}
             >
               &quot;
             </motion.span>
             <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-deep-brown font-heading leading-tight mb-6 -mt-2">
-              <TextReveal as="span" duration={0.8} delay={0.2}>
+              <TextReveal
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-deep-brown font-heading leading-tight mb-6 -mt-2 inline-block"
+                delay={0}
+                duration={0.8}
+              >
                 {initialQuote.quote}
               </TextReveal>
             </div>
@@ -102,16 +106,16 @@ export default function SpiralQuote({ initialQuote, labels }: SpiralQuoteProps) 
               className="text-lg text-(--color-slate) italic mb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6 }}
             >
               — {initialQuote.author}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6 }}
             >
               <Link
                 href={initialQuote.linkUrl}

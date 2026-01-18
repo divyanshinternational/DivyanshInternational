@@ -12,7 +12,7 @@
 
 import { motion } from "framer-motion";
 import { z } from "zod";
-import TextReveal from "@/components/ui/TextReveal";
+
 import { AlmondIcon, CashewIcon, WalnutIcon, PeanutIcon } from "@/components/assets/Decorations";
 
 // =============================================================================
@@ -74,15 +74,15 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      staggerChildren: 0.06, // Standard fast stagger
+      delayChildren: 0.05,
     },
   },
 };
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 15 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } }, // Snappier
 };
 
 // =============================================================================
@@ -139,30 +139,36 @@ function SectionHeader({ settings }: SectionHeaderProps) {
     <div>
       {settings.eyebrow ? (
         <motion.p
-          className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4"
+          className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4 font-bold"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {settings.eyebrow}
         </motion.p>
       ) : null}
       {settings.title ? (
-        <TextReveal
-          as="h2"
+        <motion.h2
           className="text-3xl font-semibold text-(--color-graphite) mb-4"
-          delay={0.2}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
         >
           {settings.title}
-        </TextReveal>
+        </motion.h2>
       ) : null}
       {settings.description ? (
-        <div className="text-lg text-(--color-slate)">
-          <TextReveal as="p" delay={0.4}>
-            {settings.description}
-          </TextReveal>
-        </div>
+        <motion.div
+          className="text-lg text-(--color-slate) leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        >
+          <p>{settings.description}</p>
+        </motion.div>
       ) : null}
     </div>
   );
@@ -178,7 +184,7 @@ function PillarsGrid({ pillars }: PillarsGridProps) {
       className="grid gap-6"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
       variants={staggerContainer}
     >
       {pillars.map((pillar) => (
@@ -195,17 +201,23 @@ interface PillarCardProps {
 function PillarCard({ pillar }: PillarCardProps) {
   return (
     <motion.article
-      className="p-4 rounded-2xl bg-linear-to-br from-ivory to-beige border-2 border-sand hover:shadow-lg hover:border-gold-light transition-all duration-300"
+      className="p-6 rounded-2xl bg-linear-to-br from-ivory to-white border border-sand hover:shadow-xl hover:border-gold-light transition-all duration-300 group relative overflow-hidden"
       variants={fadeInUp}
+      whileHover={{ y: -5 }}
     >
-      <TextReveal
-        as="h3"
-        className="text-lg font-semibold text-(--color-graphite) mb-2"
-        delay={0.1}
+      {/* Shine Effect */}
+      <div className="absolute inset-0 bg-linear-to-br from-transparent via-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+      <motion.h3
+        className="text-lg font-bold text-deep-brown mb-3 group-hover:text-gold-dark transition-colors"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }} // Trigger slightly earlier/easier
+        transition={{ duration: 0.4, ease: "easeOut" }} // Removed delay
       >
         {pillar.title}
-      </TextReveal>
-      <p className="text-(--color-slate)">{pillar.detail}</p>
+      </motion.h3>
+      <p className="text-(--color-slate) leading-relaxed">{pillar.detail}</p>
     </motion.article>
   );
 }

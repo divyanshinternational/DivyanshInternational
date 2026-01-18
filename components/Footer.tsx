@@ -210,29 +210,35 @@ export default function Footer({
     `© ${currentYear} ${companyName}. All rights reserved.`;
 
   return (
-    <footer className="bg-linear-to-br from-deep-brown via-raisin-purple to-deep-brown py-16 relative overflow-hidden text-white">
+    <footer className="bg-[#1a120b] py-16 relative overflow-hidden text-white border-t border-gold/20">
       {/* Visual Elements */}
       <FooterVisualElements />
 
       {/* Decorative overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDE0YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6TTEyIDM4YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50"></div>
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDE0YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6TTEyIDM4YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30"></div>
+
+      {/* Subtle Gold Glow at top */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-linear-to-r from-transparent via-gold/40 to-transparent"></div>
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-white">
-              {labels?.companyTitle || companyName}
-            </h3>
-            <p className="text-sm mb-4 leading-relaxed text-white/95">
-              {labels?.companyDescription}
-            </p>
-            <div className="flex gap-4">
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-2xl font-bold mb-3 text-almond-gold font-heading tracking-wide">
+                {labels?.companyTitle || companyName}
+              </h3>
+              <p className="text-sm leading-relaxed text-ivory/80 max-w-sm">
+                {labels?.companyDescription}
+              </p>
+            </div>
+
+            <div className="flex gap-3">
               {/* Social Media Links */}
               {footer.socialLinks.facebook && footer.socialLinks.facebook !== "#" ? (
                 <a
                   href={footer.socialLinks.facebook}
-                  className="text-white hover:text-almond-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded p-2"
+                  className="bg-white/5 hover:bg-gold hover:text-deep-brown text-white transition-all duration-300 rounded-full p-2.5 flex items-center justify-center border border-white/10 hover:border-gold"
                   aria-label={accessibility?.socialFacebookAria}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -245,7 +251,7 @@ export default function Footer({
               {footer.socialLinks.twitter && footer.socialLinks.twitter !== "#" ? (
                 <a
                   href={footer.socialLinks.twitter}
-                  className="text-white hover:text-almond-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded p-2"
+                  className="bg-white/5 hover:bg-gold hover:text-deep-brown text-white transition-all duration-300 rounded-full p-2.5 flex items-center justify-center border border-white/10 hover:border-gold"
                   aria-label={accessibility?.socialTwitterAria}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -258,7 +264,7 @@ export default function Footer({
               {footer.socialLinks.linkedin && footer.socialLinks.linkedin !== "#" ? (
                 <a
                   href={footer.socialLinks.linkedin}
-                  className="text-white hover:text-almond-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded p-2"
+                  className="bg-white/5 hover:bg-gold hover:text-deep-brown text-white transition-all duration-300 rounded-full p-2.5 flex items-center justify-center border border-white/10 hover:border-gold"
                   aria-label={accessibility?.socialLinkedinAria}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -271,7 +277,7 @@ export default function Footer({
               {footer.socialLinks.instagram && footer.socialLinks.instagram !== "#" ? (
                 <a
                   href={footer.socialLinks.instagram}
-                  className="text-white hover:text-almond-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded p-2"
+                  className="bg-white/5 hover:bg-gold hover:text-deep-brown text-white transition-all duration-300 rounded-full p-2.5 flex items-center justify-center border border-white/10 hover:border-gold"
                   aria-label={accessibility?.socialInstagramAria}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -286,15 +292,18 @@ export default function Footer({
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">{labels?.quickLinksTitle}</h4>
-            <ul className="space-y-2">
+            <h4 className="text-lg font-bold mb-6 text-white tracking-wide">
+              {labels?.quickLinksTitle}
+            </h4>
+            <ul className="space-y-3">
               {/* Make an Enquiry Button */}
               <li>
                 <button
                   onClick={handleMakeEnquiry}
-                  className="hover:text-almond-gold transition-all text-sm block text-left w-full bg-linear-to-r from-almond-gold to-gold-dark text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg duration-300 hover:scale-105 active:scale-95"
+                  className="group relative overflow-hidden bg-linear-to-r from-almond-gold via-gold to-almond-gold text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md transition-all duration-300 hover:shadow-gold/20 hover:scale-[1.02] active:scale-95 w-full md:w-auto text-center"
                 >
-                  Make an Enquiry
+                  <span className="relative z-10">Make an Enquiry</span>
+                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </button>
               </li>
 
@@ -304,7 +313,7 @@ export default function Footer({
                   <li key={index}>
                     <Link
                       href={link.url}
-                      className="hover:text-almond-gold transition-colors text-sm block text-white/95"
+                      className="text-ivory/70 hover:text-gold transition-colors text-sm block hover:translate-x-1 duration-200"
                     >
                       {link.label}
                     </Link>
@@ -315,13 +324,15 @@ export default function Footer({
 
           {/* Product Categories */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">{labels?.productsTitle}</h4>
-            <ul className="space-y-2">
+            <h4 className="text-lg font-bold mb-6 text-white tracking-wide">
+              {labels?.productsTitle}
+            </h4>
+            <ul className="space-y-3">
               {dynamicProductLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="hover:text-almond-gold transition-colors text-sm block text-white/95"
+                    className="text-ivory/70 hover:text-gold transition-colors text-sm block hover:translate-x-1 duration-200"
                   >
                     {link.label}
                   </Link>
@@ -332,39 +343,44 @@ export default function Footer({
 
           {/* Certifications & Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">{labels?.certificationsTitle}</h4>
-            <div className="space-y-4">
-              {/* Certification Badges Placeholder */}
-              <div className="flex gap-2 flex-wrap">
+            <h4 className="text-lg font-bold mb-6 text-white tracking-wide">
+              {labels?.certificationsTitle}
+            </h4>
+            <div className="space-y-6">
+              {/* Certification Badges */}
+              <div className="flex gap-3 flex-wrap">
                 {labels?.isoLabel ? (
-                  <div className="bg-white/20 px-3 py-2 rounded text-xs font-medium text-white">
+                  <div className="bg-white/10 border border-white/20 px-4 py-2 rounded-md text-xs font-bold text-white tracking-wider uppercase backdrop-blur-sm hover:bg-gold hover:text-deep-brown hover:border-gold transition-colors cursor-default">
                     {labels.isoLabel}
                   </div>
                 ) : null}
                 {labels?.fssaiLabel ? (
-                  <div className="bg-white/20 px-3 py-2 rounded text-xs font-medium text-white">
+                  <div className="bg-white/10 border border-white/20 px-4 py-2 rounded-md text-xs font-bold text-white tracking-wider uppercase backdrop-blur-sm hover:bg-gold hover:text-deep-brown hover:border-gold transition-colors cursor-default">
                     {labels.fssaiLabel}
                   </div>
                 ) : null}
+              </div>
+
+              <div className="pt-2">
+                <p className="text-xs text-ivory/50 italic">{labels?.servingText}</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/30 pt-8 mt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-            <p className="font-medium text-white/95">{copyright}</p>
-            <p className="text-center md:text-right text-white/95">{labels?.servingText}</p>
-            <div className="text-xs">
+        <div className="border-t border-white/10 pt-8 mt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-ivory/60">
+            <p className="font-medium">{copyright}</p>
+            <div className="flex items-center gap-4">
               <Link
                 href="/privacy-policy"
-                className="hover:text-almond-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded px-2 py-1 text-white/95"
+                className="hover:text-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded"
               >
                 {labels?.privacyPolicyText}
               </Link>
-              <span className="mx-2 text-white/50">|</span>
-              <span className="text-white/95">{footer.privacyNote || labels?.privacyNote}</span>
+              <div className="w-1 h-1 rounded-full bg-white/30" />
+              <span>{footer.privacyNote || labels?.privacyNote}</span>
             </div>
           </div>
         </div>

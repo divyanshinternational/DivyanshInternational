@@ -24,7 +24,6 @@ import {
   PeanutIcon,
 } from "@/components/assets/Decorations";
 import { urlForImage } from "@/lib/sanity/image";
-import TextReveal from "@/components/ui/TextReveal";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
@@ -112,64 +111,12 @@ const DEFAULT_SLIDE_PADDING = "0";
 // UTILITY FUNCTIONS
 // =============================================================================
 
-function getGoogleDriveVideoUrl(url: string): string {
-  if (!url) return "";
-
-  const patterns = [
-    /drive\.google\.com\/file\/d\/([^/]+)/,
-    /drive\.google\.com\/uc\?.*?id=([^&]+)/,
-  ];
-
-  for (const pattern of patterns) {
-    const match = url.match(pattern);
-    if (match?.[1]) {
-      return `https://drive.google.com/uc?export=download&id=${match[1]}`;
-    }
-  }
-
-  return url;
-}
-
-/**
- * Detects if a URL is a YouTube URL and returns the embed URL.
- * Supports: youtu.be/ID, youtube.com/watch?v=ID, youtube.com/embed/ID
- * Returns null if not a YouTube URL.
- */
-function getYouTubeEmbedUrl(url: string): string | null {
-  if (!url) return null;
-
-  // Pattern for youtu.be/VIDEO_ID
-  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
-  if (shortMatch?.[1]) {
-    return `https://www.youtube.com/embed/${shortMatch[1]}?autoplay=1&loop=1&playlist=${shortMatch[1]}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`;
-  }
-
-  // Pattern for youtube.com/watch?v=VIDEO_ID
-  const watchMatch = url.match(/youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/);
-  if (watchMatch?.[1]) {
-    return `https://www.youtube.com/embed/${watchMatch[1]}?autoplay=1&loop=1&playlist=${watchMatch[1]}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`;
-  }
-
-  // Pattern for youtube.com/embed/VIDEO_ID (already embed format)
-  const embedMatch = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/);
-  if (embedMatch?.[1]) {
-    // Add autoplay params if not present
-    if (!url.includes("autoplay")) {
-      return `${url.split("?")[0]}?autoplay=1&loop=1&playlist=${embedMatch[1]}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`;
-    }
-    return url;
-  }
-
-  return null;
-}
-
-function isYouTubeUrl(url: string): boolean {
-  return getYouTubeEmbedUrl(url) !== null;
-}
-
-function isValidVideoUrl(url: string): boolean {
-  return typeof url === "string" && url.trim().length > 0;
-}
+import {
+  getGoogleDriveVideoUrl,
+  getYouTubeEmbedUrl,
+  isYouTubeUrl,
+  isValidVideoUrl,
+} from "@/lib/utils";
 
 function validateProps(props: unknown): void {
   const result = HeroSliderPropsSchema.safeParse(props);
@@ -500,8 +447,8 @@ function SlideContent({ slide, onNavigate }: SlideContentProps) {
           visible: {
             opacity: 1,
             transition: {
-              staggerChildren: 0.2,
-              delayChildren: 0.3,
+              staggerChildren: 0.1,
+              delayChildren: 0.1,
             },
           },
         }}
@@ -510,23 +457,26 @@ function SlideContent({ slide, onNavigate }: SlideContentProps) {
         <motion.div
           variants={{
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
           }}
           className="flex items-center gap-3 mb-4 md:mb-6"
         >
           <span className="h-px w-8 md:w-12 bg-almond-gold" aria-hidden="true" />
-          <TextReveal
-            as="p"
-            className="uppercase tracking-[0.2em] md:tracking-[0.4em] text-[10px] md:text-xs text-text-muted font-semibold"
-          >
+          <p className="uppercase tracking-[0.2em] md:tracking-[0.4em] text-[10px] md:text-xs text-text-muted font-semibold">
             {slide.eyebrow ?? ""}
-          </TextReveal>
+          </p>
         </motion.div>
 
         <div className="mb-4 md:mb-6 leading-tight font-heading text-[#1a120b] drop-shadow-md overflow-hidden min-h-[1.2em]">
-          <TextReveal as="h1" className="text-4xl md:text-6xl lg:text-7xl font-bold" delay={0.2}>
+          <motion.h1
+            className="text-4xl md:text-6xl lg:text-7xl font-bold"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+            }}
+          >
             {slide.headline ?? ""}
-          </TextReveal>
+          </motion.h1>
         </div>
 
         <motion.div
@@ -543,21 +493,23 @@ function SlideContent({ slide, onNavigate }: SlideContentProps) {
 
         <div className="space-y-3 md:space-y-4 text-base md:text-lg text-[#2c241b] max-w-2xl mb-8 md:mb-10 leading-relaxed font-semibold">
           {(slide.paragraphs ?? []).map((paragraph, index) => (
-            <TextReveal
+            <motion.p
               key={`${slide._id}-paragraph-${index}`}
-              as="p"
               className="drop-shadow-sm"
-              delay={0.4 + index * 0.15}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+              }}
             >
               {paragraph}
-            </TextReveal>
+            </motion.p>
           ))}
         </div>
 
         <motion.div
           variants={{
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.8 } },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
           }}
           className="flex flex-wrap gap-3 md:gap-4"
         >

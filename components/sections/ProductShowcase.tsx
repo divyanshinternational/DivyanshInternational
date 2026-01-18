@@ -13,7 +13,7 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { z } from "zod";
-import TextReveal from "@/components/ui/TextReveal";
+
 import ProductCard from "@/components/ProductCard";
 import ProductModal from "@/components/ProductModal";
 import {
@@ -107,19 +107,20 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.01,
+      staggerChildren: 0.06, // Standard fast stagger
+      delayChildren: 0.05,
       ease: "easeOut" as const,
     },
   },
 };
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 5 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.4,
+      duration: 0.4, // Snappier
       ease: "easeOut" as const,
     },
   },
@@ -142,16 +143,11 @@ export default function ProductShowcase({
   }
 
   const products = initialProducts ?? [];
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const sectionId = siteSettings?.routing?.productsSectionId as string | undefined;
   const analyticsEventName = siteSettings?.analytics?.eventAddToEnquiry as string | undefined;
-
-  const handleViewSpecs = useCallback((product: Product) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  }, []);
 
   const handleAddToEnquiry = useCallback(
     (product: Product) => {
@@ -192,7 +188,6 @@ export default function ProductShowcase({
         <ProductsGrid
           products={products}
           siteSettings={siteSettings}
-          onViewSpecs={handleViewSpecs}
           onAddToEnquiry={handleAddToEnquiry}
         />
 
@@ -220,33 +215,41 @@ interface SectionHeaderProps {
 
 function SectionHeader({ headerData, language }: SectionHeaderProps) {
   return (
-    <div className="text-center mb-12 max-w-3xl mx-auto">
+    <div className="text-center mb-16 max-w-3xl mx-auto">
       {headerData.eyebrow ? (
         <motion.p
-          className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4"
+          className="uppercase tracking-[0.4em] text-xs text-(--color-muted) mb-4 font-bold"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: 0.02 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {getLocalized(headerData.eyebrow, language)}
         </motion.p>
       ) : null}
+
       {headerData.title ? (
-        <TextReveal
-          as="h2"
-          className="text-3xl md:text-4xl font-semibold text-(--color-graphite) mb-4"
-          delay={0.1}
+        <motion.h2
+          className="text-3xl md:text-5xl font-bold text-(--color-graphite) mb-6 font-heading leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {getLocalized(headerData.title, language)}
-        </TextReveal>
+        </motion.h2>
       ) : null}
+
       {headerData.description ? (
-        <div className="text-lg text-(--color-slate)">
-          <TextReveal as="p" delay={0.2}>
-            {getLocalized(headerData.description, language)}
-          </TextReveal>
-        </div>
+        <motion.div
+          className="text-lg text-(--color-slate) leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <p>{getLocalized(headerData.description, language)}</p>
+        </motion.div>
       ) : null}
     </div>
   );
@@ -256,24 +259,22 @@ interface ProductsGridProps {
   products: Product[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   siteSettings: any;
-  onViewSpecs: (product: Product) => void;
   onAddToEnquiry: (product: Product) => void;
 }
 
-function ProductsGrid({ products, siteSettings, onViewSpecs, onAddToEnquiry }: ProductsGridProps) {
+function ProductsGrid({ products, siteSettings, onAddToEnquiry }: ProductsGridProps) {
   return (
     <motion.div
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "100px" }}
+      viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
       variants={staggerContainer}
     >
       {products.map((product) => (
         <motion.div key={product._id} variants={fadeInUp}>
           <ProductCard
             product={product}
-            onViewSpecs={() => onViewSpecs(product)}
             onAddToEnquiry={() => onAddToEnquiry(product)}
             labels={siteSettings}
           />

@@ -82,7 +82,7 @@ const DEFAULTS = {
   },
   emailTemplates: {
     fromName: "Divyansh International",
-    fromEmail: "noreply@divyanshinternational.com",
+    fromEmail: "onboarding@resend.dev",
     generalSubject: "New General Enquiry from",
     newGeneralEnquiryTitle: "New General Enquiry",
     nameLabel: "Name",
