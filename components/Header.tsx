@@ -1,0 +1,265 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { z } from "zod";
+import MobileMenu from "./MobileMenu";
+import ProductsDropdown from "./ProductsDropdown";
+import LanguageSwitcher from "./LanguageSwitcher";
+
+import { urlForImage } from "@/lib/sanity/image";
+import type { SanityImageSource } from "@sanity/image-url";
+import type { LocaleString } from "@/lib/i18n";
+
+// =============================================================================
+// ZOD VALIDATION SCHEMAS
+// =============================================================================
+
+const SanityImageSchema = z.custom<SanityImageSource>();
+
+const NavLinkSchema = z.object({
+  label: z.string(),
+  url: z.string(),
+});
+
+const HeaderDataSchema = z.object({
+  logo: SanityImageSchema.optional(),
+  navLinks: z.array(NavLinkSchema).optional(),
+  tradeButtonText: z.string().optional(),
+  logoAlt: z.string().optional(),
+  homeAriaLabel: z.string().optional(),
+  navAriaLabel: z.string().optional(),
+  menuAriaLabel: z.string().optional(),
+  closeMenuAriaLabel: z.string().optional(),
+  productsLabel: z.string().optional(),
+});
+
+const ProductSlugSchema = z.object({
+  current: z.string(),
+});
+
+const SiteSettingsSchema = z
+  .object({
+    organization: z
+      .object({
+        name: z.string().optional(),
+        tagline: z.string().optional(),
+        logo: SanityImageSchema.optional(),
+      })
+      .optional(),
+    navigation: z
+      .object({
+        home: z.string().optional(),
+        products: z.string().optional(),
+        catalogue: z.string().optional(),
+        homeUrl: z.string().optional(),
+        productsUrl: z.string().optional(),
+        catalogueUrl: z.string().optional(),
+        productsLabel: z.string().optional(),
+      })
+      .optional(),
+  })
+  .passthrough();
+
+const HeaderPropsSchema = z.object({
+  initialHeader: HeaderDataSchema.nullable().optional(),
+  products: z
+    .array(
+      z.object({
+        title: z.record(z.string(), z.string()), // LocaleString
+        slug: ProductSlugSchema,
+      })
+    )
+    .optional(),
+  siteSettings: SiteSettingsSchema.optional(),
+});
+
+// =============================================================================
+// TYPE DEFINITIONS
+// =============================================================================
+
+type HeaderProps = z.infer<typeof HeaderPropsSchema>;
+
+// =============================================================================
+// COMPONENT
+// =============================================================================
+
+export default function Header({ initialHeader, products, siteSettings }: HeaderProps) {
+  // Runtime validation in development
+  if (process.env.NODE_ENV === "development") {
+    const result = HeaderPropsSchema.safeParse({
+      initialHeader,
+      products,
+      siteSettings,
+    });
+    if (!result.success) {
+      console.warn("[Header] Prop validation warning:", result.error.flatten());
+    }
+  }
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const header = initialHeader || {};
+
+  // Resolve Logo URL
+  const logoUrl = siteSettings?.organization?.logo
+    ? urlForImage(siteSettings.organization.logo).width(64).height(64).url()
+    : "/divyansh-logo.jpg";
+
+  // Dynamic Navigation Labels & URLs
+  const nav = siteSettings?.navigation;
+  const homeLabel = nav?.home || "Home";
+  const homeUrl = nav?.homeUrl || "/";
+  const catalogueLabel = nav?.catalogue || "Catalogue";
+  const catalogueUrl = nav?.catalogueUrl || "/catalogue";
+  const productsLabel = nav?.productsLabel || nav?.products || "Products";
+  const tradeButtonText = header.tradeButtonText || "Trade Enquiry";
+
+  return (
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white shadow-lg py-2 md:py-3 border-b border-sand"
+            : "bg-linear-to-b from-white to-ivory backdrop-blur-md py-3 md:py-4 shadow-sm"
+        }`}
+      >
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="flex items-center justify-between gap-4">
+            {/* Logo */}
+            <div className="flex items-center shrink-0">
+              <Link
+                href={homeUrl}
+                className="flex items-center space-x-2 md:space-x-3 focus:outline-2 focus:outline-gold focus:rounded"
+                aria-label={header.homeAriaLabel || "Go to homepage"}
+              >
+                <div className="relative">
+                  <Image
+                    src={logoUrl}
+                    alt={
+                      header.logoAlt ||
+                      siteSettings?.organization?.name ||
+                      "Divyansh International Logo"
+                    }
+                    width={48}
+                    height={48}
+                    className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-almond-gold object-cover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                    priority
+                  />
+                  <div className="absolute -inset-1 bg-linear-to-r from-almond-gold to-gold-dark rounded-full opacity-20 blur-sm"></div>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-deep-brown font-bold text-base md:text-xl tracking-wide">
+                    {siteSettings?.organization?.name || "Divyansh International"}
+                  </span>
+                  <span className="text-almond-gold text-[10px] md:text-xs font-semibold uppercase tracking-wider">
+                    {siteSettings?.organization?.tagline || "Premium Dry Fruits"}
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav
+              className="hidden md:flex items-center space-x-6"
+              aria-label={header.navAriaLabel || "Main Navigation"}
+            >
+              <Link
+                href={homeUrl}
+                className="text-foreground hover:text-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded px-2 py-1"
+              >
+                {homeLabel}
+              </Link>
+
+              <ProductsDropdown
+                products={
+                  (products as unknown as { title: LocaleString; slug: { current: string } }[]) ||
+                  []
+                }
+                labels={
+                  siteSettings as unknown as {
+                    navigation: { productsLabel: string; productsUrl: string };
+                  }
+                }
+              />
+
+              <Link
+                href={catalogueUrl}
+                className="text-foreground hover:text-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded px-2 py-1"
+              >
+                {catalogueLabel}
+              </Link>
+
+              {header.navLinks?.map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.url}
+                  className="text-foreground hover:text-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded px-2 py-1"
+                >
+                  {link.label}
+                </Link>
+              ))}
+
+              <Link
+                href="/contact?type=trade"
+                className="bg-linear-to-r from-almond-gold to-gold-dark hover:shadow-lg text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 focus:outline-2 focus:outline-gold-dark focus:outline-offset-2"
+              >
+                {tradeButtonText}
+              </Link>
+
+              <div className="pl-2 border-l border-sand">
+                <LanguageSwitcher />
+              </div>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="md:hidden text-deep-brown focus:outline-2 focus:outline-gold focus:rounded p-2 hover:bg-beige rounded-lg transition-colors"
+              aria-label={header.menuAriaLabel || "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </motion.header>
+
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        products={
+          (products as unknown as { title: LocaleString; slug: { current: string } }[]) || []
+        }
+        menuItems={[
+          { label: homeLabel, url: homeUrl },
+          { label: catalogueLabel, url: catalogueUrl },
+          ...(header.navLinks ?? []),
+        ]}
+        productsLabel={productsLabel}
+        closeMenuAriaLabel={header.closeMenuAriaLabel || "Close menu"}
+      />
+    </>
+  );
+}

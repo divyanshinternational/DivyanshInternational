@@ -1,0 +1,18 @@
+# pnpm Workspace Configuration
+# https://pnpm.io/pnpm-workspace_yaml
+
+# Optimize install by using pre-built native binaries when available
+# This significantly speeds up CI/CD and fresh installs
+onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - core-js
+  - esbuild
+  - prisma
+  - sharp
+  - unrs-resolver
+  - lightningcss
+  - '@swc/core'
+  - '@parcel/watcher'
+  - msgpackr-extract
+  - '@rollup/rollup-linux-x64-gnu'

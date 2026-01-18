@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Enquiry {
+  id              String        @id @default(cuid())
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  type            EnquiryType
+  status          EnquiryStatus @default(new)
+  name            String        @db.VarChar(255)
+  email           String        @db.VarChar(255)
+  phone           String?       @db.VarChar(50)
+  message         String
+  company         String?       @db.VarChar(255)
+  role            String?       @db.VarChar(100)
+  country         String?       @db.VarChar(100)
+  productInterest Json?         @map("product_interest")
+  quantity        String?       @db.VarChar(100)
+  ipAddress       String?       @map("ip_address") @db.VarChar(45)
+  userAgent       String?       @map("user_agent")
+
+  @@index([createdAt(sort: Desc)])
+  @@index([status])
+  @@index([email])
+  @@index([type])
+  @@map("enquiries")
+}
+
+enum EnquiryType {
+  general
+  trade
+}
+
+enum EnquiryStatus {
+  new
+  contacted
+  qualified
+  converted
+  closed
+}
