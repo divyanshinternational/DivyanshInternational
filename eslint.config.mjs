@@ -46,6 +46,9 @@ const eslintConfig = defineConfig([
     // Sanity Studio (has its own lint config)
     ".sanity/**",
 
+    // Third-party minified files
+    "public/pdf.worker.min.mjs",
+
     // Cache
     ".turbo/**",
     ".vercel/**",

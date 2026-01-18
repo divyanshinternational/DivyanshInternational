@@ -151,7 +151,7 @@ interface PdfFlipPageProps {
 }
 
 const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
-  ({ pageNumber, width, height, isCover }, ref) => {
+  ({ pageNumber, height, isCover }, ref) => {
     // Determine page side (odd = right, even = left) - assuming starting at 1
     const isRight = pageNumber % 2 !== 0;
 
@@ -173,14 +173,14 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
         )}
         style={{
           // Add 3D perspective effect for covers
-          transformStyle: isCover ? 'preserve-3d' : 'flat',
+          transformStyle: isCover ? "preserve-3d" : "flat",
         }}
       >
         {/* Paper texture overlay for all pages */}
         <div className="absolute inset-0 bg-stone-50/10 pointer-events-none z-10 mix-blend-multiply" />
 
         {/* Spine Shadow Gradient - Stronger near the spine */}
-        {!isCover && (
+        {!isCover ? (
           !isRight ? (
             // Left page: Spine is on the RIGHT
             <div className="absolute top-0 right-0 bottom-0 w-10 bg-linear-to-l from-black/20 to-transparent z-20 pointer-events-none mix-blend-multiply" />
@@ -188,15 +188,17 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
             // Right page: Spine is on the LEFT
             <div className="absolute top-0 left-0 bottom-0 w-10 bg-linear-to-r from-black/20 to-transparent z-20 pointer-events-none mix-blend-multiply" />
           )
-        )}
+        ) : null}
 
         {/* 3D Thickness effect for covers */}
-        {isCover && (
-          <div className={cn(
-            "absolute top-0 bottom-0 w-1 bg-gray-300 z-30",
-            isRight ? "left-0" : "right-0"
-          )} />
-        )}
+        {isCover ? (
+          <div
+            className={cn(
+              "absolute top-0 bottom-0 w-1 bg-gray-300 z-30",
+              isRight ? "left-0" : "right-0"
+            )}
+          />
+        ) : null}
 
         <PdfPage
           pageNumber={pageNumber}
@@ -210,11 +212,11 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
         />
 
         {/* Page Number (Hide on covers) */}
-        {!isCover && (
+        {!isCover ? (
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs font-semibold text-gray-400 font-mono tracking-wide">
             {pageNumber}
           </div>
-        )}
+        ) : null}
       </div>
     );
   }
@@ -360,13 +362,12 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
     flipBook?.pageFlip?.()?.flipNext();
   }, []);
 
-
   // Check if we have content
   const hasImageContent = validPages.length >= 2;
   const hasPdfContent = !!pdfUrl;
 
   // Determine total pages based on content type
-  const totalPages = contentType === "pdf" ? (numPages || 0) : validPages.length;
+  const totalPages = contentType === "pdf" ? numPages || 0 : validPages.length;
 
   // Determine if we should show the flipbook
   // For PDF, we need the URL and pages loaded. For Images, we need > 0 pages.
@@ -579,11 +580,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
           >
             {/* Wrap with Document if PDF */}
             {contentType === "pdf" && hasPdfContent ? (
-              <Document
-                file={pdfUrl}
-                loading={null}
-                className="flex justify-center items-center"
-              >
+              <Document file={pdfUrl} loading={null} className="flex justify-center items-center">
                 <HTMLFlipBook
                   ref={flipBookRef}
                   width={dimensions.width}
@@ -598,7 +595,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                   onFlip={handleFlip}
                   onInit={() => setIsLoading(false)}
                   className="catalogue-flipbook"
-                  style={{ display: 'block' }}
+                  style={{ display: "block" }}
                   startPage={0}
                   drawShadow={true}
                   flippingTime={600}
@@ -612,15 +609,17 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                   clickEventForward={true}
                   useMouseEvents={true}
                 >
-                  {numPages && Array.from(new Array(numPages), (el, index) => (
-                    <PdfFlipPage
-                      key={`pdf-page-${index + 1}`}
-                      pageNumber={index + 1}
-                      width={dimensions.width}
-                      height={dimensions.height}
-                      isCover={index === 0 || index === numPages - 1}
-                    />
-                  ))}
+                  {numPages
+                    ? Array.from(new Array(numPages), (el, index) => (
+                        <PdfFlipPage
+                          key={`pdf-page-${index + 1}`}
+                          pageNumber={index + 1}
+                          width={dimensions.width}
+                          height={dimensions.height}
+                          isCover={index === 0 || index === numPages - 1}
+                        />
+                      ))
+                    : null}
                 </HTMLFlipBook>
               </Document>
             ) : showFlipbook ? (
@@ -654,25 +653,29 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                 useMouseEvents={true}
               >
                 {/* Image Pages */}
-                {contentType === "images" && validPages.map((page, index) => (
-                  <PageComponent
-                    key={page._key || `page-${index}`}
-                    page={page}
-                    pageNumber={index + 1}
-                    showPageNumbers={showPageNumbers}
-                  />
-                ))}
+                {contentType === "images"
+                  ? validPages.map((page, index) => (
+                      <PageComponent
+                        key={page._key || `page-${index}`}
+                        page={page}
+                        pageNumber={index + 1}
+                        showPageNumbers={showPageNumbers}
+                      />
+                    ))
+                  : null}
 
                 {/* PDF Pages */}
-                {contentType === "pdf" && numPages && Array.from(new Array(numPages), (el, index) => (
-                  <PdfFlipPage
-                    key={`pdf-page-${index + 1}`}
-                    pageNumber={index + 1}
-                    width={dimensions.width}
-                    height={dimensions.height}
-                    isCover={index === 0 || index === (numPages - 1)}
-                  />
-                ))}
+                {contentType === "pdf" && numPages
+                  ? Array.from(new Array(numPages), (el, index) => (
+                      <PdfFlipPage
+                        key={`pdf-page-${index + 1}`}
+                        pageNumber={index + 1}
+                        width={dimensions.width}
+                        height={dimensions.height}
+                        isCover={index === 0 || index === numPages - 1}
+                      />
+                    ))
+                  : null}
               </HTMLFlipBook>
             ) : null}
 
@@ -698,7 +701,6 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
             The Document component doesn't render a DOM element by default (or can be styled).
           */}
 
-
           {/* Page Counter */}
           <div className="text-center py-5">
             <span className="text-base font-medium text-deep-brown bg-white px-6 py-2.5 rounded-full shadow-md border border-gray-200">
@@ -708,50 +710,48 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
         </motion.div>
 
         {/* Thumbnails */}
-        {
-          showThumbnails && validPages.length > 0 ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="mt-10"
-            >
-              <div className="flex gap-3 overflow-x-auto pb-4 px-4 justify-center flex-wrap">
-                {validPages.slice(0, 16).map((page, index) => (
-                  <button
-                    key={page._key || `thumb-${index}`}
-                    onClick={() => goToPage(index)}
-                    className={cn(
-                      "relative w-16 h-22 md:w-20 md:h-28 rounded-lg overflow-hidden border-2 transition-all shrink-0 hover:scale-105 bg-white shadow-md",
-                      currentPage === index
-                        ? "border-almond-gold shadow-lg ring-2 ring-almond-gold/30"
-                        : "border-gray-200 hover:border-gold-light"
-                    )}
-                    aria-label={`Go to page ${index + 1}`}
-                  >
-                    {page.asset?.url ? (
-                      <Image
-                        src={page.asset.url}
-                        alt={page.alt || `Thumbnail ${index + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
-                      />
-                    ) : null}
-                    {currentPage === index ? (
-                      <div className="absolute inset-0 bg-almond-gold/20" />
-                    ) : null}
-                  </button>
-                ))}
-                {validPages.length > 16 ? (
-                  <div className="flex items-center text-sm text-gray-500 px-2">
-                    +{validPages.length - 16} more
-                  </div>
-                ) : null}
-              </div>
-            </motion.div>
-          ) : null
-        }
+        {showThumbnails && validPages.length > 0 ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-10"
+          >
+            <div className="flex gap-3 overflow-x-auto pb-4 px-4 justify-center flex-wrap">
+              {validPages.slice(0, 16).map((page, index) => (
+                <button
+                  key={page._key || `thumb-${index}`}
+                  onClick={() => goToPage(index)}
+                  className={cn(
+                    "relative w-16 h-22 md:w-20 md:h-28 rounded-lg overflow-hidden border-2 transition-all shrink-0 hover:scale-105 bg-white shadow-md",
+                    currentPage === index
+                      ? "border-almond-gold shadow-lg ring-2 ring-almond-gold/30"
+                      : "border-gray-200 hover:border-gold-light"
+                  )}
+                  aria-label={`Go to page ${index + 1}`}
+                >
+                  {page.asset?.url ? (
+                    <Image
+                      src={page.asset.url}
+                      alt={page.alt || `Thumbnail ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="80px"
+                    />
+                  ) : null}
+                  {currentPage === index ? (
+                    <div className="absolute inset-0 bg-almond-gold/20" />
+                  ) : null}
+                </button>
+              ))}
+              {validPages.length > 16 ? (
+                <div className="flex items-center text-sm text-gray-500 px-2">
+                  +{validPages.length - 16} more
+                </div>
+              ) : null}
+            </div>
+          </motion.div>
+        ) : null}
 
         {/* Touch Instructions */}
         <motion.div
@@ -764,32 +764,30 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
         </motion.div>
 
         {/* Download Button */}
-        {
-          pdfUrl ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="mt-10 text-center"
+        {pdfUrl ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-10 text-center"
+          >
+            <button
+              onClick={handleDownload}
+              className="px-8 py-4 bg-linear-to-r from-almond-gold to-gold-dark text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-3 text-lg"
             >
-              <button
-                onClick={handleDownload}
-                className="px-8 py-4 bg-linear-to-r from-almond-gold to-gold-dark text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-3 text-lg"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
-                </svg>
-                Download PDF Catalogue
-              </button>
-            </motion.div>
-          ) : null
-        }
-      </div >
-    </div >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                />
+              </svg>
+              Download PDF Catalogue
+            </button>
+          </motion.div>
+        ) : null}
+      </div>
+    </div>
   );
 }
