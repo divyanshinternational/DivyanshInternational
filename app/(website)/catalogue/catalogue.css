@@ -104,17 +104,21 @@
 .page-texture {
   background-image:
     /* Vertical paper grain */
-    repeating-linear-gradient(0deg,
+    repeating-linear-gradient(
+      0deg,
       var(--catalogue-texture-overlay) 0px,
       transparent 1px,
       transparent 2px,
-      var(--catalogue-texture-overlay) 3px),
+      var(--catalogue-texture-overlay) 3px
+    ),
     /* Horizontal fiber lines */
-    repeating-linear-gradient(90deg,
-      var(--catalogue-texture-fiber) 0px,
-      transparent 1px,
-      transparent 2px,
-      var(--catalogue-texture-fiber) 3px);
+    repeating-linear-gradient(
+        90deg,
+        var(--catalogue-texture-fiber) 0px,
+        transparent 1px,
+        transparent 2px,
+        var(--catalogue-texture-fiber) 3px
+      );
   background-size:
     4px 4px,
     100px 2px;
@@ -123,10 +127,12 @@
 
 /* Paper surface with gradient and subtle spots */
 .paper-surface {
-  background: linear-gradient(to bottom,
-      var(--catalogue-paper-light) 0%,
-      var(--catalogue-paper-mid) 50%,
-      var(--catalogue-paper-light) 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--catalogue-paper-light) 0%,
+    var(--catalogue-paper-mid) 50%,
+    var(--catalogue-paper-light) 100%
+  );
   position: relative;
 }
 
@@ -144,11 +150,13 @@
 .paper-overlay {
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(0deg,
-      transparent,
-      transparent 2px,
-      var(--catalogue-texture-fiber) 2px,
-      var(--catalogue-texture-fiber) 4px);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--catalogue-texture-fiber) 2px,
+    var(--catalogue-texture-fiber) 4px
+  );
   pointer-events: none;
   mix-blend-mode: multiply;
   opacity: 0.3;

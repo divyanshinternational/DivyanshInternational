@@ -180,8 +180,6 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
       >
         {/* Paper texture overlay for all pages */}
 
-
-
         <PdfPage
           pageNumber={pageNumber}
           height={height} // Scale by height to ensure vertical fit
@@ -350,7 +348,6 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
     const flipBook = flipBookRef.current as { pageFlip?: () => { flipPrev: () => void } } | null;
     flipBook?.pageFlip?.()?.flipPrev();
   }, []);
-
 
   // Check if we have content
   const hasImageContent = validPages.length >= 2;
@@ -601,14 +598,14 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                 >
                   {numPages
                     ? Array.from(new Array(numPages), (el, index) => (
-                      <PdfFlipPage
-                        key={`pdf-page-${index + 1}`}
-                        pageNumber={index + 1}
-                        width={dimensions.width}
-                        height={dimensions.height}
-                        isCover={index === 0 || index === numPages - 1}
-                      />
-                    ))
+                        <PdfFlipPage
+                          key={`pdf-page-${index + 1}`}
+                          pageNumber={index + 1}
+                          width={dimensions.width}
+                          height={dimensions.height}
+                          isCover={index === 0 || index === numPages - 1}
+                        />
+                      ))
                     : null}
                 </HTMLFlipBook>
               </Document>
@@ -645,26 +642,26 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                 {/* Image Pages */}
                 {contentType === "images"
                   ? validPages.map((page, index) => (
-                    <PageComponent
-                      key={page._key || `page-${index}`}
-                      page={page}
-                      pageNumber={index + 1}
-                      showPageNumbers={showPageNumbers}
-                    />
-                  ))
+                      <PageComponent
+                        key={page._key || `page-${index}`}
+                        page={page}
+                        pageNumber={index + 1}
+                        showPageNumbers={showPageNumbers}
+                      />
+                    ))
                   : null}
 
                 {/* PDF Pages */}
                 {contentType === "pdf" && numPages
                   ? Array.from(new Array(numPages), (el, index) => (
-                    <PdfFlipPage
-                      key={`pdf-page-${index + 1}`}
-                      pageNumber={index + 1}
-                      width={dimensions.width}
-                      height={dimensions.height}
-                      isCover={index === 0 || index === numPages - 1}
-                    />
-                  ))
+                      <PdfFlipPage
+                        key={`pdf-page-${index + 1}`}
+                        pageNumber={index + 1}
+                        width={dimensions.width}
+                        height={dimensions.height}
+                        isCover={index === 0 || index === numPages - 1}
+                      />
+                    ))
                   : null}
               </HTMLFlipBook>
             ) : null}
