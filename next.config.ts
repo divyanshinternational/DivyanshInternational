@@ -58,9 +58,9 @@ const securityHeaders = [
     value: "strict-origin-when-cross-origin",
   },
   {
-    // Disable unnecessary browser features
+    // Permissions-Policy for browser features (only standardized features)
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), browsing-topics=(), payment=(), usb=()",
+    value: "camera=(), microphone=(), geolocation=()",
   },
   {
     // Cross-Origin-Opener-Policy for popup isolation
