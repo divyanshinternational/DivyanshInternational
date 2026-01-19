@@ -382,10 +382,10 @@ const products = [
         title: createLocaleString("Varieties Available"),
         items: [
           createLocaleString(
-            "Premium Pistachios – Bold, mildly sweet flavour, preferred for retail & export buyers"
+            "American Pistachios (California) – Bold, mildly sweet flavour, preferred for retail & export buyers"
           ),
           createLocaleString(
-            "Gourmet Pistachios – Naturally rich flavour & deeper green kernel, ideal for premium gifting & gourmet segment"
+            "Iranian Pistachios – Naturally rich flavour & deeper green kernel, ideal for premium gifting & gourmet segment"
           ),
         ],
       },
@@ -427,8 +427,8 @@ const products = [
     gallery: [],
     pricing: { currentPrice: 8999, originalPrice: 10499, discount: 14 },
     specifications: {
-      origin: "California, USA",
-      variety: "Premium Grade",
+      origin: "California, USA / Iran",
+      variety: "American & Iranian Grades",
       packaging: "12 kg Bulk Packs",
       shelfLife: "12 Months",
       storage: "Cool & Dry Place",

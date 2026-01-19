@@ -321,78 +321,6 @@ export default function AboutContent({
           </motion.div>
         ) : null}
 
-        {/* Opening Story */}
-        {about.openingStory ? (
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
-            className="text-center mb-16 relative"
-          >
-            {/* Organic blob background */}
-            <div
-              className="absolute -inset-6 -z-10"
-              style={{
-                background: "linear-gradient(135deg, #f5f0e8 0%, #efe3d2 50%, #e8dcc8 100%)",
-                borderRadius: "55% 45% 50% 50% / 50% 55% 45% 50%",
-                transform: "rotate(-2deg)",
-              }}
-            />
-
-            <div className="bg-white/80 backdrop-blur-sm p-12 rounded-2xl border border-almond-gold/30 shadow-lg relative overflow-hidden">
-              {/* Decorative Icon at top */}
-              <motion.div
-                className="flex justify-center mb-6"
-                variants={{
-                  hidden: { opacity: 0, y: -20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.5, ease: "easeOut" as const }}
-              >
-                <NutIcon className="w-14 h-14 text-almond-gold/50" />
-              </motion.div>
-
-              <motion.h2
-                className="text-3xl md:text-4xl font-bold text-deep-brown mb-6 font-heading"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" as const }}
-              >
-                {about.openingStory.title}
-              </motion.h2>
-
-              <div className="max-w-4xl mx-auto space-y-6 text-lg text-(--color-slate) leading-relaxed">
-                <motion.p
-                  className="text-xl font-semibold text-almond-gold"
-                  variants={{
-                    hidden: { opacity: 0, x: -30 },
-                    visible: { opacity: 1, x: 0 },
-                  }}
-                  transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" as const }}
-                >
-                  {about.openingStory.highlight}
-                </motion.p>
-                {about.openingStory.paragraphs.map((p, i) => (
-                  <motion.p
-                    key={i}
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: "easeOut" as const }}
-                  >
-                    {p}
-                  </motion.p>
-                ))}
-              </div>
-
-              <DecorativeCorners />
-            </div>
-          </motion.div>
-        ) : null}
-
         {/* The Anjeer Story */}
         {about.anjeerStory ? (
           <motion.div
@@ -458,149 +386,6 @@ export default function AboutContent({
                       transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" as const }}
                     >
                       {about.anjeerStory.paragraphs[1]}
-                    </motion.p>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        ) : null}
-
-        {/* The Birth of Divyansh International */}
-        {about.birthSection ? (
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
-            className="mb-16"
-          >
-            <motion.div
-              className="text-center mb-12"
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.6, ease: "easeOut" as const }}
-            >
-              <AlmondIcon className="w-12 h-12 text-almond-gold/40 mx-auto mb-4" />
-              <h2 className="text-3xl md:text-4xl font-bold text-deep-brown font-heading">
-                {about.birthSection.title}
-              </h2>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              e
-              <motion.div
-                className="space-y-6 text-lg text-(--color-slate) leading-relaxed"
-                variants={{
-                  hidden: { opacity: 0, x: -40 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-                transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" as const }}
-              >
-                {about.birthSection.paragraphs.map((p, i) => (
-                  <p key={i} className={i === 2 ? "font-semibold text-deep-brown" : ""}>
-                    {p}
-                  </p>
-                ))}
-              </motion.div>
-              <motion.div
-                className="relative"
-                variants={{
-                  hidden: { opacity: 0, x: 40 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-                transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" as const }}
-              >
-                {/* Organic blob background */}
-                <div
-                  className="absolute -inset-4 -z-10"
-                  style={{
-                    background: "linear-gradient(135deg, #f5f0e8 0%, #efe3d2 50%, #e8dcc8 100%)",
-                    borderRadius: "55% 45% 50% 50% / 50% 55% 45% 50%",
-                    transform: "rotate(3deg)",
-                  }}
-                />
-
-                <div className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl border border-sand shadow-lg">
-                  <WalnutIcon className="w-10 h-10 text-almond-gold/40 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-almond-gold mb-4 text-center">
-                    {about.birthSection.boxTitle}
-                  </h3>
-                  <p className="text-(--color-slate) text-center leading-relaxed">
-                    {about.birthSection.boxText}
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        ) : null}
-
-        {/* Growing While Staying Rooted */}
-        {about.growingSection ? (
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
-            className="mb-16 relative"
-          >
-            {/* Organic blob background */}
-            <div
-              className="absolute -inset-6 -z-10"
-              style={{
-                background: "linear-gradient(135deg, #f5f0e8 0%, #efe3d2 50%, #e8dcc8 100%)",
-                borderRadius: "50% 50% 45% 55% / 45% 50% 50% 55%",
-                transform: "rotate(-1deg)",
-              }}
-            />
-
-            <div className="bg-white/80 backdrop-blur-sm p-12 rounded-2xl border border-almond-gold/30 shadow-lg">
-              <div className="max-w-4xl mx-auto">
-                {/* Decorative Icon */}
-                <motion.div
-                  className="flex justify-center mb-6"
-                  variants={{
-                    hidden: { opacity: 0, y: -20 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  transition={{ duration: 0.5, ease: "easeOut" as const }}
-                >
-                  <LeafIcon className="w-14 h-14 text-gold/40" />
-                </motion.div>
-
-                <motion.h2
-                  className="text-3xl font-bold text-deep-brown mb-8 text-center font-heading"
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" as const }}
-                >
-                  {about.growingSection.title}
-                </motion.h2>
-
-                <div className="space-y-6 text-lg text-(--color-slate) leading-relaxed">
-                  {about.growingSection.paragraphs[0] ? (
-                    <motion.p
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: { opacity: 1, y: 0 },
-                      }}
-                      transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" as const }}
-                    >
-                      {about.growingSection.paragraphs[0]}
-                    </motion.p>
-                  ) : null}
-                  {about.growingSection.paragraphs[1] ? (
-                    <motion.p
-                      className="text-center font-semibold text-deep-brown"
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: { opacity: 1, y: 0 },
-                      }}
-                      transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" as const }}
-                    >
-                      {about.growingSection.paragraphs[1]}
                     </motion.p>
                   ) : null}
                 </div>
@@ -682,84 +467,6 @@ export default function AboutContent({
           </motion.div>
         ) : null}
 
-        {/* Timeline Summary Cards */}
-        {about.timelineSummaryCards && about.timelineSummaryCards.length > 0 ? (
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
-            className="mb-16 text-center"
-          >
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {about.timelineSummaryCards.map((item, index) => {
-                const icons = [AlmondIcon, CashewIcon, WalnutIcon];
-                const Icon = icons[index % icons.length] ?? AlmondIcon;
-
-                return (
-                  <motion.div
-                    key={item._key ?? index}
-                    variants={{
-                      hidden: { opacity: 0, y: 40 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
-                    className="relative"
-                  >
-                    {/* Numbered Circle */}
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                      <div className="w-10 h-10 rounded-full bg-linear-to-br from-gold to-almond-gold flex items-center justify-center text-white font-bold text-lg shadow-lg ring-4 ring-white">
-                        {index + 1}
-                      </div>
-                    </div>
-
-                    {/* Card with organic blob background */}
-                    <div className="relative pt-8">
-                      <div
-                        className="absolute -inset-2 -z-10"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, #f5f0e8 0%, #efe3d2 50%, #e8dcc8 100%)",
-                          borderRadius:
-                            index === 0
-                              ? "60% 40% 55% 45% / 55% 60% 40% 45%"
-                              : index === 1
-                                ? "45% 55% 50% 50% / 50% 45% 55% 50%"
-                                : "40% 60% 45% 55% / 45% 40% 60% 55%",
-                          transform: `rotate(${index === 1 ? 0 : index === 0 ? -3 : 3}deg)`,
-                        }}
-                      />
-
-                      <div className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl border border-sand shadow-lg relative overflow-hidden">
-                        {/* Decorative Icon */}
-                        <div className="mb-4 flex justify-center">
-                          <Icon className="w-10 h-10 text-almond-gold/50" />
-                        </div>
-
-                        <h3 className="text-xl font-bold text-almond-gold mb-3">{item.title}</h3>
-                        <p className="text-(--color-slate) text-sm leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-            <motion.div
-              className="mt-12"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-            >
-              <p className="text-2xl font-bold text-deep-brown font-heading">
-                Divyansh International.
-              </p>
-            </motion.div>
-          </motion.div>
-        ) : null}
-
         {/* Our Brands */}
         {about.brandsSection ? (
           <motion.div
@@ -800,7 +507,7 @@ export default function AboutContent({
                   transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 >
                   <div className="absolute -top-3 -left-3 z-10">
-                    <div className="w-8 h-8 rounded-full bg-linear-to-br from-gold to-almond-gold flex items-center justify-center text-white font-bold text-sm shadow-md ring-2 ring-white">
+                    <div className="w-8 h-8 rounded-full bg-linear-to-br from-gold to-almond-gold flex items-center justify-center text-white font-bold text-[8px] shadow-md ring-2 ring-white">
                       Partners
                     </div>
                   </div>
@@ -845,175 +552,33 @@ export default function AboutContent({
                     <h3 className="text-xl font-bold text-almond-gold mb-4">
                       {about.brandsSection.retail.title}
                     </h3>
-                    <p className="text-lg font-semibold text-deep-brown mb-4">
+                    <a
+                      href="https://thebetternut.co/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lg font-semibold text-deep-brown mb-4 hover:text-gold transition-colors inline-flex items-center gap-1"
+                    >
                       {about.brandsSection.retail.name}
-                    </p>
+                      <svg
+                        className="w-3.5 h-3.5 opacity-60"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
                     <p className="text-sm text-(--color-slate)">
                       {about.brandsSection.retail.description}
                     </p>
                   </div>
                 </motion.div>
               </div>
-            </div>
-          </motion.div>
-        ) : null}
-
-        {/* Product Range */}
-        {about.productRangeSection ? (
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
-            className="mb-16 text-center"
-          >
-            <motion.h2
-              className="text-3xl font-bold text-deep-brown mb-8 font-heading"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              {about.productRangeSection.title}
-            </motion.h2>
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
-              {about.productRangeSection.products.map((product, index) => (
-                <motion.span
-                  key={product}
-                  variants={{
-                    hidden: { opacity: 0, scale: 0.8, y: 20 },
-                    visible: { opacity: 1, scale: 1, y: 0 },
-                  }}
-                  transition={{ duration: 0.5, delay: 0.1 + index * 0.1, ease: "easeOut" }}
-                  className="px-6 py-3 bg-linear-to-r from-almond-gold to-gold-dark text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                >
-                  {product}
-                </motion.span>
-              ))}
-            </div>
-            <motion.p
-              className="text-(--color-slate) max-w-2xl mx-auto"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-            >
-              {about.productRangeSection.description}
-            </motion.p>
-          </motion.div>
-        ) : null}
-
-        {/* Who We Are & Mission/Vision Grid */}
-        {about.whoWeAre || about.mission || about.vision ? (
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
-            className="grid md:grid-cols-2 gap-10 mb-24"
-          >
-            {about.whoWeAre ? (
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, x: -60 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                className="relative"
-              >
-                {/* Organic blob background */}
-                <div
-                  className="absolute -inset-4 -z-10"
-                  style={{
-                    background: "linear-gradient(135deg, #f5f0e8 0%, #efe3d2 50%, #e8dcc8 100%)",
-                    borderRadius: "60% 40% 55% 45% / 55% 60% 40% 45%",
-                    transform: "rotate(-3deg)",
-                  }}
-                />
-
-                <div className="bg-white/95 backdrop-blur-sm p-10 rounded-2xl border border-gold-light shadow-xl relative overflow-hidden">
-                  {/* Decorative Icon */}
-                  <div className="mb-4">
-                    <NutIcon className="w-12 h-12 text-almond-gold/40" />
-                  </div>
-
-                  <h2 className="text-3xl font-bold text-deep-brown mb-6 font-heading">
-                    {about.whoWeAre.title}
-                  </h2>
-                  <p className="text-foreground leading-relaxed">{about.whoWeAre.description}</p>
-
-                  <LeafIcon
-                    className="absolute -bottom-10 -right-10 w-40 h-40 text-gold/10"
-                    aria-hidden="true"
-                  />
-                </div>
-              </motion.div>
-            ) : null}
-
-            <div className="space-y-8">
-              {about.mission ? (
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, x: 60 },
-                    visible: { opacity: 1, x: 0 },
-                  }}
-                  transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-                  className="relative"
-                >
-                  {/* Numbered circle */}
-                  <div className="absolute -top-3 -left-3 z-10">
-                    <div className="w-8 h-8 rounded-full bg-linear-to-br from-gold to-almond-gold flex items-center justify-center text-white font-bold text-sm shadow-md ring-2 ring-white">
-                      1
-                    </div>
-                  </div>
-
-                  <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-sand shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-                    <div className="flex items-start gap-4">
-                      <AlmondIcon className="w-8 h-8 text-almond-gold/50 shrink-0 mt-1" />
-                      <div>
-                        <h3 className="text-2xl font-bold text-deep-brown mb-3 font-heading">
-                          {about.mission.title}
-                        </h3>
-                        <p className="text-(--color-slate) leading-relaxed">
-                          {about.mission.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ) : null}
-
-              {about.vision ? (
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, x: 60 },
-                    visible: { opacity: 1, x: 0 },
-                  }}
-                  transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-                  className="relative"
-                >
-                  {/* Numbered circle */}
-                  <div className="absolute -top-3 -left-3 z-10">
-                    <div className="w-8 h-8 rounded-full bg-linear-to-br from-gold to-almond-gold flex items-center justify-center text-white font-bold text-sm shadow-md ring-2 ring-white">
-                      2
-                    </div>
-                  </div>
-
-                  <div className="bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-sand shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-                    <div className="flex items-start gap-4">
-                      <CashewIcon className="w-8 h-8 text-almond-gold/50 shrink-0 mt-1" />
-                      <div>
-                        <h3 className="text-2xl font-bold text-deep-brown mb-3 font-heading">
-                          {about.vision.title}
-                        </h3>
-                        <p className="text-(--color-slate) leading-relaxed">
-                          {about.vision.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ) : null}
             </div>
           </motion.div>
         ) : null}
