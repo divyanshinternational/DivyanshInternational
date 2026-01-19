@@ -1,6 +1,6 @@
 # Divyansh International
 
-Premium B2B dry fruits and nuts platform built with Next.js 16, Sanity CMS, and
+Premium dry fruits and nuts platform built with Next.js 16, Sanity CMS, and
 Prisma.
 
 ## Tech Stack

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { z } from "zod";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
-import { getLocalized, type LocaleString } from "@/lib/i18n";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
@@ -17,7 +16,7 @@ const MobileMenuPropsSchema = z.object({
   products: z
     .array(
       z.object({
-        title: z.custom<LocaleString>(),
+        title: z.string(),
         slug: z.object({ current: z.string() }).or(z.string()),
       })
     )
@@ -69,7 +68,7 @@ export default function MobileMenu({
     }
   }
 
-  const { language } = useLanguage();
+  useLanguage();
 
   return (
     <AnimatePresence>
@@ -179,7 +178,7 @@ export default function MobileMenu({
                             className="block px-4 py-2 text-foreground hover:bg-beige hover:text-deep-brown rounded-lg transition-colors focus:outline-2 focus:outline-gold focus:rounded"
                             onClick={onClose}
                           >
-                            {getLocalized(product.title, language)}
+                            {product.title}
                           </Link>
                         </motion.li>
                       );

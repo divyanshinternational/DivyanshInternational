@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import CommunityContent from "@/components/pages/CommunityContent";
 import { SectionVisualElements } from "@/components/VisualElements";
+import { VideoShowcaseSchema } from "@/components/ui/video-showcase-schema";
 import { client } from "@/lib/sanity/client";
 import { communityQuery, siteSettingsQuery } from "@/lib/sanity/queries";
 
@@ -102,6 +103,7 @@ const communityDataSchema = z
         initiatives: z.array(environmentalInitiativeSchema),
       })
       .optional(),
+    employeeStories: VideoShowcaseSchema.optional(),
     tradeEventsSection: z
       .object({
         title: z.string(),
@@ -185,6 +187,7 @@ interface CommunityDataProp {
     introText: string;
     initiatives: { _key: string; icon: string; text: string }[];
   };
+  employeeStories?: z.infer<typeof VideoShowcaseSchema>;
   tradeEventsSection?: {
     title: string;
     subtitle: string;

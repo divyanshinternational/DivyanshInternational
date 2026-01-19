@@ -41,7 +41,7 @@ const TRANSLATIONS: Translations = {
     about: "About Us",
     products: "Products",
     contact: "Contact",
-    trade: "Trade Enquiry",
+    trade: "Get Quote",
     selectLanguage: "Select Language",
   },
   ar: {
@@ -49,7 +49,7 @@ const TRANSLATIONS: Translations = {
     about: "من نحن",
     products: "منتجاتنا",
     contact: "اتصل بنا",
-    trade: "استفسار تجاري",
+    trade: "احصل على عرض سعر",
     selectLanguage: "اختر اللغة",
   },
   hi: {
@@ -57,7 +57,7 @@ const TRANSLATIONS: Translations = {
     about: "हमारे बारे में",
     products: "उत्पाद",
     contact: "संपर्क करें",
-    trade: "व्यापार पूछताछ",
+    trade: "कोटेशन प्राप्त करें",
     selectLanguage: "भाषा चुनें",
   },
   fr: {
@@ -65,7 +65,7 @@ const TRANSLATIONS: Translations = {
     about: "À propos",
     products: "Produits",
     contact: "Contact",
-    trade: "Demande commerciale",
+    trade: "Obtenir un devis",
     selectLanguage: "Choisir la langue",
   },
 };

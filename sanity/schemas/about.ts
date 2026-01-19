@@ -207,9 +207,9 @@ export default defineType({
       fields: [
         { name: "title", type: "string", title: "Section Title" },
         {
-          name: "b2b",
+          name: "partners",
           type: "object",
-          title: "B2B Brands",
+          title: "Partners Brands",
           fields: [
             { name: "title", type: "string", title: "Title" },
             {
@@ -222,9 +222,9 @@ export default defineType({
           ],
         },
         {
-          name: "d2c",
+          name: "retail",
           type: "object",
-          title: "D2C Brands",
+          title: "Retail Brands",
           fields: [
             { name: "title", type: "string", title: "Title" },
             { name: "name", type: "string", title: "Brand Name" },

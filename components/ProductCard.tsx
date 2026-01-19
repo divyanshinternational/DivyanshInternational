@@ -56,7 +56,7 @@ const LabelsSchema = z.object({
 const ProductCardPropsSchema = z.object({
   product: ProductSchema,
   onAddToEnquiry: z.function(),
-  labels: LabelsSchema,
+  labels: LabelsSchema.optional().nullable(),
 });
 
 // =============================================================================
@@ -69,7 +69,7 @@ type Labels = z.infer<typeof LabelsSchema>;
 interface ProductCardProps {
   product: Product;
   onAddToEnquiry: () => void;
-  labels: Labels;
+  labels?: Labels | null;
 }
 
 // =============================================================================
@@ -113,12 +113,12 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
     getLocalized(product.description, language) ||
     "";
 
-  // Dynamic Labels with Fallbacks
-  const specsTitle = labels.productCard.specificationsTitle || "Product Specifications";
-  const varietyLabel = labels.productCard.varietyLabel || "Variety:";
-  const appLabel = labels.productCard.applicationsLabel || "Applications:";
-  const packLabel = labels.productCard.packLabel || "Pack:";
-  const moqLabel = labels.productCard.moqLabel || "MOQ:";
+  // Dynamic Labels with Fallbacks (null-safe)
+  const specsTitle = labels?.productCard?.specificationsTitle || "Product Specifications";
+  const varietyLabel = labels?.productCard?.varietyLabel || "Variety:";
+  const appLabel = labels?.productCard?.applicationsLabel || "Applications:";
+  const packLabel = labels?.productCard?.packLabel || "Pack:";
+  const moqLabel = labels?.productCard?.moqLabel || "Min. Order:";
 
   const quickItems = (product.listSections?.[0]?.items || []).slice(0, 2);
 
@@ -150,7 +150,7 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
             />
           ) : (
             <span className="text-xs uppercase tracking-[0.3em] text-(--color-muted)">
-              {labels.productCard.placeholderText}
+              {labels?.productCard?.placeholderText || "Product Image"}
             </span>
           )}
         </div>
@@ -255,9 +255,9 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
         <button
           onClick={onAddToEnquiry}
           className="w-full bg-linear-to-r from-almond-gold to-gold-dark hover:shadow-lg text-white px-4 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 focus:outline-2 focus:outline-gold-dark focus:outline-offset-2"
-          aria-label={`${labels.common.addToEnquiry || "Add to Enquiry"} - ${productTitle}`}
+          aria-label={`${labels?.common?.addToEnquiry || "Add to Enquiry"} - ${productTitle}`}
         >
-          {labels.common.addToEnquiry || "Add to Enquiry"}
+          {labels?.common?.addToEnquiry || "Add to Enquiry"}
         </button>
       </div>
     </motion.div>

@@ -84,14 +84,14 @@ const DEFAULTS = {
   apiMessages: {
     rateLimitError: "Too many requests. Please try again later.",
     validationError: "Please check your input and try again.",
-    enquirySuccess: "Thank you for your trade enquiry. We will get back to you soon.",
+    enquirySuccess: "Thank you for your quote request. We will get back to you soon.",
     serverError: "An unexpected error occurred. Please try again later.",
   },
   emailTemplates: {
     fromName: "Divyansh International",
     fromEmail: "onboarding@resend.dev",
-    tradeSubject: "New Trade Enquiry from",
-    newTradeEnquiryTitle: "New Trade Enquiry",
+    tradeSubject: "New quote request from",
+    newTradeEnquiryTitle: "New quote request",
     nameLabel: "Name",
     companyLabel: "Company",
     emailLabel: "Email",

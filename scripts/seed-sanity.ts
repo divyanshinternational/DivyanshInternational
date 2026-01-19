@@ -69,15 +69,14 @@ const products = [
     title: createLocaleString("Almonds"),
     category: "almonds",
     slug: { current: "almonds" },
-    heroHeading: createLocaleString(
-      "Bulk Almonds Supplier – India’s Trusted Importer for Trade & Institutional Buyers"
-    ),
+    order: 1,
+    heroHeading: createLocaleString("Premium Almonds – India’s Trusted Importer – For You"),
     introParagraphs: [
       createLocaleText(
-        "Divyansh International is one of India's most reliable importers and bulk distributors of premium almonds, serving modern trade, wholesalers, food manufacturers and institutional buyers across the country."
+        "Divyansh International is one of India's most reliable importers of premium almonds, offering the finest varieties from California and around the world."
       ),
       createLocaleText(
-        "We directly source high-quality raw almonds from trusted growers worldwide — ensuring consistency, freshness and fair pricing for clients seeking long-term supply partnerships."
+        "We directly source high-quality raw almonds from trusted growers worldwide — ensuring consistency, freshness and the best quality for our customers."
       ),
     ],
     listSections: [
@@ -126,7 +125,7 @@ const products = [
         title: createLocaleString("Packaging Formats Available"),
         items: [
           createLocaleString("Inshell 22.6 kg bag and Kernels in 25 kg"),
-          createLocaleString("Vacuum pouches for institutional supply"),
+          createLocaleString("Vacuum pouches for professional supply"),
         ],
       },
       {
@@ -137,16 +136,14 @@ const products = [
           createLocaleString("Consistent year-round supply"),
           createLocaleString("Facility for daily processing, cleaning & custom sorting"),
           createLocaleString("Fast delivery across Punjab, North India & pan-India"),
-          createLocaleString("Competitive pricing for bulk almond procurement"),
+          createLocaleString("Competitive pricing for bulk almond purchase"),
         ],
       },
     ],
     ctaLine: createLocaleString(
-      "Looking for a dependable bulk almond supplier? Contact us today for wholesale almond prices and MOQ details."
+      "Looking for a dependable premium almond supplier? Contact us today for quality almond prices and available sizes."
     ),
-    description: createLocaleText(
-      "Premium almonds for modern trade, wholesale and institutional buyers."
-    ),
+    description: createLocaleText("Premium almonds for retail, quality and customers."),
     pricing: { currentPrice: 1299, originalPrice: 1599, discount: 19 },
     specifications: {
       origin: "California, USA / India",
@@ -157,7 +154,7 @@ const products = [
     },
     applications: [
       "Food processing and manufacturing",
-      "Retail and wholesale distribution",
+      "Retail and quality distribution",
       "Export and international trade",
       "Confectionery and bakery applications",
     ],
@@ -226,19 +223,85 @@ const products = [
     ],
   },
   {
+    _id: "6",
+    title: createLocaleString("Cashew"),
+    category: "cashews",
+    slug: { current: "cashews" },
+    order: 2,
+    heroHeading: createLocaleString("Premium Cashews – W180, W240 & More"),
+    introParagraphs: [
+      createLocaleText(
+        "Divyansh International brings you the creamiest, crunchiest cashews sourced from the finest processing centres in India and Africa."
+      ),
+      createLocaleText(
+        "Graded for perfection, our cashews are ideal for namkeen manufacturers, sweet marts, luxury gifting and retail packs."
+      ),
+    ],
+    listSections: [
+      {
+        _key: "ls-cashew-1",
+        title: createLocaleString("Grades Available"),
+        items: [
+          createLocaleString("W180 (King Size) - The largest, most premium grade"),
+          createLocaleString("W210 (Jumbo) - Popular for premium gifting"),
+          createLocaleString("W240 (Standard) - Ideally balanced size and cost"),
+          createLocaleString("W320 (Market Standard) - Most widely used grade"),
+          createLocaleString("Splits & Pieces (LWP/SWP) - For confectionery and gravy base"),
+        ],
+      },
+      {
+        _key: "ls-cashew-2",
+        title: createLocaleString("Packaging"),
+        items: [
+          createLocaleString("10kg / 11.34kg Tin Packs"),
+          createLocaleString("Vacuum pouches for bulk freshness"),
+        ],
+      },
+      {
+        _key: "ls-cashew-3",
+        title: createLocaleString("Why Choose Our Cashews?"),
+        items: [
+          createLocaleString("Guaranteed low moisture & high crunch"),
+          createLocaleString("Whiteness intact with superior grading"),
+          createLocaleString("Consistent supply throughout the season"),
+          createLocaleString("Competitive bulk rates for wholesalers"),
+        ],
+      },
+    ],
+    ctaLine: createLocaleString(
+      "Require bulk cashews? Contact us for the best daily rates and supply continuity."
+    ),
+    description: createLocaleText("Premium W180, W240 & W320 Cashews for retail & wholesale."),
+    pricing: { currentPrice: 950, originalPrice: 1350, discount: 20 },
+    specifications: {
+      origin: "India / Africa",
+      variety: "W180, W210, W240, W320",
+      packaging: "10kg / 11.34kg",
+      shelfLife: "9 Months",
+      storage: "Cool & Dry Place",
+    },
+    applications: [
+      "Sweets and Mithai",
+      "Namkeen and roasted snacks",
+      "Wedding gifting",
+      "Rich gravies and culinary use",
+    ],
+  },
+  {
     _id: "2",
     title: createLocaleString("Walnuts"),
     category: "walnuts",
     slug: { current: "walnuts" },
+    order: 3,
     heroHeading: createLocaleString(
       "Trusted Bulk Walnut Importer & Kashmiri Walnut Distributor in India"
     ),
     introParagraphs: [
       createLocaleText(
-        "Divyansh International supplies premium-grade walnuts in bulk, sourced from the best farms across the globe."
+        "Divyansh International supplies premium-grade walnuts in quantity, sourced from the best farms across the globe."
       ),
       createLocaleText(
-        "As a long-standing importer and distributor, we cater to modern trade buyers, wholesale traders, dry fruit packers, food manufacturers and institutional procurement teams across India."
+        "As a long-standing importer and distributor, we cater to retail buyers, quality traders, dry fruit packers, food manufacturers and customers across India."
       ),
     ],
     listSections: [
@@ -263,12 +326,12 @@ const products = [
           createLocaleString("Consistent bulk availability"),
           createLocaleString("Stringent sizing, grading & moisture control"),
           createLocaleString("Dedicated pricing and quick dispatch"),
-          createLocaleString("Ideal for resellers, repackers and institutional tenders"),
+          createLocaleString("Ideal for resellers, repackers and professional tenders"),
         ],
       },
     ],
     ctaLine: createLocaleString(
-      "Looking for wholesale walnut rates? Get in touch for price lists, samples and annual supply contracts."
+      "Looking for quality walnut rates? Get in touch for price lists, samples and annual supply contracts."
     ),
     description: createLocaleText(
       "Bulk walnuts and kernels with stringent grading for retailers, food processors and exporters."
@@ -283,7 +346,7 @@ const products = [
     },
     applications: [
       "Food processing and manufacturing",
-      "Retail and wholesale distribution",
+      "Retail and quality distribution",
       "Export and international trade",
     ],
   },
@@ -292,12 +355,13 @@ const products = [
     title: createLocaleString("Pistachios"),
     category: "pistachio",
     slug: { current: "pistachios" },
+    order: 4,
     heroHeading: createLocaleString(
       "Bulk Pistachio Importer & Premium Pistachio Distributor in India"
     ),
     introParagraphs: [
       createLocaleText(
-        "Divyansh International supplies high-quality pistachios catering to India's requirements in modern trade, HORECA, wholesale, institutional consumption and gifting segments."
+        "Divyansh International supplies high-quality pistachios catering to India's requirements in retail, hospitality, quality, everyday needs and gifting segments."
       ),
       createLocaleText(
         "Our pistachios are carefully sourced, size-graded and packed to meet the standards of retail chains, gourmet brands and food service operators across the country."
@@ -309,7 +373,7 @@ const products = [
         title: createLocaleString("Varieties Available"),
         items: [
           createLocaleString(
-            "Premium Pistachios – Bold, mildly sweet flavour, preferred for modern trade & export buyers"
+            "Premium Pistachios – Bold, mildly sweet flavour, preferred for retail & export buyers"
           ),
           createLocaleString(
             "Gourmet Pistachios – Naturally rich flavour & deeper green kernel, ideal for premium gifting & gourmet segment"
@@ -326,7 +390,7 @@ const products = [
         title: createLocaleString("Packaging Formats"),
         items: [
           createLocaleString("10kg & 20kg imported cartons"),
-          createLocaleString("5kg vacuum packs for institutional use"),
+          createLocaleString("5kg vacuum packs for professional use"),
           createLocaleString("Custom packing for gifting / private label available"),
         ],
       },
@@ -344,10 +408,10 @@ const products = [
       },
     ],
     ctaLine: createLocaleString(
-      "Need premium pistachio pricing & samples for bulk buying? Contact us for today’s wholesale quotes."
+      "Need premium pistachio pricing & samples for purchase? Contact us for today’s quality quotes."
     ),
     description: createLocaleText(
-      "Premium pistachios graded for modern trade, HORECA and gifting programs."
+      "Premium pistachios graded for retail, hospitality and gifting programs."
     ),
     pricing: { currentPrice: 8999, originalPrice: 10499, discount: 14 },
     specifications: {
@@ -365,17 +429,87 @@ const products = [
     ],
   },
   {
+    _id: "5",
+    title: createLocaleString("Desiccated Coconut"),
+    category: "coconut",
+    slug: { current: "desiccated-coconut" },
+    order: 5,
+    heroHeading: createLocaleString("Bulk Desiccated Coconut & Copra Supplier – India"),
+    introParagraphs: [
+      createLocaleText(
+        "Divyansh International offers high-grade desiccated coconut products for both industrial buyers and quality trade partners across India."
+      ),
+      createLocaleText(
+        "Our coconut is carefully sourced, shredded, dried and graded, ensuring long shelf-life, purity and uniform texture required by bakeries, sweet manufacturers, confectioners, namkeen makers, ice-cream units and repackaging brands."
+      ),
+    ],
+    listSections: [
+      {
+        _key: "ls-15",
+        title: createLocaleString("Product Forms Available"),
+        items: [
+          createLocaleString(
+            "Fine Desiccated Coconut Powder – ideal for sweets, barfi, ladoo, confectionery"
+          ),
+          createLocaleString(
+            "Desiccated Coconut Flakes (Large Cut) – used in bakery toppings, cereal mixes & retail packs"
+          ),
+          createLocaleString("Copra (Edible Grade) – for pressed oil/food applications"),
+        ],
+      },
+      {
+        _key: "ls-16",
+        title: createLocaleString("Packaging Formats"),
+        items: [
+          createLocaleString("10kg & 25kg poly-lined bags / cartons"),
+          createLocaleString("Customised 1kg & 500gm private label packs for retail / export"),
+        ],
+      },
+      {
+        _key: "ls-17",
+        title: createLocaleString("Why Buy from Divyansh International?"),
+        items: [
+          createLocaleString("Consistent high-fat, fresh stock"),
+          createLocaleString("Hygienic drying & moisture-controlled packing"),
+          createLocaleString("Trusted supplier to FMCG brands and quality dry fruit traders"),
+          createLocaleString("Rapid delivery across Punjab, North India & pan-India"),
+        ],
+      },
+    ],
+    ctaLine: createLocaleString(
+      "Need desiccated coconut for industrial use or repackaging? Request our pricing & Min. Order today."
+    ),
+    description: createLocaleText(
+      "Fine powder, flakes and copra variants for industrial, retail and private-label coconut programs."
+    ),
+    pricing: { currentPrice: 2499, originalPrice: 2999, discount: 17 },
+    specifications: {
+      origin: "India",
+      variety: "Premium Grade Desiccated",
+      packaging: "25 kg Bulk Packs",
+      shelfLife: "18 Months",
+      storage: "Cool & Dry Place",
+    },
+    applications: [
+      "Bakery products such as cakes and biscuits",
+      "Traditional sweets and puddings",
+      "Confectionery manufacturing",
+      "Large-scale food preparation",
+    ],
+  },
+  {
     _id: "4",
     title: createLocaleString("Raisins (Kishmish)"),
     category: "raisins",
     slug: { current: "raisins" },
+    order: 6,
     heroHeading: createLocaleString("Bulk Kishmish Supplier – India"),
     introParagraphs: [
       createLocaleText(
-        "Divyansh International has established itself as a reliable importer and wholesale supplier of raisins (kishmish) for buyers across India."
+        "Divyansh International has established itself as a reliable importer and quality supplier of raisins (kishmish) for buyers across India."
       ),
       createLocaleText(
-        "We source premium-quality harvests to offer multiple grades, price points and flavour profiles under one roof. Our raisins are sorted, cleaned and packed hygienically – making them ideal for packagers, bakeries, mithai/confectionery units, retailers and institutional procurement."
+        "We source premium-quality harvests to offer multiple grades, price points and flavour profiles under one roof. Our raisins are sorted, cleaned and packed hygienically – making them ideal for packagers, bakeries, mithai/confectionery units, retailers and professional purchase."
       ),
     ],
     listSections: [
@@ -410,15 +544,15 @@ const products = [
           createLocaleString("Hygienic processing and grading"),
           createLocaleString("Competitive pricing across grades"),
           createLocaleString("On-time delivery across Punjab, North India & pan-India"),
-          createLocaleString("Trusted supplier to wholesalers, HORECA, modern trade & exporters"),
+          createLocaleString("Trusted supplier to qualityrs, hospitality, retail & exporters"),
         ],
       },
     ],
     ctaLine: createLocaleString(
-      "Looking to buy raisins in bulk? Enquire now about wholesale price lists and yearly supply contracts."
+      "Looking to buy raisins in quantity? Enquire now about quality price lists and yearly supply contracts."
     ),
     description: createLocaleText(
-      "Golden, Indian and Kandhari raisins processed hygienically for wholesale and institutional demand."
+      "Golden, Indian and Kandhari raisins processed hygienically for quality and customer needs."
     ),
     pricing: { currentPrice: 899, originalPrice: 1199, discount: 25 },
     specifications: {
@@ -430,78 +564,8 @@ const products = [
     },
     applications: [
       "Food processing and manufacturing",
-      "Retail and wholesale distribution",
+      "Retail and quality distribution",
       "Export and international trade",
-    ],
-  },
-  {
-    _id: "5",
-    title: createLocaleString("Desiccated Coconut"),
-    category: "coconut",
-    slug: { current: "desiccated-coconut" },
-    heroHeading: createLocaleString("Bulk Desiccated Coconut & Copra Supplier – India"),
-    introParagraphs: [
-      createLocaleText(
-        "Divyansh International offers high-grade desiccated coconut products for both industrial buyers and wholesale trade partners across India."
-      ),
-      createLocaleText(
-        "Our coconut is carefully sourced, shredded, dried and graded, ensuring long shelf-life, purity and uniform texture required by bakeries, sweet manufacturers, confectioners, namkeen makers, ice-cream units and repackaging brands."
-      ),
-    ],
-    listSections: [
-      {
-        _key: "ls-15",
-        title: createLocaleString("Product Forms Available"),
-        items: [
-          createLocaleString(
-            "Fine Desiccated Coconut Powder – ideal for sweets, barfi, ladoo, confectionery"
-          ),
-          createLocaleString(
-            "Desiccated Coconut Flakes (Large Cut) – used in bakery toppings, cereal mixes & retail packs"
-          ),
-          createLocaleString("Copra (Edible Grade) – for pressed oil/food applications"),
-        ],
-      },
-      {
-        _key: "ls-16",
-        title: createLocaleString("Packaging Formats"),
-        items: [
-          createLocaleString("10kg & 25kg poly-lined bags / cartons"),
-          createLocaleString(
-            "Customised 1kg & 500gm private label packs for modern trade / export"
-          ),
-        ],
-      },
-      {
-        _key: "ls-17",
-        title: createLocaleString("Why Buy from Divyansh International?"),
-        items: [
-          createLocaleString("Consistent high-fat, fresh stock"),
-          createLocaleString("Hygienic drying & moisture-controlled packing"),
-          createLocaleString("Trusted supplier to FMCG brands and wholesale dry fruit traders"),
-          createLocaleString("Rapid delivery across Punjab, North India & pan-India"),
-        ],
-      },
-    ],
-    ctaLine: createLocaleString(
-      "Need desiccated coconut for industrial use or repackaging? Request our bulk pricing & MOQ today."
-    ),
-    description: createLocaleText(
-      "Fine powder, flakes and copra variants for industrial, retail and private-label coconut programs."
-    ),
-    pricing: { currentPrice: 2499, originalPrice: 2999, discount: 17 },
-    specifications: {
-      origin: "India",
-      variety: "Premium Grade Desiccated",
-      packaging: "25 kg Bulk Packs",
-      shelfLife: "18 Months",
-      storage: "Cool & Dry Place",
-    },
-    applications: [
-      "Bakery products such as cakes and biscuits",
-      "Traditional sweets and puddings",
-      "Confectionery manufacturing",
-      "Large-scale food preparation",
     ],
   },
 ];
@@ -516,8 +580,8 @@ const heroSlides = [
       "Since 1999, Divyansh International has been a trusted ISO-certified importer and distributor of premium almonds and high-quality dry fruits across Ludhiana, Punjab and North India.",
       "Sourced directly from the finest orchards, we ensure every kernel meets our rigorous standards of purity and taste.",
     ],
-    primaryCta: { label: "Explore Our Collection", target: "products" },
-    secondaryCta: { label: "Contact Trade Desk", target: "contact" },
+    primaryCta: { label: "Explore Our Collection", target: "/products" },
+    secondaryCta: { label: "Contact Us", target: "contact" },
     videoUrl: "https://youtu.be/6qCa_lNKxjw?si=d834rowMA4ALItv_",
     posterUrl: "https://images.unsplash.com/photo-1508747703725-719777637510?w=1920&q=80",
   },
@@ -529,21 +593,21 @@ const timeline = [
     year: 1900,
     title: "The Beginning – Gujranwala",
     description:
-      "A well-established wholesale spices business thrived in Gujranwala, Punjab (then part of undivided India, now Pakistan).",
+      "A well-established quality spices business thrived in Gujranwala, Punjab (then part of undivided India, now Pakistan).",
   },
   {
     _id: "2",
     year: 1947,
     title: "Partition & New Beginnings",
     description:
-      "Following Partition, the family migrated to Ludhiana, Punjab—empty-handed but rich in experience and determination. At just 11 years of age, Mr. Som Nath Sethi marked a new beginning in India by starting a wholesale and retail grocery store.",
+      "Following Partition, the family migrated to Ludhiana, Punjab—empty-handed but rich in experience and determination. At just 11 years of age, Mr. Som Nath Sethi marked a new beginning in India by starting a quality and retail grocery store.",
   },
   {
     _id: "3",
     year: 1969,
-    title: "HoReCa Expansion",
+    title: "hospitality Expansion",
     description:
-      "Mr. Raman Sethi expanded operations into the HoReCa (Hotel, Restaurant & Catering) segment, strengthening the business's professional footprint.",
+      "Mr. Raman Sethi expanded operations into the hospitality (Hotel, Restaurant & Catering) segment, strengthening the business's professional footprint.",
   },
   {
     _id: "4",
@@ -619,7 +683,7 @@ const capabilities = [
     _id: "1",
     title: "Global Sourcing Network",
     description:
-      "Direct partnerships with growers across 15+ countries ensure year-round availability and competitive pricing for bulk buyers.",
+      "Direct partnerships with growers across 15+ countries ensure year-round availability and competitive pricing for customers.",
     metric: "15+ Origins",
     order: 1,
   },
@@ -627,7 +691,7 @@ const capabilities = [
     _id: "2",
     title: "ISO-Certified Processing",
     description:
-      "State-of-the-art facility with daily cleaning, sorting, and custom grading to meet institutional and export standards.",
+      "State-of-the-art facility with daily cleaning, sorting, and custom grading to meet professional and export standards.",
     metric: "ISO 22000",
     order: 2,
   },
@@ -643,7 +707,7 @@ const capabilities = [
     _id: "4",
     title: "Pan-India Distribution",
     description:
-      "Fast delivery across Punjab, North India, and nationwide with dedicated logistics for modern trade and institutional buyers.",
+      "Fast delivery across Punjab, North India, and nationwide with dedicated logistics for retail and customers.",
     metric: "Pan-India",
     order: 4,
   },
@@ -657,9 +721,9 @@ const capabilities = [
   },
   {
     _id: "6",
-    title: "B2B Expertise",
+    title: "Industry Experience",
     description:
-      "Over 25 years of experience serving wholesalers, modern trade, HORECA, and institutional procurement teams.",
+      "Over 25 years of experience serving qualityrs, retail, hospitality, and customers.",
     metric: "25+ Years",
     order: 6,
   },
@@ -736,8 +800,8 @@ const testimonials = [
     _id: "0",
     quote:
       "Divyansh delivers the responsiveness and QA rigor we expect from leading processors. RFQs, lab updates and dispatch milestones arrive without chasing.",
-    author: "Head of Procurement",
-    role: "Modern Trade Retailer",
+    author: "Head of purchase",
+    role: "retail Retailer",
   },
 ];
 
@@ -828,6 +892,43 @@ const communityData = {
     finalHighlight:
       "This is how Divyansh International builds long-term value, for its people, its partners, and the communities it serves.",
   },
+  employeeStories: {
+    eyebrow: "OUR TEAM",
+    title: "Employee Stories",
+    note: "Hear directly from the people who make it happen.",
+    videos: [
+      {
+        _key: "emptest1",
+        title: "Employee Experience",
+        description: "Shared journey at Divyansh International",
+        videoUrl: "https://youtu.be/MXmxsiLI1cI?si=LD3Yko8xEJt_71b_",
+      },
+      {
+        _key: "emptest2",
+        title: "Working Culture",
+        description: "Inside our collaborative environment",
+        videoUrl: "https://youtu.be/nS38lUmTEVs?si=MoWxeEwLKKlVT3s-",
+      },
+      {
+        _key: "emptest3",
+        title: "Growth Opportunities",
+        description: "Professional development stories",
+        videoUrl: "https://youtu.be/IHjzmuLm_3o?si=S03BtxAhckJ4TJSR",
+      },
+      {
+        _key: "emptest4",
+        title: "Team Spirit",
+        description: "Building success together",
+        videoUrl: "https://youtu.be/s0Nhc1kj5K8?si=0wLyh3rezdTseCw9",
+      },
+      {
+        _key: "emptest5",
+        title: "Daily Operations",
+        description: "A day in the life of our team",
+        videoUrl: "https://youtu.be/h3n9kGDcdkY?si=6cqqai91AbY9sB_0",
+      },
+    ],
+  },
   tradeEventsSection: {
     title: "Trade Events & Exhibitions",
     subtitle: "Meet us at leading industry events across India",
@@ -857,7 +958,7 @@ const communityData = {
       _key: "farmer",
       title: "Farmer Welfare Program",
       description:
-        "Supporting almond and walnut farmers with fair pricing, training on sustainable practices, and direct procurement partnerships.",
+        "Supporting almond and walnut farmers with fair pricing, training on sustainable practices, and direct purchase partnerships.",
     },
     {
       _key: "employment",
@@ -877,7 +978,7 @@ const communityData = {
 const processSteps = [
   {
     _id: "1",
-    title: "Sourcing & Procurement",
+    title: "Sourcing & purchase",
     detail:
       "Direct partnerships with certified growers across 15+ countries. Quality checks begin at origin with moisture, size, and defect analysis.",
     order: 1,
@@ -914,7 +1015,7 @@ const processSteps = [
     _id: "6",
     title: "Distribution & Delivery",
     detail:
-      "Pan-India logistics network with temperature-controlled storage. Fast dispatch to modern trade, HORECA, and institutional buyers.",
+      "Pan-India logistics network with temperature-controlled storage. Fast dispatch to retail, hospitality, and customers.",
     order: 6,
   },
 ];
@@ -963,19 +1064,12 @@ const quoteData = {
 const ctaData = {
   _id: "cta",
   _type: "cta",
-  walkthrough: {
-    subtitle: "Need Guidance?",
-    title: "Schedule a Product Walkthrough",
-    description:
-      "Our team can guide you through our product range, packaging options, and pricing structures tailored to your business needs.",
-    buttonText: "Book a Call",
-  },
   pricing: {
-    subtitle: "Get Wholesale Rates",
-    title: "Request Bulk Pricing",
+    subtitle: "Get quality Rates",
+    title: "Request pricing",
     description:
-      "Share your requirements and receive competitive wholesale quotes for your institutional or trade procurement needs.",
-    buttonText: "Get Quote",
+      "Share your requirements and receive competitive quality quotes for your professional or purchase needs.",
+    buttonText: "Contact Us",
     emailPlaceholder: "Enter your business email",
   },
 };
@@ -1132,12 +1226,12 @@ const aboutData = {
 
   brandsSection: {
     title: "Our Premium Brands",
-    b2b: {
-      title: "B2B Excellence",
+    partners: {
+      title: "Premium Quality",
       names: ["Sethi Gold", "Sethi Mewa"],
-      description: "Premium wholesale solutions",
+      description: "Premium quality solutions",
     },
-    d2c: {
+    retail: {
       title: "Direct to Consumer",
       name: "The BetterNut.co",
       description: "Premium retail experience",
@@ -1229,7 +1323,7 @@ const headerData = {
     { _key: "nav-3", label: "Contact", url: "/contact" },
     { _key: "nav-4", label: "Gallery", url: "/gallery" },
   ],
-  tradeButtonText: "Get Trade Quote",
+  tradeButtonText: "Get Quote",
   logoAlt: "Divyansh International Logo",
   homeAriaLabel: "Go to homepage",
   navAriaLabel: "Main navigation",
@@ -1272,7 +1366,7 @@ const siteSettingsData = {
     varietyLabel: "Variety:",
     applicationsLabel: "Applications:",
     packLabel: "Pack:",
-    moqLabel: "MOQ:",
+    moqLabel: "Min. Order:",
   },
   organization: {
     name: "Divyansh International",
@@ -1376,7 +1470,7 @@ const siteSettingsData = {
     notesLabel: "Notes",
     packFormatLabel: "Pack Format",
     quantityLabel: "Quantity",
-    moqLabel: "MOQ",
+    moqLabel: "Min. Order",
     emptyStateText: "Your enquiry is empty",
     pdfError: "Error generating PDF. Please try again.",
     emptyEnquiryError: "Please add items to your enquiry first.",
@@ -1393,7 +1487,7 @@ const siteSettingsData = {
       item: "item",
       items: "items",
       inYourEnquiry: "in your enquiry",
-      readyToSubmit: "Ready to submit? Get wholesale pricing and MOQ details.",
+      readyToSubmit: "Ready to submit? Get quality pricing and available sizes.",
       viewEnquiry: "View Enquiry",
       submitEnquiry: "Submit Enquiry",
     },
@@ -1449,8 +1543,8 @@ const siteSettingsData = {
     phoneLabel: "Phone",
     messageLabel: "Message",
     naText: "N/A",
-    tradeSubject: "New Trade Enquiry:",
-    newTradeEnquiryTitle: "New Trade Enquiry",
+    tradeSubject: "New Get Quote:",
+    newTradeEnquiryTitle: "New Get Quote",
     companyLabel: "Company",
     roleLabel: "Role",
     countryLabel: "Country",
@@ -1587,7 +1681,7 @@ const siteSettingsData = {
       grade: "Grade",
       packFormat: "Pack Format",
       quantity: "Quantity",
-      moq: "MOQ",
+      moq: "Min. Order",
       notes: "Notes",
     },
     footerText1: "This is an automatically generated enquiry document.",
@@ -1644,7 +1738,7 @@ const contactPageData = {
   description:
     "Gain a competitive edge with consistent supply, superior quality and transparent pricing.",
   generalEnquiryLabel: "General Enquiry",
-  tradeEnquiryLabel: "Trade / Bulk Enquiry",
+  tradeEnquiryLabel: "Get a Quote",
   contactDetailsTitle: "Contact Details",
   businessHoursTitle: "Business Hours",
   footerNote: "Serving dry fruit buyers across Punjab, North India and pan-India since 1999.",
@@ -1734,9 +1828,7 @@ const privacyPolicyData = {
           _key: "block-2-2",
           _type: "block",
           listItem: "bullet",
-          children: [
-            { _key: "span-5", _type: "span", text: "Process your trade enquiries and orders." },
-          ],
+          children: [{ _key: "span-5", _type: "span", text: "Process your enquiries and orders." }],
         },
         {
           _key: "block-2-3",
@@ -1901,14 +1993,14 @@ const homePageData = {
     eyebrow: "Capabilities",
     title: "Engineered touchpoints from farm gate to finished packs",
     description:
-      "Every facility and partnership is designed for processor-grade traceability, institutional compliance, and private label readiness.",
+      "Every facility and partnership is designed for processor-grade traceability, professional compliance, and private label readiness.",
     certificationsTitle: "Certified Excellence",
     certificationsDescription:
       "We adhere to the highest global standards of food safety and quality management.",
   },
   processSection: {
     eyebrow: "Process DNA",
-    title: "Calibrated to institutional-grade precision",
+    title: "Calibrated to professional-grade precision",
     description:
       "Industrial discipline with family-run agility and personalized attention to every order.",
   },
@@ -1916,23 +2008,23 @@ const homePageData = {
     eyebrow: "Sustainability",
     title: "Building transparent supply chains with shared value",
     description:
-      "We extend the value chain beyond procurement to farmer livelihoods, renewable operations, and inclusive hiring.",
+      "We extend the value chain beyond purchase to farmer livelihoods, renewable operations, and inclusive hiring.",
   },
   trustSection: {
     eyebrow: "Partners & Certifications",
-    title: "Compliance-ready for retailers, HoReCa, and export buyers",
+    title: "Compliance-ready for retailers, hospitality, and export buyers",
     description:
       "We highlight globally accepted standards, retailer partnerships, and mission-critical certifications.",
     partnerSegments: [
-      "Modern trade retail chains",
-      "Institutional procurement desks",
-      "HoReCa & hospitality groups",
-      "Food processing & wellness brands",
+      "Retail Chains",
+      "Professional Purchase Desks",
+      "Hospitality Groups",
+      "Food Processing & Wellness Brands",
     ],
   },
   productShowcaseSection: {
     eyebrow: "Product Programs",
-    title: "Bulk dry fruit supply for trade, institutional and export buyers",
+    title: "Bulk dry fruit supply for trade, professional and export buyers",
     description:
       "Preview our almond, walnut, pistachio, raisin and desiccated coconut programs built for dependable sourcing. Each profile links to detailed specs and ready-to-share enquiry flows.",
   },
@@ -1963,7 +2055,7 @@ const homePageData = {
         _key: "packaging",
         title: "Packaging Excellence",
         description:
-          "Our advanced packaging systems and quality control measures for B2B and export requirements",
+          "Our advanced packaging systems and quality control measures for Premium and export requirements",
         videoUrl: "",
       },
       {
@@ -2015,6 +2107,51 @@ const homePageData = {
 };
 
 async function seed() {
+  // =============================================================================
+  // STEP 0: PURGE ALL EXISTING DOCUMENTS (Complete Reset)
+  // =============================================================================
+
+  const documentTypes = [
+    "product",
+    "heroSlide",
+    "timeline",
+    "capability",
+    "processStep",
+    "sustainabilityPillar",
+    "certificate",
+    "testimonial",
+    "testimonialsSection",
+    "homePage",
+    "about",
+    "community",
+    "contactPage",
+    "productsPage",
+    "privacyPolicy",
+    "header",
+    "footer",
+    "quote",
+    "cta",
+    "siteSettings",
+    "catalogueSettings",
+    "distributionRegion",
+  ];
+
+  for (const docType of documentTypes) {
+    try {
+      // Fetch all document IDs of this type
+      const docs = await client.fetch<{ _id: string }[]>(`*[_type == "${docType}"]{ _id }`);
+
+      if (docs.length > 0) {
+        // Delete each document
+        for (const doc of docs) {
+          await client.delete(doc._id);
+        }
+      }
+    } catch (error) {
+      console.warn(`   ⚠️  Could not purge ${docType}:`, error);
+    }
+  }
+
   // 1. Products.
 
   async function uploadImage(filePath: string) {
@@ -2271,44 +2408,6 @@ async function seed() {
     ],
   };
 
-  const videoTestimonialsData = {
-    eyebrow: "OUR TEAM",
-    title: "Employee Stories",
-    note: "Hear directly from the people who make it happen.",
-    videos: [
-      {
-        _key: "emptest1",
-        title: "Employee Experience",
-        description: "Shared journey at Divyansh International",
-        videoUrl: "https://youtu.be/MXmxsiLI1cI?si=LD3Yko8xEJt_71b_",
-      },
-      {
-        _key: "emptest2",
-        title: "Working Culture",
-        description: "Inside our collaborative environment",
-        videoUrl: "https://youtu.be/nS38lUmTEVs?si=MoWxeEwLKKlVT3s-",
-      },
-      {
-        _key: "emptest3",
-        title: "Growth Opportunities",
-        description: "Professional development stories",
-        videoUrl: "https://youtu.be/IHjzmuLm_3o?si=S03BtxAhckJ4TJSR",
-      },
-      {
-        _key: "emptest4",
-        title: "Team Spirit",
-        description: "Building success together",
-        videoUrl: "https://youtu.be/s0Nhc1kj5K8?si=0wLyh3rezdTseCw9",
-      },
-      {
-        _key: "emptest5",
-        title: "Daily Operations",
-        description: "A day in the life of our team",
-        videoUrl: "https://youtu.be/h3n9kGDcdkY?si=6cqqai91AbY9sB_0",
-      },
-    ],
-  };
-
   const currentSection = await client.fetch('*[_type == "testimonialsSection"][0]');
   if (!currentSection) {
     await client.create({
@@ -2317,15 +2416,14 @@ async function seed() {
       title: "Client Success Stories",
       eyebrow: "TESTIMONIALS",
       droneSection: droneSectionData,
-      videoTestimonialsSection: videoTestimonialsData,
     });
   } else {
     await client
       .patch(currentSection._id)
       .set({
         droneSection: droneSectionData,
-        videoTestimonialsSection: videoTestimonialsData,
       })
+      .unset(["videoTestimonialsSection"])
       .commit();
   }
 
@@ -2486,20 +2584,15 @@ async function seed() {
     { name: "Haryana", lat: 29.0588, lng: 76.0856, radius: 60000 },
   ];
   for (const region of regionNames) {
-    const exists = await client.fetch('*[_type == "distributionRegion" && name == $name][0]', {
+    await client.createOrReplace({
+      _type: "distributionRegion",
+      _id: `region-${region.name.toLowerCase().replace(/\s+/g, "-")}`,
       name: region.name,
+      description: `Active distribution region in ${region.name}`,
+      lat: region.lat,
+      lng: region.lng,
+      radius: region.radius,
     });
-    if (!exists) {
-      await client.create({
-        _type: "distributionRegion",
-        name: region.name,
-        description: `Active distribution region in ${region.name}`,
-        lat: region.lat,
-        lng: region.lng,
-        radius: region.radius,
-      });
-    } else {
-    }
   }
 
   // eslint-disable-next-line no-console

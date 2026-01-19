@@ -82,7 +82,7 @@ const siteSettingsSchema = z
         email: z.string().optional(),
         phone: z.string().optional(),
       })
-      .optional(),
+      .nullish(),
     seo: z
       .object({
         siteUrl: z.string().optional(),

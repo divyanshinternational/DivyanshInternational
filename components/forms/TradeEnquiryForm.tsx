@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * Trade Enquiry Form
- * Handles B2B trade contact form submissions with product selection,
+ * Quote Request Form
+ * Handles contact form submissions with product selection,
  * validation, and analytics tracking.
  */
 
@@ -16,7 +16,6 @@ import { createTradeEnquirySchema, type TradeEnquiryInput } from "@/lib/validati
 import { getEnquiryItems } from "@/lib/utils/enquiry";
 import { trackEvent } from "@/components/analytics/GA4";
 import { useLanguage } from "@/context/LanguageContext";
-import { getLocalized, type LocaleString } from "@/lib/i18n";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS (PROPS)
@@ -24,7 +23,7 @@ import { getLocalized, type LocaleString } from "@/lib/i18n";
 
 const ProductItemSchema = z.object({
   _id: z.string(),
-  title: z.record(z.string(), z.string()), // LocaleString is effectively Record<string, string>
+  title: z.string(),
 });
 
 const FormLabelsSchema = z.object({
@@ -111,7 +110,7 @@ const DEFAULT_LABELS: Complete<FormLabels> = {
   messageLabel: "Message",
   submitButton: "Submit Enquiry",
   submittingButton: "Submitting...",
-  successMessage: "Thank you for your trade enquiry. Our team will contact you shortly.",
+  successMessage: "Thank you for your enquiry. Our team will contact you shortly.",
   errorMessage: "Something went wrong. Please try again.",
   requiredIndicator: "*",
   tradeEnquiryEndpoint: "/api/contact/trade",
@@ -155,7 +154,7 @@ export default function TradeEnquiryForm({
   initialProduct,
   initialAction,
 }: TradeEnquiryFormProps) {
-  const { language } = useLanguage();
+  useLanguage();
   const searchParams = useSearchParams();
 
   // Runtime prop validation in dev
@@ -196,9 +195,9 @@ export default function TradeEnquiryForm({
     () =>
       productList?.map((p) => ({
         _id: p._id,
-        title: getLocalized(p.title as LocaleString, language),
+        title: p.title,
       })) ?? [],
-    [productList, language]
+    [productList]
   );
 
   // Create validation schema

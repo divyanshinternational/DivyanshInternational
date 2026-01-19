@@ -109,7 +109,11 @@ export default function CTASection({ initialCTA, routing }: CTASectionProps) {
       {/* Floating Decorations */}
       <DecorativeBackground />
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-10 grid lg:grid-cols-2 gap-8 relative z-10">
+      <div
+        className={`container mx-auto px-4 md:px-6 lg:px-10 relative z-10 ${
+          cta.walkthrough ? "grid lg:grid-cols-2 gap-8" : "flex justify-center"
+        }`}
+      >
         {/* Walkthrough CTA Card */}
         {cta.walkthrough ? (
           <WalkthroughCard walkthrough={cta.walkthrough} contactPath={contactPath} />
@@ -117,7 +121,9 @@ export default function CTASection({ initialCTA, routing }: CTASectionProps) {
 
         {/* Pricing CTA Card */}
         {cta.pricing ? (
-          <PricingCard pricing={cta.pricing} contactPath={contactPath} tradeType={tradeType} />
+          <div className={cta.walkthrough ? "w-full" : "w-full max-w-2xl"}>
+            <PricingCard pricing={cta.pricing} contactPath={contactPath} tradeType={tradeType} />
+          </div>
         ) : null}
       </div>
     </section>

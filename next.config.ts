@@ -8,7 +8,7 @@ const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com;
     style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: https://cdn.sanity.io https://*.sanity.io https://i.ytimg.com https://*.ytimg.com https://*.tile.openstreetmap.org https://drive.google.com https://*.googleusercontent.com;
+    img-src 'self' blob: data: https://cdn.sanity.io https://*.sanity.io https://i.ytimg.com https://*.ytimg.com https://*.tile.openstreetmap.org https://drive.google.com https://*.googleusercontent.com https://unpkg.com;
     font-src 'self' data:;
     connect-src 'self' https://*.sanity.io https://*.supabase.co https://cdnjs.cloudflare.com;
     media-src 'self' https://drive.google.com https://*.googlevideo.com blob:;

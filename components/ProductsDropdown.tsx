@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { getLocalized, type LocaleString } from "@/lib/i18n";
 import { z } from "zod";
 
 // =============================================================================
@@ -13,7 +12,7 @@ import { z } from "zod";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductExcerptSchema = z.object({
-  title: z.custom<LocaleString>(),
+  title: z.string(),
   slug: z.object({
     current: z.string(),
   }),
@@ -46,7 +45,7 @@ interface ProductsDropdownProps {
 export default function ProductsDropdown({ products, labels }: ProductsDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { language } = useLanguage();
+  useLanguage();
 
   // Close on click outside
   useEffect(() => {
@@ -130,7 +129,7 @@ export default function ProductsDropdown({ products, labels }: ProductsDropdownP
                     role="menuitem"
                     onClick={() => setIsOpen(false)}
                   >
-                    <span className="relative z-10">{getLocalized(product.title, language)}</span>
+                    <span className="relative z-10">{product.title}</span>
                     <span className="absolute left-0 top-0 bottom-0 w-1 bg-gold scale-y-0 group-hover:scale-y-100 transition-transform origin-center" />
                   </Link>
                 ))

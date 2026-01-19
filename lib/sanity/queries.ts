@@ -248,7 +248,7 @@ export const productsQuery = groq`
 export const productListQuery = groq`
   *[_type == "product"] | order(title asc) {
     _id,
-    title,
+    "title": coalesce(title.en, "Untitled Product"),
     slug
   }
 `;
@@ -400,6 +400,7 @@ export const communityQuery = groq`
     childcareSection,
     industryCollaboration,
     environmentalSection,
+    employeeStories,
     tradeEventsSection,
     tradeEvents,
     closingMessage,

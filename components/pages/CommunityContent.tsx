@@ -21,10 +21,33 @@ import {
   WalnutIcon,
   PeanutIcon,
 } from "@/components/assets/Decorations";
+import VideoShowcase from "@/components/ui/VideoShowcase";
+import type { SanityImageSource } from "@sanity/image-url";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
 // =============================================================================
+
+const SanityImageSourceSchema = z.custom<SanityImageSource>((val) => val !== undefined);
+
+const VideoItemSchema = z.object({
+  _key: z.string(),
+  title: z.string(),
+  description: z.string().optional(),
+  videoUrl: z.string().optional(),
+  thumbnail: SanityImageSourceSchema.optional(),
+});
+
+const VideoShowcaseSchema = z.object({
+  eyebrow: z.string().nullish(),
+  title: z.string().nullish(),
+  placeholderText: z.string().nullish(),
+  highlights: z.array(z.string()).nullish(),
+  note: z.string().nullish(),
+  videoUrl: z.string().nullish(),
+  image: SanityImageSourceSchema.nullish(),
+  videos: z.array(VideoItemSchema).nullish(),
+});
 
 const EnvironmentalInitiativeSchema = z.object({
   _key: z.string(),
@@ -98,6 +121,7 @@ const CommunityDataSchema = z.object({
       initiatives: z.array(EnvironmentalInitiativeSchema),
     })
     .optional(),
+  employeeStories: VideoShowcaseSchema.optional(),
   tradeEventsSection: z
     .object({
       title: z.string(),
@@ -562,6 +586,13 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
               ) : null}
             </div>
           </motion.div>
+        ) : null}
+
+        {/* Employee Stories */}
+        {community.employeeStories ? (
+          <div className="mb-20">
+            <VideoShowcase data={community.employeeStories} />
+          </div>
         ) : null}
 
         {/* Trade Events Section */}

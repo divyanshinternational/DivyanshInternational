@@ -42,7 +42,7 @@ const productSchema = z
     slug: slugSchema.optional(),
     title: z.unknown(), // LocaleString handled by component
     category: z.string().optional(),
-    heroImage: sanityImageSchema.optional(),
+    heroImage: sanityImageSchema.optional().nullable(),
     description: z.unknown().optional(),
   })
   .passthrough();

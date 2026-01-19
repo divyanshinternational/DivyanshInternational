@@ -260,27 +260,6 @@ export type TestimonialsSection = {
     highlights?: Array<string>;
     note?: string;
   };
-  videoTestimonialsSection?: {
-    eyebrow?: string;
-    title?: string;
-    placeholderText?: string;
-    videos?: Array<{
-      title?: string;
-      description?: string;
-      videoUrl?: string;
-      thumbnail?: {
-        asset?: SanityImageAssetReference;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-      };
-      _key: string;
-    }>;
-    highlights?: Array<string>;
-    note?: string;
-  };
 };
 
 export type Cta = {
@@ -1043,6 +1022,27 @@ export type Community = {
       _key: string;
     }>;
   };
+  employeeStories?: {
+    eyebrow?: string;
+    title?: string;
+    placeholderText?: string;
+    videos?: Array<{
+      title?: string;
+      description?: string;
+      videoUrl?: string;
+      thumbnail?: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+      };
+      _key: string;
+    }>;
+    highlights?: Array<string>;
+    note?: string;
+  };
   tradeEventsSection?: {
     title?: string;
     subtitle?: string;
@@ -1143,12 +1143,12 @@ export type About = {
   };
   brandsSection?: {
     title?: string;
-    b2b?: {
+    partners?: {
       title?: string;
       names?: Array<string>;
       description?: string;
     };
-    d2c?: {
+    retail?: {
       title?: string;
       name?: string;
       description?: string;

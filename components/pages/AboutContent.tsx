@@ -51,13 +51,13 @@ const TimelineSummaryCardSchema = z.object({
   description: z.string(),
 });
 
-const BrandB2BSchema = z.object({
+const BrandPartnersSchema = z.object({
   title: z.string(),
   names: z.array(z.string()),
   description: z.string(),
 });
 
-const BrandD2CSchema = z.object({
+const BrandRetailSchema = z.object({
   title: z.string(),
   name: z.string(),
   description: z.string(),
@@ -65,8 +65,8 @@ const BrandD2CSchema = z.object({
 
 const BrandsSectionSchema = z.object({
   title: z.string(),
-  b2b: BrandB2BSchema,
-  d2c: BrandD2CSchema,
+  partners: BrandPartnersSchema,
+  retail: BrandRetailSchema,
 });
 
 const ProductRangeSectionSchema = z.object({
@@ -790,7 +790,7 @@ export default function AboutContent({
               </motion.h2>
 
               <div className="grid md:grid-cols-2 gap-8">
-                {/* B2B Card */}
+                {/* Partners Card */}
                 <motion.div
                   className="relative"
                   variants={{
@@ -801,7 +801,7 @@ export default function AboutContent({
                 >
                   <div className="absolute -top-3 -left-3 z-10">
                     <div className="w-8 h-8 rounded-full bg-linear-to-br from-gold to-almond-gold flex items-center justify-center text-white font-bold text-sm shadow-md ring-2 ring-white">
-                      B2B
+                      Partners
                     </div>
                   </div>
 
@@ -809,22 +809,22 @@ export default function AboutContent({
                     <WalnutIcon className="w-10 h-10 text-almond-gold/40 mx-auto mb-4" />
 
                     <h3 className="text-xl font-bold text-almond-gold mb-4">
-                      {about.brandsSection.b2b.title}
+                      {about.brandsSection.partners.title}
                     </h3>
                     <div className="space-y-2 mb-4">
-                      {about.brandsSection.b2b.names.map((name) => (
+                      {about.brandsSection.partners.names.map((name) => (
                         <p key={name} className="text-lg font-semibold text-deep-brown">
                           {name}
                         </p>
                       ))}
                     </div>
                     <p className="text-sm text-(--color-slate)">
-                      {about.brandsSection.b2b.description}
+                      {about.brandsSection.partners.description}
                     </p>
                   </div>
                 </motion.div>
 
-                {/* D2C Card */}
+                {/* Retail Card */}
                 <motion.div
                   className="relative"
                   variants={{
@@ -835,7 +835,7 @@ export default function AboutContent({
                 >
                   <div className="absolute -top-3 -left-3 z-10">
                     <div className="w-8 h-8 rounded-full bg-linear-to-br from-gold to-almond-gold flex items-center justify-center text-white font-bold text-[10px] shadow-md ring-2 ring-white">
-                      D2C
+                      Retail
                     </div>
                   </div>
 
@@ -843,13 +843,13 @@ export default function AboutContent({
                     <PeanutIcon className="w-10 h-10 text-almond-gold/40 mx-auto mb-4" />
 
                     <h3 className="text-xl font-bold text-almond-gold mb-4">
-                      {about.brandsSection.d2c.title}
+                      {about.brandsSection.retail.title}
                     </h3>
                     <p className="text-lg font-semibold text-deep-brown mb-4">
-                      {about.brandsSection.d2c.name}
+                      {about.brandsSection.retail.name}
                     </p>
                     <p className="text-sm text-(--color-slate)">
-                      {about.brandsSection.d2c.description}
+                      {about.brandsSection.retail.description}
                     </p>
                   </div>
                 </motion.div>

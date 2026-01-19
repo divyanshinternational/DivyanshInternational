@@ -190,11 +190,19 @@ export default function HeroSlider({
     (target: string) => {
       if (!isClient) return;
 
+      // Handle path-based navigation (e.g., "/products", "/about")
+      if (target.startsWith("/")) {
+        router.push(target);
+        return;
+      }
+
+      // Handle contact shortcut
       if (target === "contact") {
         router.push(`${contactPath}?type=${tradeType}`);
         return;
       }
 
+      // Handle section scroll (element IDs)
       const element = document.getElementById(target);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });

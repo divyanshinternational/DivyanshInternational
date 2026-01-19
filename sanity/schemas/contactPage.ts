@@ -50,7 +50,7 @@ export default defineType({
     }),
     defineField({
       name: "tradeEnquiryLabel",
-      title: "Tab Label: Trade Enquiry",
+      title: "Tab Label: Quote Request",
       type: "string",
       group: "labels",
       validation: (Rule) => Rule.required(),

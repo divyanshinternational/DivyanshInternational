@@ -4,7 +4,6 @@ import Link from "next/link";
 import { z } from "zod";
 import type { SanityImageSource } from "@sanity/image-url";
 import { useLanguage } from "@/context/LanguageContext";
-import { getLocalized, type LocaleString } from "@/lib/i18n";
 import { FooterVisualElements } from "@/components/VisualElements";
 
 // =============================================================================
@@ -113,7 +112,7 @@ const FooterPropsSchema = z.object({
   products: z
     .array(
       z.object({
-        title: z.record(z.string(), z.string()), // LocaleString
+        title: z.string(),
         slug: ProductSlugSchema,
       })
     )
@@ -152,7 +151,7 @@ export default function Footer({
     }
   }
 
-  const { language } = useLanguage();
+  useLanguage();
 
   // Safe defaults
   const footer = {
@@ -170,7 +169,7 @@ export default function Footer({
 
   const dynamicProductLinks =
     products?.map((p) => ({
-      label: getLocalized(p.title as LocaleString, language),
+      label: p.title,
       href: `/products/${p.slug.current}`,
     })) ?? [];
 

@@ -12,6 +12,7 @@ export default defineType({
     { name: "childcare", title: "Childcare & Learning" },
     { name: "industry", title: "Industry Collaboration" },
     { name: "environment", title: "Environmental Responsibility" },
+    { name: "employeeStories", title: "Employee Stories" },
     { name: "events", title: "Trade Events" },
     { name: "closingMessage", title: "Closing Message" },
   ],
@@ -179,6 +180,100 @@ export default defineType({
               ],
             },
           ],
+        },
+      ],
+    }),
+
+    // =========================================================================
+    // EMPLOYEE STORIES
+    // =========================================================================
+    defineField({
+      name: "employeeStories",
+      title: "Employee Stories",
+      type: "object",
+      group: "employeeStories",
+      fields: [
+        {
+          name: "eyebrow",
+          type: "string",
+          title: "Eyebrow",
+          validation: (Rule) => Rule.max(50),
+        },
+        {
+          name: "title",
+          type: "string",
+          title: "Title",
+          validation: (Rule) => Rule.required().max(100),
+        },
+        {
+          name: "placeholderText",
+          type: "string",
+          title: "Placeholder Text",
+          description: "Alt text for the video area.",
+        },
+        {
+          name: "videos",
+          type: "array",
+          title: "Video Slider",
+          description: "Employee stories videos.",
+          of: [
+            {
+              type: "object",
+              title: "Video",
+              fields: [
+                {
+                  name: "title",
+                  type: "string",
+                  title: "Video Title",
+                  validation: (Rule) => Rule.required(),
+                },
+                {
+                  name: "description",
+                  type: "text",
+                  title: "Description",
+                  rows: 2,
+                },
+                {
+                  name: "videoUrl",
+                  type: "url",
+                  title: "Video URL",
+                },
+                {
+                  name: "thumbnail",
+                  type: "image",
+                  title: "Thumbnail",
+                  options: { hotspot: true },
+                  fields: [
+                    {
+                      name: "alt",
+                      type: "string",
+                      title: "Alt Text",
+                    },
+                  ],
+                },
+              ],
+              preview: {
+                select: {
+                  title: "title",
+                  subtitle: "description",
+                  media: "thumbnail",
+                },
+              },
+            },
+          ],
+        },
+        {
+          name: "highlights",
+          type: "array",
+          title: "Highlights / Stats",
+          description: "Key stats or points.",
+          of: [{ type: "string" }],
+        },
+        {
+          name: "note",
+          type: "string",
+          title: "Footer Note",
+          description: "Small text at the bottom.",
         },
       ],
     }),

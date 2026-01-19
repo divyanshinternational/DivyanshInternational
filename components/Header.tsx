@@ -11,7 +11,6 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 import { urlForImage } from "@/lib/sanity/image";
 import type { SanityImageSource } from "@sanity/image-url";
-import type { LocaleString } from "@/lib/i18n";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
@@ -68,7 +67,7 @@ const HeaderPropsSchema = z.object({
   products: z
     .array(
       z.object({
-        title: z.record(z.string(), z.string()), // LocaleString
+        title: z.string(),
         slug: ProductSlugSchema,
       })
     )
@@ -124,7 +123,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
   const catalogueLabel = nav?.catalogue || "Catalogue";
   const catalogueUrl = nav?.catalogueUrl || "/catalogue";
   const productsLabel = nav?.productsLabel || nav?.products || "Products";
-  const tradeButtonText = header.tradeButtonText || "Trade Enquiry";
+  const tradeButtonText = header.tradeButtonText || "Get Quote";
 
   return (
     <>
@@ -185,10 +184,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
               </Link>
 
               <ProductsDropdown
-                products={
-                  (products as unknown as { title: LocaleString; slug: { current: string } }[]) ||
-                  []
-                }
+                products={products || []}
                 labels={
                   siteSettings as unknown as {
                     navigation: { productsLabel: string; productsUrl: string };
@@ -214,7 +210,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
               ))}
 
               <Link
-                href="/contact?type=trade"
+                href="/contact"
                 className="bg-linear-to-r from-almond-gold to-gold-dark hover:shadow-lg text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 focus:outline-2 focus:outline-gold-dark focus:outline-offset-2 whitespace-nowrap"
               >
                 {tradeButtonText}
@@ -249,9 +245,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
-        products={
-          (products as unknown as { title: LocaleString; slug: { current: string } }[]) || []
-        }
+        products={products || []}
         menuItems={[
           { label: homeLabel, url: homeUrl },
           { label: catalogueLabel, url: catalogueUrl },
