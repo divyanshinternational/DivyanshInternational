@@ -32,7 +32,6 @@ model Enquiry {
 }
 
 enum EnquiryType {
-  general
   trade
 }
 

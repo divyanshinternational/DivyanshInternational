@@ -65,7 +65,7 @@ function createLocaleText(enText: string) {
 
 const products = [
   {
-    _id: "1",
+    _id: "product-almonds",
     title: createLocaleString("Almonds"),
     category: "almonds",
     slug: { current: "almonds" },
@@ -223,7 +223,7 @@ const products = [
     ],
   },
   {
-    _id: "6",
+    _id: "product-cashews",
     title: createLocaleString("Cashew"),
     category: "cashews",
     slug: { current: "cashews" },
@@ -288,7 +288,7 @@ const products = [
     ],
   },
   {
-    _id: "2",
+    _id: "product-walnuts",
     title: createLocaleString("Walnuts"),
     category: "walnuts",
     slug: { current: "walnuts" },
@@ -351,7 +351,7 @@ const products = [
     ],
   },
   {
-    _id: "3",
+    _id: "product-pistachios",
     title: createLocaleString("Pistachios"),
     category: "pistachio",
     slug: { current: "pistachios" },
@@ -429,7 +429,7 @@ const products = [
     ],
   },
   {
-    _id: "5",
+    _id: "product-desiccated-coconut",
     title: createLocaleString("Desiccated Coconut"),
     category: "coconut",
     slug: { current: "desiccated-coconut" },
@@ -498,7 +498,7 @@ const products = [
     ],
   },
   {
-    _id: "4",
+    _id: "product-raisins",
     title: createLocaleString("Raisins (Kishmish)"),
     category: "raisins",
     slug: { current: "raisins" },
@@ -1239,7 +1239,14 @@ const aboutData = {
   },
   productRangeSection: {
     title: "Premium Product Range",
-    products: ["Almonds", "Walnuts", "Pistachios", "Desiccated Coconut Powder"],
+    products: [
+      "Almonds",
+      "Cashew",
+      "Walnuts",
+      "Pistachios",
+      "Desiccated Coconut",
+      "Raisins (Kishmish)",
+    ],
     description:
       "Available in various packaging options, quantities, and varieties to meet your specific requirements.",
   },
@@ -2207,6 +2214,7 @@ async function seed() {
         })),
         ctaLine: product.ctaLine,
         description: product.description,
+        order: product.order,
       };
       await safeCreateOrReplace(doc);
     }

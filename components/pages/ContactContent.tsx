@@ -10,11 +10,10 @@
  * for runtime type safety.
  */
 
-import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { z } from "zod";
-import GeneralEnquiryForm from "@/components/forms/GeneralEnquiryForm";
+
 import TradeEnquiryForm from "@/components/forms/TradeEnquiryForm";
 import {
   LeafIcon,
@@ -137,18 +136,6 @@ export default function ContactContent({
   const formLabels = (siteSettings.forms ?? {}) as any;
   const routing = siteSettings.routing ?? {};
 
-  const tabValueGeneral = formLabels.tabValueGeneral ?? "general";
-  const tabValueTrade = formLabels.tabValueTrade ?? "trade";
-  const defaultTab = formLabels.defaultTab ?? tabValueGeneral;
-
-  const typeParam = searchParams.get(routing.queryParamType ?? "type");
-  const activeTabFromUrl =
-    typeParam === tabValueTrade || typeParam === tabValueGeneral
-      ? (typeParam as "general" | "trade")
-      : (defaultTab as "general" | "trade");
-
-  const [activeTab, setActiveTab] = useState<"general" | "trade">(activeTabFromUrl);
-
   const initialProduct = searchParams.get(routing.queryParamProduct ?? "product") ?? "";
   const initialAction = searchParams.get(routing.queryParamAction ?? "action") ?? "";
 
@@ -197,68 +184,22 @@ export default function ContactContent({
           </div>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="max-w-4xl mx-auto mb-8">
-          <div className="flex border-b border-gray-200" role="tablist">
-            <button
-              onClick={() => setActiveTab("general")}
-              className={`flex-1 px-6 py-4 font-semibold transition-colors focus:outline-2 focus:outline-gold focus:rounded-t-lg ${
-                activeTab === "general"
-                  ? "text-gold border-b-2 border-gold"
-                  : "text-(--color-muted) hover:text-foreground"
-              }`}
-              aria-selected={activeTab === "general"}
-              role="tab"
-              id="tab-general"
-              aria-controls="tabpanel-general"
-            >
-              {contact.generalEnquiryLabel}
-            </button>
-            <button
-              onClick={() => setActiveTab("trade")}
-              className={`flex-1 px-6 py-4 font-semibold transition-colors focus:outline-2 focus:outline-gold focus:rounded-t-lg ${
-                activeTab === "trade"
-                  ? "text-gold border-b-2 border-gold"
-                  : "text-(--color-muted) hover:text-foreground"
-              }`}
-              aria-selected={activeTab === "trade"}
-              role="tab"
-              id="tab-trade"
-              aria-controls="tabpanel-trade"
-            >
-              {contact.tradeEnquiryLabel}
-            </button>
-          </div>
-        </div>
-
         {/* Form Content */}
         <div className="max-w-4xl mx-auto mb-16">
           <motion.div
-            key={activeTab}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
             className="bg-linear-to-br from-white to-ivory p-8 rounded-3xl border-2 border-gold-light shadow-xl hover:shadow-2xl transition-all duration-300"
-            role="tabpanel"
-            id={`tabpanel-${activeTab}`}
-            aria-labelledby={`tab-${activeTab}`}
           >
-            {activeTab === "general" ? (
-              <GeneralEnquiryForm
-                formLabels={formLabels}
-                analytics={analyticsConfig}
-                validation={validationConfig}
-              />
-            ) : (
-              <TradeEnquiryForm
-                productList={productListTyped}
-                formLabels={formLabels}
-                analytics={analyticsConfig}
-                validation={validationConfig}
-                initialProduct={initialProduct}
-                initialAction={initialAction}
-              />
-            )}
+            <TradeEnquiryForm
+              productList={productListTyped}
+              formLabels={formLabels}
+              analytics={analyticsConfig}
+              validation={validationConfig}
+              initialProduct={initialProduct}
+              initialAction={initialAction}
+            />
           </motion.div>
         </div>
 

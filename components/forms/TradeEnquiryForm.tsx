@@ -340,18 +340,14 @@ export default function TradeEnquiryForm({
     [labels.tradeEnquiryEndpoint, analyticsConfig, reset]
   );
 
-  const toggleProduct = useCallback(
-    (productTitle: string) => {
-      setSelectedProducts((prev) => {
-        const updated = prev.includes(productTitle)
-          ? prev.filter((p) => p !== productTitle)
-          : [...prev, productTitle];
-        setValue("productInterest", updated);
-        return updated;
-      });
-    },
-    [setValue]
-  );
+  const toggleProduct = useCallback((productTitle: string) => {
+    setSelectedProducts((prev) => {
+      const updated = prev.includes(productTitle)
+        ? prev.filter((p) => p !== productTitle)
+        : [...prev, productTitle];
+      return updated;
+    });
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
