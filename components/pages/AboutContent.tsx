@@ -23,6 +23,7 @@ import {
   WalnutIcon,
   PeanutIcon,
 } from "@/components/assets/Decorations";
+import InfographicsSection from "@/components/sections/InfographicsSection";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
@@ -179,11 +180,20 @@ type TimelineEntry = z.infer<typeof TimelineEntrySchema>;
 type AboutData = z.infer<typeof AboutDataSchema>;
 type SiteSettings = z.infer<typeof SiteSettingsSchema>;
 
+interface Capability {
+  _id: string;
+  title: string;
+  description: string;
+  metric?: string;
+  icon?: string;
+}
+
 interface AboutContentProps {
   initialTeamMembers?: unknown;
   initialTimeline?: unknown;
   initialAbout?: unknown;
   siteSettings?: unknown;
+  capabilities?: Capability[];
 }
 
 // =============================================================================
@@ -226,6 +236,7 @@ export default function AboutContent({
   initialTimeline,
   initialAbout,
   siteSettings: rawSiteSettings,
+  capabilities = [],
 }: AboutContentProps) {
   // Validate and parse all incoming data with Zod
   const about = parseAboutData(initialAbout);
@@ -465,6 +476,11 @@ export default function AboutContent({
               <DecorativeCorners />
             </div>
           </motion.div>
+        ) : null}
+
+        {/* Infographics / Capabilities Section */}
+        {capabilities && capabilities.length > 0 ? (
+          <InfographicsSection capabilities={capabilities} />
         ) : null}
 
         {/* Our Brands */}

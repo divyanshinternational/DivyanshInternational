@@ -3,6 +3,9 @@ import type { SanityImageSource } from "@sanity/image-url";
 import { z } from "zod";
 
 import AboutContent from "@/components/pages/AboutContent";
+
+export const dynamic = "force-dynamic";
+
 import { SectionVisualElements } from "@/components/VisualElements";
 import { client } from "@/lib/sanity/client";
 import {
@@ -10,6 +13,7 @@ import {
   timelineQuery,
   aboutQuery,
   siteSettingsQuery,
+  capabilitiesQuery,
 } from "@/lib/sanity/queries";
 
 // =============================================================================
@@ -169,6 +173,19 @@ const siteSettingsSchema = z
   .passthrough()
   .nullable();
 
+/**
+ * Capability item schema for infographics
+ */
+const capabilitySchema = z
+  .object({
+    _id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    metric: z.string().nullable().optional(),
+    icon: z.string().nullable().optional(),
+  })
+  .passthrough();
+
 // =============================================================================
 // COMPONENT PROP TYPES
 // Match AboutContent.tsx internal types exactly for strict TS compatibility
@@ -187,6 +204,14 @@ type TimelineEntry = {
   year: number;
   title: string;
   description: string;
+};
+
+type Capability = {
+  _id: string;
+  title: string;
+  description: string;
+  metric?: string;
+  icon?: string;
 };
 
 interface AboutData {
@@ -263,19 +288,23 @@ async function getData(): Promise<{
   timeline: TimelineEntry[];
   about: AboutData | null;
   siteSettings: unknown;
+  capabilities: Capability[];
 }> {
-  const [rawTeamMembers, rawTimeline, rawAbout, rawSiteSettings] = await Promise.all([
-    client.fetch(teamMembersQuery),
-    client.fetch(timelineQuery),
-    client.fetch(aboutQuery),
-    client.fetch(siteSettingsQuery),
-  ]);
+  const [rawTeamMembers, rawTimeline, rawAbout, rawSiteSettings, rawCapabilities] =
+    await Promise.all([
+      client.fetch(teamMembersQuery),
+      client.fetch(timelineQuery),
+      client.fetch(aboutQuery),
+      client.fetch(siteSettingsQuery),
+      client.fetch(capabilitiesQuery),
+    ]);
 
   // Validate all data with zod - safeParse for graceful degradation
   const teamMembersResult = z.array(teamMemberSchema).safeParse(rawTeamMembers);
   const timelineResult = z.array(timelineEntrySchema).safeParse(rawTimeline);
   const aboutResult = aboutDataSchema.safeParse(rawAbout);
   const siteSettingsResult = siteSettingsSchema.safeParse(rawSiteSettings);
+  const capabilitiesResult = z.array(capabilitySchema).safeParse(rawCapabilities);
 
   // Development-only validation logging with detailed error output
   if (process.env.NODE_ENV === "development") {
@@ -320,6 +349,9 @@ async function getData(): Promise<{
     timeline: timelineResult.success ? (timelineResult.data as unknown as TimelineEntry[]) : [],
     about: aboutResult.success ? (aboutResult.data as unknown as AboutData) : null,
     siteSettings: siteSettingsResult.success ? siteSettingsResult.data : null,
+    capabilities: capabilitiesResult.success
+      ? (capabilitiesResult.data as unknown as Capability[])
+      : [],
   };
 }
 
@@ -343,6 +375,7 @@ export default async function AboutPage() {
           initialTimeline={data.timeline}
           initialAbout={data.about}
           siteSettings={data.siteSettings}
+          capabilities={data.capabilities}
         />
       </div>
     </div>
