@@ -113,25 +113,26 @@ function VarietyCard({ variety, index }: { variety: AlmondVariety; index: number
       </div>
 
       {/* Image Section */}
-      <div className="relative h-48 bg-linear-to-br from-amber-50 to-orange-50 overflow-hidden">
+      <div className="relative bg-linear-to-br from-amber-50 to-orange-50 overflow-hidden">
         {imageUrl && !isPlaceholder ? (
           isProxyUrl ? (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
               src={imageUrl}
               alt={`${variety.name} almonds`}
-              className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-auto object-contain p-4 group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
             <Image
               src={imageUrl}
               alt={`${variety.name} almonds`}
-              fill
-              className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+              width={400}
+              height={300}
+              className="w-full h-auto object-contain p-4 group-hover:scale-105 transition-transform duration-500"
             />
           )
         ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-amber-400">
+          <div className="flex flex-col items-center justify-center py-12 text-amber-400">
             <div className="w-20 h-20 rounded-full bg-amber-100 flex items-center justify-center mb-2">
               <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
