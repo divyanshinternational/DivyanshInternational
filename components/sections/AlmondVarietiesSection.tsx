@@ -85,6 +85,7 @@ function VarietyCard({ variety, index }: { variety: AlmondVariety; index: number
       : null;
 
   const isPlaceholder = variety.imageUrl?.startsWith("PLACEHOLDER");
+  const isProxyUrl = imageUrl?.startsWith("/api/image-proxy");
 
   return (
     <motion.div
@@ -112,14 +113,23 @@ function VarietyCard({ variety, index }: { variety: AlmondVariety; index: number
       </div>
 
       {/* Image Section */}
-      <div className="relative h-48 bg-linear-to-br from-amber-25 to-orange-25 overflow-hidden">
+      <div className="relative h-48 bg-linear-to-br from-amber-50 to-orange-50 overflow-hidden">
         {imageUrl && !isPlaceholder ? (
-          <Image
-            src={imageUrl}
-            alt={`${variety.name} almonds`}
-            fill
-            className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
-          />
+          isProxyUrl ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={imageUrl}
+              alt={`${variety.name} almonds`}
+              className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            <Image
+              src={imageUrl}
+              alt={`${variety.name} almonds`}
+              fill
+              className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+            />
+          )
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center text-amber-400">
             <div className="w-20 h-20 rounded-full bg-amber-100 flex items-center justify-center mb-2">
