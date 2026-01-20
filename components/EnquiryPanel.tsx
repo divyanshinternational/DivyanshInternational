@@ -221,7 +221,7 @@ export default function EnquiryPanel({
                   </div>
 
                   {/* Response Time Information */}
-                  <div className="bg-ivoryr from-ivory to-cashew-cream p-4 rounded-xl border border-sand mb-6">
+                  <div className="bg-paper p-4 rounded-xl border border-sand mb-6">
                     <h4 className="text-sm font-bold text-deep-brown mb-3 flex items-center gap-2">
                       <span className="w-2 h-2 bg-almond-gold rounded-full animate-pulse"></span>
                       Response Times

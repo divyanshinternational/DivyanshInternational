@@ -60,7 +60,9 @@ export async function sanityFetch<QueryResponse>({
 }): Promise<QueryResponse> {
   return client.fetch<QueryResponse>(query, params, {
     next: {
-      revalidate: process.env.NODE_ENV === "development" ? 30 : 3600,
+      // Use on-demand revalidation via webhook (see /api/revalidate)
+      // This is a fallback TTL in case webhook fails - 5 minutes in production
+      revalidate: process.env.NODE_ENV === "development" ? 30 : 300,
       tags,
     },
   });

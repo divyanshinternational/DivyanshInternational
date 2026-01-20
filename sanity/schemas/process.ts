@@ -19,6 +19,22 @@ export default defineType({
       validation: (Rule) => Rule.required().max(200),
     }),
     defineField({
+      name: "icon",
+      title: "Icon Type",
+      type: "string",
+      description: "Icon identifier for this step",
+      options: {
+        list: [
+          { title: "Farm", value: "farm" },
+          { title: "Shelling", value: "shelling" },
+          { title: "Sorting", value: "sorting" },
+          { title: "Quality", value: "quality" },
+          { title: "Packing", value: "packing" },
+          { title: "Shipping", value: "shipping" },
+        ],
+      },
+    }),
+    defineField({
       name: "order",
       title: "Display Order",
       type: "number",

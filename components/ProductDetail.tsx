@@ -486,7 +486,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                           {product.varieties.map((v, i) => (
                             <div
                               key={i}
-                              className={`rounded-xl p-4 border border-sand hover:shadow-md transition-all bg-ivoryr ${v.color || "from-white to-ivory"}`}
+                              className={`rounded-xl p-4 border border-sand hover:shadow-md transition-all bg-white ${v.color || "bg-white"}`}
                             >
                               <div className="flex items-center gap-3 mb-2">
                                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xs">

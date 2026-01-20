@@ -175,6 +175,7 @@ export type ProcessStep = {
   _rev: string;
   title?: string;
   detail?: string;
+  icon?: "farm" | "shelling" | "sorting" | "quality" | "packing" | "shipping";
   order?: number;
 };
 
@@ -1021,22 +1022,26 @@ export type Community = {
     title?: string;
     paragraphs?: Array<string>;
     quote?: string;
+    imageUrl?: string;
   };
   womenEmpowerment?: {
     icon?: string;
     title?: string;
     paragraphs?: Array<string>;
+    imageUrl?: string;
   };
   childcareSection?: {
     icon?: string;
     title?: string;
     paragraphs?: Array<string>;
     highlight?: string;
+    imageUrl?: string;
   };
   industryCollaboration?: {
     icon?: string;
     title?: string;
     paragraphs?: Array<string>;
+    imageUrl?: string;
   };
   environmentalSection?: {
     icon?: string;
@@ -1047,6 +1052,7 @@ export type Community = {
       text?: string;
       _key: string;
     }>;
+    imageUrl?: string;
   };
   employeeStories?: {
     eyebrow?: string;
@@ -1077,6 +1083,7 @@ export type Community = {
     name?: string;
     date?: string;
     location?: string;
+    imageUrl?: string;
     image?: {
       asset?: SanityImageAssetReference;
       media?: unknown;

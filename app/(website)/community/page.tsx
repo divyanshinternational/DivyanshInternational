@@ -71,6 +71,7 @@ const communityDataSchema = z
         title: z.string(),
         paragraphs: z.array(z.string()),
         quote: z.string(),
+        imageUrl: z.string().optional(),
       })
       .optional(),
     womenEmpowerment: z
@@ -78,6 +79,7 @@ const communityDataSchema = z
         icon: z.string(),
         title: z.string(),
         paragraphs: z.array(z.string()),
+        imageUrl: z.string().optional(),
       })
       .optional(),
     childcareSection: z
@@ -86,6 +88,7 @@ const communityDataSchema = z
         title: z.string(),
         paragraphs: z.array(z.string()),
         highlight: z.string(),
+        imageUrl: z.string().optional(),
       })
       .optional(),
     industryCollaboration: z
@@ -93,6 +96,7 @@ const communityDataSchema = z
         icon: z.string(),
         title: z.string(),
         paragraphs: z.array(z.string()),
+        imageUrl: z.string().optional(),
       })
       .optional(),
     environmentalSection: z
@@ -101,6 +105,7 @@ const communityDataSchema = z
         title: z.string(),
         introText: z.string(),
         initiatives: z.array(environmentalInitiativeSchema),
+        imageUrl: z.string().optional(),
       })
       .optional(),
     employeeStories: VideoShowcaseSchema.optional(),
@@ -164,35 +169,40 @@ interface CommunityDataProp {
     title: string;
     paragraphs: string[];
     quote: string;
+    imageUrl?: string;
   };
   womenEmpowerment?: {
     icon: string;
     title: string;
     paragraphs: string[];
+    imageUrl?: string;
   };
   childcareSection?: {
     icon: string;
     title: string;
     paragraphs: string[];
     highlight: string;
+    imageUrl?: string;
   };
   industryCollaboration?: {
     icon: string;
     title: string;
     paragraphs: string[];
+    imageUrl?: string;
   };
   environmentalSection?: {
     icon: string;
     title: string;
     introText: string;
     initiatives: { _key: string; icon: string; text: string }[];
+    imageUrl?: string;
   };
   employeeStories?: z.infer<typeof VideoShowcaseSchema>;
   tradeEventsSection?: {
     title: string;
     subtitle: string;
   };
-  tradeEvents?: { _key: string; name: string; date: string; location: string }[];
+  tradeEvents?: { _key: string; name: string; date: string; location: string; imageUrl?: string }[];
   closingMessage?: {
     title: string;
     paragraphs: string[];

@@ -9,7 +9,7 @@ import TrustSection from "@/components/sections/TrustSection";
 import CTASection from "@/components/sections/CTASection";
 import FeaturedBanner from "@/components/sections/FeaturedBanner";
 import DroneDiaries from "@/components/sections/DroneDiaries";
-import PosterBanner from "@/components/sections/PosterBanner";
+import ProcessFlowSection from "@/components/sections/ProcessFlowSection";
 
 import SpiralQuote from "@/components/SpiralQuote";
 import AnimationWrapper from "@/components/ui/AnimationWrapper";
@@ -186,6 +186,7 @@ export default async function Home() {
     heroSlides,
     certificates,
     testimonials,
+    processSteps,
     sustainabilityPillars,
     cta,
     quote,
@@ -238,9 +239,12 @@ export default async function Home() {
           />
         </AnimationWrapper>
 
-        {/* Poster Banner */}
+        {/* Process Flow Section */}
         <AnimationWrapper delay={0.1}>
-          <PosterBanner bannerData={homePage?.posterBannerSection} />
+          <ProcessFlowSection
+            initialProcessSteps={processSteps}
+            sectionSettings={homePage?.processSection}
+          />
         </AnimationWrapper>
 
         <AnimationWrapper delay={0.1}>

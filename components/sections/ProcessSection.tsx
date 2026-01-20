@@ -194,7 +194,7 @@ interface ProcessStepCardProps {
 function ProcessStepCard({ step }: ProcessStepCardProps) {
   return (
     <motion.article
-      className="bg-ivoryr from-white to-bg p-6 rounded-3xl border-2 border-border shadow-lg hover:shadow-xl hover:border-gold-light transition-all duration-300"
+      className="bg-white p-6 rounded-3xl border-2 border-border shadow-lg hover:shadow-xl hover:border-gold-light transition-all duration-300"
       variants={fadeInUp}
     >
       <motion.h3

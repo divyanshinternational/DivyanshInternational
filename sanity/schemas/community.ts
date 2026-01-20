@@ -91,6 +91,7 @@ export default defineType({
           of: [{ type: "text", rows: 3 }],
         },
         { name: "quote", type: "text", title: "Quote Text", rows: 3 },
+        { name: "imageUrl", type: "string", title: "Image URL (Google Drive)" },
       ],
     }),
 
@@ -111,6 +112,7 @@ export default defineType({
           title: "Paragraphs",
           of: [{ type: "text", rows: 3 }],
         },
+        { name: "imageUrl", type: "string", title: "Image URL (Google Drive)" },
       ],
     }),
 
@@ -132,6 +134,7 @@ export default defineType({
           of: [{ type: "text", rows: 3 }],
         },
         { name: "highlight", type: "text", title: "Highlight Text", rows: 3 },
+        { name: "imageUrl", type: "string", title: "Image URL (Google Drive)" },
       ],
     }),
 
@@ -152,6 +155,7 @@ export default defineType({
           title: "Paragraphs",
           of: [{ type: "text", rows: 3 }],
         },
+        { name: "imageUrl", type: "string", title: "Image URL (Google Drive)" },
       ],
     }),
 
@@ -181,6 +185,7 @@ export default defineType({
             },
           ],
         },
+        { name: "imageUrl", type: "string", title: "Image URL (Google Drive)" },
       ],
     }),
 
@@ -303,6 +308,7 @@ export default defineType({
             { name: "name", type: "string", title: "Event Name" },
             { name: "date", type: "date", title: "Event Date" },
             { name: "location", type: "string", title: "Location" },
+            { name: "imageUrl", type: "string", title: "Image URL (Google Drive)" },
             {
               name: "image",
               type: "image",

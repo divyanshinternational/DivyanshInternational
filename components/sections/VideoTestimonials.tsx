@@ -134,17 +134,6 @@ export default function VideoTestimonialsSection({
 
   return (
     <section id={sectionId} className="py-16 bg-bg relative" aria-labelledby="testimonials-heading">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, #d4a853 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
       {/* Floating Decorations */}
       <DecorativeBackground variant="side-balanced" />
 
@@ -222,41 +211,41 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
   // Contextual colors based on index
   const colors = [
     {
-      quote: "from-amber-400 to-orange-500",
-      avatar: "from-amber-100 to-amber-50",
+      quote: "bg-amber-500",
+      avatar: "bg-amber-50",
       text: "text-amber-600",
     },
     {
-      quote: "from-blue-400 to-cyan-500",
-      avatar: "from-blue-100 to-blue-50",
+      quote: "bg-blue-500",
+      avatar: "bg-blue-50",
       text: "text-blue-600",
     },
     {
-      quote: "from-purple-400 to-pink-500",
-      avatar: "from-purple-100 to-purple-50",
+      quote: "bg-purple-500",
+      avatar: "bg-purple-50",
       text: "text-purple-600",
     },
     {
-      quote: "from-green-400 to-emerald-500",
-      avatar: "from-green-100 to-green-50",
+      quote: "bg-green-500",
+      avatar: "bg-green-50",
       text: "text-green-600",
     },
     {
-      quote: "from-rose-400 to-red-500",
-      avatar: "from-rose-100 to-rose-50",
+      quote: "bg-rose-500",
+      avatar: "bg-rose-50",
       text: "text-rose-600",
     },
     {
-      quote: "from-teal-400 to-cyan-500",
-      avatar: "from-teal-100 to-teal-50",
+      quote: "bg-teal-500",
+      avatar: "bg-teal-50",
       text: "text-teal-600",
     },
   ];
 
   // Safe access with guaranteed fallback
   const defaultColor = {
-    quote: "from-amber-400 to-orange-500",
-    avatar: "from-amber-100 to-amber-50",
+    quote: "bg-amber-500",
+    avatar: "bg-amber-50",
     text: "text-amber-600",
   };
   const colorIndex = index % colors.length;
@@ -272,7 +261,7 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
 
       {/* Quote Icon */}
       <div
-        className={`w-12 h-12 rounded-xl bg-ivoryr ${color.avatar} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+        className={`w-12 h-12 rounded-xl ${color.avatar} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
       >
         <Quote className={`w-6 h-6 ${color.text}`} />
       </div>
@@ -284,9 +273,7 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
 
       {/* Author Info */}
       <footer className="flex items-center gap-3 pt-4 border-t border-border">
-        <div
-          className={`w-10 h-10 rounded-full bg-ivoryr ${color.avatar} flex items-center justify-center`}
-        >
+        <div className={`w-10 h-10 rounded-full ${color.avatar} flex items-center justify-center`}>
           <span className={`text-sm font-bold ${color.text}`}>{testimonial.author.charAt(0)}</span>
         </div>
         <div>
@@ -297,7 +284,7 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
 
       {/* Hover decoration */}
       <motion.div
-        className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gold ${color.quote} opacity-0 group-hover:opacity-100`}
+        className={`absolute bottom-0 left-0 right-0 h-0.5 ${color.quote} opacity-0 group-hover:opacity-100`}
         transition={{ duration: 0.3 }}
       />
     </motion.article>

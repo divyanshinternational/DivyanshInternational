@@ -138,28 +138,25 @@ export default function Header({ initialHeader, products, siteSettings }: Header
       >
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4">
-            {/* Logo */}
+            {/* Logo - Floating above header */}
             <div className="flex items-center shrink-0">
               <Link
                 href={homeUrl}
                 className="flex items-center space-x-2 md:space-x-3 focus:outline-2 focus:outline-gold focus:rounded"
                 aria-label={header.homeAriaLabel || "Go to homepage"}
               >
-                <div className="relative">
-                  <Image
-                    src={logoUrl}
-                    alt={
-                      header.logoAlt ||
-                      siteSettings?.organization?.name ||
-                      "Divyansh International Logo"
-                    }
-                    width={48}
-                    height={48}
-                    className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-almond-gold object-cover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                    priority
-                  />
-                  <div className="absolute -inset-1 bg-gold opacity-20 blur-sm rounded-full"></div>
-                </div>
+                <Image
+                  src={logoUrl}
+                  alt={
+                    header.logoAlt ||
+                    siteSettings?.organization?.name ||
+                    "Divyansh International Logo"
+                  }
+                  width={56}
+                  height={56}
+                  className="w-12 h-12 md:w-16 md:h-16 object-contain hover:scale-105 transition-transform duration-300"
+                  priority
+                />
                 <div className="flex flex-col">
                   <span className="text-deep-brown font-bold text-base md:text-xl tracking-wide">
                     {siteSettings?.organization?.name || "Divyansh International"}

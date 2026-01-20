@@ -376,8 +376,8 @@ function VideoBackground({
             )
         )}
       </AnimatePresence>
-      {/* Light warm overlay */}
-      <div className="absolute inset-0 bg-ivoryr from-bg/80 via-paper/70 to-border/60" />
+      {/* Light warm overlay - solid color instead of gradient */}
+      <div className="absolute inset-0 bg-white/60" />
       {/* Subtle texture */}
       <div
         className="absolute inset-0 opacity-20"
@@ -405,13 +405,13 @@ function FallbackBackground({ slide }: FallbackBackgroundProps) {
 
   return (
     <div
-      className="w-full h-full bg-cover bg-center bg-no-repeat bg-ivoryr from-bg to-paper"
+      className="w-full h-full bg-cover bg-center bg-no-repeat bg-paper"
       style={{
         backgroundImage: posterUrl ? `url(${posterUrl})` : undefined,
       }}
     >
       {!posterUrl ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-ivoryr from-bg to-paper">
+        <div className="absolute inset-0 flex items-center justify-center bg-paper">
           <div className="text-center text-text-muted">
             <svg
               className="w-16 h-16 mx-auto mb-4 opacity-50"

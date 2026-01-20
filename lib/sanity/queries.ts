@@ -118,6 +118,19 @@ export const homePageQuery = groq`
     productShowcaseSection,
     spiralQuoteSection,
     posterBannerSection,
+    featuredBanner,
+    droneDiaries {
+      eyebrow,
+      title,
+      description,
+      videos[] {
+        _key,
+        title,
+        description,
+        videoUrl,
+        thumbnailUrl
+      }
+    },
     aboutSection
   }
 `;
@@ -157,7 +170,9 @@ export const processQuery = groq`
   *[_type == "processStep"] | order(order asc) {
     _id,
     title,
-    detail
+    detail,
+    icon,
+    order
   }
 `;
 
@@ -433,14 +448,32 @@ export const communityQuery = groq`
     _id,
     header,
     corePhilosophy,
-    educationSection,
-    womenEmpowerment,
-    childcareSection,
-    industryCollaboration,
-    environmentalSection,
+    educationSection {
+      ...,
+      imageUrl
+    },
+    womenEmpowerment {
+      ...,
+      imageUrl
+    },
+    childcareSection {
+      ...,
+      imageUrl
+    },
+    industryCollaboration {
+      ...,
+      imageUrl
+    },
+    environmentalSection {
+      ...,
+      imageUrl
+    },
     employeeStories,
     tradeEventsSection,
-    tradeEvents,
+    tradeEvents[] {
+      ...,
+      imageUrl
+    },
     closingMessage,
     csrInitiatives
   }

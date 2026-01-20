@@ -57,7 +57,7 @@ export default function VideoShowcase({ data }: VideoShowcaseProps) {
 
   return (
     <motion.div
-      className="bg-ivoryr from-white to-ivory border-2 border-gold-light p-8 rounded-3xl shadow-xl space-y-6"
+      className="bg-paper border-2 border-gold-light p-8 rounded-3xl shadow-xl space-y-6"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.1 }}

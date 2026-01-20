@@ -167,17 +167,6 @@ export default function ProductShowcase({
 
   return (
     <section id={sectionId} className="py-16 bg-bg relative" aria-labelledby="products-heading">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, #d4a853 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
       {/* Floating Dry Fruits Decorations */}
       <DecorativeBackground variant="scattered" />
 

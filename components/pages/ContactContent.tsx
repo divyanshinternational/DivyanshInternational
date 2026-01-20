@@ -151,7 +151,7 @@ export default function ContactContent({
   const productListTyped = productList as any;
 
   return (
-    <div className="bg-ivory from-ivory via-cashew-cream to-beige min-h-screen pt-24 pb-20 relative">
+    <div className="bg-paper min-h-screen pt-24 pb-20 relative">
       {/* Decorative Background Elements */}
       <DecorativeBackground variant="minimal" />
 
@@ -184,7 +184,7 @@ export default function ContactContent({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-ivoryr from-white to-ivory p-8 rounded-3xl border-2 border-gold-light shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="bg-white p-8 rounded-3xl border-2 border-gold-light shadow-xl hover:shadow-2xl transition-all duration-300"
           >
             <TradeEnquiryForm
               productList={productListTyped}
@@ -218,7 +218,7 @@ function ContactInfoSection({ contact, siteSettings }: ContactInfoSectionProps) 
 
   return (
     <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div className="bg-ivoryr from-cashew-cream to-beige p-8 rounded-3xl border-2 border-gold-light shadow-lg hover:shadow-xl transition-all duration-300">
+      <div className="bg-ivory p-8 rounded-3xl border-2 border-gold-light shadow-lg hover:shadow-xl transition-all duration-300">
         <h3 className="text-xl font-bold text-deep-brown mb-4 font-heading">
           {contact.contactDetailsTitle}
         </h3>
@@ -244,7 +244,7 @@ function ContactInfoSection({ contact, siteSettings }: ContactInfoSectionProps) 
         </div>
       </div>
 
-      <div className="bg-ivoryr from-cashew-cream to-beige p-8 rounded-3xl border-2 border-gold-light shadow-lg hover:shadow-xl transition-all duration-300">
+      <div className="bg-ivory p-8 rounded-3xl border-2 border-gold-light shadow-lg hover:shadow-xl transition-all duration-300">
         <h3 className="text-xl font-bold text-deep-brown mb-4 font-heading">
           {contact.businessHoursTitle}
         </h3>

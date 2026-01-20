@@ -1,8 +1,8 @@
 "use client";
 
+import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { NutIcon } from "@/components/assets/Decorations";
 import TextReveal from "@/components/ui/TextReveal";
 import DecorativeBackground from "@/components/ui/DecorativeBackground";
 import { z } from "zod";
@@ -52,17 +52,6 @@ export default function SpiralQuote({ initialQuote, labels }: SpiralQuoteProps) 
 
   return (
     <section className="py-16 bg-bg relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, #d4a853 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
       {/* Floating Decorations */}
       <DecorativeBackground variant="minimal" />
 
@@ -88,7 +77,7 @@ export default function SpiralQuote({ initialQuote, labels }: SpiralQuoteProps) 
 
             <Link href={aboutUrl} className="relative z-20 group cursor-pointer">
               <div className="w-48 h-48 rounded-full bg-deep-brown flex items-center justify-center relative overflow-hidden transition-transform duration-500 group-hover:scale-105 shadow-xl">
-                <NutIcon className="w-20 h-20 text-gold/30 absolute" />
+                <Sparkles className="w-20 h-20 text-gold/30 absolute" />
                 <span className="text-gold text-center px-6 font-heading text-xl leading-tight relative z-10 group-hover:scale-110 transition-transform drop-shadow-md">
                   {buttonText}
                 </span>

@@ -69,12 +69,12 @@ const pillarIconColors = [
 ] as const;
 
 const pillarBgColors = [
-  "from-amber-100 to-amber-50",
-  "from-blue-100 to-blue-50",
-  "from-orange-100 to-orange-50",
-  "from-green-100 to-green-50",
-  "from-emerald-100 to-emerald-50",
-  "from-teal-100 to-teal-50",
+  "bg-amber-50",
+  "bg-blue-50",
+  "bg-orange-50",
+  "bg-green-50",
+  "bg-emerald-50",
+  "bg-teal-50",
 ] as const;
 
 // =============================================================================
@@ -137,17 +137,6 @@ export default function SustainabilitySection({
       className="py-16 bg-paper relative"
       aria-labelledby="sustainability-heading"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, #d4a853 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
       {/* Floating Decorations */}
       <DecorativeBackground variant="minimal" />
 
@@ -264,7 +253,7 @@ function PillarCard({ pillar, index }: PillarCardProps) {
 
       {/* Icon */}
       <div
-        className={`w-14 h-14 rounded-xl bg-ivoryr ${bgColor} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+        className={`w-14 h-14 rounded-xl ${bgColor} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
       >
         {Icon ? <Icon className={`w-7 h-7 ${iconColor}`} strokeWidth={1.5} /> : null}
       </div>
@@ -277,7 +266,7 @@ function PillarCard({ pillar, index }: PillarCardProps) {
 
       {/* Hover decoration */}
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100"
+        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold opacity-0 group-hover:opacity-100"
         transition={{ duration: 0.3 }}
       />
     </motion.article>

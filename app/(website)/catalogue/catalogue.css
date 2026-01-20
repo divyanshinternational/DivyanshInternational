@@ -82,37 +82,13 @@
 
 /* Paper grain texture overlay */
 .page-texture {
-  background-image:
-    /* Vertical paper grain */
-    repeating-linear-gradient(
-      0deg,
-      var(--catalogue-texture-overlay) 0px,
-      transparent 1px,
-      transparent 2px,
-      var(--catalogue-texture-overlay) 3px
-    ),
-    /* Horizontal fiber lines */
-    repeating-linear-gradient(
-        90deg,
-        var(--catalogue-texture-fiber) 0px,
-        transparent 1px,
-        transparent 2px,
-        var(--catalogue-texture-fiber) 3px
-      );
-  background-size:
-    4px 4px,
-    100px 2px;
+  background: transparent;
   mix-blend-mode: multiply;
 }
 
 /* Paper surface with gradient and subtle spots */
 .paper-surface {
-  background: linear-gradient(
-    to bottom,
-    var(--catalogue-paper-light) 0%,
-    var(--catalogue-paper-mid) 50%,
-    var(--catalogue-paper-light) 100%
-  );
+  background: var(--catalogue-paper-light);
   position: relative;
 }
 
@@ -120,9 +96,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(circle at 20% 30%, var(--catalogue-texture-fiber) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, var(--catalogue-texture-fiber) 0%, transparent 50%);
+  background-image: none;
   pointer-events: none;
 }
 
@@ -130,13 +104,7 @@
 .paper-overlay {
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    var(--catalogue-texture-fiber) 2px,
-    var(--catalogue-texture-fiber) 4px
-  );
+  background-image: none;
   pointer-events: none;
   mix-blend-mode: multiply;
   opacity: 0.3;
@@ -184,7 +152,7 @@
   right: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent);
+  background: rgba(255, 255, 255, 0.3);
   pointer-events: none;
   z-index: 1;
 }

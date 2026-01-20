@@ -114,7 +114,38 @@ const products = [
     description: createLocaleText("Premium almonds for retail, quality and customers."),
     heroImageUrl:
       "https://drive.google.com/file/d/1Bvi9b8uryUBT9Kq_XzfKqHoEA0a8d4sG/view?usp=sharing",
-    gallery: [],
+    gallery: [
+      {
+        _key: "almond-gallery-1",
+        imageUrl:
+          "https://drive.google.com/file/d/1CQQuD0ahv9SPZvdmqRsmSdp5HEh-VwbH/view?usp=sharing",
+        alt: "Premium California Almonds",
+      },
+      {
+        _key: "almond-gallery-2",
+        imageUrl:
+          "https://drive.google.com/file/d/1zLEQiriRyXW8_GUfpkfxCvNdbbIYzEpe/view?usp=sharing",
+        alt: "Almond Varieties Display",
+      },
+      {
+        _key: "almond-gallery-3",
+        imageUrl:
+          "https://drive.google.com/file/d/1jgG5MWKA1qoCmq2mcLCsUVYosoXtJ5Kj/view?usp=sharing",
+        alt: "Nonpareil Almonds Close-up",
+      },
+      {
+        _key: "almond-gallery-4",
+        imageUrl:
+          "https://drive.google.com/file/d/1RZnNAxrE0ZZUrkEqc_C_SzVPh8uc_xiH/view?usp=sharing",
+        alt: "Almond Processing Line",
+      },
+      {
+        _key: "almond-gallery-5",
+        imageUrl:
+          "https://drive.google.com/file/d/1PKrVQneEVo5EOJPgOyFux1WbmfdXTZkm/view?usp=sharing",
+        alt: "Blanched Almonds",
+      },
+    ],
     pricing: { currentPrice: 1299, originalPrice: 1599, discount: 19 },
     specifications: {
       origin: "California, USA / India",
@@ -135,31 +166,31 @@ const products = [
         description:
           "Most popular California variety, known for its smooth appearance and mild flavor",
         grade: "Premium",
-        color: "from-amber-100 to-amber-200",
+        color: "bg-amber-100",
       },
       {
         name: "Carmel",
         description: "Excellent flavor with soft shell, ideal for processing",
         grade: "Premium",
-        color: "from-orange-100 to-orange-200",
+        color: "bg-orange-100",
       },
       {
         name: "Butte",
         description: "Small, plump shape with wrinkled surface, great for snacking",
         grade: "Standard",
-        color: "from-yellow-100 to-yellow-200",
+        color: "bg-yellow-100",
       },
       {
         name: "Padre",
         description: "Hard shell variety, known for durability and extended shelf life",
         grade: "Standard",
-        color: "from-amber-100 to-amber-200",
+        color: "bg-amber-100",
       },
       {
         name: "Mission",
         description: "Dark brown kernels with intense flavor, preferred for roasting",
         grade: "Premium",
-        color: "from-orange-100 to-orange-200",
+        color: "bg-orange-100",
       },
     ],
     almondVarieties: [
@@ -356,7 +387,38 @@ const products = [
     ),
     heroImageUrl:
       "https://drive.google.com/file/d/18R_RdM1dwkEXXtthxtbCNYpbQdhkSdiN/view?usp=sharing",
-    gallery: [],
+    gallery: [
+      {
+        _key: "walnut-gallery-1",
+        imageUrl:
+          "https://drive.google.com/file/d/1v5xPioa29d-rpNr2DeiE9gUyPOMQBGDq/view?usp=sharing",
+        alt: "Premium Walnut Kernels",
+      },
+      {
+        _key: "walnut-gallery-2",
+        imageUrl:
+          "https://drive.google.com/file/d/1Sp0q-DV2cPzRyz1h77_dX--y3BCORZdB/view?usp=sharing",
+        alt: "Walnut Halves Close-up",
+      },
+      {
+        _key: "walnut-gallery-3",
+        imageUrl:
+          "https://drive.google.com/file/d/1ZNj4WOkcN4xXFZiO-uluEgq_hs2baokB/view?usp=sharing",
+        alt: "Kashmiri Walnuts",
+      },
+      {
+        _key: "walnut-gallery-4",
+        imageUrl:
+          "https://drive.google.com/file/d/14mbMrIBSwVZf8dN845YmkPI_mwfVSSmd/view?usp=sharing",
+        alt: "Walnut Processing Facility",
+      },
+      {
+        _key: "walnut-gallery-5",
+        imageUrl:
+          "https://drive.google.com/file/d/1KYs1uoky1FUzmm862PAOS21S2WoHY-en/view?usp=sharing",
+        alt: "Walnut Bulk Packaging",
+      },
+    ],
     pricing: { currentPrice: 899, originalPrice: 1199, discount: 25 },
     specifications: {
       origin: "India (Kashmir) / Chile / USA",
@@ -436,7 +498,38 @@ const products = [
     ),
     heroImageUrl:
       "https://drive.google.com/file/d/1eVBdpjGBzhtIrlf-w5ZEiuosiibg5F3M/view?usp=sharing",
-    gallery: [],
+    gallery: [
+      {
+        _key: "pista-gallery-1",
+        imageUrl:
+          "https://drive.google.com/file/d/1Iq5UeEXW5T1zgUyv1yQ5wjbeuajTuJzs/view?usp=sharing",
+        alt: "Premium Pistachios In-Shell",
+      },
+      {
+        _key: "pista-gallery-2",
+        imageUrl:
+          "https://drive.google.com/file/d/1M5I_l2xQK64w_UyAZ2TD4bqfbuVMzB5i/view?usp=sharing",
+        alt: "California Pistachios",
+      },
+      {
+        _key: "pista-gallery-3",
+        imageUrl:
+          "https://drive.google.com/file/d/1M3Uxer7ZQGINjfGppUoPxCvuuMZeqxT1/view?usp=sharing",
+        alt: "Iranian Premium Pistachios",
+      },
+      {
+        _key: "pista-gallery-4",
+        imageUrl:
+          "https://drive.google.com/file/d/1EjYAbM9E2KST20cYP2CoTzQUfA9oavoh/view?usp=sharing",
+        alt: "Pistachio Packaging",
+      },
+      {
+        _key: "pista-gallery-5",
+        imageUrl:
+          "https://drive.google.com/file/d/1WQRuw5EydvXj3X395hHoovh8nguomUYg/view?usp=sharing",
+        alt: "Roasted Pistachios",
+      },
+    ],
     pricing: { currentPrice: 8999, originalPrice: 10499, discount: 14 },
     specifications: {
       origin: "California, USA / Iran",
@@ -612,7 +705,7 @@ const heroSlides = [
     ],
     primaryCta: { label: "Explore Our Collection", target: "/products" },
     secondaryCta: { label: "Contact Us", target: "contact" },
-    videoUrl: "https://youtu.be/6qCa_lNKxjw?si=d834rowMA4ALItv_",
+    videoUrl: "https://youtu.be/aTOTCFNhlq8?si=9ezhh8xEC38NPkJs",
     posterUrl: "https://images.unsplash.com/photo-1508747703725-719777637510?w=1920&q=80",
     posterImageUrl: "",
   },
@@ -905,6 +998,7 @@ const communityData = {
   educationSection: {
     icon: "🎓",
     title: "Giving Back Through Education and Social Participation",
+    imageUrl: "https://drive.google.com/file/d/1cxg9wcr_ppBehgzmIvTAoX4S5M2HYBWo/view?usp=sharing",
     paragraphs: [
       "As part of its broader commitment to social responsibility, Divyansh International actively associates with government schools that serve underprivileged communities. The focus is on consistent involvement rather than one-time support.",
       "The organisation contributes wherever there is a genuine need — participating in initiatives, addressing essential requirements, and supporting learning environments through ongoing engagement. These efforts align with the company’s belief that education is a long-term investment in stronger communities.",
@@ -914,6 +1008,7 @@ const communityData = {
   womenEmpowerment: {
     icon: "👩‍💼",
     title: "Women at the Core of Our Workforce",
+    imageUrl: "https://drive.google.com/file/d/1404P1Ew9hqXXc0rNOMCHyYiz_k2ru6DO/view?usp=sharing",
     paragraphs: [
       "People are central to everything at Divyansh International, and women form a vital part of that foundation.",
       "The organisation maintains close, personal relationships with its women employees, creating a work environment that prioritises trust, respect, and continuity. Beyond providing employment, Divyansh International has nurtured a supportive community where women share experiences, encourage one another, and build confidence together.",
@@ -923,6 +1018,7 @@ const communityData = {
   childcareSection: {
     icon: "🧸",
     title: "Supporting Families Through Childcare and Learning",
+    imageUrl: "https://drive.google.com/file/d/1G3cTh91OvKgnjS6kolXjxzU7MCy1ij72/view?usp=sharing",
     paragraphs: [
       "Understanding the realities faced by working mothers, Divyansh International has created a dedicated activity and learning centre for employees’ children.",
       "This space includes supervised play areas for younger children and academic guidance through an assigned tutor. By providing this support, the organisation enables women employees to work with peace of mind while ensuring their children receive care and learning assistance in a safe environment.",
@@ -933,6 +1029,7 @@ const communityData = {
   industryCollaboration: {
     icon: "🤝",
     title: "Building Stronger Industry Communities",
+    imageUrl: "https://drive.google.com/file/d/167EE8n_O4cFkKavCGavLPKZvVj3D7Wu-/view?usp=sharing",
     paragraphs: [
       "Divyansh International actively participates in industry-level collaboration through its association with a national trade council representing the nuts and dry fruits sector.",
       "By engaging in discussions, trade roadshows, and collective initiatives, the organisation contributes to addressing common industry challenges and promoting responsible trade practices. This involvement reflects the company’s belief in shared progress and ethical industry growth.",
@@ -941,6 +1038,7 @@ const communityData = {
   environmentalSection: {
     icon: "🌱",
     title: "Environmental Responsibility as a Way of Operating",
+    imageUrl: "https://drive.google.com/file/d/1u6CaCSbN7feQ2oQZJIe9fZECT0-gX0ih/view?usp=sharing",
     introText: "Sustainability is integrated into the daily operations at Divyansh International.",
     initiatives: [
       {
@@ -1021,18 +1119,24 @@ const communityData = {
       name: "AAHAR International Food & Hospitality Fair",
       date: "2024-03-15",
       location: "New Delhi, India",
+      imageUrl:
+        "https://drive.google.com/file/d/1cWggNo_65X9v9qCWyTpVS1SFX5XCU19i/view?usp=sharing",
     },
     {
       _key: "iitf2024",
       name: "India International Trade Fair",
       date: "2024-11-14",
       location: "Pragati Maidan, New Delhi",
+      imageUrl:
+        "https://drive.google.com/file/d/17ROsoFriSOK2T9z4Skl4GP0xvt2FBZz7/view?usp=sharing",
     },
     {
       _key: "wfi2024",
       name: "World Food India",
       date: "2024-09-20",
       location: "India",
+      imageUrl:
+        "https://drive.google.com/file/d/1bKlzKH0RVDKy0yoTWZtw5fNr9IzqiEMP/view?usp=sharing",
     },
   ],
   csrInitiatives: [
@@ -1059,46 +1163,44 @@ const communityData = {
 
 const processSteps = [
   {
-    _id: "1",
-    title: "Sourcing & purchase",
+    _id: "process-1",
+    title: "Farm Tie-Ups",
     detail:
-      "Direct partnerships with certified growers across 15+ countries. Quality checks begin at origin with moisture, size, and defect analysis.",
+      "Direct partnerships with certified growers across 15+ countries. Quality begins at the source with careful selection of premium farms.",
     order: 1,
+    icon: "farm",
   },
   {
-    _id: "2",
-    title: "Import & Compliance",
+    _id: "process-2",
+    title: "Shelling",
     detail:
-      "Full documentation, phytosanitary certificates, and customs clearance managed in-house for seamless import operations.",
+      "State-of-the-art shelling equipment ensures clean extraction while preserving the integrity and freshness of every kernel.",
     order: 2,
+    icon: "shelling",
   },
   {
-    _id: "3",
-    title: "Processing & Grading",
+    _id: "process-3",
+    title: "Sorting",
     detail:
-      "ISO-certified facility with daily cleaning, sorting, and custom grading. Size calibration, color sorting, and moisture control.",
+      "Advanced optical sorting technology separates by size, color and quality grade. Every batch is calibrated to perfection.",
     order: 3,
+    icon: "sorting",
   },
   {
-    _id: "4",
-    title: "Quality Control",
+    _id: "process-4",
+    title: "Quality Checks",
     detail:
-      "Multi-stage testing including visual inspection, lab analysis, and batch sampling to ensure consistent quality standards.",
+      "Multi-stage quality protocol including visual inspection, lab analysis, and batch sampling ensures consistent standards.",
     order: 4,
+    icon: "quality",
   },
   {
-    _id: "5",
-    title: "Packaging & Labeling",
+    _id: "process-5",
+    title: "Packing",
     detail:
-      "Flexible packaging options from bulk cartons to vacuum packs. Private label and custom branding available for clients.",
+      "Hygienic packaging in vacuum-sealed bags and bulk cartons. Custom branding and private label options available.",
     order: 5,
-  },
-  {
-    _id: "6",
-    title: "Distribution & Delivery",
-    detail:
-      "Pan-India logistics network with temperature-controlled storage. Fast dispatch to retail, hospitality, and customers.",
-    order: 6,
+    icon: "packing",
   },
 ];
 
@@ -1171,7 +1273,7 @@ const testimonialsSectionData = {
         _key: "facility-overview",
         title: "Facility Overview",
         description: "Aerial view of our ISO-certified processing facility in Mullapur, Ludhiana",
-        videoUrl: "",
+        videoUrl: "https://youtu.be/0ZD8ukKe7zU?si=zu1lLx2Tdmvs9qNd",
       },
       {
         _key: "quality-control",
@@ -2111,17 +2213,16 @@ const homePageData = {
   },
   processSection: {
     eyebrow: "OUR PROCESS",
-    title: "Tailored supply solutions for every business segment",
+    title: "Quality Built at Every Step",
     description:
-      "From retail chains to hospitality groups, we provide customized sourcing programs designed for your specific requirements.",
-    backgroundImageUrl: "PLACEHOLDER_PROCESS_BG_URL",
+      "Our nuts and dry fruits elevate every product, enabling partners to scale with consistency and reliability.",
   },
   sustainabilitySection: {
     eyebrow: "Sustainability",
     title: "Building transparent supply chains with shared value",
     description:
       "We extend the value chain beyond purchase to farmer livelihoods, renewable operations, and inclusive hiring.",
-    infographicImageUrl: "PLACEHOLDER_SUSTAINABILITY_INFOGRAPHIC_URL",
+    infographicImageUrl: "",
   },
   trustSection: {
     eyebrow: "Partners & Certifications",
@@ -2155,12 +2256,12 @@ const homePageData = {
   },
 
   featuredBanner: {
-    imageUrl: "PLACEHOLDER_FEATURED_BANNER_URL",
+    imageUrl: "",
     title: "25 Years of Excellence",
     subtitle: "Premium Quality Since 1999",
   },
   droneDiaries: {
-    eyebrow: "DRONE DIARIES",
+    eyebrow: "OUR FACILITY",
     title: "An Aerial Tour of Excellence",
     description:
       "Experience our state-of-the-art facility from above and witness the scale of our operations",
@@ -2168,23 +2269,23 @@ const homePageData = {
       {
         _key: "facility-aerial",
         title: "Facility Overview",
-        description: "Aerial tour of our ISO-certified processing facility in Mullapur, Ludhiana",
-        videoUrl: "PLACEHOLDER_DRONE_VIDEO_1_URL",
-        thumbnailUrl: "PLACEHOLDER_DRONE_THUMB_1_URL",
+        description: "Aerial tour of our ISO-certified processing facility.",
+        videoUrl: "https://youtu.be/6qCa_lNKxjw?si=hrgkehHGUnzCGxzN",
+        thumbnailUrl: "",
       },
       {
         _key: "processing-line",
         title: "Processing Line",
         description: "See our advanced sorting, grading, and processing equipment in action",
-        videoUrl: "PLACEHOLDER_DRONE_VIDEO_2_URL",
-        thumbnailUrl: "PLACEHOLDER_DRONE_THUMB_2_URL",
+        videoUrl: "",
+        thumbnailUrl: "",
       },
       {
         _key: "quality-lab",
         title: "Quality Control Lab",
         description: "Our in-house quality testing and certification processes",
-        videoUrl: "PLACEHOLDER_DRONE_VIDEO_3_URL",
-        thumbnailUrl: "PLACEHOLDER_DRONE_THUMB_3_URL",
+        videoUrl: "",
+        thumbnailUrl: "",
       },
     ],
   },

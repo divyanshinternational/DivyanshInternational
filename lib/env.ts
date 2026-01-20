@@ -21,6 +21,11 @@ export const env = createEnv({
 
     // Webhooks
     ENQUIRY_WEBHOOK_URL: z.string().url().optional().describe("Webhook for form submissions"),
+    SANITY_WEBHOOK_SECRET: z
+      .string()
+      .min(1)
+      .optional()
+      .describe("Secret for Sanity revalidation webhooks"),
   },
 
   // ===========================================================================
@@ -54,6 +59,7 @@ export const env = createEnv({
     RESEND_API_KEY: process.env["RESEND_API_KEY"],
     CONTACT_EMAIL: process.env["CONTACT_EMAIL"],
     ENQUIRY_WEBHOOK_URL: process.env["ENQUIRY_WEBHOOK_URL"],
+    SANITY_WEBHOOK_SECRET: process.env["SANITY_WEBHOOK_SECRET"],
 
     // Client
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env["NEXT_PUBLIC_SANITY_PROJECT_ID"],

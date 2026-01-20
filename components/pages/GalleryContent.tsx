@@ -78,7 +78,7 @@ export default function GalleryContent({ data }: GalleryContentProps) {
   }, [lightboxIndex, images.length]);
 
   return (
-    <section className="pt-28 pb-20 md:pt-32 md:pb-24 min-h-screen bg-ivory from-beige to-sand">
+    <section className="pt-28 pb-20 md:pt-32 md:pb-24 min-h-screen bg-sand/30">
       <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
@@ -167,7 +167,7 @@ function GalleryItem({
       transition={{ duration: 0.4, delay: (index % 8) * 0.05 }}
       onClick={onClick}
     >
-      <div className="relative w-full bg-ivoryr from-amber-50 to-amber-100 dark:from-gray-800 dark:to-gray-900">
+      <div className="relative w-full bg-amber-50 dark:bg-gray-800">
         {/* Loading Skeleton */}
         {isLoading && !hasError ? (
           <div className="absolute inset-0 flex items-center justify-center min-h-[200px]">

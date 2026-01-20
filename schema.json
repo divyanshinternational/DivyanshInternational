@@ -958,6 +958,39 @@
         },
         "optional": true
       },
+      "icon": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "farm"
+            },
+            {
+              "type": "string",
+              "value": "shelling"
+            },
+            {
+              "type": "string",
+              "value": "sorting"
+            },
+            {
+              "type": "string",
+              "value": "quality"
+            },
+            {
+              "type": "string",
+              "value": "packing"
+            },
+            {
+              "type": "string",
+              "value": "shipping"
+            }
+          ]
+        },
+        "optional": true
+      },
       "order": {
         "type": "objectAttribute",
         "value": {
@@ -6332,6 +6365,13 @@
                 "type": "string"
               },
               "optional": true
+            },
+            "imageUrl": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
             }
           }
         },
@@ -6363,6 +6403,13 @@
                 "of": {
                   "type": "string"
                 }
+              },
+              "optional": true
+            },
+            "imageUrl": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
               },
               "optional": true
             }
@@ -6405,6 +6452,13 @@
                 "type": "string"
               },
               "optional": true
+            },
+            "imageUrl": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
             }
           }
         },
@@ -6436,6 +6490,13 @@
                 "of": {
                   "type": "string"
                 }
+              },
+              "optional": true
+            },
+            "imageUrl": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
               },
               "optional": true
             }
@@ -6503,6 +6564,13 @@
                     }
                   }
                 }
+              },
+              "optional": true
+            },
+            "imageUrl": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
               },
               "optional": true
             }
@@ -6700,6 +6768,13 @@
                 "optional": true
               },
               "location": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "imageUrl": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "string"

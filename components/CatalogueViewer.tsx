@@ -388,7 +388,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
   // Inactive state
   if (!isActive) {
     return (
-      <div className="min-h-screen bg-ivory from-ivory to-beige pt-24">
+      <div className="min-h-screen bg-paper pt-24">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-2xl mx-auto text-center">
             <div className="text-8xl mb-8">📚</div>
@@ -405,7 +405,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
   // No content state
   if (!hasImageContent && !hasPdfContent) {
     return (
-      <div className="min-h-screen bg-ivory from-ivory to-beige pt-24">
+      <div className="min-h-screen bg-paper pt-24">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-2xl mx-auto text-center">
             <div className="text-8xl mb-8">📖</div>
@@ -422,7 +422,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
   // PDF Loading State (Before Document Load)
   if (contentType === "pdf" && hasPdfContent && !numPages) {
     return (
-      <div className="min-h-screen bg-ivory from-ivory to-beige pt-24 pb-12 flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-paper pt-24 pb-12 flex flex-col items-center justify-center">
         <div className="hidden">
           {/* Hidden Document loader to get page count */}
           <Document
@@ -440,7 +440,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
 
   // Image Flipbook
   return (
-    <div className="min-h-screen bg-ivory from-ivory to-beige pt-24 pb-12">
+    <div className="min-h-screen bg-bg pt-24 pb-12">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -476,7 +476,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
               <motion.div
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 flex items-center justify-center bg-ivoryr from-ivory to-cashew-cream z-20 rounded-2xl"
+                className="absolute inset-0 flex items-center justify-center bg-paper z-20 rounded-2xl"
               >
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-16 w-16 border-4 border-almond-gold border-t-transparent mx-auto mb-4" />
@@ -585,7 +585,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
 
           {/* Flipbook */}
           <div
-            className="p-8 md:p-10 flex justify-center items-center bg-ivory from-gray-50 to-gray-100 rounded-2xl shadow-xl"
+            className="p-8 md:p-10 flex justify-center items-center bg-gray-50 rounded-2xl shadow-xl"
             style={{ minHeight: isMobile ? dimensions.height + 100 : dimensions.height + 120 }}
           >
             {/* Wrap with Document if PDF */}
@@ -812,7 +812,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
           >
             <button
               onClick={handleDownload}
-              className="px-8 py-4 bg-gold from-almond-gold to-gold-dark text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-3 text-lg"
+              className="px-8 py-4 bg-gold text-white rounded-full font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-3 text-lg"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
