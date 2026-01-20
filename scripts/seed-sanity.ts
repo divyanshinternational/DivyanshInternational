@@ -113,7 +113,7 @@ const products = [
     ),
     description: createLocaleText("Premium almonds for retail, quality and customers."),
     heroImageUrl:
-      "https://drive.google.com/file/d/17G8sRChK6W-U3Y09iMJRXdN1-HenQPwU/view?usp=sharing",
+      "https://drive.google.com/file/d/1Bvi9b8uryUBT9Kq_XzfKqHoEA0a8d4sG/view?usp=sharing",
     gallery: [],
     pricing: { currentPrice: 1299, originalPrice: 1599, discount: 19 },
     specifications: {
@@ -288,7 +288,7 @@ const products = [
     ),
     description: createLocaleText("Premium W180, W240 & W320 Cashews for retail & wholesale."),
     heroImageUrl:
-      "https://drive.google.com/file/d/12cl96_Dy9hGUQbhPHJFDrSJ68XtM8lYy/view?usp=sharing",
+      "https://drive.google.com/file/d/1GbqwbSpHLPff4mjSIIdSi0HeehvSG0BE/view?usp=sharing",
     gallery: [],
     pricing: { currentPrice: 950, originalPrice: 1350, discount: 20 },
     specifications: {
@@ -355,7 +355,7 @@ const products = [
       "Bulk walnuts and kernels with stringent grading for retailers, food processors and exporters."
     ),
     heroImageUrl:
-      "https://drive.google.com/file/d/1nOvaNlIZQVAQc2Px9oghJpXGM-U9XTRD/view?usp=sharing",
+      "https://drive.google.com/file/d/18R_RdM1dwkEXXtthxtbCNYpbQdhkSdiN/view?usp=sharing",
     gallery: [],
     pricing: { currentPrice: 899, originalPrice: 1199, discount: 25 },
     specifications: {
@@ -435,7 +435,7 @@ const products = [
       "Premium pistachios graded for retail, hospitality and gifting programs."
     ),
     heroImageUrl:
-      "https://drive.google.com/file/d/1e-89nRAVMjaktCqDPHYFT6LYTep1xnyw/view?usp=sharing",
+      "https://drive.google.com/file/d/1eVBdpjGBzhtIrlf-w5ZEiuosiibg5F3M/view?usp=sharing",
     gallery: [],
     pricing: { currentPrice: 8999, originalPrice: 10499, discount: 14 },
     specifications: {
@@ -507,7 +507,7 @@ const products = [
       "Fine powder, flakes and copra variants for industrial, retail and private-label coconut programs."
     ),
     heroImageUrl:
-      "https://drive.google.com/file/d/1mhFddFWgLPZ2ZA_CUk5F_b0zfzXWmZWf/view?usp=sharing",
+      "https://drive.google.com/file/d/17hj3lf0l5P_1AU-PMYc-ce0lVZFmPXz7/view?usp=sharing",
     gallery: [],
     pricing: { currentPrice: 2499, originalPrice: 2999, discount: 17 },
     specifications: {
@@ -582,7 +582,7 @@ const products = [
       "Golden, Indian and Kandhari raisins processed hygienically for quality and customer needs."
     ),
     heroImageUrl:
-      "https://drive.google.com/file/d/1sO9D-vQ8OsYwzchxVvf_jZVblFJVh4Sj/view?usp=sharing",
+      "https://drive.google.com/file/d/1o-ar-PMQBA9xsJktq57baDqE1rQBWrrB/view?usp=sharing",
     gallery: [],
     pricing: { currentPrice: 899, originalPrice: 1199, discount: 25 },
     specifications: {
