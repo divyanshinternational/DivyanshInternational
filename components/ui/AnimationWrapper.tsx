@@ -13,6 +13,7 @@ import { motion, type MotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { z } from "zod";
 import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
@@ -55,10 +56,22 @@ export default function AnimationWrapper({
   viewportAmount = 0.1, // Trigger sooner
   ...motionProps
 }: AnimationWrapperProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsMounted(true);
+  }, []);
+
   // Validate props during development
   if (process.env.NODE_ENV === "development") {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     validateProps({ children, className, delay, duration, viewportAmount } as any);
+  }
+
+  // Don't animate until mounted to avoid hydration issues
+  if (!isMounted) {
+    return <div className={cn(className)}>{children}</div>;
   }
 
   return (
