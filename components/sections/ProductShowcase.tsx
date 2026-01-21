@@ -290,7 +290,7 @@ function ProductsGrid({ products, siteSettings, onAddToEnquiry }: ProductsGridPr
       className="columns-1 md:columns-2 lg:columns-3 gap-8"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
+      viewport={{ once: true, amount: 0.05, margin: "0px" }}
       variants={staggerContainer}
     >
       {products.map((product) => (

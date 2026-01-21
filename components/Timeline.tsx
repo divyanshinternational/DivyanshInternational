@@ -71,7 +71,7 @@ export default function Timeline({ entries }: TimelineProps) {
                 className="w-full md:w-1/2 px-4 md:px-8 mb-8 md:mb-0 flex justify-center"
                 initial={{ opacity: 0, x: imageSlideX }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               >
                 <div className="relative">
@@ -174,7 +174,7 @@ export default function Timeline({ entries }: TimelineProps) {
                 className="w-full md:w-1/2 px-4 md:px-8"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: false, amount: 0.1 }}
               >
                 <div
                   className={`text-center ${isEven ? "md:text-left md:pl-8" : "md:text-right md:pr-8"}`}

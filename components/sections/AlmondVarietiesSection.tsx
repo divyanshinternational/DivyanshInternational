@@ -36,7 +36,7 @@ export default function ProductVarietiesSection({
   badge = "Premium Varieties",
 }: ProductVarietiesSectionProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   if (!varieties || varieties.length === 0) return null;
 
@@ -78,7 +78,7 @@ export default function ProductVarietiesSection({
 
 function VarietyCard({ variety, index }: { variety: ProductVariety; index: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   // Get image URL (Google Drive or Sanity)
   // Use our proxy for Google Drive images to avoid 403s

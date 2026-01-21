@@ -78,7 +78,7 @@ export default function AnimationWrapper({
     <motion.div
       initial={{ opacity: 0, y: 30 }} // slightly more movement for visibility
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: viewportAmount, margin: "-20px" }} // Trigger almost immediately upon entering viewport
+      viewport={{ once: true, amount: viewportAmount, margin: "0px" }} // Trigger almost immediately upon entering viewport
       transition={{
         duration,
         delay,

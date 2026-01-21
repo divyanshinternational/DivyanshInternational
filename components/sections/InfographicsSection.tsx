@@ -71,7 +71,7 @@ export default function InfographicsSection({ capabilities }: InfographicsSectio
 
 function StatCard({ item, index }: { item: Capability; index: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   // Extract number and suffix from metric
   const { number, suffix, prefix, isTextOnly, textMetric } = parseMetric(item.metric);

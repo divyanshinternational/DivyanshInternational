@@ -246,8 +246,8 @@ video {
 /* Force ALL transitions to be linear */
 * {
   transition-property:
-    color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
-    transform, filter, backdrop-filter;
+    color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow, filter,
+    backdrop-filter;
   transition-timing-function: linear !important;
   transition-duration: 250ms;
 }
@@ -447,8 +447,8 @@ p {
 .hero-slider .motion-div,
 [data-framer-motion] {
   will-change: transform, opacity;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
 }
 
 /* Performance: Reduce Repaints */

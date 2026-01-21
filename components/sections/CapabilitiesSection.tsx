@@ -239,7 +239,7 @@ function CapabilitiesGrid({ capabilities }: CapabilitiesGridProps) {
       className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
+      viewport={{ once: true, amount: 0.05, margin: "0px" }}
       variants={staggerContainer}
     >
       {capabilities.map((capability) => (

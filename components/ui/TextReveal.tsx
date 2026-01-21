@@ -21,7 +21,7 @@ export default function TextReveal({
   as: Component = "p",
 }: TextRevealProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-10% 0px -10% 0px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   const words = children.split(" ");
 
