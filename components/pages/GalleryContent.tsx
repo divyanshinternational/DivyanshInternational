@@ -194,7 +194,7 @@ function GalleryItem({
           width={600}
           height={400}
           className={cn(
-            "w-full h-auto object-cover transform transition-all duration-700",
+            "w-full h-auto max-w-full object-contain transform transition-all duration-700",
             "group-hover:scale-105",
             hasError ? "opacity-0 absolute" : "opacity-100"
           )}

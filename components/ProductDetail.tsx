@@ -7,7 +7,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { getLocalized, type LocaleString, type LocaleText } from "@/lib/i18n";
 import { urlFor } from "@/lib/sanity/client-browser";
 import type { SanityImageSource } from "@sanity/image-url";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { HeroVisualElements, SectionVisualElements } from "@/components/VisualElements";
 import { z } from "zod";
 import { getGoogleDriveImageUrl } from "@/lib/utils";
@@ -154,28 +154,49 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
   type ProductImage =
     | { type: "url"; url: string; alt: string }
     | { type: "sanity"; image: SanityImageSource; alt: string };
-  const productImages: ProductImage[] = [];
 
-  // Add hero image (URL first, then Sanity)
-  if (product.heroImageUrl) {
-    const driveUrl = getGoogleDriveImageUrl(product.heroImageUrl);
-    if (driveUrl) productImages.push({ type: "url", url: driveUrl, alt: productTitle });
-  } else if (product.heroImage) {
-    productImages.push({ type: "sanity", image: product.heroImage, alt: productTitle });
-  }
+  const productImages = useMemo(() => {
+    const images: ProductImage[] = [];
 
-  // Add gallery images (URL first, then Sanity for each)
-  if (product.gallery) {
-    for (const item of product.gallery) {
-      if (item.imageUrl) {
-        const driveUrl = getGoogleDriveImageUrl(item.imageUrl);
-        if (driveUrl)
-          productImages.push({ type: "url", url: driveUrl, alt: item.alt || productTitle });
-      } else if (item.image) {
-        productImages.push({ type: "sanity", image: item.image, alt: item.alt || productTitle });
+    // Add hero image (URL first, then Sanity)
+    if (product.heroImageUrl) {
+      const driveUrl = getGoogleDriveImageUrl(product.heroImageUrl);
+      if (driveUrl) images.push({ type: "url", url: driveUrl, alt: productTitle });
+    } else if (product.heroImage) {
+      images.push({ type: "sanity", image: product.heroImage, alt: productTitle });
+    }
+
+    // Add gallery images (URL first, then Sanity for each)
+    if (product.gallery) {
+      for (const item of product.gallery) {
+        if (item.imageUrl) {
+          const driveUrl = getGoogleDriveImageUrl(item.imageUrl);
+          if (driveUrl) images.push({ type: "url", url: driveUrl, alt: item.alt || productTitle });
+        } else if (item.image) {
+          images.push({ type: "sanity", image: item.image, alt: item.alt || productTitle });
+        }
       }
     }
-  }
+
+    return images;
+  }, [product.heroImage, product.heroImageUrl, product.gallery, productTitle]);
+
+  // Keyboard Navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (productImages.length <= 1) return;
+
+      if (e.key === "ArrowLeft") {
+        setSelectedImage((prev) => (prev > 0 ? prev - 1 : productImages.length - 1));
+      } else if (e.key === "ArrowRight") {
+        setSelectedImage((prev) => (prev < productImages.length - 1 ? prev + 1 : 0));
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [productImages.length]);
 
   const specs = [
     { label: "Origin", value: product.specifications?.origin || "Multiple Origins" },
@@ -298,7 +319,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                       <button
                         key={index}
                         onClick={() => setSelectedImage(index)}
-                        className={`shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                        className={`relative shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all ${
                           selectedImage === index
                             ? "border-gold shadow-md scale-110 z-10"
                             : "border-sand hover:border-gold/50"
@@ -308,17 +329,17 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                           <OptimizedImage
                             src={img.url}
                             alt={`${productTitle} ${index + 1}`}
-                            width={160}
-                            height={160}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="80px"
                           />
                         ) : (
                           <OptimizedImage
-                            src={urlFor(img.image).width(160).height(160).url()}
+                            src={urlFor(img.image).width(200).height(200).url()}
                             alt={`${productTitle} ${index + 1}`}
-                            width={160}
-                            height={160}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="80px"
                           />
                         )}
                       </button>

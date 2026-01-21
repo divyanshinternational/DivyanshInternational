@@ -148,7 +148,7 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
               alt={productTitle}
               width={600}
               height={750}
-              className="w-auto h-auto max-w-full mx-auto block rounded-2xl"
+              className="w-auto h-auto max-w-full mx-auto block rounded-2xl hover:scale-105 transition-transform duration-500"
             />
           ) : product.heroImage ? (
             <OptimizedImage
@@ -156,7 +156,7 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
               alt={productTitle}
               width={600}
               height={750}
-              className="w-auto h-auto max-w-full mx-auto block rounded-2xl"
+              className="w-auto h-auto max-w-full mx-auto block rounded-2xl hover:scale-105 transition-transform duration-500"
             />
           ) : (
             <div className="min-h-[200px] flex items-center justify-center bg-beige rounded-2xl border border-dashed border-deep-brown">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackEvent } from "@/components/analytics/GA4";
 import Script from "next/script";
@@ -104,6 +104,34 @@ export default function ProductModal({
   const { language } = useLanguage();
   const router = useRouter();
 
+  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
+  const [prevProductId, setPrevProductId] = useState(product?._id);
+
+  // Reset to first image when product changes (Derived State pattern)
+  if (product?._id !== prevProductId) {
+    setPrevProductId(product?._id);
+    setActiveMediaIndex(0);
+  }
+
+  // Keyboard Navigation
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      const totalItems = 1 + (product?.gallery?.length || 0); // 0 = Hero, 1+ = Gallery
+
+      if (e.key === "ArrowLeft") {
+        setActiveMediaIndex((prev) => (prev > 0 ? prev - 1 : totalItems - 1));
+      } else if (e.key === "ArrowRight") {
+        setActiveMediaIndex((prev) => (prev < totalItems - 1 ? prev + 1 : 0));
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, product?.gallery?.length]);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -136,6 +164,9 @@ export default function ProductModal({
   const productDescription = getLocalized(product.description, language);
   const heroHeading = getLocalized(product.heroHeading, language);
   const ctaLine = getLocalized(product.ctaLine, language);
+
+  const currentImage =
+    activeMediaIndex === 0 ? product.heroImage : product.gallery?.[activeMediaIndex - 1];
 
   // Handlers
   const handleRequestSample = () => {
@@ -234,7 +265,7 @@ export default function ProductModal({
               <div className="p-6 space-y-8">
                 {/* Media Section */}
                 <div className="rounded-2xl overflow-hidden bg-ivory aspect-video relative group shadow-inner border border-sand">
-                  {product.microVideo ? (
+                  {activeMediaIndex === 0 && product.microVideo ? (
                     <video
                       src={product.microVideo}
                       autoPlay
@@ -243,14 +274,20 @@ export default function ProductModal({
                       playsInline
                       className="w-full h-full object-cover"
                     />
-                  ) : product.heroImage ? (
-                    <OptimizedImage
-                      src={urlFor(product.heroImage).width(1200).height(675).url()}
-                      alt={productTitle}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 800px"
-                    />
+                  ) : currentImage ? (
+                    <div
+                      key={activeMediaIndex}
+                      className="w-full h-full flex items-center justify-center p-2"
+                    >
+                      <OptimizedImage
+                        src={urlFor(currentImage).width(1200).height(800).fit("max").url()}
+                        alt={productTitle}
+                        width={1200}
+                        height={800}
+                        className="w-auto h-auto max-w-full max-h-full mx-auto object-contain"
+                        priority
+                      />
+                    </div>
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center text-center text-text-muted/60">
                       <div className="text-4xl mb-2">📸</div>
@@ -271,30 +308,51 @@ export default function ProductModal({
                 </div>
 
                 {/* Gallery */}
-                {product.gallery && product.gallery.length > 0 ? (
+                {product.heroImage || (product.gallery && product.gallery.length > 0) ? (
                   <div className="grid grid-cols-4 md:grid-cols-5 gap-3">
                     {product.heroImage ? (
-                      <div className="relative aspect-square rounded-lg overflow-hidden border border-sand cursor-pointer">
+                      <button
+                        type="button"
+                        onClick={() => setActiveMediaIndex(0)}
+                        className={`relative aspect-square rounded-lg overflow-hidden border cursor-pointer transition-all ${
+                          activeMediaIndex === 0
+                            ? "border-gold ring-2 ring-gold/30 scale-95"
+                            : "border-sand hover:scale-105"
+                        }`}
+                      >
                         <OptimizedImage
                           src={urlFor(product.heroImage).width(200).url()}
                           alt={productTitle}
                           fill
-                          className="object-cover hover:scale-110 transition-transform"
+                          className="object-cover"
                         />
-                      </div>
+                        {product.microVideo ? (
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                            <div className="w-8 h-8 rounded-full bg-white/80 flex items-center justify-center">
+                              <span className="text-deep-brown">▶</span>
+                            </div>
+                          </div>
+                        ) : null}
+                      </button>
                     ) : null}
-                    {product.gallery.map((image, index) => (
-                      <div
+                    {product.gallery?.map((image, index) => (
+                      <button
                         key={index}
-                        className="relative aspect-square rounded-lg overflow-hidden border border-sand cursor-pointer"
+                        type="button"
+                        onClick={() => setActiveMediaIndex(index + 1)}
+                        className={`relative aspect-square rounded-lg overflow-hidden border cursor-pointer transition-all ${
+                          activeMediaIndex === index + 1
+                            ? "border-gold ring-2 ring-gold/30 scale-95"
+                            : "border-sand hover:scale-105"
+                        }`}
                       >
                         <OptimizedImage
                           src={urlFor(image).width(200).url()}
                           alt={`${productTitle} ${index + 1}`}
                           fill
-                          className="object-cover hover:scale-110 transition-transform"
+                          className="object-cover"
                         />
-                      </div>
+                      </button>
                     ))}
                   </div>
                 ) : null}
