@@ -8,7 +8,7 @@
  */
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 // =============================================================================
 // TYPE DEFINITIONS
@@ -37,7 +37,7 @@ export default function FeaturedBanner({ bannerData }: FeaturedBannerProps) {
     >
       {/* Background Image */}
       <div className="absolute inset-0">
-        <Image
+        <OptimizedImage
           src={bannerData.imageUrl}
           alt={bannerData.title ?? "Divyansh International facility"}
           fill

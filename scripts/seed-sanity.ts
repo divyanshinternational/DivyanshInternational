@@ -1314,12 +1314,6 @@ const aboutData = {
           "https://drive.google.com/file/d/1UpbsgULb79NGBdSui7tadmu-thKTuyWG/view?usp=sharing",
         alt: "Divyansh International promotional poster 1",
       },
-      {
-        _key: "poster-2",
-        imageUrl:
-          "https://drive.google.com/file/d/1oe2K30hnGjQDC2gwHkMlQ3EcIVRGcJ3J/view?usp=sharing",
-        alt: "Divyansh International promotional poster 2",
-      },
     ],
   },
 

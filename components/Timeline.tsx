@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { urlFor } from "@/lib/sanity/client-browser";
 import { z } from "zod";
 import type { SanityImageSource } from "@sanity/image-url";
@@ -121,7 +120,7 @@ export default function Timeline({ entries }: TimelineProps) {
                         sizes="(max-width: 768px) 320px, (max-width: 1024px) 420px, 480px"
                       />
                     ) : entry.image ? (
-                      <Image
+                      <OptimizedImage
                         src={urlFor(entry.image).width(600).height(450).url()}
                         alt={`${entry.title} - ${entry.year}`}
                         fill

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 import { z } from "zod";
 import MobileMenu from "./MobileMenu";
 import ProductsDropdown from "./ProductsDropdown";
@@ -145,15 +145,15 @@ export default function Header({ initialHeader, products, siteSettings }: Header
                 className="flex items-center space-x-2 md:space-x-3 focus:outline-2 focus:outline-gold focus:rounded"
                 aria-label={header.homeAriaLabel || "Go to homepage"}
               >
-                <Image
+                <OptimizedImage
                   src={logoUrl}
                   alt={
                     header.logoAlt ||
                     siteSettings?.organization?.name ||
                     "Divyansh International Logo"
                   }
-                  width={56}
-                  height={56}
+                  width={64}
+                  height={64}
                   className="w-12 h-12 md:w-16 md:h-16 object-contain hover:scale-105 transition-transform duration-300"
                   priority
                 />

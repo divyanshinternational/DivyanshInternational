@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { z } from "zod";
@@ -149,15 +148,15 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
               alt={productTitle}
               width={600}
               height={750}
-              className="w-full h-auto block rounded-2xl"
+              className="w-auto h-auto max-w-full mx-auto block rounded-2xl"
             />
           ) : product.heroImage ? (
-            <Image
+            <OptimizedImage
               src={urlFor(product.heroImage).width(600).height(750).url()}
               alt={productTitle}
               width={600}
               height={750}
-              className="w-full h-auto block rounded-2xl"
+              className="w-auto h-auto max-w-full mx-auto block rounded-2xl"
             />
           ) : (
             <div className="min-h-[200px] flex items-center justify-center bg-beige rounded-2xl border border-dashed border-deep-brown">

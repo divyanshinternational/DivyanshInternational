@@ -139,7 +139,7 @@ export default function AboutPosterSlider({ sliderData }: AboutPosterSliderProps
                 alt={currentPoster?.alt ?? "Promotional poster"}
                 width={1920}
                 height={1080}
-                className="relative z-10 w-full h-auto object-cover shadow-lg"
+                className="relative z-10 w-auto h-auto max-w-full mx-auto object-cover shadow-lg"
                 sizes="100vw"
                 priority={activeSlide === 0}
               />

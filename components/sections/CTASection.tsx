@@ -37,7 +37,7 @@ const PricingCTASchema = z.object({
 const CTADataSchema = z.object({
   walkthrough: WalkthroughCTASchema.nullish(),
   pricing: PricingCTASchema.nullish(),
-  backgroundImageUrl: z.string().optional(),
+  backgroundImageUrl: z.string().nullish(),
 });
 
 const RoutingSchema = z.object({

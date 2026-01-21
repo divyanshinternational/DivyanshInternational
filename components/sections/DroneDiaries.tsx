@@ -179,6 +179,7 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       style={{ border: "none" }}
+                      loading="lazy"
                     />
                   </div>
                 </motion.div>

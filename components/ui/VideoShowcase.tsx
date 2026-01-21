@@ -104,6 +104,7 @@ export default function VideoShowcase({ data }: VideoShowcaseProps) {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       style={{ border: "none" }}
+                      loading="lazy"
                     />
                   </div>
                 ) : (

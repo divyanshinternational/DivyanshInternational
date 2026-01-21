@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
 import { urlFor } from "@/lib/sanity/client-browser";
 import type { SanityImageSource } from "@sanity/image-url";
 import { getGoogleDriveImageUrl } from "@/lib/utils";
@@ -112,7 +111,7 @@ function VarietyCard({ variety, index }: { variety: ProductVariety; index: numbe
               className="w-auto h-auto max-w-full max-h-[400px] object-contain transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
-            <Image
+            <OptimizedImage
               src={imageUrl}
               alt={`${variety.name} variety`}
               width={400}

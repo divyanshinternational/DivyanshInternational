@@ -51,7 +51,6 @@ const nextConfig = {
     localPatterns: [
       {
         pathname: "/api/**",
-        search: "",
       },
     ],
     remotePatterns: [
@@ -62,6 +61,7 @@ const nextConfig = {
       { protocol: "https", hostname: "i.ytimg.com" },
       { protocol: "https", hostname: "*.ytimg.com" },
     ],
+    qualities: [75, 85],
   },
 
   logging: {

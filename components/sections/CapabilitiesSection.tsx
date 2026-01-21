@@ -10,7 +10,6 @@
  * Data is validated with Zod schemas for runtime type safety.
  */
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { z } from "zod";
 
@@ -364,7 +363,12 @@ function CertificateCard({ certificate }: CertificateCardProps) {
           </div>
         ) : sanityImageUrl ? (
           <div className="relative w-full h-full">
-            <Image src={sanityImageUrl} alt={certificate.name} fill className="object-contain" />
+            <OptimizedImage
+              src={sanityImageUrl}
+              alt={certificate.name}
+              fill
+              className="object-contain"
+            />
           </div>
         ) : (
           <span className="text-lg font-bold text-deep-brown">{certificate.name}</span>

@@ -14,13 +14,9 @@ import DecorativeBackground from "@/components/ui/DecorativeBackground";
 import { getGoogleDriveImageUrl } from "@/lib/utils";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 
-import type { SanityImageSource } from "@sanity/image-url";
-
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
 // =============================================================================
-
-const SanityImageSourceSchema = z.custom<SanityImageSource>((val) => val !== undefined);
 
 const TestimonialSchema = z.object({
   _id: z.string(),
@@ -28,7 +24,7 @@ const TestimonialSchema = z.object({
   role: z.string(),
   location: z.string().optional().nullable(),
   videoUrl: z.string().optional().nullable(),
-  thumbnail: SanityImageSourceSchema.optional().nullable(),
+  thumbnail: z.any().optional().nullable(),
   quote: z.string(),
 });
 
@@ -37,7 +33,7 @@ const VideoItemSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
   videoUrl: z.string().optional(),
-  thumbnail: SanityImageSourceSchema.optional(),
+  thumbnail: z.any().optional(),
 });
 
 const VideoShowcaseSchema = z.object({
@@ -47,7 +43,7 @@ const VideoShowcaseSchema = z.object({
   highlights: z.array(z.string()).nullish(),
   note: z.string().nullish(),
   videoUrl: z.string().nullish(),
-  image: SanityImageSourceSchema.nullish(),
+  image: z.any().nullish(),
   videos: z.array(VideoItemSchema).nullish(),
 });
 
@@ -56,7 +52,7 @@ const SectionSettingsSchema = z.object({
   title: z.string().nullish(),
   droneSection: VideoShowcaseSchema.nullish(),
   videoTestimonialsSection: VideoShowcaseSchema.nullish(),
-  backgroundImageUrl: z.string().optional(),
+  backgroundImageUrl: z.string().nullish(),
 });
 
 const RoutingSchema = z.object({

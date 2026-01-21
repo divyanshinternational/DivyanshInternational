@@ -423,16 +423,6 @@ p {
   }
 }
 
-/* Responsive Images with Lazy Loading */
-img[loading="lazy"] {
-  opacity: 0;
-  transition: opacity 300ms linear;
-}
-
-img[loading="lazy"].loaded {
-  opacity: 1;
-}
-
 /* Grid Responsive Utilities */
 .grid-responsive {
   display: grid;
@@ -827,9 +817,13 @@ html.hydrated {
 
 /* Utility to hide scrollbar but keep functionality */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
+
 .no-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none;
+  /* Chrome, Safari and Opera */
 }

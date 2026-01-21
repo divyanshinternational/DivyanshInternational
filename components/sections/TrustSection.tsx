@@ -10,7 +10,6 @@
  * Data is validated with Zod schemas for runtime type safety.
  */
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { z } from "zod";
 import DecorativeBackground from "@/components/ui/DecorativeBackground";
@@ -297,7 +296,7 @@ function CertificateCard({ certificate }: CertificateCardProps) {
           </div>
         ) : certificate.image ? (
           <div className="w-16 h-16 relative transition-all duration-500">
-            <Image
+            <OptimizedImage
               src={urlForImage(certificate.image).url()}
               alt=""
               fill

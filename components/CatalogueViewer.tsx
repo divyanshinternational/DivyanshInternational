@@ -8,7 +8,7 @@
  */
 
 import React, { useState, useRef, useCallback, useEffect, forwardRef } from "react";
-import Image from "next/image";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
@@ -115,7 +115,7 @@ const PageComponent = forwardRef<HTMLDivElement, PageComponentProps>(
       >
         {imageUrl ? (
           <div className="relative w-full h-full">
-            <Image
+            <OptimizedImage
               src={imageUrl}
               alt={page.alt || `Page ${pageNumber}`}
               fill
@@ -770,7 +770,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                   aria-label={`Go to page ${index + 1}`}
                 >
                   {page.asset?.url ? (
-                    <Image
+                    <OptimizedImage
                       src={page.asset.url}
                       alt={page.alt || `Thumbnail ${index + 1}`}
                       fill
