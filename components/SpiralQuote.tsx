@@ -114,7 +114,7 @@ export default function SpiralQuote({ initialQuote, labels }: SpiralQuoteProps) 
               className="text-6xl text-gold font-serif leading-none block mb-2"
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.01, margin: "-50px" }}
               transition={{ duration: 0.6 }}
             >
               &quot;
@@ -132,7 +132,7 @@ export default function SpiralQuote({ initialQuote, labels }: SpiralQuoteProps) 
               className="text-lg text-deep-brown/70 italic font-medium"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.01, margin: "-50px" }}
               transition={{ duration: 0.6 }}
             >
               — {initialQuote.author}

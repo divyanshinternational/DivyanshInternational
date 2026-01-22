@@ -104,7 +104,7 @@ export default function GalleryContent({ data }: GalleryContentProps) {
         </div>
 
         {/* Pinterest-Style Masonry Grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
+        <div className="sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
           <AnimatePresence mode="popLayout">
             {images.map((image, index) => (
               <GalleryItem

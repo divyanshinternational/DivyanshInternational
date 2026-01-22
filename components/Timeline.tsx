@@ -85,7 +85,7 @@ export default function Timeline({ entries }: TimelineProps) {
                 className="w-full md:w-1/2 px-4 md:px-12 mb-12 md:mb-0 flex justify-center"
                 initial={{ opacity: 0, x: imageSlideX, scale: 0.95 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.01, margin: "-50px" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 <div className="relative group/img">
@@ -171,7 +171,7 @@ export default function Timeline({ entries }: TimelineProps) {
                   className="w-12 h-12 rounded-full bg-gold flex items-center justify-center text-white font-bold text-lg shadow-xl ring-4 ring-white"
                   initial={{ opacity: 0, scale: 0, rotate: -180 }}
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
+                  viewport={{ once: true, amount: 0.01, margin: "-50px" }}
                   transition={{
                     type: "spring",
                     stiffness: 260,
@@ -195,7 +195,7 @@ export default function Timeline({ entries }: TimelineProps) {
                 className="w-full md:w-1/2 px-4 md:px-12"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.01, margin: "-50px" }}
                 variants={{
                   hidden: { opacity: 0 },
                   visible: {
