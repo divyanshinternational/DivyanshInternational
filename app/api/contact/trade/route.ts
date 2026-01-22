@@ -12,7 +12,6 @@ import { env } from "@/lib/env";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
-// Runtime validation for Sanity CMS configuration
 // =============================================================================
 
 const apiMessagesSchema = z.object({
@@ -131,7 +130,6 @@ const DEFAULTS = {
 
 // =============================================================================
 // RATE LIMITING
-// In-memory rate limiter (production should use Redis)
 // =============================================================================
 
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -155,7 +153,6 @@ function checkRateLimit(ip: string, maxRequests: number, windowMs: number): bool
 
 // =============================================================================
 // GET CONFIGURATION
-// Fetches and validates Sanity configuration with fallbacks
 // =============================================================================
 
 async function getConfig() {
@@ -274,12 +271,12 @@ export async function POST(request: NextRequest) {
 
     const data = validation.data;
 
-    // Honeypot check - silently succeed if bot detected
+    // Honeypot check
     if (data.honeypot) {
       return NextResponse.json({ success: true });
     }
 
-    // Save to database (non-blocking errors)
+    // Save to database
     try {
       const { EnquiryType, EnquiryStatus } = await import("@prisma/client");
 
@@ -299,13 +296,11 @@ export async function POST(request: NextRequest) {
         },
       });
     } catch (dbError: unknown) {
-      // Log but don't fail the request - email will still be sent
       if (process.env.NODE_ENV === "development") {
         console.error("[API Trade Contact] Database error:", dbError);
       }
     }
 
-    // Send notification email (non-blocking errors)
     try {
       const productsDisplay = data.productInterest?.length
         ? data.productInterest.map(escapeHtml).join(apiConfig.listSeparator)
@@ -330,7 +325,6 @@ export async function POST(request: NextRequest) {
         `,
       });
     } catch (emailError: unknown) {
-      // Log but don't fail the request - data is already saved
       if (process.env.NODE_ENV === "development") {
         console.error("[API Trade Contact] Email error:", emailError);
       }

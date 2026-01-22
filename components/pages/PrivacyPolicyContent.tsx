@@ -68,7 +68,7 @@ const SiteSettingsSchema = z
   .partial();
 
 // =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
+// TYPE DEFINITIONS
 // =============================================================================
 
 type PrivacyPolicyData = z.infer<typeof PrivacyPolicyDataSchema>;
@@ -131,11 +131,9 @@ export default function PrivacyPolicyContent({
   privacyPolicy: rawPrivacyPolicy,
   siteSettings: rawSiteSettings,
 }: PrivacyPolicyContentProps) {
-  // Validate incoming data
   const privacyPolicy = parsePrivacyPolicyData(rawPrivacyPolicy);
   const siteSettings = parseSiteSettings(rawSiteSettings);
 
-  // Error state if privacy policy data is invalid
   if (!privacyPolicy) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-ivory">

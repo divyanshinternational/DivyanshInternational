@@ -16,7 +16,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-// Map of icon names to components
 const ICON_MAP: Record<string, LucideIcon> = {
   globe: Globe,
   award: Award,
@@ -73,10 +72,8 @@ function StatCard({ item, index }: { item: Capability; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "0px" });
 
-  // Extract number and suffix from metric
   const { number, suffix, prefix, isTextOnly, textMetric } = parseMetric(item.metric);
 
-  // Icon resolution
   const Icon = (item.icon && ICON_MAP[item.icon.toLowerCase()]) || getIconFromTitle(item.title);
 
   return (
@@ -175,7 +172,6 @@ function parseMetric(metric?: string) {
     };
   }
 
-  // No numbers found - return the full metric as text-only
   return { number: 0, suffix: "", prefix: "", isTextOnly: true, textMetric: metric };
 }
 

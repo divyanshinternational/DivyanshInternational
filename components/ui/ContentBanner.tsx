@@ -44,10 +44,11 @@ interface FloatingImageProps {
   style?: React.CSSProperties;
   delay?: number;
   duration?: number;
+  priority?: boolean;
 }
 
 // =============================================================================
-// SUB-COMPONENTS (Defined outside render to fix React warnings)
+// SUB-COMPONENTS
 // =============================================================================
 
 const FloatingStar = ({ className, delay = 0, duration = 4 }: FloatingStarProps) => (
@@ -73,7 +74,14 @@ const FloatingStar = ({ className, delay = 0, duration = 4 }: FloatingStarProps)
   </motion.div>
 );
 
-const FloatingImage = ({ src, className, style, delay = 0, duration = 4 }: FloatingImageProps) => (
+const FloatingImage = ({
+  src,
+  className,
+  style,
+  delay = 0,
+  duration = 4,
+  priority = false,
+}: FloatingImageProps) => (
   <motion.div
     className={cn("absolute pointer-events-none z-0 opacity-90", className)}
     style={style as MotionStyle}
@@ -95,8 +103,11 @@ const FloatingImage = ({ src, className, style, delay = 0, duration = 4 }: Float
         src={src}
         alt=""
         fill
-        className="object-contain drop-shadow-lg"
+        className="drop-shadow-lg"
+        imageClassName="object-scale-down"
         sizes="100px"
+        quality={100}
+        priority={priority}
       />
     </div>
   </motion.div>
@@ -121,7 +132,6 @@ export default function ContentBanner({ data, className, priority = false }: Con
     theme = "light",
   } = data;
 
-  // Priority: imageUrl (Google Drive) > image (Sanity)
   const processedImageUrl = imageUrl
     ? getGoogleDriveImageUrl(imageUrl)
     : image
@@ -134,27 +144,26 @@ export default function ContentBanner({ data, className, priority = false }: Con
   // THEME & COLORS
   // ===========================================================================
 
-  // Background Colors (Full Width)
+  // Background Colors
   const bgClasses = cn(
-    "relative w-full overflow-hidden transition-colors duration-500",
-    layout === "background-image"
-      ? "min-h-[60vh] lg:min-h-[70vh] flex items-center"
-      : "min-h-[60vh] lg:min-h-[70vh] flex items-center py-12 md:py-16",
-    // Theme backgrounds for non-image-bg layouts
+    "relative w-full transition-colors duration-500",
+    layout === "background-image" ? "overflow-hidden" : "",
+    "h-[60vh] lg:h-[70vh] flex items-center",
     layout !== "background-image" && isDarkTheme ? "bg-[#5D4037]" : "",
     layout !== "background-image" && !isDarkTheme ? "bg-ivory" : "",
+    layout === "background-image" ? "bg-[#3b2f2f]" : "",
     className
   );
 
   // Text Colors
   const isLightText = isDarkTheme || layout === "background-image";
-  const textColor = isLightText ? "!text-[#f5f1e8]" : "!text-deep-brown";
-  const descColor = isLightText ? "!text-[#f5f1e8]/90" : "!text-slate-600";
-  const eyebrowColor = isLightText ? "!text-[#e0c895]" : "!text-gold-dark";
+  const textColor = isLightText ? "text-[#f5f1e8]!" : "text-deep-brown!";
+  const descColor = isLightText ? "text-[#f5f1e8]/90!" : "text-deep-brown!";
+  const eyebrowColor = isLightText ? "text-[#e0c895]!" : "text-gold-dark!";
   const highlightColor = "text-gold";
 
   // ===========================================================================
-  // FLOATING ELEMENTS (DECORATIONS)
+  // FLOATING ELEMENTS
   // ===========================================================================
 
   const FLOATING_IMAGES = [
@@ -297,7 +306,7 @@ export default function ContentBanner({ data, className, priority = false }: Con
 
   const FloatingElements = isDarkTheme ? (
     <>
-      {/* Stars - Background Layer - Spread across entire area including center */}
+      {/* Stars */}
       <FloatingStar
         className="top-[8%] left-[12%] w-10 h-10 md:w-12 md:h-12 opacity-50"
         delay={0}
@@ -339,7 +348,7 @@ export default function ContentBanner({ data, className, priority = false }: Con
         duration={5}
       />
 
-      {/* Images - More Prominent Layer */}
+      {/* Images */}
       {FLOATING_IMAGES.map((img, idx) => (
         <FloatingImage
           key={idx}
@@ -348,6 +357,7 @@ export default function ContentBanner({ data, className, priority = false }: Con
           style={{ top: img.top, left: img.left, right: img.right, bottom: img.bottom }}
           delay={img.delay}
           duration={img.duration}
+          priority={priority}
         />
       ))}
     </>
@@ -400,7 +410,7 @@ export default function ContentBanner({ data, className, priority = false }: Con
           </h2>
         ) : null}
 
-        {/* Divider (only for centered layouts) */}
+        {/* Divider */}
         {layout === "bottom-image" || layout === "text-only" ? (
           <div className="w-20 h-1.5 bg-gold mx-auto rounded-full opacity-80" />
         ) : null}
@@ -410,12 +420,13 @@ export default function ContentBanner({ data, className, priority = false }: Con
           <div
             className={cn(
               "text-lg md:text-xl leading-relaxed max-w-xl space-y-4",
-              layout === "bottom-image" || layout === "text-only" ? "mx-auto" : "",
-              descColor
+              layout === "bottom-image" || layout === "text-only" ? "mx-auto" : ""
             )}
           >
             {paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
+              <p key={i} className={descColor}>
+                {p}
+              </p>
             ))}
           </div>
         ) : description ? (
@@ -469,33 +480,60 @@ export default function ContentBanner({ data, className, priority = false }: Con
   const ImageBlock = processedImageUrl ? (
     <div
       className={cn(
-        "relative isolate flex justify-center", // Removed overflow-hidden for split layouts
-        // Different styling per layout
-        layout === "bottom-image"
-          ? "mt-16 w-full max-w-5xl mx-auto rounded-2xl shadow-2xl aspect-video overflow-hidden" // Keep overflow-hidden for bottom/aspect-video
-          : "",
+        "relative isolate flex justify-center",
+        layout === "bottom-image" ? "mt-16 w-full max-w-5xl mx-auto" : "",
         layout === "right-image" || layout === "left-image"
-          ? "w-full p-4 lg:p-12 items-center"
+          ? "w-full p-4 lg:p-12 items-center h-full max-h-full"
           : "",
         layout === "background-image" ? "absolute inset-0 z-0 overflow-hidden" : ""
       )}
     >
-      <OptimizedImage
-        src={processedImageUrl}
-        alt={title || "Banner image"}
-        fill={layout === "background-image" || layout === "bottom-image"}
-        width={!(layout === "background-image" || layout === "bottom-image") ? 800 : undefined}
-        height={!(layout === "background-image" || layout === "bottom-image") ? 600 : undefined}
+      <div
         className={cn(
-          "transition-transform duration-1000 hover:scale-105",
-          layout === "right-image" || layout === "left-image"
-            ? "w-auto h-auto max-w-full max-h-[50vh] object-contain"
-            : "object-cover"
+          "relative w-full h-full",
+          layout === "right-image" || layout === "left-image" ? "min-h-[300px]" : ""
         )}
-        priority={priority}
-        sizes={layout === "background-image" ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
-      />
-
+      >
+        <OptimizedImage
+          src={processedImageUrl}
+          alt={title || "Banner image"}
+          fill={
+            layout === "background-image" ||
+            layout === "bottom-image" ||
+            layout === "right-image" ||
+            layout === "left-image"
+          }
+          width={
+            !(
+              layout === "background-image" ||
+              layout === "bottom-image" ||
+              layout === "right-image" ||
+              layout === "left-image"
+            )
+              ? 800
+              : undefined
+          }
+          height={
+            !(
+              layout === "background-image" ||
+              layout === "bottom-image" ||
+              layout === "right-image" ||
+              layout === "left-image"
+            )
+              ? 600
+              : undefined
+          }
+          className="transition-transform duration-1000 hover:scale-105"
+          imageClassName={cn(
+            "object-scale-down w-auto h-auto max-w-full",
+            layout === "right-image" || layout === "left-image" ? "object-scale-down" : ""
+          )}
+          priority={priority}
+          sizes={layout === "background-image" ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+          quality={layout === "right-image" || layout === "left-image" ? 100 : 90}
+          overflowVisible={false}
+        />
+      </div>
       {/* Overlay for bg image */}
       {layout === "background-image" ? (
         <div
@@ -515,7 +553,7 @@ export default function ContentBanner({ data, className, priority = false }: Con
   // RENDER LAYOUTS
   // ===========================================================================
 
-  // 1. Full Background Image Layout (Original "Overlay" style)
+  // 1. Full Background Image Layout
   if (layout === "background-image") {
     return (
       <div className={bgClasses}>
@@ -526,21 +564,26 @@ export default function ContentBanner({ data, className, priority = false }: Con
     );
   }
 
-  // 2. Split Layouts (Left/Right) - "Hero Style"
+  // 2. Split Layouts
   if (layout === "right-image" || layout === "left-image") {
     return (
       <div className={bgClasses}>
         {FloatingElements}
-        <div className="container mx-auto px-4 md:px-6 lg:px-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Logic: If left-image, Image goes first. If right-image, Content goes first. */}
+        <div className="container mx-auto px-4 md:px-6 lg:px-10 h-full">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center h-full">
             <div
-              className={cn(layout === "left-image" ? "order-last lg:order-first" : "order-first")}
+              className={cn(
+                layout === "left-image" ? "order-last lg:order-first" : "order-first",
+                "h-full flex flex-col justify-center"
+              )}
             >
               {layout === "left-image" ? ImageBlock : ContentBlock}
             </div>
             <div
-              className={cn(layout === "left-image" ? "order-first lg:order-last" : "order-last")}
+              className={cn(
+                layout === "left-image" ? "order-first lg:order-last" : "order-last",
+                "h-full flex flex-col justify-center"
+              )}
             >
               {layout === "left-image" ? ContentBlock : ImageBlock}
             </div>

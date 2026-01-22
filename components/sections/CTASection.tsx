@@ -97,14 +97,12 @@ export default function CTASection({ initialCTA, routing }: CTASectionProps) {
   const contactPath = routing?.contactPagePath ?? DEFAULT_CONTACT_PATH;
   const tradeType = routing?.tradeEnquiryType ?? DEFAULT_TRADE_TYPE;
 
-  // Prepare background image if available
   const bgImage = initialCTA?.backgroundImageUrl
     ? getGoogleDriveImageUrl(initialCTA.backgroundImageUrl)
     : null;
 
   if (!cta) return null;
 
-  // Use pricing data if available, otherwise use walkthrough
   const activeData = cta.pricing ?? cta.walkthrough;
   if (!activeData) return null;
 
@@ -123,6 +121,7 @@ export default function CTASection({ initialCTA, routing }: CTASectionProps) {
             fill
             className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
             sizes="100vw"
+            quality={100}
           />
         </div>
       ) : null}
@@ -131,7 +130,6 @@ export default function CTASection({ initialCTA, routing }: CTASectionProps) {
       <DecorativeBackground variant="scattered" />
 
       <div className="container mx-auto px-4 md:px-6 lg:px-10 relative z-10">
-        {/* Centered Header with Glass Protection */}
         <div className="text-center mb-16 md:mb-24 max-w-4xl mx-auto bg-white/60 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl border border-white/20">
           {/* Icon */}
           <motion.div

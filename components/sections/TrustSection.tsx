@@ -35,7 +35,7 @@ const CertificateSchema = z.object({
   _id: z.string(),
   name: z.string(),
   label: z.string(),
-  image: z.unknown().optional(), // SanityImageSource is complex
+  image: z.unknown().optional(),
   imageUrl: z.string().optional().nullable(),
   description: z.string().optional(),
 });
@@ -59,7 +59,7 @@ const TrustSectionPropsSchema = z.object({
 });
 
 // =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
+// TYPE DEFINITIONS
 // =============================================================================
 
 type Certificate = z.infer<typeof CertificateSchema>;
@@ -151,7 +151,6 @@ export default function TrustSection({
   const segments = sectionSettings?.partnerSegments ?? [];
   const sectionId = routing?.trustSectionId;
 
-  // Prepare background image if available
   const bgImage = sectionSettings?.backgroundImageUrl
     ? getGoogleDriveImageUrl(sectionSettings.backgroundImageUrl)
     : null;
@@ -171,6 +170,7 @@ export default function TrustSection({
             fill
             className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
             sizes="100vw"
+            quality={100}
           />
         </div>
       ) : null}
@@ -179,7 +179,6 @@ export default function TrustSection({
       <DecorativeBackground variant="side-balanced" />
 
       <div className="container mx-auto px-4 md:px-6 lg:px-10 relative z-10">
-        {/* Centered Header with Glass Protection */}
         <div className="text-center mb-16 max-w-4xl mx-auto bg-white/60 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl border border-white/20">
           {/* Icon */}
           <motion.div
@@ -277,7 +276,6 @@ function CertificateCard({ certificate }: CertificateCardProps) {
       variants={scaleIn}
     >
       {/* Shine Effect */}
-      {/* Shine Effect - solid white overlay on hover instead of gradient */}
       <div className="absolute inset-0 bg-white/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
       <div
@@ -290,8 +288,9 @@ function CertificateCard({ certificate }: CertificateCardProps) {
               src={getGoogleDriveImageUrl(certificate.imageUrl) || ""}
               alt=""
               fill
-              className="object-contain"
+              className="object-scale-down"
               sizes="64px"
+              quality={100}
             />
           </div>
         ) : certificate.image ? (
@@ -300,7 +299,8 @@ function CertificateCard({ certificate }: CertificateCardProps) {
               src={urlForImage(certificate.image).url()}
               alt=""
               fill
-              className="object-contain"
+              className="object-scale-down"
+              quality={100}
             />
           </div>
         ) : (
@@ -353,8 +353,6 @@ function SegmentsGrid({ segments }: SegmentsGridProps) {
 interface SegmentCardProps {
   segment: string;
 }
-
-// Icon mapping outside component to avoid creating during render
 
 function SegmentCard({ segment }: SegmentCardProps) {
   const lower = segment.toLowerCase();

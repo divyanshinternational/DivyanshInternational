@@ -34,7 +34,7 @@ const StructuredDataPropsSchema = z.object({
 });
 
 // =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
+// TYPE DEFINITIONS
 // =============================================================================
 
 export type OrganizationData = z.infer<typeof OrganizationDataSchema>;

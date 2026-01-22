@@ -124,6 +124,7 @@ const contentBannerSchema = z.object({
   imageUrl: z.string().optional(),
   bgOverlay: z.enum(["none", "black-10", "black-20", "black-40", "white-10"]).optional(),
   theme: z.enum(["light", "dark"]).optional(),
+  paragraphs: z.array(z.string()).optional(),
 });
 
 /**

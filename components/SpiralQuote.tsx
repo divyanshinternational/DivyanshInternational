@@ -70,6 +70,7 @@ export default function SpiralQuote({ initialQuote, labels }: SpiralQuoteProps) 
             fill
             className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
             sizes="100vw"
+            quality={100}
           />
         </div>
       ) : null}

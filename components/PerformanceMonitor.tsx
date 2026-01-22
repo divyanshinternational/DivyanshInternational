@@ -26,18 +26,17 @@ export default function PerformanceMonitor() {
     }
 
     // 2. Send to GA4 for production monitoring
-    // Web Vitals are best tracked as custom events
     const { id, name, label, value } = metric;
 
     trackEvent(name, {
       event_category: "Web Vitals",
-      event_label: id, // Unique ID for this metric instance
-      value: Math.round(name === "CLS" ? value * 1000 : value), // GA requires integers for value
+      event_label: id,
+      value: Math.round(name === "CLS" ? value * 1000 : value),
       metric_id: id,
       metric_value: value,
       metric_delta: metric.delta,
-      metric_rating: label, // 'good', 'needs-improvement', 'poor'
-      non_interaction: true, // Don't affect bounce rate
+      metric_rating: label,
+      non_interaction: true,
     });
   });
 

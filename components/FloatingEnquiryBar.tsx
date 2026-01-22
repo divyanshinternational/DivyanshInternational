@@ -5,7 +5,6 @@ import { z } from "zod";
 import { useCallback, useSyncExternalStore } from "react";
 import { getEnquiryItems } from "@/lib/utils/enquiry";
 
-// Cached empty array for server snapshot to prevent infinite loops
 const EMPTY_ITEMS: ReturnType<typeof getEnquiryItems> = [];
 
 // =============================================================================
@@ -23,7 +22,7 @@ const FloatingEnquiryLabelsSchema = z.object({
 
 const FloatingEnquiryBarPropsSchema = z.object({
   labels: FloatingEnquiryLabelsSchema.optional(),
-  whatsappNumber: z.string().optional(), // Now accepted as a prop
+  whatsappNumber: z.string().optional(),
 });
 
 // =============================================================================
@@ -39,7 +38,7 @@ export type FloatingEnquiryBarProps = z.infer<typeof FloatingEnquiryBarPropsSche
 
 export default function FloatingEnquiryBar({
   labels,
-  whatsappNumber = "919878122400", // Fallback to provided default if prop missing, but ideally passed from parent
+  whatsappNumber = "919878122400",
 }: FloatingEnquiryBarProps) {
   // Validate props in dev
   if (process.env.NODE_ENV === "development") {
@@ -49,7 +48,6 @@ export default function FloatingEnquiryBar({
     }
   }
 
-  // Optimized store subscription using new React 18 hook
   const items = useSyncExternalStore(
     useCallback((callback) => {
       window.addEventListener("enquiryUpdated", callback);
@@ -66,14 +64,11 @@ export default function FloatingEnquiryBar({
     if (items.length === 0) return;
 
     // Format for WhatsApp
-    // Clean number just in case
     const cleanNumber = whatsappNumber.replace(/[^0-9]/g, "");
 
     let message = "Hi! I would like to enquire about the following products:\n\n";
 
     items.forEach((item, index) => {
-      // Use localized title if available or fallback string
-      // Assuming item.productTitle is the string needed here
       const title = typeof item.productTitle === "string" ? item.productTitle : "Unknown Product";
 
       message += `${index + 1}. ${title}`;
@@ -81,7 +76,6 @@ export default function FloatingEnquiryBar({
         message += ` (MOQ: ${item.MOQ})`;
       }
 
-      // Add quantity/notes if they exist and are useful context (optional improvement)
       if (item.quantity) message += ` - Qty: ${item.quantity}`;
       if (item.packFormat) message += ` (${item.packFormat})`;
 

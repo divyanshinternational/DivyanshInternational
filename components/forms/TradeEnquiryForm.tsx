@@ -18,7 +18,7 @@ import { trackEvent } from "@/components/analytics/GA4";
 import { useLanguage } from "@/context/LanguageContext";
 
 // =============================================================================
-// ZOD VALIDATION SCHEMAS (PROPS)
+// ZOD VALIDATION SCHEMAS
 // =============================================================================
 
 const ProductItemSchema = z.object({
@@ -89,7 +89,6 @@ export type AnalyticsConfig = z.infer<typeof AnalyticsConfigSchema>;
 export type ValidationConfig = z.infer<typeof ValidationConfigSchema>;
 export type TradeEnquiryFormProps = z.infer<typeof TradeEnquiryFormPropsSchema>;
 
-// Helper type to remove undefined from all properties
 type Complete<T> = {
   [P in keyof T]-?: Exclude<T[P], undefined>;
 };
@@ -414,7 +413,7 @@ export default function TradeEnquiryForm({
           ) : null}
         </div>
 
-        {/* Role Field (Optional) */}
+        {/* Role Field */}
         <div>
           <label htmlFor="trade-role" className="block text-sm font-medium text-foreground mb-2">
             {labels.roleLabel}

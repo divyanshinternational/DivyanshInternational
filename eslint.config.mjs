@@ -113,19 +113,6 @@ const eslintConfig = defineConfig([
 
       // Ensure keys are used correctly in lists
       "react/jsx-key": ["error", { checkFragmentShorthand: true }],
-
-      // -------------------------------------------------------------------------
-      // IMPORT ORGANIZATION (if using eslint-plugin-import)
-      // -------------------------------------------------------------------------
-      // Uncomment if eslint-plugin-import is installed:
-      // "import/order": [
-      //   "error",
-      //   {
-      //     groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
-      //     "newlines-between": "always",
-      //     alphabetize: { order: "asc", caseInsensitive: true },
-      //   },
-      // ],
     },
   },
 ]);

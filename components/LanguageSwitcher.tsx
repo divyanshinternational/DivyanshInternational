@@ -7,7 +7,6 @@ import { z } from "zod";
 
 // =============================================================================
 // CONFIGURATION
-// Static language definitions (tied to LanguageContext types)
 // =============================================================================
 
 const LanguageOptionSchema = z.object({

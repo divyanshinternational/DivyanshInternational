@@ -61,14 +61,13 @@ interface SustainabilitySectionProps {
 
 const pillarIcons = [Handshake, Droplets, Users, TreePine, Leaf, Recycle] as const;
 
-// Contextual colors for each icon type
 const pillarIconColors = [
-  "text-amber-600", // Handshake - partnerships, warm
-  "text-blue-500", // Droplets - water, blue
-  "text-orange-500", // Users - community, warm
-  "text-green-600", // TreePine - nature, green
-  "text-emerald-500", // Leaf - eco, green
-  "text-teal-500", // Recycle - sustainability, teal
+  "text-amber-600",
+  "text-blue-500",
+  "text-orange-500",
+  "text-green-600",
+  "text-emerald-500",
+  "text-teal-500",
 ] as const;
 
 const pillarBgColors = [
@@ -154,6 +153,7 @@ export default function SustainabilitySection({
             fill
             className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
             sizes="100vw"
+            quality={100}
           />
         </div>
       ) : null}
@@ -162,7 +162,6 @@ export default function SustainabilitySection({
       <DecorativeBackground variant="minimal" />
 
       <div className="container mx-auto px-4 md:px-6 lg:px-10 relative z-10">
-        {/* Section Header with Icon - Glass Protected */}
         <div className="text-center mb-16 md:mb-24 max-w-4xl mx-auto bg-white/60 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl border border-white/20">
           {/* Large Icon */}
           <motion.div

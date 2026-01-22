@@ -5,9 +5,6 @@ import { parseBody } from "next-sanity/webhook";
 // =============================================================================
 // SANITY WEBHOOK REVALIDATION
 // =============================================================================
-// This endpoint receives webhooks from Sanity when content is published/updated.
-// It triggers on-demand revalidation so your Vercel deployment shows fresh content
-// without needing to redeploy.
 
 // Document type to cache tag mapping
 const DOCUMENT_TYPE_TAGS: Record<string, string[]> = {

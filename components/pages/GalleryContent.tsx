@@ -187,14 +187,13 @@ function GalleryItem({
         ) : null}
 
         {/* Actual Image */}
-        {/* Actual Image */}
         <OptimizedImage
           src={driveUrl}
           alt={image.title || "Gallery image"}
           width={600}
           height={400}
           className={cn(
-            "w-full h-auto max-w-full object-contain transform transition-all duration-700",
+            "w-full h-auto max-w-full object-scale-down transform transition-all duration-700",
             "group-hover:scale-105",
             hasError ? "opacity-0 absolute" : "opacity-100"
           )}
@@ -203,6 +202,7 @@ function GalleryItem({
             setHasError(true);
           }}
           onLoad={() => setIsLoading(false)}
+          quality={100}
         />
 
         {/* Gradient Overlay */}
@@ -330,10 +330,11 @@ function Lightbox({
             width={1200}
             height={800}
             className={cn(
-              "max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transition-opacity duration-300",
+              "max-w-full max-h-[85vh] object-scale-down rounded-lg shadow-2xl transition-opacity duration-300",
               isLoading ? "opacity-0" : "opacity-100"
             )}
             onLoad={() => setIsLoading(false)}
+            quality={100}
           />
         ) : null}
 

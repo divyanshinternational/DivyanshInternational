@@ -83,7 +83,6 @@ const DEFAULTS = {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
-    // Fetch configuration and products in parallel
     const [rawSettings, rawProducts] = await Promise.all([
       client.fetch(siteSettingsQuery),
       client.fetch(sitemapProductsQuery),

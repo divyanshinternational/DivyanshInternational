@@ -13,8 +13,8 @@ export const client = createClient({
   projectId: env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: env.NEXT_PUBLIC_SANITY_DATASET,
   apiVersion: env.NEXT_PUBLIC_SANITY_API_VERSION,
-  useCdn: false, // Ensure fresh data on server
-  token: env.SANITY_API_TOKEN, // Use token for server-side operations (optional but good for drafts/security)
+  useCdn: false,
+  token: env.SANITY_API_TOKEN,
   perspective: "published",
   stega: {
     enabled: false,

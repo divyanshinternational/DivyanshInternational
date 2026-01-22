@@ -55,7 +55,7 @@ export default function Timeline({ entries }: TimelineProps) {
 
   return (
     <div ref={containerRef} className="relative py-16 md:py-32 overflow-hidden">
-      {/* Central Line (Desktop) - Animated Drawing */}
+      {/* Central Line */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gold/10 hidden md:block -translate-x-1/2" />
       <motion.div
         className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gold hidden md:block -translate-x-1/2 origin-top"
@@ -80,7 +80,7 @@ export default function Timeline({ entries }: TimelineProps) {
                 isEven ? "md:flex-row-reverse" : ""
               }`}
             >
-              {/* Image Side - No restrictive masks or background blobs */}
+              {/* Image Side */}
               <motion.div
                 className="w-full md:w-1/2 px-4 md:px-12 mb-12 md:mb-0 flex justify-center"
                 initial={{ opacity: 0, x: imageSlideX, scale: 0.95 }}
@@ -89,7 +89,7 @@ export default function Timeline({ entries }: TimelineProps) {
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 <div className="relative group/img">
-                  {/* Decorative elements - Floating Nuts */}
+                  {/* Decorative elements */}
                   <motion.div
                     className={`absolute ${isEven ? "-bottom-6 -right-10" : "-bottom-6 -left-10"} hidden lg:block z-10`}
                     style={{ rotate: isEven ? 35 : -35 }}
@@ -108,13 +108,15 @@ export default function Timeline({ entries }: TimelineProps) {
                         src={decorativeImg?.src || ""}
                         alt=""
                         fill
-                        className="object-contain drop-shadow-2xl grayscale-[0.1] opacity-90"
+                        className="absolute inset-0"
+                        imageClassName="object-scale-down drop-shadow-2xl grayscale-[0.1] opacity-90"
+                        quality={100}
                         sizes="64px"
                       />
                     </div>
                   </motion.div>
 
-                  {/* Image container - Flexible sizing, premium interaction */}
+                  {/* Image container */}
                   <div className="relative overflow-visible">
                     {entry.imageUrl ? (
                       <OptimizedImage
@@ -123,9 +125,9 @@ export default function Timeline({ entries }: TimelineProps) {
                         width={800}
                         height={600}
                         className="w-auto h-auto max-w-full md:max-w-[500px] lg:max-w-[600px] transition-all duration-700"
-                        imageClassName="w-full h-full object-contain rounded-2xl shadow-none group-hover/img:shadow-xl group-hover/img:scale-[1.03] transition-all duration-700"
+                        imageClassName="w-full h-full object-scale-down rounded-2xl shadow-none group-hover/img:shadow-xl group-hover/img:scale-[1.03] transition-all duration-700"
                         priority
-                        quality={90}
+                        quality={100}
                         overflowVisible={true}
                       />
                     ) : entry.image ? (
@@ -135,9 +137,9 @@ export default function Timeline({ entries }: TimelineProps) {
                         width={800}
                         height={600}
                         className="w-auto h-auto max-w-full md:max-w-[500px] lg:max-w-[600px] transition-all duration-700"
-                        imageClassName="w-full h-full object-contain rounded-2xl shadow-none group-hover/img:shadow-xl group-hover/img:scale-[1.03] transition-all duration-700"
+                        imageClassName="w-full h-full object-scale-down rounded-2xl shadow-none group-hover/img:shadow-xl group-hover/img:scale-[1.03] transition-all duration-700"
                         priority
-                        quality={90}
+                        quality={100}
                         overflowVisible={true}
                       />
                     ) : (
@@ -163,7 +165,7 @@ export default function Timeline({ entries }: TimelineProps) {
                 </div>
               </motion.div>
 
-              {/* Center Timeline Element - "Blooming" Circle */}
+              {/* Center Timeline Element */}
               <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center z-20">
                 <motion.div
                   className="w-12 h-12 rounded-full bg-gold flex items-center justify-center text-white font-bold text-lg shadow-xl ring-4 ring-white"
@@ -207,7 +209,7 @@ export default function Timeline({ entries }: TimelineProps) {
                 <div
                   className={`text-center ${isEven ? "md:text-left md:pl-12" : "md:text-right md:pr-12"}`}
                 >
-                  {/* Decorative Icon - floating */}
+                  {/* Decorative Icon */}
                   <motion.div
                     className={`mb-6 ${isEven ? "" : "flex justify-end"}`}
                     variants={{
@@ -224,14 +226,16 @@ export default function Timeline({ entries }: TimelineProps) {
                           src={decorativeImg?.src || ""}
                           alt=""
                           fill
-                          className="object-contain opacity-40 drop-shadow-xl grayscale-[0.2]"
+                          className="absolute inset-0"
+                          imageClassName="object-scale-down opacity-40 drop-shadow-xl grayscale-[0.2]"
+                          quality={100}
                           sizes="80px"
                         />
                       </div>
                     </motion.div>
                   </motion.div>
 
-                  {/* Year Badge - Premium Solid Style */}
+                  {/* Year Badge */}
                   <motion.div
                     className={`inline-block mb-6 ${isEven ? "" : "md:ml-auto"}`}
                     variants={{

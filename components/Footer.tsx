@@ -59,8 +59,6 @@ const ProductSlugSchema = z.object({
   current: z.string(),
 });
 
-// Since strict mapping of Sanity objects can be complex with "unknown" fields,
-// we define a permissive structure for siteSettings but strictly pick what we need.
 const SiteSettingsSchema = z
   .object({
     whatsapp: z
@@ -73,7 +71,7 @@ const SiteSettingsSchema = z
     emailTemplates: z
       .object({
         fromEmail: z.string().optional(),
-        companyName: z.string().optional(), // Inferred from schema presence
+        companyName: z.string().optional(),
       })
       .optional()
       .nullable(),
@@ -94,7 +92,6 @@ const SiteSettingsSchema = z
       })
       .optional()
       .nullable(),
-    // For compatibility with legacy prop usage if it exists
     contact: z
       .object({
         email: z.string().optional(),
@@ -210,12 +207,11 @@ export default function Footer({
 
   return (
     <footer className="bg-deep-brown pt-24 pb-12 relative overflow-hidden text-ivory border-t-4 border-gold">
-      {/* Subtle Gold Glow at top */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gold/20"></div>
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 md:mb-24">
-          {/* Brand Column (4 columns) */}
+          {/* Brand Column */}
           <div className="lg:col-span-4 space-y-6">
             <div>
               <Link href="/" className="inline-block mb-6 bg-ivory p-2 rounded-xl shadow-sm">
@@ -225,7 +221,7 @@ export default function Footer({
                   width={400}
                   height={312}
                   className="w-24 h-16 md:w-28 md:h-20 flex items-center shrink-0"
-                  imageClassName="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                  imageClassName="w-full h-full object-scale-down hover:scale-105 transition-transform duration-300"
                   overflowVisible={true}
                   priority
                   quality={100}
@@ -276,7 +272,7 @@ export default function Footer({
             </div>
           </div>
 
-          {/* Quick Links (2 columns) */}
+          {/* Quick Links */}
           <div className="lg:col-span-2">
             <h4 className="text-xl font-bold mb-6 text-gold-light! tracking-widest uppercase border-b-2 border-gold/30 pb-2 inline-block">
               {labels?.quickLinksTitle || "Quick Links"}
@@ -305,7 +301,7 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* Product Categories (3 columns) */}
+          {/* Product Categories */}
           <div className="lg:col-span-3">
             <h4 className="text-xl font-bold mb-6 text-gold-light! tracking-widest uppercase border-b-2 border-gold/30 pb-2 inline-block">
               {labels?.productsTitle || "Our Range"}
@@ -324,7 +320,7 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* Certifications (3 columns) */}
+          {/* Certifications */}
           <div className="lg:col-span-3">
             <h4 className="text-xl font-bold mb-6 text-gold-light! tracking-widest uppercase border-b-2 border-gold/30 pb-2 inline-block">
               {labels?.certificationsTitle || "Certifications"}

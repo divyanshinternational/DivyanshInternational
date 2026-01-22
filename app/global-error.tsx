@@ -13,7 +13,6 @@ import { Button } from "@/components/ui/Button";
 
 // =============================================================================
 // STATIC FALLBACK CONTENT
-// These are intentionally hardcoded as this is a last-resort fallback
 // =============================================================================
 
 const ERROR_CONTENT = {
@@ -24,7 +23,7 @@ const ERROR_CONTENT = {
 } as const;
 
 // =============================================================================
-// GLOBAL ERROR COMPONENT (CLIENT COMPONENT - Required)
+// GLOBAL ERROR COMPONENT
 // =============================================================================
 
 interface GlobalErrorProps {
@@ -57,7 +56,6 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
 
           <p className="mt-8 text-sm text-(--color-muted)">{ERROR_CONTENT.supportText}</p>
 
-          {/* Error digest for support reference */}
           {error.digest ? (
             <p className="mt-4 text-xs text-(--color-muted)">
               Error ID: <code className="font-mono">{error.digest}</code>

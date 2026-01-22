@@ -262,7 +262,6 @@ export default function AboutContent({
   capabilities = [],
   posterSliderSection,
 }: AboutContentProps) {
-  // Validate and parse all incoming data with Zod
   const about = parseAboutData(initialAbout);
   const timelineEntries = parseTimelineEntries(initialTimeline);
   const siteSettings = parseSiteSettings(rawSiteSettings);
@@ -277,7 +276,7 @@ export default function AboutContent({
 
   return (
     <>
-      {/* Poster Slider - Hero-like section at the top */}
+      {/* Poster Slider */}
       <AboutPosterSlider sliderData={posterSliderSection ?? null} />
 
       <div className="bg-ivory min-h-screen pt-16 md:pt-24 pb-16 md:pb-24 relative">
@@ -349,8 +348,9 @@ export default function AboutContent({
                     src="/walnut.png"
                     alt=""
                     fill
-                    className="object-contain grayscale-[0.2] brightness-110"
-                    sizes="256px"
+                    className="object-scale-down grayscale-[0.2] brightness-110"
+                    sizes="(max-width: 768px) 192px, 256px"
+                    quality={100}
                   />
                 </div>
               </motion.div>
@@ -368,8 +368,9 @@ export default function AboutContent({
                     src="/almond.png"
                     alt=""
                     fill
-                    className="object-contain grayscale-[0.2] brightness-110"
-                    sizes="160px"
+                    className="object-scale-down grayscale-[0.2] brightness-110"
+                    sizes="(max-width: 768px) 128px, 160px"
+                    quality={100}
                   />
                 </div>
               </motion.div>
@@ -410,7 +411,9 @@ export default function AboutContent({
                         src="/hazelnut.png"
                         alt=""
                         fill
-                        className="object-contain opacity-60 grayscale-[0.2]"
+                        className="object-scale-down opacity-60 grayscale-[0.2]"
+                        sizes="48px"
+                        quality={100}
                       />
                     </div>
                   </motion.div>
@@ -489,7 +492,9 @@ export default function AboutContent({
                       src="/dates.png"
                       alt=""
                       fill
-                      className="object-contain opacity-40 grayscale-[0.2]"
+                      className="object-scale-down opacity-40 grayscale-[0.2]"
+                      sizes="56px"
+                      quality={100}
                     />
                   </div>
                 </motion.div>
@@ -596,7 +601,8 @@ export default function AboutContent({
                             alt={about.brandsSection.partners.title}
                             width={600}
                             height={400}
-                            className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700"
+                            className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                            quality={100}
                           />
                         </div>
                       ) : null}
@@ -606,7 +612,9 @@ export default function AboutContent({
                             src="/raisin.png"
                             alt=""
                             fill
-                            className="object-contain opacity-40 grayscale-[0.2]"
+                            className="object-scale-down opacity-40 grayscale-[0.2]"
+                            sizes="40px"
+                            quality={100}
                           />
                         </div>
 
@@ -650,7 +658,8 @@ export default function AboutContent({
                             alt={about.brandsSection.retail.title}
                             width={600}
                             height={400}
-                            className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700"
+                            className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                            quality={100}
                           />
                         </div>
                       ) : null}
@@ -660,7 +669,9 @@ export default function AboutContent({
                             src="/cashewsingle.png"
                             alt=""
                             fill
-                            className="object-contain opacity-40 grayscale-[0.2]"
+                            className="object-scale-down opacity-40 grayscale-[0.2]"
+                            sizes="40px"
+                            quality={100}
                           />
                         </div>
 
@@ -699,7 +710,6 @@ export default function AboutContent({
             </motion.div>
           ) : null}
 
-          {/* Journey / Legacy Animation */}
           {timelineEntries.length > 0 && about.journeySection ? (
             <section className="mb-16 md:mb-24" aria-labelledby="journey-heading">
               <div className="text-center mb-16 md:mb-24">
@@ -764,8 +774,9 @@ function DecorativeCorners() {
             src="/raisin.png"
             alt=""
             fill
-            className="object-contain grayscale-[0.2] brightness-110"
+            className="object-scale-down grayscale-[0.2] brightness-110"
             sizes="96px"
+            quality={100}
           />
         </div>
       </motion.div>
@@ -780,8 +791,9 @@ function DecorativeCorners() {
             src="/dates.png"
             alt=""
             fill
-            className="object-contain grayscale-[0.2] brightness-110"
+            className="object-scale-down grayscale-[0.2] brightness-110"
             sizes="80px"
+            quality={100}
           />
         </div>
       </motion.div>

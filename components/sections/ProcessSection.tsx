@@ -41,7 +41,7 @@ const ProcessSectionPropsSchema = z.object({
 });
 
 // =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
+// TYPE DEFINITIONS
 // =============================================================================
 
 type ProcessStep = z.infer<typeof ProcessStepSchema>;
@@ -74,7 +74,7 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06, // Standard fast stagger
+      staggerChildren: 0.06,
     },
   },
 };

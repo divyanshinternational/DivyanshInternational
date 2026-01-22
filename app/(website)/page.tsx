@@ -33,11 +33,10 @@ import {
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
-// Runtime validation for core CMS data structures
 // =============================================================================
 
 /**
- * Site settings schema (validates critical fields)
+ * Site settings schema
  */
 const siteSettingsSchema = z
   .object({
@@ -177,7 +176,7 @@ async function getData() {
 }
 
 // =============================================================================
-// HOME PAGE COMPONENT (SERVER COMPONENT)
+// HOME PAGE COMPONENT
 // =============================================================================
 
 export default async function Home() {
@@ -199,7 +198,7 @@ export default async function Home() {
   const organization = siteSettings?.organization ?? { name: DEFAULTS.organizationName };
   const siteUrl = siteSettings?.seo?.siteUrl ?? DEFAULTS.siteUrl;
 
-  // Generate JSON-LD schemas (safe - no user input, only CMS data)
+  // Generate JSON-LD schemas
   const organizationSchema = generateOrganizationSchema(organization);
   const websiteSchema = generateWebSiteSchema({
     name: organization.name ?? DEFAULTS.organizationName,
@@ -213,7 +212,6 @@ export default async function Home() {
 
       {/* Content */}
       <div className="relative z-10">
-        {/* Structured Data - JSON-LD is safe for dangerouslySetInnerHTML as content is from CMS */}
         <Script
           id="organization-schema"
           type="application/ld+json"

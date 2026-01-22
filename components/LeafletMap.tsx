@@ -40,7 +40,6 @@ export type LeafletMapProps = z.infer<typeof LeafletMapPropsSchema>;
 
 // =============================================================================
 // ASSETS
-// Standard Leaflet markers from CDN (reliable for this use case)
 // =============================================================================
 
 const ICON_CONFIG = {
@@ -70,12 +69,10 @@ export default function LeafletMap({
     }
   }
 
-  // Memoize icon to prevent recreation on re-renders
   const customIcon = useMemo(() => {
     return new L.Icon(ICON_CONFIG);
   }, []);
 
-  // Fix for map tile rendering issues on load (Leaflet specific resize trigger)
   useEffect(() => {
     const timer = setTimeout(() => {
       window.dispatchEvent(new Event("resize"));

@@ -1322,7 +1322,7 @@ const aboutData = {
   _type: "about",
 
   // =============================================================================
-  // POSTER SLIDER SECTION - Hero-like slider at top of About page
+  // POSTER SLIDER SECTION
   // =============================================================================
   posterSliderSection: {
     enabled: true,
@@ -2246,7 +2246,7 @@ const homePageData = {
   },
 
   // =============================================================================
-  // POSTER BANNER SECTION - Full-width poster between Hero and Quote
+  // POSTER BANNER SECTION
   // =============================================================================
   posterBannerSection: {
     imageUrl: "https://drive.google.com/file/d/1f-4yXDVZ6-_PygqbH359oJf-YBEEL4Qj/view?usp=sharing",
@@ -2853,7 +2853,6 @@ async function seed() {
   if (!currentGallery) {
     await client.create(galleryPageData);
   } else {
-    // Force update to ensure new images are applied
     await client.createOrReplace(galleryPageData);
   }
 

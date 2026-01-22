@@ -115,7 +115,7 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
     getLocalized(product.description, language) ||
     "";
 
-  // Dynamic Labels with Fallbacks (null-safe)
+  // Dynamic Labels with Fallbacks
   const specsTitle = labels?.productCard?.specificationsTitle || "Product Specifications";
   const varietyLabel = labels?.productCard?.varietyLabel || "Variety:";
   const appLabel = labels?.productCard?.applicationsLabel || "Applications:";
@@ -148,7 +148,9 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
               alt={productTitle}
               width={600}
               height={750}
-              className="w-auto h-auto max-w-full mx-auto block rounded-2xl hover:scale-105 transition-transform duration-500"
+              quality={100}
+              className="w-auto h-auto max-w-full mx-auto block rounded-2xl"
+              imageClassName="object-scale-down hover:scale-105 transition-transform duration-500"
             />
           ) : product.heroImage ? (
             <OptimizedImage
@@ -156,7 +158,9 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
               alt={productTitle}
               width={600}
               height={750}
-              className="w-auto h-auto max-w-full mx-auto block rounded-2xl hover:scale-105 transition-transform duration-500"
+              quality={100}
+              className="w-auto h-auto max-w-full mx-auto block rounded-2xl"
+              imageClassName="object-scale-down hover:scale-105 transition-transform duration-500"
             />
           ) : (
             <div className="min-h-50 flex items-center justify-center bg-beige rounded-2xl border border-dashed border-deep-brown">

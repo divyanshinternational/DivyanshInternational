@@ -21,7 +21,6 @@ import {
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
-// Runtime validation for Sanity CMS data
 // =============================================================================
 
 /**
@@ -96,7 +95,6 @@ const productListItemSchema = z
 
 // =============================================================================
 // METADATA CONFIGURATION
-// Dynamic SEO metadata from CMS with fallbacks
 // =============================================================================
 
 const DEFAULT_META = {
@@ -217,7 +215,7 @@ async function getLayoutData() {
 }
 
 // =============================================================================
-// LAYOUT COMPONENT (SERVER COMPONENT)
+// LAYOUT COMPONENT
 // =============================================================================
 
 export default async function WebsiteLayout({

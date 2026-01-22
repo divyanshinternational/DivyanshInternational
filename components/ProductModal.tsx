@@ -284,8 +284,10 @@ export default function ProductModal({
                         alt={productTitle}
                         width={1200}
                         height={800}
-                        className="w-auto h-auto max-w-full max-h-full mx-auto object-contain"
+                        className="w-auto h-auto max-w-full max-h-full mx-auto"
+                        imageClassName="object-scale-down"
                         priority
+                        quality={100}
                       />
                     </div>
                   ) : (
@@ -324,7 +326,8 @@ export default function ProductModal({
                           src={urlFor(product.heroImage).width(200).url()}
                           alt={productTitle}
                           fill
-                          className="object-cover"
+                          className=""
+                          imageClassName="object-scale-down"
                         />
                         {product.microVideo ? (
                           <div className="absolute inset-0 flex items-center justify-center bg-black/20">
@@ -350,7 +353,8 @@ export default function ProductModal({
                           src={urlFor(image).width(200).url()}
                           alt={`${productTitle} ${index + 1}`}
                           fill
-                          className="object-cover"
+                          className=""
+                          imageClassName="object-scale-down"
                         />
                       </button>
                     ))}

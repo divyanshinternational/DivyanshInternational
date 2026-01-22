@@ -44,14 +44,12 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
 
-  // Hydration-safe client detection
   const isClient = useSyncExternalStore(
     () => () => {},
     () => true,
     () => false
   );
 
-  // Filter valid videos
   const validVideos =
     sectionData?.videos?.filter((v) => v.videoUrl && v.videoUrl.trim() !== "") || [];
 
@@ -73,7 +71,6 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
     return () => clearInterval(interval);
   }, [goToNext, validVideos.length]);
 
-  // Prepare background image if available
   const bgImage = sectionData?.backgroundImageUrl
     ? getGoogleDriveImageUrl(sectionData.backgroundImageUrl)
     : null;
@@ -93,6 +90,7 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
             fill
             className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
             sizes="100vw"
+            quality={100}
           />
         </div>
       ) : null}
@@ -156,11 +154,8 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
           ) : null}
         </div>
 
-        {/* Video Slider Container - Like Hero Section */}
         <div className="relative max-w-6xl mx-auto">
-          {/* Video Container with Aspect Ratio */}
           <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
-            {/* Video Background */}
             <AnimatePresence mode="wait">
               {isClient && currentVideo?.videoUrl && isYouTubeUrl(currentVideo.videoUrl) ? (
                 <motion.div
@@ -199,7 +194,6 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
             {/* Solid Overlay for Text Readability */}
             <div className="absolute inset-0 bg-black/10 pointer-events-none" />
 
-            {/* Sound Control Button - Like Hero */}
             <button
               onClick={() => setIsMuted(!isMuted)}
               className="absolute bottom-6 right-6 md:bottom-8 md:right-8 z-20 p-3 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md text-white transition-all hover:scale-110 shadow-lg border border-white/30"
@@ -233,7 +227,7 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
             </button>
           </div>
 
-          {/* Info Block (Below Video) - Visible on ALL screens now */}
+          {/* Info Block */}
           <div className="block mt-6 text-center px-4">
             <AnimatePresence mode="wait">
               <motion.div
@@ -253,7 +247,7 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
             </AnimatePresence>
           </div>
 
-          {/* Navigation Controls - Only if multiple videos */}
+          {/* Navigation Controls */}
           {validVideos.length > 1 ? (
             <>
               {/* Left Arrow */}
@@ -274,7 +268,7 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
                 <ChevronRight className="w-8 h-8 md:w-10 md:h-10 drop-shadow-md" />
               </button>
 
-              {/* Slider Controls - Dots and Counter */}
+              {/* Slider Controls */}
               <div className="flex justify-center mt-6 gap-4 items-center">
                 <div className="flex gap-2">
                   {validVideos.map((_, index) => (

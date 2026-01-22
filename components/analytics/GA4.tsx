@@ -63,7 +63,6 @@ const eventParamsSchema = z.record(z.string(), z.unknown()).optional();
 export default function GA4() {
   const ga4Id = env.NEXT_PUBLIC_GA4_ID;
 
-  // Don't render if GA4 is not configured
   if (!ga4Id) {
     return null;
   }

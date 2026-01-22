@@ -41,7 +41,7 @@ interface ProductShowcaseProps {
 }
 
 // =============================================================================
-// ZOD VALIDATION SCHEMAS (for runtime validation)
+// ZOD VALIDATION SCHEMAS
 // =============================================================================
 
 const ProductSchema = z.object({
@@ -90,7 +90,7 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06, // Standard fast stagger
+      staggerChildren: 0.06,
       delayChildren: 0.05,
       ease: "easeOut" as const,
     },
@@ -103,7 +103,7 @@ const fadeInUp = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.4, // Snappier
+      duration: 0.4,
       ease: "easeOut" as const,
     },
   },
@@ -152,7 +152,6 @@ export default function ProductShowcase({
     }
   }, [selectedProduct, handleAddToEnquiry]);
 
-  // Prepare background image if available
   const bgImage = headerData?.backgroundImageUrl
     ? getGoogleDriveImageUrl(headerData.backgroundImageUrl)
     : null;
@@ -174,6 +173,7 @@ export default function ProductShowcase({
             fill
             className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
             sizes="100vw"
+            quality={100}
           />
         </div>
       ) : null}
@@ -182,7 +182,6 @@ export default function ProductShowcase({
       <DecorativeBackground variant="scattered" />
 
       <div className="container mx-auto px-4 md:px-6 lg:px-10 relative z-10">
-        {/* Section Header with Glass Protection */}
         {headerData ? (
           <div className="text-center mb-16 md:mb-24 max-w-4xl mx-auto bg-white/60 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl border border-white/20">
             <SectionHeader headerData={headerData} />

@@ -9,7 +9,6 @@ import { env } from "@/lib/env";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
-// Request body validation
 // =============================================================================
 
 const enquiryItemSchema = z.object({
@@ -149,7 +148,7 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     };
 
-    // Send to webhook if configured (non-blocking)
+    // Send to webhook if configured
     const webhookUrl = env.ENQUIRY_WEBHOOK_URL;
     if (webhookUrl) {
       try {
@@ -169,7 +168,6 @@ export async function POST(request: NextRequest) {
           );
         }
       } catch (webhookError: unknown) {
-        // Log but don't fail the request - enquiry is still submitted
         if (process.env.NODE_ENV === "development") {
           console.error("[API Enquiry Submit] Webhook error:", webhookError);
         }

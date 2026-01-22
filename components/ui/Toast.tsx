@@ -109,7 +109,7 @@ export default function ToastContainer() {
       const payload = result.data;
       const newToast: ToastItem = {
         ...payload,
-        id: crypto.randomUUID(), // Use modern crypto API
+        id: crypto.randomUUID(),
       };
 
       setToasts((prev) => [...prev, newToast]);
@@ -165,7 +165,6 @@ export default function ToastContainer() {
 
 export function showToast(message: string, type: ToastType = "success", duration = 3000) {
   if (typeof window !== "undefined") {
-    // Dispatch even allows for decoupling this utility from the React component
     window.dispatchEvent(
       new CustomEvent("showToast", {
         detail: { message, type, duration },

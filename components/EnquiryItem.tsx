@@ -32,8 +32,6 @@ const EnquiryLabelsSchema = z.object({
 });
 
 const EnquiryItemPropsSchema = z.object({
-  // We don't validate the entire item deeply here as it comes from internal state,
-  // but we ensure the props structure is correct.
   item: z.custom<EnquiryItemType>(),
   onUpdate: z.custom<(id: string, updates: Partial<EnquiryItemType>) => void>(),
   onRemove: z.custom<(id: string) => void>(),
@@ -73,15 +71,10 @@ export default function EnquiryItem({ item, onUpdate, onRemove, labels }: Enquir
 
   const handleSave = () => {
     const updates: Partial<EnquiryItemType> = {};
-    // Sanitize and trim inputs
     if (grade.trim()) updates.grade = grade.trim();
     if (packFormat.trim()) updates.packFormat = packFormat.trim();
     if (quantity.trim()) updates.quantity = quantity.trim();
     if (notes.trim()) updates.notes = notes.trim();
-
-    // Always update, even if clearing fields (handle empty strings if logic requires)
-    // Here we preserve existing behavior of only sending truthy updates for now,
-    // but added trimming for hygiene.
 
     onUpdate(item.id, updates);
     setIsEditing(false);

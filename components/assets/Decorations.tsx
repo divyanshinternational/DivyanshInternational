@@ -15,11 +15,11 @@ interface IconProps extends SVGProps<SVGSVGElement> {
 }
 
 // =============================================================================
-// OUTLINE ICONS (Use currentColor - themeable)
+// OUTLINE ICONS
 // =============================================================================
 
 /**
- * Leaf Icon - Natural organic theme
+ * Leaf Icon
  */
 export function LeafIcon({ className, ...props }: IconProps) {
   return (
@@ -57,7 +57,7 @@ export function LeafIcon({ className, ...props }: IconProps) {
 }
 
 /**
- * Nut Icon - Core brand symbol
+ * Nut Icon
  */
 export function NutIcon({ className, ...props }: IconProps) {
   return (
@@ -92,7 +92,7 @@ export function NutIcon({ className, ...props }: IconProps) {
 }
 
 /**
- * Flower Icon - Decorative accent
+ * Flower Icon
  */
 export function FlowerIcon({ className, ...props }: IconProps) {
   return (
@@ -138,11 +138,11 @@ export function FlowerIcon({ className, ...props }: IconProps) {
 }
 
 // =============================================================================
-// ILLUSTRATED ICONS (Fixed colors - realistic nut illustrations)
+// ILLUSTRATED ICONS
 // =============================================================================
 
 /**
- * Almond Icon - Realistic almond illustration
+ * Almond Icon
  */
 export function AlmondIcon({ className, ...props }: IconProps) {
   return (
@@ -204,7 +204,7 @@ export function AlmondIcon({ className, ...props }: IconProps) {
 }
 
 /**
- * Cashew Icon - Realistic cashew illustration
+ * Cashew Icon
  */
 export function CashewIcon({ className, ...props }: IconProps) {
   return (
@@ -216,7 +216,7 @@ export function CashewIcon({ className, ...props }: IconProps) {
       aria-hidden="true"
       {...props}
     >
-      {/* Main cashew shape - curved kidney shape */}
+      {/* Main cashew shape */}
       <path
         d="M25 15C20 15 16 18 14 22C12 26 12 30 14 34C16 38 20 42 26 44C32 46 38 45 42 42C46 39 48 35 48 30C48 25 46 20 42 17C38 14 32 13 28 15C26 16 25 17 25 19C25 21 26 22 28 22C30 22 31 21 32 20C34 18 36 18 38 19C40 20 42 23 42 26C42 29 40 32 37 34C34 36 30 36 27 35C24 34 22 32 21 29C20 26 20 23 22 21C24 19 26 18 28 18"
         fill="#E8C9A0"
@@ -257,7 +257,7 @@ export function CashewIcon({ className, ...props }: IconProps) {
 }
 
 /**
- * Walnut Icon - Realistic walnut illustration
+ * Walnut Icon
  */
 export function WalnutIcon({ className, ...props }: IconProps) {
   return (
@@ -269,12 +269,12 @@ export function WalnutIcon({ className, ...props }: IconProps) {
       aria-hidden="true"
       {...props}
     >
-      {/* Walnut shell - two halves */}
+      {/* Walnut shell */}
       <ellipse cx="28" cy="32" rx="14" ry="18" fill="#8B6F47" />
       <ellipse cx="36" cy="32" rx="14" ry="18" fill="#7D6342" />
       {/* Center seam */}
       <line x1="32" y1="14" x2="32" y2="50" stroke="#5C4A33" strokeWidth="2" />
-      {/* Texture - left side */}
+      {/* Texture */}
       <path
         d="M24 20C22 24 21 28 21 32C21 36 22 40 24 44"
         stroke="#6B5538"
@@ -289,7 +289,7 @@ export function WalnutIcon({ className, ...props }: IconProps) {
         strokeLinecap="round"
         opacity="0.6"
       />
-      {/* Texture - right side */}
+      {/* Texture */}
       <path
         d="M40 20C42 24 43 28 43 32C43 36 42 40 40 44"
         stroke="#5C4A33"
@@ -311,7 +311,7 @@ export function WalnutIcon({ className, ...props }: IconProps) {
 }
 
 /**
- * Peanut Icon - Realistic peanut illustration
+ * Peanut Icon
  */
 export function PeanutIcon({ className, ...props }: IconProps) {
   return (
@@ -323,7 +323,7 @@ export function PeanutIcon({ className, ...props }: IconProps) {
       aria-hidden="true"
       {...props}
     >
-      {/* Peanut shell - figure 8 shape */}
+      {/* Peanut shell */}
       <ellipse cx="32" cy="22" rx="12" ry="14" fill="#D4A76A" />
       <ellipse cx="32" cy="42" rx="11" ry="13" fill="#C99A5F" />
       {/* Middle connection */}

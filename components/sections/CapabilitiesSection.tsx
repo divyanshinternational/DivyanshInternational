@@ -59,7 +59,7 @@ const CapabilitiesSectionPropsSchema = z.object({
 });
 
 // =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
+// TYPE DEFINITIONS
 // =============================================================================
 
 type Capability = z.infer<typeof CapabilitySchema>;
@@ -94,7 +94,7 @@ const staggerContainer = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06, // Standard fast stagger
+      staggerChildren: 0.06,
     },
   },
 };
@@ -128,7 +128,6 @@ export default function CapabilitiesSection({
   const certificates = initialCertificates ?? [];
   const sectionId = routing?.capabilitiesSectionId ?? "capabilities";
 
-  // Prepare background image if available
   const bgImage = sectionSettings?.backgroundImageUrl
     ? getGoogleDriveImageUrl(sectionSettings.backgroundImageUrl)
     : null;
@@ -150,6 +149,7 @@ export default function CapabilitiesSection({
             fill
             className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
             sizes="100vw"
+            quality={100}
           />
         </div>
       ) : null}
@@ -357,8 +357,9 @@ function CertificateCard({ certificate }: CertificateCardProps) {
               src={driveImageUrl}
               alt={certificate.name}
               fill
-              className="object-contain"
+              className="object-scale-down"
               sizes="96px"
+              quality={100}
             />
           </div>
         ) : sanityImageUrl ? (
@@ -367,7 +368,8 @@ function CertificateCard({ certificate }: CertificateCardProps) {
               src={sanityImageUrl}
               alt={certificate.name}
               fill
-              className="object-contain"
+              className="object-scale-down"
+              quality={100}
             />
           </div>
         ) : (

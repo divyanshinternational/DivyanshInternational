@@ -8,7 +8,6 @@ import { siteSettingsQuery } from "@/lib/sanity/queries";
 
 // =============================================================================
 // VALIDATION SCHEMA
-// Runtime validation for Sanity CMS error settings
 // =============================================================================
 
 const errorSettingsSchema = z.object({
@@ -21,7 +20,6 @@ type ErrorSettings = z.infer<typeof errorSettingsSchema>;
 
 // =============================================================================
 // DEFAULT FALLBACK VALUES
-// Used when CMS data is unavailable
 // =============================================================================
 
 const DEFAULTS: ErrorSettings = {
@@ -41,7 +39,7 @@ interface ErrorComponentProps {
 }
 
 // =============================================================================
-// ERROR BOUNDARY COMPONENT (CLIENT COMPONENT - Required for error boundaries)
+// ERROR BOUNDARY COMPONENT
 // =============================================================================
 
 export default function ErrorBoundary({ error, reset }: ErrorComponentProps) {

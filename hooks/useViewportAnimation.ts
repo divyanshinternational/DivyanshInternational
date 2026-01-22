@@ -26,11 +26,11 @@ export function useViewportAnimation(
     triggerOnce: false,
   }
 ) {
-  // Runtime validation (soft fail with fallbacks if needed, but defaults handled by destructuring safely after safeParse or schema def)
+  // Runtime validation
   const result = UseViewportAnimationOptionsSchema.safeParse(options);
   const { threshold, rootMargin, triggerOnce } = result.success
     ? result.data
-    : UseViewportAnimationOptionsSchema.parse({}); // Fallback to defaults
+    : UseViewportAnimationOptionsSchema.parse({});
 
   const [isInView, setIsInView] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -51,7 +51,7 @@ export function useViewportAnimation(
     // Browser check for IntersectionObserver
     if (!("IntersectionObserver" in window)) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setHasAnimated(true); // Fallback to visible
+      setHasAnimated(true);
       setIsInView(true);
       return;
     }
@@ -62,10 +62,9 @@ export function useViewportAnimation(
         setIsInView(inView);
 
         if (inView && triggerOnce && !hasAnimated) {
-          // Logic fix: check triggerOnce here
           setHasAnimated(true);
         } else if (inView && !triggerOnce) {
-          setHasAnimated(true); // Track generic animation state if needed
+          setHasAnimated(true);
         }
       },
       {
@@ -86,8 +85,8 @@ export function useViewportAnimation(
 
   return {
     elementRef,
-    isInView: isClient ? isInView : true, // Default to true if not client (SSR safety)
+    isInView: isClient ? isInView : true,
     shouldAnimate,
-    hasAnimated: isClient ? hasAnimated : true, // Default to true if not client
+    hasAnimated: isClient ? hasAnimated : true,
   };
 }

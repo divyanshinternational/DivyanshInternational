@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import { z } from "zod";
@@ -127,10 +126,8 @@ export default function Header({ initialHeader, products, siteSettings }: Header
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${
+      <header
+        className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 animate-in slide-in-from-top-full fade-in ${
           isScrolled
             ? "bg-bg/95 shadow-lg py-2 md:py-3 border-b border-border backdrop-blur-md"
             : "bg-bg/80 backdrop-blur-md py-3 md:py-4 shadow-sm"
@@ -138,7 +135,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
       >
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4">
-            {/* Logo - Floating above header */}
+            {/* Logo */}
             <div className="flex items-center shrink-0">
               <Link
                 href={homeUrl}
@@ -155,7 +152,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
                   width={400}
                   height={150}
                   className="w-16 h-12 md:w-20 md:h-16 flex items-center shrink-0"
-                  imageClassName="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                  imageClassName="w-full h-full object-scale-down hover:scale-105 transition-transform duration-300"
                   overflowVisible={true}
                   priority
                   quality={100}
@@ -192,7 +189,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
                 }
               />
 
-              {/* Catalogue Link - Hidden for now
+              {/* Catalogue Link
               <Link
                 href={catalogueUrl}
                 className="text-foreground hover:text-gold transition-colors focus:outline-2 focus:outline-gold focus:rounded px-2 py-1"
@@ -242,7 +239,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       <MobileMenu
         isOpen={isMobileMenuOpen}
@@ -250,7 +247,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
         products={products || []}
         menuItems={[
           { label: homeLabel, url: homeUrl },
-          // { label: catalogueLabel, url: catalogueUrl }, // Hidden for now
+          // { label: catalogueLabel, url: catalogueUrl },
           ...(header.navLinks ?? []),
         ]}
         productsLabel={productsLabel}

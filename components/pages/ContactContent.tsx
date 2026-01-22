@@ -47,7 +47,6 @@ const ContactPageDataSchema = z.object({
   businessHours: BusinessHoursSchema,
 });
 
-// Site settings schemas - passthrough to form components
 const SiteSettingsSchema = z
   .object({
     forms: z.record(z.string(), z.unknown()).nullish(),
@@ -76,7 +75,7 @@ const SiteSettingsSchema = z
   .partial();
 
 // =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
+// TYPE DEFINITIONS
 // =============================================================================
 
 type ContactPageData = z.infer<typeof ContactPageDataSchema>;
@@ -121,11 +120,9 @@ export default function ContactContent({
 }: ContactContentProps) {
   const searchParams = useSearchParams();
 
-  // Validate incoming data
   const contact = parseContactData(initialContact);
   const siteSettings = parseSiteSettings(rawSiteSettings);
 
-  // Extract form and routing settings with fallbacks
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formLabels = (siteSettings.forms ?? {}) as any;
   const routing = siteSettings.routing ?? {};
@@ -133,7 +130,6 @@ export default function ContactContent({
   const initialProduct = searchParams.get(routing.queryParamProduct ?? "product") ?? "";
   const initialAction = searchParams.get(routing.queryParamAction ?? "action") ?? "";
 
-  // Error state if contact data is invalid
   if (!contact) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-ivory">
@@ -142,7 +138,6 @@ export default function ContactContent({
     );
   }
 
-  // Prepare props for form components - cast to expected types
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const analyticsConfig = siteSettings.analytics as any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

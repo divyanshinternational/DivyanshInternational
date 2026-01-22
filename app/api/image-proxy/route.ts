@@ -18,13 +18,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Missing file ID parameter" }, { status: 400 });
   }
 
-  // Validate file ID format (alphanumeric with dashes and underscores)
+  // Validate file ID format
   if (!/^[\w-]+$/.test(fileId)) {
     return NextResponse.json({ error: "Invalid file ID format" }, { status: 400 });
   }
 
   try {
-    // Use lh3.googleusercontent.com - the fastest CDN endpoint
     const url = `https://lh3.googleusercontent.com/d/${fileId}=w1200`;
 
     const response = await fetch(url, {

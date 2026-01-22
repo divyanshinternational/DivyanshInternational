@@ -77,7 +77,7 @@ const HeroSliderPropsSchema = z.object({
 });
 
 // =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
+// TYPE DEFINITIONS
 // =============================================================================
 
 type HeroSlide = z.infer<typeof HeroSlideSchema>;
@@ -146,14 +146,12 @@ export default function HeroSlider({
   const [activeSlide, setActiveSlide] = useState(0);
   const [videoErrors, setVideoErrors] = useState<Record<string, boolean>>({});
 
-  // Use useSyncExternalStore for hydration-safe client detection
   const isClient = useSyncExternalStore(
     () => () => {},
     () => true,
     () => false
   );
 
-  // Use useSyncExternalStore for reduced motion preference
   const prefersReducedMotion = useSyncExternalStore(
     (callback) => {
       const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -186,7 +184,7 @@ export default function HeroSlider({
     (target: string) => {
       if (!isClient) return;
 
-      // Handle path-based navigation (e.g., "/products", "/about")
+      // Handle path-based navigation
       if (target.startsWith("/")) {
         router.push(target);
         return;
@@ -198,7 +196,7 @@ export default function HeroSlider({
         return;
       }
 
-      // Handle section scroll (element IDs)
+      // Handle section scroll
       const element = document.getElementById(target);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
@@ -282,7 +280,6 @@ export default function HeroSlider({
               <SlideContent slide={currentSlide} onNavigate={handleNavigation} />
             ) : null}
 
-            {/* Slider Controls - Bottom of text column */}
             {slides.length > 1 ? (
               <div className="mt-auto pt-8">
                 <SliderControls
@@ -296,7 +293,6 @@ export default function HeroSlider({
             ) : null}
           </div>
 
-          {/* Stats Panel - Right column */}
           <StatsPanel slideId={currentSlide?._id} stats={currentSlide?.stats ?? displayStats} />
         </div>
       </div>
@@ -338,7 +334,6 @@ function VideoBackground({
                 transition={{ duration: 0.6, ease: "linear" }}
               >
                 {slide.videoUrl && isValidVideoUrl(slide.videoUrl) && !videoErrors[slide._id] ? (
-                  // Check if it's a YouTube URL
                   isYouTubeUrl(slide.videoUrl) ? (
                     <div className="w-full h-full relative overflow-hidden">
                       <iframe
@@ -377,9 +372,7 @@ function VideoBackground({
             )
         )}
       </AnimatePresence>
-      {/* Light warm overlay - solid color instead of gradient */}
       <div className="absolute inset-0 bg-white/60" />
-      {/* Subtle texture */}
       <div
         className="absolute inset-0 opacity-20"
         style={{
@@ -397,7 +390,6 @@ interface FallbackBackgroundProps {
 }
 
 function FallbackBackground({ slide }: FallbackBackgroundProps) {
-  // Priority: posterImageUrl (Google Drive) > posterImage (Sanity) > posterUrl (legacy)
   const posterUrl = slide.posterImageUrl
     ? getGoogleDriveImageUrl(slide.posterImageUrl)
     : slide.posterImage
@@ -414,6 +406,7 @@ function FallbackBackground({ slide }: FallbackBackgroundProps) {
           className="object-cover"
           sizes="100vw"
           priority
+          quality={100}
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center bg-paper">

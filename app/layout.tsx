@@ -13,7 +13,6 @@ import { LanguageProvider } from "@/context/LanguageContext";
 
 // =============================================================================
 // FONT CONFIGURATION
-// Optimized Google Fonts with display swap for performance
 // =============================================================================
 
 const inter = Inter({
@@ -33,7 +32,6 @@ const manrope = Manrope({
 
 // =============================================================================
 // METADATA CONFIGURATION
-// Static fallback metadata - dynamic metadata is handled by child layouts
 // =============================================================================
 
 export const metadata: Metadata = {
@@ -59,7 +57,6 @@ export const metadata: Metadata = {
 
 // =============================================================================
 // VIEWPORT CONFIGURATION
-// Responsive viewport with accessibility-friendly scaling
 // =============================================================================
 
 export const viewport: Viewport = {

@@ -55,11 +55,11 @@ export default function FloatingActionButton({
 
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0, opacity: 0 }}
-        className={cn("fixed bottom-6 right-6 md:bottom-8 md:right-8 z-9999 isolate", className)}
+      <div
+        className={cn(
+          "fixed bottom-6 right-6 md:bottom-8 md:right-8 z-9999 isolate animate-in zoom-in fade-in duration-300",
+          className
+        )}
       >
         <a
           href={whatsappUrl}
@@ -68,7 +68,6 @@ export default function FloatingActionButton({
           className="group block relative outline-none focus:outline-none"
           aria-label={buttonLabel}
         >
-          {/* Tooltip on hover */}
           <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-deep-brown text-white text-sm font-medium rounded-lg opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0 transition-all duration-200 whitespace-nowrap shadow-md pointer-events-none">
             {buttonLabel}
             {/* Arrow */}
@@ -76,6 +75,7 @@ export default function FloatingActionButton({
           </span>
 
           <motion.button
+            style={{ position: "relative" }}
             className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#25D366] hover:bg-[#128C7E] shadow-2xl flex items-center justify-center text-white transition-colors focus-visible:ring-4 focus-visible:ring-[#25D366]/40 outline-none"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -100,7 +100,7 @@ export default function FloatingActionButton({
             </svg>
           </motion.button>
         </a>
-      </motion.div>
+      </div>
     </AnimatePresence>
   );
 }

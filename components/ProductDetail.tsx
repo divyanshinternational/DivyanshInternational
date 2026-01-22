@@ -83,7 +83,7 @@ const ProductSchema = z.object({
 
   applications: z.array(z.string()).optional(),
   varieties: z.array(VarietySchema).optional(),
-  grades: z.array(z.string()).optional(), // Fallback legacy
+  grades: z.array(z.string()).optional(),
   almondVarieties: z.array(z.custom<ProductVariety>()).optional(),
 });
 
@@ -146,7 +146,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
   const description = getLocalized(product.description, language);
   const ctaLine = getLocalized(product.ctaLine, language);
 
-  // Contacts (Should ideally come from siteSettings, hardcoded fallbacks for now if not passed)
+  // Contacts
   const whatsappNumber = "+919876543210";
   const contactEmail = "info@divyanshint.com";
 
@@ -158,7 +158,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
   const productImages = useMemo(() => {
     const images: ProductImage[] = [];
 
-    // Add hero image (URL first, then Sanity)
+    // Add hero image
     if (product.heroImageUrl) {
       const driveUrl = getGoogleDriveImageUrl(product.heroImageUrl);
       if (driveUrl) images.push({ type: "url", url: driveUrl, alt: productTitle });
@@ -166,7 +166,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
       images.push({ type: "sanity", image: product.heroImage, alt: productTitle });
     }
 
-    // Add gallery images (URL first, then Sanity for each)
+    // Add gallery images
     if (product.gallery) {
       for (const item of product.gallery) {
         if (item.imageUrl) {
@@ -285,8 +285,10 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                         alt={productImages[selectedImage].alt}
                         width={800}
                         height={1000}
-                        className="w-auto h-auto max-h-[50vh] md:max-h-[600px] max-w-full object-contain"
+                        className="w-auto h-auto max-h-[50vh] md:max-h-[600px] max-w-full"
+                        imageClassName="object-scale-down"
                         priority
+                        quality={100}
                       />
                     ) : (
                       <OptimizedImage
@@ -297,8 +299,10 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                         alt={productImages[selectedImage].alt}
                         width={800}
                         height={1000}
-                        className="w-auto h-auto max-h-[50vh] md:max-h-[600px] max-w-full object-contain"
+                        className="w-auto h-auto max-h-[50vh] md:max-h-[600px] max-w-full"
+                        imageClassName="object-scale-down"
                         priority
+                        quality={100}
                       />
                     )
                   ) : (
@@ -330,7 +334,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                             src={img.url}
                             alt={`${productTitle} ${index + 1}`}
                             fill
-                            className="object-cover"
+                            className="object-scale-down"
                             sizes="80px"
                           />
                         ) : (
@@ -338,7 +342,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                             src={urlFor(img.image).width(200).height(200).url()}
                             alt={`${productTitle} ${index + 1}`}
                             fill
-                            className="object-cover"
+                            className="object-scale-down"
                             sizes="80px"
                           />
                         )}
@@ -473,7 +477,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                       </div>
                     ))}
 
-                    {/* Product Varieties Section (Generic for all products) */}
+                    {/* Product Varieties Section */}
                     {product.almondVarieties && product.almondVarieties.length > 0 ? (
                       <ProductVarietiesSection
                         varieties={product.almondVarieties}

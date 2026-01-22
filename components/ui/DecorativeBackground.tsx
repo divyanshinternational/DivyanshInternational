@@ -40,7 +40,9 @@ function FloatingImage({
           src={src}
           alt=""
           fill
-          className="object-contain drop-shadow-md select-none grayscale-[0.2] brightness-110"
+          className="drop-shadow-md select-none grayscale-[0.2] brightness-110"
+          imageClassName="object-scale-down"
+          quality={100}
           sizes="100px"
         />
       </div>
@@ -60,8 +62,8 @@ function GoldenDust() {
       id: i,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      size: Math.random() * 3 + 1, // 1px to 4px
-      duration: Math.random() * 10 + 10, // 10s to 20s
+      size: Math.random() * 3 + 1,
+      duration: Math.random() * 10 + 10,
       delay: Math.random() * 5,
     }))
   );

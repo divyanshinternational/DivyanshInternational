@@ -106,7 +106,6 @@ export default function EnquiryBuilder({ labels }: EnquiryBuilderProps) {
       const customEvent = event as CustomEvent<ProductDetail>;
       const product = customEvent.detail;
 
-      // Handle localized title safely with better type guards
       let productTitle = "Unknown Product";
       if (typeof product.title === "string") {
         productTitle = product.title;
@@ -179,7 +178,6 @@ export default function EnquiryBuilder({ labels }: EnquiryBuilderProps) {
     sessionStorage.setItem("pendingEnquiryPopulation", JSON.stringify(items));
     setIsPanelOpen(false);
 
-    // Secure navigation using Next.js router
     router.push("/contact?type=trade");
   };
 

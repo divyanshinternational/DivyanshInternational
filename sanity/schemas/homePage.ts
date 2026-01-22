@@ -456,7 +456,7 @@ export default defineType({
     }),
 
     // =========================================================================
-    // ABOUT SECTION (Complex Object)
+    // ABOUT SECTION
     // =========================================================================
     defineField({
       name: "aboutSection",

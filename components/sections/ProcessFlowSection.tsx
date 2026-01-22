@@ -62,7 +62,8 @@ const PROCESS_ICONS: Record<string, React.ReactNode> = {
       alt="Shelling Process"
       width={150}
       height={150}
-      className="w-10 h-10 object-contain"
+      className="w-10 h-10 object-scale-down"
+      quality={100}
     />
   ),
   sorting: (
@@ -71,7 +72,8 @@ const PROCESS_ICONS: Record<string, React.ReactNode> = {
       alt="Sorting Process"
       width={150}
       height={150}
-      className="w-10 h-10 object-contain"
+      className="w-10 h-10 object-scale-down"
+      quality={100}
     />
   ),
   quality: <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-black!" strokeWidth={2} />,
@@ -142,7 +144,6 @@ export default function ProcessFlowSection({
     sectionSettings?.description ??
     "Our nuts and dry fruits elevate every product, enabling partners to scale with consistency and reliability.";
 
-  // Prepare background image if available
   const bgImage = sectionSettings?.backgroundImageUrl
     ? getGoogleDriveImageUrl(sectionSettings.backgroundImageUrl)
     : null;
@@ -161,15 +162,15 @@ export default function ProcessFlowSection({
             fill
             className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
             sizes="100vw"
+            quality={100}
           />
         </div>
       ) : null}
-      {/* Background decoration - clean solid */}
+      {/* Background decoration */}
       <DecorativeBackground variant="minimal" />
       <div className="absolute inset-0 opacity-5 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-        {/* Section Header with Glass Protection */}
         <motion.div
           className="text-center max-w-4xl mx-auto mb-16 md:mb-24 bg-white/60 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl border border-white/20"
           initial={{ opacity: 0, y: 20 }}
@@ -189,7 +190,7 @@ export default function ProcessFlowSection({
           <p className="text-lg text-deep-brown/80 leading-relaxed font-medium">{description}</p>
         </motion.div>
 
-        {/* Process Flow - Horizontal Interlocking on Desktop, Vertical on Mobile */}
+        {/* Process Flow */}
         <motion.div
           className="flex flex-col md:flex-row w-full md:items-stretch justify-center"
           variants={containerVariants}
@@ -237,15 +238,12 @@ function ProcessStepCard({ step, index, total }: ProcessStepCardProps) {
   const icon = getProcessIcon(step.icon, step.title);
 
   const isEven = index % 2 === 0;
-  // Using solid colors mapped to brand Palette
   const bgColor = isEven ? "bg-gold/50" : "bg-gold/25";
-  // Force white text for both backgrounds for better readability
   const textColor = "text-white";
   const numColor = isEven
     ? "text-neutral-900 bg-white"
     : "text-gold bg-white/10 border border-gold";
 
-  // Last item detection
   const isFirst = index === 0;
   const isLast = index === total - 1;
 
@@ -260,7 +258,6 @@ function ProcessStepCard({ step, index, total }: ProcessStepCardProps) {
       <div
         className={`hidden md:flex relative h-full ${bgColor} items-center justify-center p-6 clip-path-chevron transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.15)]`}
         style={{
-          // Arrow depth is roughly 30px equivalent
           clipPath: isFirst
             ? "polygon(0% 0%, calc(100% - 30px) 0%, 100% 50%, calc(100% - 30px) 100%, 0% 100%)"
             : isLast
@@ -269,9 +266,6 @@ function ProcessStepCard({ step, index, total }: ProcessStepCardProps) {
           width: "100%",
         }}
       >
-        {/* Inner Content - Visually centered accounting for the arrow slant 
-                 We need to shift slightly left to account for the 30px indent on the left (on middle/last items)
-             */}
         <div
           className={`flex flex-col h-full justify-center items-center text-center w-full max-w-50 ${!isFirst ? "pl-8" : ""} ${!isLast ? "pr-8" : ""}`}
         >
@@ -295,10 +289,7 @@ function ProcessStepCard({ step, index, total }: ProcessStepCardProps) {
         </div>
       </div>
 
-      {/* Mobile View - Standard Vertical Cards */}
-      {/* Visible on mobile, hidden on md */}
       <div className={`md:hidden ${bgColor} rounded-xl p-6 mb-4 relative shadow-lg`}>
-        {/* Connecting Line for mobile vertical stack */}
         {!isLast ? (
           <div className="absolute left-1/2 -bottom-4 w-1 h-4 bg-border -translate-x-1/2 z-0"></div>
         ) : null}

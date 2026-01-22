@@ -31,7 +31,7 @@ export default function TextReveal({
     visible: (_i = 1) => ({
       opacity: 1,
       transition: {
-        staggerChildren: 0.12, // Slow, deliberate stagger for "reading" feel
+        staggerChildren: 0.12,
         delayChildren: delay,
       },
     }),
@@ -63,10 +63,7 @@ export default function TextReveal({
   };
 
   return (
-    <Component
-      ref={ref}
-      className={cn("inline-block", className)} // Ensure inline-block for proper layout if needed
-    >
+    <Component ref={ref} className={cn("inline-block", className)}>
       <motion.span
         variants={container}
         initial="hidden"
@@ -74,11 +71,7 @@ export default function TextReveal({
         className="inline-block"
       >
         {words.map((word, index) => (
-          <motion.span
-            key={index}
-            variants={child}
-            className="inline-block mr-[0.25em] last:mr-0" // Manage spacing manually to keep inline flow
-          >
+          <motion.span key={index} variants={child} className="inline-block mr-[0.25em] last:mr-0">
             {word}
           </motion.span>
         ))}

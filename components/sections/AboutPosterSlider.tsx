@@ -27,7 +27,7 @@ interface AboutPosterSliderProps {
 // CONSTANTS
 // =============================================================================
 
-const DEFAULT_AUTOPLAY_INTERVAL = 6000; // Slightly longer for reading text
+const DEFAULT_AUTOPLAY_INTERVAL = 6000;
 
 // =============================================================================
 // COMPONENT
@@ -36,7 +36,6 @@ const DEFAULT_AUTOPLAY_INTERVAL = 6000; // Slightly longer for reading text
 export default function AboutPosterSlider({ sliderData }: AboutPosterSliderProps) {
   const [activeSlide, setActiveSlide] = useState(0);
 
-  // Reduced motion preference
   const prefersReducedMotion = useSyncExternalStore(
     (callback) => {
       if (typeof window === "undefined") return () => {};
@@ -96,21 +95,16 @@ export default function AboutPosterSlider({ sliderData }: AboutPosterSliderProps
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-bg pt-18 md:pt-24"
+      className="relative w-full overflow-hidden bg-bg pt-18 md:pt-24 pb-18 md:pb-24"
       aria-label="Promotional highlights"
     >
       <div className="relative">
-        {/*
-           Since ContentBanner can vary in height, we need to ensure smoother transitions.
-           For now, we just fade between them.
-        */}
         <div className="w-full">
-          {/* Using key to force re-render and trigger animations inside ContentBanner */}
           {posters.map((poster, index) => (
             <div key={poster._key || index} className={index === activeSlide ? "block" : "hidden"}>
               <ContentBanner
                 data={poster}
-                priority={index === 0}
+                priority={index <= 1}
                 className="animate-in fade-in duration-700 slide-in-from-bottom-4"
               />
             </div>

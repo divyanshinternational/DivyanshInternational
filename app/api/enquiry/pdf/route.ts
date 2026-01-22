@@ -10,7 +10,6 @@ import { siteSettingsQuery } from "@/lib/sanity/queries";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
-// Request body validation
 // =============================================================================
 
 const enquiryItemSchema = z.object({
@@ -195,11 +194,10 @@ function parseColor(colorStr: string): [number, number, number] {
 }
 
 /**
- * Sanitizes text for PDF output (removes potentially dangerous characters)
+ * Sanitizes text for PDF output
  */
 function sanitizeText(text: string | undefined): string {
   if (!text) return "";
-  // Remove control characters and limit length
   return text.replace(/[\x00-\x1F\x7F]/g, "").slice(0, 500);
 }
 

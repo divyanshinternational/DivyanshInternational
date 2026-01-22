@@ -7,7 +7,6 @@ import { siteSettingsQuery } from "@/lib/sanity/queries";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
-// Runtime validation for Sanity CMS data
 // =============================================================================
 
 /**
@@ -44,7 +43,6 @@ const siteSettingsSchema = z
 
 // =============================================================================
 // DEFAULT FALLBACK VALUES
-// Used when CMS data is unavailable
 // =============================================================================
 
 const DEFAULTS = {
@@ -78,7 +76,7 @@ async function getData() {
 }
 
 // =============================================================================
-// NOT FOUND PAGE COMPONENT (SERVER COMPONENT)
+// NOT FOUND PAGE COMPONENT
 // =============================================================================
 
 export default async function NotFound() {

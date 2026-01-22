@@ -131,7 +131,6 @@ export default function VideoTestimonialsSection({
   const testimonials = initialTestimonials ?? [];
   const sectionId = routing?.testimonialsSectionId;
 
-  // Prepare background image if available
   const bgImage = sectionSettings?.backgroundImageUrl
     ? getGoogleDriveImageUrl(sectionSettings.backgroundImageUrl)
     : null;
@@ -151,6 +150,7 @@ export default function VideoTestimonialsSection({
             fill
             className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
             sizes="100vw"
+            quality={100}
           />
         </div>
       ) : null}
@@ -159,7 +159,6 @@ export default function VideoTestimonialsSection({
       <DecorativeBackground variant="side-balanced" />
 
       <div className="container mx-auto px-4 md:px-6 lg:px-10 relative z-10">
-        {/* Centered Header with Glass Protection */}
         <div className="text-center mb-16 md:mb-24 max-w-4xl mx-auto bg-white/60 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl border border-white/20">
           {/* Icon */}
           <motion.div
@@ -229,7 +228,6 @@ interface TestimonialCardProps {
 }
 
 function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
-  // Contextual colors based on index
   const colors = [
     {
       quote: "bg-amber-500",
@@ -263,7 +261,6 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
     },
   ];
 
-  // Safe access with guaranteed fallback
   const defaultColor = {
     quote: "bg-amber-500",
     avatar: "bg-amber-50",

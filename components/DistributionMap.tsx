@@ -79,7 +79,6 @@ export default function DistributionMap({
     }
   }
 
-  // Fallback data if no locations provided (maintains existing behavior for now)
   const displayLocations =
     locations.length > 0
       ? locations

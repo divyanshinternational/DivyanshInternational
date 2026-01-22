@@ -14,7 +14,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
 
-// Dynamic import to avoid SSR issues with react-pageflip
 const HTMLFlipBook = dynamic(() => import("react-pageflip"), {
   ssr: false,
   loading: () => (
@@ -24,7 +23,6 @@ const HTMLFlipBook = dynamic(() => import("react-pageflip"), {
   ),
 });
 
-// Dynamic import to avoid SSR issues with react-pdf (DOMMatrix not available in Node.js)
 const Document = dynamic(() => import("react-pdf").then((mod) => mod.Document), {
   ssr: false,
 });
@@ -85,7 +83,7 @@ export type CatalogueViewerProps = z.infer<typeof CatalogueViewerPropsSchema>;
 type Page = z.infer<typeof PageSchema>;
 
 // =============================================================================
-// PAGE COMPONENT (for react-pageflip)
+// PAGE COMPONENT
 // =============================================================================
 
 interface PageComponentProps {
@@ -119,9 +117,11 @@ const PageComponent = forwardRef<HTMLDivElement, PageComponentProps>(
               src={imageUrl}
               alt={page.alt || `Page ${pageNumber}`}
               fill
-              className="object-contain p-4"
+              className="p-4"
+              imageClassName="object-scale-down"
               sizes="(max-width: 768px) 100vw, 50vw"
               priority={pageNumber <= 2}
+              quality={100}
             />
           </div>
         ) : (
@@ -154,7 +154,6 @@ interface PdfFlipPageProps {
 
 const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
   ({ pageNumber, height, isCover }, ref) => {
-    // Determine page side (odd = right, even = left) - assuming starting at 1
     const isRight = pageNumber % 2 !== 0;
 
     return (
@@ -167,8 +166,8 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
           // Hard cover styling
           isCover ? "hard-cover z-20" : "soft-page bg-white",
           // Rounded corners on outer edges
-          isCover && isRight ? "rounded-r-lg" : "", // Front cover
-          isCover && !isRight ? "rounded-l-lg" : "", // Back cover
+          isCover && isRight ? "rounded-r-lg" : "",
+          isCover && !isRight ? "rounded-l-lg" : "",
           // Inner thickness simulation
           !isCover && isRight ? "rounded-r-sm" : "",
           !isCover && !isRight ? "rounded-l-sm" : ""
@@ -178,20 +177,18 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
           transformStyle: isCover ? "preserve-3d" : "flat",
         }}
       >
-        {/* Paper texture overlay for all pages */}
-
         <PdfPage
           pageNumber={pageNumber}
-          height={height} // Scale by height to ensure vertical fit
+          height={height}
           renderTextLayer={false}
           renderAnnotationLayer={false}
           className={cn(
             "max-w-full max-h-full flex items-center justify-center",
-            isCover ? "transition-transform origin-center" : "" // Removed scale-95
+            isCover ? "transition-transform origin-center" : ""
           )}
         />
 
-        {/* Page Number (Hide on covers) */}
+        {/* Page Number */}
         {!isCover ? (
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs font-semibold text-gray-400 font-mono tracking-wide">
             {pageNumber}
@@ -202,10 +199,6 @@ const PdfFlipPage = forwardRef<HTMLDivElement, PdfFlipPageProps>(
   }
 );
 PdfFlipPage.displayName = "PdfFlipPage";
-
-// =============================================================================
-// PDF VIEWER COMPONENT (REMOVED - INTEGRATED INTO MAIN)
-// =============================================================================
 
 // =============================================================================
 // MAIN COMPONENT
@@ -376,11 +369,6 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
     }
   }, [contentType]);
 
-  // Check if we have content
-  // Content variables moved to top
-
-  // Determine if we should show the flipbook
-  // For PDF, we need the URL and pages loaded. For Images, we need > 0 pages.
   const showFlipbook =
     (contentType === "pdf" && hasPdfContent && numPages && numPages > 0) ||
     (contentType === "images" && hasImageContent);
@@ -419,12 +407,11 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
     );
   }
 
-  // PDF Loading State (Before Document Load)
+  // PDF Loading State
   if (contentType === "pdf" && hasPdfContent && !numPages) {
     return (
       <div className="min-h-screen bg-paper pt-18 md:pt-24 pb-12 flex flex-col items-center justify-center">
         <div className="hidden">
-          {/* Hidden Document loader to get page count */}
           <Document
             file={pdfUrl}
             onLoadSuccess={onDocumentLoadSuccess}
@@ -591,13 +578,13 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
             {/* Wrap with Document if PDF */}
             {contentType === "pdf" && hasPdfContent ? (
               <Document file={pdfUrl} loading={null} className="flex justify-center items-center">
-                {/* Custom Single Page Viewer - Restored for True Single Page View */}
+                {/* Custom Single Page Viewer */}
                 <div
                   className="relative bg-white rounded-lg shadow-2xl overflow-hidden"
                   style={{
                     width: dimensions.width,
                     height: dimensions.height,
-                    perspective: "2000px", // Enhanced depth
+                    perspective: "2000px",
                   }}
                 >
                   <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -607,11 +594,11 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                       custom={direction}
                       variants={{
                         enter: (direction: number) => ({
-                          rotateY: direction > 0 ? 120 : -120, // Start overly rotated for "snap" effect
+                          rotateY: direction > 0 ? 120 : -120,
                           opacity: 0,
                           zIndex: 0,
                           x: 0,
-                          transformOrigin: direction > 0 ? "right center" : "left center", // Flip from edge
+                          transformOrigin: direction > 0 ? "right center" : "left center",
                         }),
                         center: {
                           rotateY: 0,
@@ -619,15 +606,14 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                           zIndex: 1,
                           x: 0,
                           transition: {
-                            rotateY: { type: "spring", stiffness: 60, damping: 12, mass: 1.2 }, // Heavy physics feel
+                            rotateY: { type: "spring", stiffness: 60, damping: 12, mass: 1.2 },
                             opacity: { duration: 0.4 },
                           },
                         },
                         exit: (direction: number) => ({
-                          rotateY: direction > 0 ? -120 : 120, // Flip out to opposite side
+                          rotateY: direction > 0 ? -120 : 120,
                           opacity: 0,
                           zIndex: 0,
-                          // transformOrigin: direction > 0 ? "left center" : "right center", // Consistent origin
                           transition: {
                             rotateY: { type: "spring", stiffness: 60, damping: 12 },
                             opacity: { duration: 0.4 },
@@ -717,28 +703,7 @@ export default function CatalogueViewer({ settings }: CatalogueViewerProps) {
                   : null}
               </HTMLFlipBook>
             ) : null}
-
-            {/* Hidden Document component to keep the worker active and data loaded if needed, 
-                though we might have loaded it above. 
-                Actually, putting it inside the flipbook context might be tricky if we want to loop pages.
-                Better to render the Document just once to get the Context if needed, but react-pdf <Page> 
-                usually needs to be inside <Document>. 
-                
-                Correction: <Page> components MUST be children of <Document>. 
-                We need to wrap the HTMLFlipBook or the pages in the Document.
-            */}
           </div>
-
-          {/* 
-            CRITICAL FIX: react-pdf Pages must be rendered inside a Document component. 
-            However, HTMLFlipBook is a strict component that expects children to be the pages.
-            We can wrap the whole FlipBook content in Document? 
-            No, HTMLFlipBook needs direct children to be the pages to calculate dimensions.
-            
-            Strategy: 
-            Render the <Document> wrapping the <HTMLFlipBook>. 
-            The Document component doesn't render a DOM element by default (or can be styled).
-          */}
 
           {/* Page Counter */}
           <div className="text-center py-5">

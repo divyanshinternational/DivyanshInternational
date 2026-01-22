@@ -78,7 +78,7 @@ const AboutPropsSchema = z.object({
 });
 
 // =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
+// TYPE DEFINITIONS
 // =============================================================================
 
 type Stat = z.infer<typeof StatSchema>;

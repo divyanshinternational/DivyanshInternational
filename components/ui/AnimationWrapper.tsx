@@ -53,7 +53,7 @@ export default function AnimationWrapper({
   className,
   delay = 0,
   duration = 0.5,
-  viewportAmount = 0.1, // Trigger sooner
+  viewportAmount = 0.1,
   ...motionProps
 }: AnimationWrapperProps) {
   const [isMounted, setIsMounted] = useState(false);
@@ -69,16 +69,15 @@ export default function AnimationWrapper({
     validateProps({ children, className, delay, duration, viewportAmount } as any);
   }
 
-  // Don't animate until mounted to avoid hydration issues
   if (!isMounted) {
     return <div className={cn(className)}>{children}</div>;
   }
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }} // slightly more movement for visibility
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: viewportAmount, margin: "0px" }} // Trigger almost immediately upon entering viewport
+      viewport={{ once: true, amount: viewportAmount, margin: "0px" }}
       transition={{
         duration,
         delay,

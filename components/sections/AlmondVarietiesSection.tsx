@@ -80,8 +80,6 @@ function VarietyCard({ variety, index }: { variety: ProductVariety; index: numbe
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "0px" });
 
-  // Get image URL (Google Drive or Sanity)
-  // Use our proxy for Google Drive images to avoid 403s
   const imageUrl = variety.imageUrl
     ? getGoogleDriveImageUrl(variety.imageUrl)
     : variety.image
@@ -99,7 +97,7 @@ function VarietyCard({ variety, index }: { variety: ProductVariety; index: numbe
       transition={{ duration: 0.4, delay: index * 0.05 }}
       className="relative flex flex-col items-center group w-full"
     >
-      {/* Image Container - Dynamic Height */}
+      {/* Image Container */}
       <div className="relative w-full flex items-center justify-center min-h-[180px]">
         {imageUrl && !isPlaceholder ? (
           isProxyUrl ? (
@@ -108,7 +106,9 @@ function VarietyCard({ variety, index }: { variety: ProductVariety; index: numbe
               alt={`${variety.name} variety`}
               width={400}
               height={400}
-              className="w-auto h-auto max-w-full max-h-[400px] object-contain transition-transform duration-500 group-hover:scale-105"
+              className="w-auto h-auto max-w-full max-h-[400px]"
+              imageClassName="object-scale-down transition-transform duration-500 group-hover:scale-105"
+              quality={100}
             />
           ) : (
             <OptimizedImage
@@ -116,7 +116,9 @@ function VarietyCard({ variety, index }: { variety: ProductVariety; index: numbe
               alt={`${variety.name} variety`}
               width={400}
               height={400}
-              className="w-auto h-auto max-w-full max-h-[400px] object-contain transition-transform duration-500 group-hover:scale-105"
+              className="w-auto h-auto max-w-full max-h-[400px]"
+              imageClassName="object-scale-down transition-transform duration-500 group-hover:scale-105"
+              quality={100}
             />
           )
         ) : (
@@ -129,7 +131,7 @@ function VarietyCard({ variety, index }: { variety: ProductVariety; index: numbe
         )}
       </div>
 
-      {/* Variety Name - Below Image */}
+      {/* Variety Name */}
       <h3 className="mt-2 md:mt-4 text-deep-brown font-bold text-sm md:text-xl text-center font-heading group-hover:text-almond-gold transition-colors duration-300 w-full px-1 wrap-break-word leading-tight">
         {variety.name}
       </h3>

@@ -27,7 +27,6 @@ interface FeaturedBannerProps {
 // =============================================================================
 
 export default function FeaturedBanner({ bannerData }: FeaturedBannerProps) {
-  // Don't render if no image URL
   if (!bannerData?.imageUrl) return null;
 
   return (
@@ -44,6 +43,7 @@ export default function FeaturedBanner({ bannerData }: FeaturedBannerProps) {
           className="object-cover"
           sizes="100vw"
           priority={false}
+          quality={100}
         />
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-deep-brown/40" />

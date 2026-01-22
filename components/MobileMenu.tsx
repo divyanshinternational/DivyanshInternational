@@ -135,7 +135,7 @@ export default function MobileMenu({
             data-lenis-prevent
           >
             <div className="p-6">
-              {/* Header: Lang Switcher + Close Button */}
+              {/* Header */}
               <div className="flex justify-between items-center mb-6 border-b border-sand pb-4">
                 <LanguageSwitcher />
                 <button

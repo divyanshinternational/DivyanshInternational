@@ -144,7 +144,7 @@ const CommunityDataSchema = z.object({
 });
 
 // =============================================================================
-// TYPE DEFINITIONS (Inferred from Zod Schemas)
+// TYPE DEFINITIONS
 // =============================================================================
 
 type CommunityData = z.infer<typeof CommunityDataSchema>;
@@ -311,7 +311,7 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
           </motion.div>
         ) : null}
 
-        {/* Employee Stories - Moved to 2nd position */}
+        {/* Employee Stories */}
         {community.employeeStories ? (
           <div className="mb-16 md:mb-24">
             <VideoShowcase data={community.employeeStories} />
@@ -396,7 +396,9 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
                       alt={community.womenEmpowerment.title}
                       width={600}
                       height={400}
-                      className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700"
+                      className="w-auto h-auto max-w-full"
+                      imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                      quality={100}
                     />
                   </div>
                 ) : null}
@@ -453,7 +455,7 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
             className="mb-16 md:mb-24 relative"
           >
             <div className="rounded-2xl overflow-hidden flex flex-col md:flex-row">
-              {/* Image Side - Left */}
+              {/* Image Side */}
               {community.childcareSection.imageUrl ? (
                 <div className="w-full md:w-1/2 relative flex items-center justify-center">
                   <OptimizedImage
@@ -461,12 +463,14 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
                     alt={community.childcareSection.title}
                     width={600}
                     height={400}
-                    className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700"
+                    className="w-auto h-auto max-w-full"
+                    imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                    quality={100}
                   />
                 </div>
               ) : null}
 
-              {/* Content Side - Right */}
+              {/* Content Side */}
               <div className="w-full md:w-1/2 p-10 md:p-12">
                 <motion.div
                   className="mb-8"
@@ -538,7 +542,9 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
                       alt={community.industryCollaboration.title}
                       width={600}
                       height={400}
-                      className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700"
+                      className="w-auto h-auto max-w-full"
+                      imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                      quality={100}
                     />
                   </div>
                 ) : null}
@@ -582,7 +588,9 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
                       alt={community.environmentalSection.title}
                       width={600}
                       height={400}
-                      className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700"
+                      className="w-auto h-auto max-w-full"
+                      imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                      quality={100}
                     />
                   </div>
                 ) : null}
@@ -644,7 +652,7 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
           </motion.div>
         ) : null}
 
-        {/* Growing With Purpose - Final Message */}
+        {/* Growing With Purpose */}
         {community.closingMessage ? (
           <motion.div
             initial="hidden"
@@ -729,7 +737,9 @@ function TradeEventCard({ event, index }: TradeEventCardProps) {
               alt={event.name}
               width={600}
               height={400}
-              className="w-auto h-auto max-w-full mx-auto transition-transform duration-700 hover:scale-105"
+              className="w-auto h-auto max-w-full mx-auto"
+              imageClassName="transition-transform duration-700 hover:scale-105 object-scale-down"
+              quality={100}
             />
           </div>
         ) : null}
@@ -819,7 +829,9 @@ function EducationCarousel({ images }: { images: string[] }) {
             alt={`Education slide ${currentIndex + 1}`}
             width={800}
             height={600}
-            className="w-auto h-auto max-w-full object-contain"
+            className="w-auto h-auto max-w-full"
+            imageClassName="object-scale-down"
+            quality={100}
           />
         </motion.div>
       </AnimatePresence>

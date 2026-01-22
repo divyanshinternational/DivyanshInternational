@@ -10,7 +10,7 @@ import { type VideoItemSchema, type VideoShowcaseSchema } from "./video-showcase
 import { Video as VideoIcon, ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
 
 // =============================================================================
-// INTERFACES (Inferred from Schemas)
+// INTERFACES
 // =============================================================================
 
 export type VideoItem = z.infer<typeof VideoItemSchema>;
@@ -108,9 +108,8 @@ export default function VideoShowcase({ data }: VideoShowcaseProps) {
                     />
                   </div>
                 ) : (
-                  //   Local Video
                   <video
-                    className="w-full h-full object-contain bg-black"
+                    className="w-full h-full object-scale-down bg-black"
                     src={getGoogleDriveVideoUrl(activeVideo.videoUrl)}
                     muted={isMuted}
                     autoPlay
@@ -136,14 +135,15 @@ export default function VideoShowcase({ data }: VideoShowcaseProps) {
                   src={urlForImage(activeVideo.thumbnail).url()}
                   alt={activeVideo.title}
                   fill
-                  className="object-contain bg-black"
+                  className="bg-black"
+                  imageClassName="object-scale-down"
+                  quality={100}
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                   <VideoIcon className="w-20 h-20 text-white/80" />
                 </div>
               </motion.div>
             ) : (
-              // Placeholder
               <div className="absolute inset-0 bg-beige flex items-center justify-center text-center p-6">
                 <div>
                   <VideoIcon className="w-16 h-16 text-almond-gold/50 mx-auto mb-4" />
@@ -164,7 +164,7 @@ export default function VideoShowcase({ data }: VideoShowcaseProps) {
             {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
 
-          {/* Navigation Arrows (Overlay) */}
+          {/* Navigation Arrows */}
           {videos.length > 1 ? (
             <>
               <button
@@ -185,7 +185,7 @@ export default function VideoShowcase({ data }: VideoShowcaseProps) {
           ) : null}
         </div>
 
-        {/* Info Block (Below Video) - Visible on ALL screens now */}
+        {/* Info Block */}
         <div className="block mt-4 text-center px-4">
           <motion.div
             key={`mobile-${activeVideo?._key}`}
@@ -203,7 +203,7 @@ export default function VideoShowcase({ data }: VideoShowcaseProps) {
         </div>
       </div>
 
-      {/* Extra Highlights List (Below Video) */}
+      {/* Extra Highlights List */}
       {highlightsList.length > 0 ? (
         <ul className="space-y-3 text-(--color-slate) max-w-4xl mx-auto px-4">
           {highlightsList.map((point) => (

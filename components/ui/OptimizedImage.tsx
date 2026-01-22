@@ -74,7 +74,7 @@ export default function OptimizedImage({
   priority = false,
   fill = false,
   sizes,
-  quality = 85,
+  quality = 100,
   onLoad,
   onError,
   overflowVisible = false,

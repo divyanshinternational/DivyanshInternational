@@ -29,13 +29,10 @@ interface PosterBannerProps {
 // =============================================================================
 
 export default function PosterBanner({ bannerData }: PosterBannerProps) {
-  // Don't render if no image URL
   if (!bannerData?.imageUrl) return null;
 
-  // Transform Google Drive URL if needed
   const imageUrl = getGoogleDriveImageUrl(bannerData.imageUrl);
 
-  // If transformation returns null, don't render
   if (!imageUrl) return null;
 
   return (
@@ -50,7 +47,6 @@ export default function PosterBanner({ bannerData }: PosterBannerProps) {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Blurred background wrapper for clipping */}
         <div className="absolute inset-0 overflow-hidden rounded-lg">
           <OptimizedImage
             src={imageUrl}
@@ -67,11 +63,12 @@ export default function PosterBanner({ bannerData }: PosterBannerProps) {
           alt={bannerData.alt ?? "Divyansh International promotional poster"}
           width={1200}
           height={800}
-          className="relative z-10 w-auto h-full max-h-full object-contain shadow-2xl rounded-lg"
+          className="relative z-10 w-auto h-full max-h-full shadow-2xl rounded-lg"
+          imageClassName="object-scale-down"
           priority
+          quality={100}
         />
 
-        {/* Optional Title Overlay - Kept for compatibility but styled consistently */}
         {bannerData.title ? (
           <div className="absolute bottom-10 left-0 right-0 z-20 flex justify-center pointer-events-none">
             <div className="bg-deep-brown/80 p-4 md:p-6 rounded-xl backdrop-blur-sm mx-4">

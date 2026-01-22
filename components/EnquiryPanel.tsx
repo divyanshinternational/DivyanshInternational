@@ -19,7 +19,6 @@ import {
   type EnquiryItem,
 } from "@/lib/utils/enquiry";
 
-// Cached empty array for server snapshot to prevent infinite loops
 const EMPTY_ITEMS: ReturnType<typeof getEnquiryItems> = [];
 
 import EnquiryItemComponent from "@/components/EnquiryItem";
@@ -97,15 +96,12 @@ export default function EnquiryPanel({
     }
   }
 
-  // Use useSyncExternalStore for reliable external state synchronization
-  // This replaces the useEffect + useState pattern and avoids "setState during render" issues
   const items = useSyncExternalStore(
     useCallback((callback) => {
       window.addEventListener("enquiryUpdated", callback);
       return () => window.removeEventListener("enquiryUpdated", callback);
     }, []),
     getEnquiryItems,
-    // Server snapshot (cached to prevent infinite loops)
     () => EMPTY_ITEMS
   );
 
@@ -212,7 +208,6 @@ export default function EnquiryPanel({
                       <EnquiryItemComponent
                         key={item.id}
                         item={item}
-                        // Function references are now stable, but wrapper still needed for args
                         onUpdate={handleItemUpdate}
                         onRemove={handleRemove}
                         labels={labels?.itemLabels ?? {}}
