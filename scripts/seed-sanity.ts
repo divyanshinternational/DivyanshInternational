@@ -1330,9 +1330,20 @@ const aboutData = {
     posters: [
       {
         _key: "poster-1",
+        _type: "contentBanner",
+        eyebrow: "RELIABLE INGREDIENT PARTNERS",
+        title: "When you work with us, it isn't a deal. It isn't a gig.",
+        highlight: "It's a partnership.",
+        description: "Chosen by food manufacturers & bulk buyers.",
+        features: [
+          "UNIFORM SIZE • READY TO PACK",
+          "CONSISTENT AVAILABILITY",
+          "PREMIUM QUALITY • EXPORT STANDARDS",
+        ],
+        layout: "right-image",
         imageUrl:
-          "https://drive.google.com/file/d/1UpbsgULb79NGBdSui7tadmu-thKTuyWG/view?usp=sharing",
-        alt: "Divyansh International promotional poster 1",
+          "https://drive.google.com/file/d/1lmKKKIt5gJqJKKgCVDLHrP-kW1ZfSXWP/view?usp=sharing",
+        theme: "dark",
       },
     ],
   },

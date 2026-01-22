@@ -3,6 +3,7 @@ import type { SanityImageSource } from "@sanity/image-url";
 import { z } from "zod";
 
 import AboutContent from "@/components/pages/AboutContent";
+import type { ContentBannerData } from "@/components/ui/ContentBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -107,6 +108,34 @@ const eyebrowSectionSchema = z
   .passthrough();
 
 /**
+ * ContentBanner schema for reusable banner sections
+ */
+const contentBannerSchema = z.object({
+  _key: z.string().optional(),
+  _type: z.literal("contentBanner").optional(),
+  eyebrow: z.string().optional(),
+  title: z.string().optional(),
+  highlight: z.string().optional(),
+  description: z.string().optional(),
+  features: z.array(z.string()).optional(),
+  layout: z
+    .enum(["bottom-image", "right-image", "left-image", "background-image", "text-only"])
+    .optional(),
+  imageUrl: z.string().optional(),
+  bgOverlay: z.enum(["none", "black-10", "black-20", "black-40", "white-10"]).optional(),
+  theme: z.enum(["light", "dark"]).optional(),
+});
+
+/**
+ * Poster Slider Section Schema
+ */
+const posterSliderSectionSchema = z.object({
+  enabled: z.boolean().optional(),
+  autoPlayInterval: z.number().optional(),
+  posters: z.array(contentBannerSchema).optional(),
+});
+
+/**
  * Main about page data schema
  */
 const aboutDataSchema = z
@@ -131,6 +160,7 @@ const aboutDataSchema = z
       })
       .passthrough()
       .optional(),
+    posterSliderSection: posterSliderSectionSchema.optional(),
     commitment: sectionSchema.optional(),
     teamSection: eyebrowSectionSchema.optional(),
     journeySection: eyebrowSectionSchema.optional(),
@@ -222,6 +252,7 @@ interface AboutData {
   commitment?: { title: string; description: string };
   teamSection?: { eyebrow: string; title: string };
   journeySection?: { eyebrow: string; title: string };
+  posterSliderSection?: z.infer<typeof posterSliderSectionSchema>;
   distributionRegions?: unknown;
 }
 
@@ -289,7 +320,7 @@ async function getData(): Promise<{
   about: AboutData | null;
   siteSettings: unknown;
   capabilities: Capability[];
-  posterSliderSection: unknown;
+  posterSliderSection: z.infer<typeof posterSliderSectionSchema> | null;
 }> {
   const [rawTeamMembers, rawTimeline, rawAbout, rawSiteSettings, rawCapabilities] =
     await Promise.all([
@@ -353,7 +384,11 @@ async function getData(): Promise<{
     capabilities: capabilitiesResult.success
       ? (capabilitiesResult.data as unknown as Capability[])
       : [],
-    posterSliderSection: rawAbout?.posterSliderSection ?? null,
+    posterSliderSection:
+      rawAbout?.posterSliderSection &&
+      posterSliderSectionSchema.safeParse(rawAbout.posterSliderSection).success
+        ? posterSliderSectionSchema.parse(rawAbout.posterSliderSection)
+        : null,
   };
 }
 
@@ -378,7 +413,13 @@ export default async function AboutPage() {
           initialAbout={data.about}
           siteSettings={data.siteSettings}
           capabilities={data.capabilities}
-          posterSliderSection={data.posterSliderSection}
+          posterSliderSection={
+            (data.posterSliderSection as {
+              enabled?: boolean;
+              autoPlayInterval?: number;
+              posters?: ContentBannerData[];
+            }) ?? undefined
+          }
         />
       </div>
     </div>

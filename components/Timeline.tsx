@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { urlFor } from "@/lib/sanity/client-browser";
 import { z } from "zod";
 import type { SanityImageSource } from "@sanity/image-url";
-import { AlmondIcon, CashewIcon, WalnutIcon, LeafIcon } from "@/components/assets/Decorations";
+import { LeafIcon } from "@/components/assets/Decorations";
 import { getGoogleDriveImageUrl } from "@/lib/utils";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 
@@ -31,11 +31,12 @@ interface TimelineProps {
   entries: TimelineEntry[];
 }
 
-// =============================================================================
-// DECORATIVE ICONS - Rotate through them
-// =============================================================================
-
-const decorativeIcons = [AlmondIcon, CashewIcon, WalnutIcon, LeafIcon];
+const DECORATIVE_IMAGES = [
+  { src: "/almond.png", label: "almond" },
+  { src: "/cashewsingle.png", label: "cashew" },
+  { src: "/walnut.png", label: "walnut" },
+  { src: "/hazelnut.png", label: "hazelnut" },
+];
 
 // =============================================================================
 // COMPONENT
@@ -53,7 +54,8 @@ export default function Timeline({ entries }: TimelineProps) {
         {sortedEntries.map((entry, index) => {
           const isEven = index % 2 === 0;
           const stepNumber = index + 1;
-          const DecorativeIcon = decorativeIcons[index % decorativeIcons.length] ?? AlmondIcon;
+          const decorativeImg =
+            DECORATIVE_IMAGES[index % DECORATIVE_IMAGES.length] || DECORATIVE_IMAGES[0];
 
           // Animation directions
           const contentSlideX = isEven ? 60 : -60;
@@ -89,16 +91,24 @@ export default function Timeline({ entries }: TimelineProps) {
 
                   {/* Decorative leaves/elements */}
                   <div
-                    className={`absolute ${isEven ? "-top-4 -left-8" : "-top-4 -right-8"} text-gold/40 hidden md:block`}
+                    className={`absolute ${isEven ? "-top-4 -left-8" : "-top-4 -right-8"} text-gold/40 hidden md:block z-10`}
                     style={{ transform: `rotate(${isEven ? -30 : 30}deg)` }}
                   >
                     <LeafIcon className="w-12 h-12" />
                   </div>
                   <div
-                    className={`absolute ${isEven ? "-bottom-4 -right-6" : "-bottom-4 -left-6"} text-gold/30 hidden md:block`}
+                    className={`absolute ${isEven ? "-bottom-4 -right-6" : "-bottom-4 -left-6"} hidden md:block z-10`}
                     style={{ transform: `rotate(${isEven ? 45 : -45}deg)` }}
                   >
-                    <AlmondIcon className="w-10 h-10" />
+                    <div className="relative w-12 h-12">
+                      <OptimizedImage
+                        src={decorativeImg?.src || ""}
+                        alt=""
+                        fill
+                        className="object-contain drop-shadow-md grayscale-[0.2]"
+                        sizes="48px"
+                      />
+                    </div>
                   </div>
 
                   {/* Image container with organic border */}
@@ -189,7 +199,15 @@ export default function Timeline({ entries }: TimelineProps) {
                     transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
                   >
                     <div className={`inline-block ${isEven ? "" : "md:ml-auto"}`}>
-                      <DecorativeIcon className="w-12 h-12 text-gold/60" />
+                      <div className="relative w-14 h-14 md:w-16 md:h-16">
+                        <OptimizedImage
+                          src={decorativeImg?.src || ""}
+                          alt=""
+                          fill
+                          className="object-contain opacity-80 drop-shadow-md grayscale-[0.2]"
+                          sizes="(max-width: 768px) 56px, 64px"
+                        />
+                      </div>
                     </div>
                   </motion.div>
 

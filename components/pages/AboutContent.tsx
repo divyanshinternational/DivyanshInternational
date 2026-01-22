@@ -12,20 +12,14 @@
 
 import { motion } from "framer-motion";
 import { z } from "zod";
+import type { ContentBannerData } from "@/components/ui/ContentBanner";
 
 import { getGoogleDriveImageUrl } from "@/lib/utils";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 
 import Timeline from "@/components/Timeline";
 import DistributionMap from "@/components/DistributionMap";
-import {
-  LeafIcon,
-  NutIcon,
-  AlmondIcon,
-  CashewIcon,
-  WalnutIcon,
-  PeanutIcon,
-} from "@/components/assets/Decorations";
+import { LeafIcon } from "@/components/assets/Decorations";
 import DecorativeBackground from "@/components/ui/DecorativeBackground";
 import InfographicsSection from "@/components/sections/InfographicsSection";
 import AboutPosterSlider from "@/components/sections/AboutPosterSlider";
@@ -203,7 +197,11 @@ interface AboutContentProps {
   initialAbout?: unknown;
   siteSettings?: unknown;
   capabilities?: Capability[];
-  posterSliderSection?: unknown;
+  posterSliderSection?: {
+    enabled?: boolean;
+    autoPlayInterval?: number;
+    posters?: ContentBannerData[];
+  };
 }
 
 // =============================================================================
@@ -265,15 +263,7 @@ export default function AboutContent({
   return (
     <>
       {/* Poster Slider - Hero-like section at the top */}
-      <AboutPosterSlider
-        sliderData={
-          posterSliderSection as {
-            enabled?: boolean;
-            autoPlayInterval?: number;
-            posters?: { _key?: string; imageUrl?: string; alt?: string }[];
-          } | null
-        }
-      />
+      <AboutPosterSlider sliderData={posterSliderSection ?? null} />
 
       <div className="bg-ivory min-h-screen pt-16 md:pt-24 pb-16 md:pb-24 relative">
         {/* Decorative Background Icons */}
@@ -342,15 +332,23 @@ export default function AboutContent({
                 <LeafIcon className="w-48 h-48 md:w-64 md:h-64 text-gold" />
               </motion.div>
               <motion.div
-                className="absolute bottom-0 left-0 md:left-20 -z-10 opacity-10"
+                className="absolute bottom-0 left-0 md:left-20 -z-10 opacity-15"
                 variants={{
                   hidden: { opacity: 0, rotate: 20 },
-                  visible: { opacity: 0.1, rotate: -15 },
+                  visible: { opacity: 0.15, rotate: -15 },
                 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" as const }}
                 aria-hidden="true"
               >
-                <AlmondIcon className="w-32 h-32 md:w-40 md:h-40 text-almond-gold" />
+                <div className="relative w-32 h-32 md:w-40 md:h-40">
+                  <OptimizedImage
+                    src="/almond.png"
+                    alt=""
+                    fill
+                    className="object-contain grayscale-[0.2] brightness-110"
+                    sizes="160px"
+                  />
+                </div>
               </motion.div>
             </motion.div>
           ) : null}
@@ -384,7 +382,14 @@ export default function AboutContent({
                     }}
                     transition={{ duration: 0.5, ease: "easeOut" as const }}
                   >
-                    <CashewIcon className="w-12 h-12 text-almond-gold/50" />
+                    <div className="relative w-12 h-12">
+                      <OptimizedImage
+                        src="/cashewsingle.png"
+                        alt=""
+                        fill
+                        className="object-contain opacity-60 grayscale-[0.2]"
+                      />
+                    </div>
                   </motion.div>
 
                   <motion.h2
@@ -456,7 +461,14 @@ export default function AboutContent({
                   }}
                   transition={{ duration: 0.5, ease: "easeOut" as const }}
                 >
-                  <PeanutIcon className="w-14 h-14 text-almond-gold/50" />
+                  <div className="relative w-14 h-14">
+                    <OptimizedImage
+                      src="/peanut.png"
+                      alt=""
+                      fill
+                      className="object-contain opacity-40 grayscale-[0.2]"
+                    />
+                  </div>
                 </motion.div>
 
                 <motion.h2
@@ -553,7 +565,7 @@ export default function AboutContent({
 
                     <div className="bg-white rounded-2xl border border-sand shadow-lg relative overflow-hidden h-full flex flex-col">
                       {about.brandsSection.partners.imageUrl ? (
-                        <div className="w-full relative overflow-hidden">
+                        <div className="w-full relative overflow-hidden flex justify-center p-4">
                           <OptimizedImage
                             src={
                               getGoogleDriveImageUrl(about.brandsSection.partners.imageUrl) || ""
@@ -561,12 +573,19 @@ export default function AboutContent({
                             alt={about.brandsSection.partners.title}
                             width={600}
                             height={400}
-                            className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
+                            className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700"
                           />
                         </div>
                       ) : null}
                       <div className="p-8 text-center flex-1 flex flex-col">
-                        <WalnutIcon className="w-10 h-10 text-almond-gold/40 mx-auto mb-4" />
+                        <div className="relative w-10 h-10 mx-auto mb-4">
+                          <OptimizedImage
+                            src="/walnut.png"
+                            alt=""
+                            fill
+                            className="object-contain opacity-40 grayscale-[0.2]"
+                          />
+                        </div>
 
                         <h3 className="text-xl font-bold text-almond-gold mb-4">
                           {about.brandsSection.partners.title}
@@ -602,18 +621,25 @@ export default function AboutContent({
 
                     <div className="bg-white rounded-2xl border border-sand shadow-lg relative overflow-hidden h-full flex flex-col">
                       {about.brandsSection.retail.imageUrl ? (
-                        <div className="w-full relative overflow-hidden">
+                        <div className="w-full relative overflow-hidden flex justify-center p-4">
                           <OptimizedImage
                             src={getGoogleDriveImageUrl(about.brandsSection.retail.imageUrl) || ""}
                             alt={about.brandsSection.retail.title}
                             width={600}
                             height={400}
-                            className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
+                            className="w-auto h-auto max-w-full hover:scale-[1.02] transition-transform duration-700"
                           />
                         </div>
                       ) : null}
                       <div className="p-8 text-center flex-1 flex flex-col">
-                        <PeanutIcon className="w-10 h-10 text-almond-gold/40 mx-auto mb-4" />
+                        <div className="relative w-10 h-10 mx-auto mb-4">
+                          <OptimizedImage
+                            src="/peanut.png"
+                            alt=""
+                            fill
+                            className="object-contain opacity-40 grayscale-[0.2]"
+                          />
+                        </div>
 
                         <h3 className="text-xl font-bold text-almond-gold mb-4">
                           {about.brandsSection.retail.title}
@@ -710,7 +736,15 @@ function DecorativeCorners() {
         className="absolute top-4 right-4 opacity-20"
         aria-hidden="true"
       >
-        <NutIcon className="w-24 h-24 text-almond-gold" />
+        <div className="relative w-24 h-24">
+          <OptimizedImage
+            src="/cashewsingle.png"
+            alt=""
+            fill
+            className="object-contain grayscale-[0.2] brightness-110"
+            sizes="96px"
+          />
+        </div>
       </motion.div>
       <motion.div
         animate={{ rotate: [0, -360] }}
@@ -718,7 +752,15 @@ function DecorativeCorners() {
         className="absolute bottom-4 left-4 opacity-20"
         aria-hidden="true"
       >
-        <AlmondIcon className="w-20 h-20 text-gold-dark" />
+        <div className="relative w-20 h-20">
+          <OptimizedImage
+            src="/walnut.png"
+            alt=""
+            fill
+            className="object-contain grayscale-[0.2] brightness-110"
+            sizes="80px"
+          />
+        </div>
       </motion.div>
     </>
   );

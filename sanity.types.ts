@@ -47,6 +47,33 @@ export type LocaleString = {
   fr?: string;
 };
 
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type ContentBanner = {
+  _type: "contentBanner";
+  eyebrow?: string;
+  title?: string;
+  highlight?: string;
+  description?: string;
+  features?: Array<string>;
+  layout?: "bottom-image" | "right-image" | "left-image" | "background-image" | "text-only";
+  imageUrl?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  bgOverlay?: "none" | "black-10" | "black-20" | "black-40" | "white-10";
+  theme?: "light" | "dark";
+};
+
 export type Quote = {
   _id: string;
   _type: "quote";
@@ -69,13 +96,6 @@ export type Value = {
   description?: string;
   icon?: string;
   order?: number;
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type Timeline = {
@@ -1107,11 +1127,11 @@ export type About = {
   posterSliderSection?: {
     enabled?: boolean;
     autoPlayInterval?: number;
-    posters?: Array<{
-      imageUrl?: string;
-      alt?: string;
-      _key: string;
-    }>;
+    posters?: Array<
+      {
+        _key: string;
+      } & ContentBanner
+    >;
   };
   header?: {
     eyebrow?: string;
@@ -1449,9 +1469,10 @@ export type AllSanitySchemaTypes =
   | GalleryPage
   | LocaleText
   | LocaleString
+  | SanityImageAssetReference
+  | ContentBanner
   | Quote
   | Value
-  | SanityImageAssetReference
   | Timeline
   | SanityImageCrop
   | SanityImageHotspot

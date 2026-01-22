@@ -34,6 +34,7 @@ import testimonial from "./testimonial";
 import timeline from "./timeline";
 import value from "./value";
 import quote from "./quote";
+import contentBanner from "./contentBanner";
 
 // Utilities & Localization
 import localeString from "./localeString";
@@ -75,6 +76,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   timeline,
   value,
   quote,
+  contentBanner,
 
   // Utils
   localeString,

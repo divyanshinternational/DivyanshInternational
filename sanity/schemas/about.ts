@@ -42,26 +42,7 @@ export default defineType({
           name: "posters",
           title: "Posters",
           type: "array",
-          of: [
-            {
-              type: "object",
-              fields: [
-                {
-                  name: "imageUrl",
-                  type: "url",
-                  title: "Poster Image URL",
-                  description: "Google Drive or direct URL to the poster image",
-                  validation: (Rule) => Rule.uri({ scheme: ["http", "https"] }),
-                },
-                {
-                  name: "alt",
-                  type: "string",
-                  title: "Alt Text",
-                  description: "Accessibility description of the poster",
-                },
-              ],
-            },
-          ],
+          of: [{ type: "contentBanner" }],
         },
       ],
     }),
