@@ -113,7 +113,7 @@ export default function Header({ initialHeader, products, siteSettings }: Header
 
   // Resolve Logo URL
   const logoUrl = siteSettings?.organization?.logo
-    ? urlForImage(siteSettings.organization.logo).width(500).height(500).url()
+    ? urlForImage(siteSettings.organization.logo).width(600).auto("format").url()
     : "/Logo.png";
 
   // Dynamic Navigation Labels & URLs
@@ -152,9 +152,11 @@ export default function Header({ initialHeader, products, siteSettings }: Header
                     siteSettings?.organization?.name ||
                     "Divyansh International Logo"
                   }
-                  width={256}
-                  height={256}
-                  className="w-12 h-12 md:w-16 md:h-16 object-contain hover:scale-105 transition-transform duration-300"
+                  width={400}
+                  height={150}
+                  className="w-16 h-12 md:w-20 md:h-16 flex items-center shrink-0"
+                  imageClassName="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                  overflowVisible={true}
                   priority
                   quality={100}
                 />

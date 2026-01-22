@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { urlFor } from "@/lib/sanity/client-browser";
 import { z } from "zod";
 import type { SanityImageSource } from "@sanity/image-url";
@@ -42,14 +43,26 @@ const DECORATIVE_IMAGES = [
 // =============================================================================
 
 export default function Timeline({ entries }: TimelineProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   const sortedEntries = [...entries].sort((a, b) => a.year - b.year);
 
   return (
-    <div className="relative py-16 md:py-24 overflow-hidden">
-      {/* Central Line (Desktop) */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gold/30 hidden md:block -translate-x-1/2" />
+    <div ref={containerRef} className="relative py-16 md:py-32 overflow-hidden">
+      {/* Central Line (Desktop) - Animated Drawing */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gold/10 hidden md:block -translate-x-1/2" />
+      <motion.div
+        className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gold hidden md:block -translate-x-1/2 origin-top"
+        style={{ scaleY: pathLength }}
+      />
 
-      <div className="space-y-16 md:space-y-0">
+      <div className="space-y-24 md:space-y-0 relative z-10">
         {sortedEntries.map((entry, index) => {
           const isEven = index % 2 === 0;
           const stepNumber = index + 1;
@@ -57,93 +70,84 @@ export default function Timeline({ entries }: TimelineProps) {
             DECORATIVE_IMAGES[index % DECORATIVE_IMAGES.length] || DECORATIVE_IMAGES[0];
 
           // Animation directions
-          const contentSlideX = isEven ? 60 : -60;
-          const imageSlideX = isEven ? -60 : 60;
+          const contentSlideX = isEven ? 40 : -40;
+          const imageSlideX = isEven ? -40 : 40;
 
           return (
             <div
               key={entry.year}
-              className={`relative flex flex-col md:flex-row items-center md:min-h-100 ${
+              className={`relative flex flex-col md:flex-row items-center md:min-h-[400px] ${
                 isEven ? "md:flex-row-reverse" : ""
               }`}
             >
-              {/* Image Side with Decorative Blob Shape */}
+              {/* Image Side - No restrictive masks or background blobs */}
               <motion.div
-                className="w-full md:w-1/2 px-4 md:px-8 mb-8 md:mb-0 flex justify-center"
-                initial={{ opacity: 0, x: imageSlideX }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                className="w-full md:w-1/2 px-4 md:px-12 mb-12 md:mb-0 flex justify-center"
+                initial={{ opacity: 0, x: imageSlideX, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <div className="relative">
-                  {/* Decorative blob background */}
-                  <div
-                    className="absolute -inset-4 md:-inset-6"
-                    style={{
-                      background: "#f5f0e8",
-                      borderRadius: isEven
-                        ? "60% 40% 55% 45% / 55% 60% 40% 45%"
-                        : "40% 60% 45% 55% / 45% 40% 60% 55%",
-                      transform: `rotate(${isEven ? -5 : 5}deg)`,
+                <div className="relative group/img">
+                  {/* Decorative elements - Floating Nuts */}
+                  <motion.div
+                    className={`absolute ${isEven ? "-bottom-6 -right-10" : "-bottom-6 -left-10"} hidden lg:block z-10`}
+                    style={{ rotate: isEven ? 35 : -35 }}
+                    animate={{
+                      y: [0, -15, 0],
+                      rotate: isEven ? [35, 40, 35] : [-35, -40, -35],
                     }}
-                  />
-
-                  {/* Decorative elements - optimized images only */}
-                  <div
-                    className={`absolute ${isEven ? "-bottom-4 -right-6" : "-bottom-4 -left-6"} hidden md:block z-10`}
-                    style={{ transform: `rotate(${isEven ? 45 : -45}deg)` }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   >
-                    <div className="relative w-12 h-12">
+                    <div className="relative w-16 h-16 pointer-events-none">
                       <OptimizedImage
                         src={decorativeImg?.src || ""}
                         alt=""
                         fill
-                        className="object-contain drop-shadow-md grayscale-[0.2]"
-                        sizes="48px"
+                        className="object-contain drop-shadow-2xl grayscale-[0.1] opacity-90"
+                        sizes="64px"
                       />
                     </div>
-                  </div>
+                  </motion.div>
 
-                  {/* Image container with organic border */}
-                  <div
-                    className="relative w-[320px] h-57.5 md:w-105 md:h-75 lg:w-120 lg:h-85 overflow-hidden shadow-xl group"
-                    style={{
-                      borderRadius: isEven
-                        ? "55% 45% 50% 50% / 50% 55% 45% 50%"
-                        : "45% 55% 50% 50% / 50% 45% 55% 50%",
-                      border: "4px solid white",
-                    }}
-                  >
+                  {/* Image container - Flexible sizing, premium interaction */}
+                  <div className="relative overflow-visible">
                     {entry.imageUrl ? (
                       <OptimizedImage
                         src={getGoogleDriveImageUrl(entry.imageUrl) || ""}
                         alt={`${entry.title} - ${entry.year}`}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        sizes="(max-width: 768px) 320px, (max-width: 1024px) 420px, 480px"
+                        width={800}
+                        height={600}
+                        className="w-auto h-auto max-w-full md:max-w-[500px] lg:max-w-[600px] transition-all duration-700"
+                        imageClassName="w-full h-full object-contain rounded-2xl shadow-none group-hover/img:shadow-xl group-hover/img:scale-[1.03] transition-all duration-700"
+                        priority
+                        quality={90}
+                        overflowVisible={true}
                       />
                     ) : entry.image ? (
                       <OptimizedImage
-                        src={urlFor(entry.image).width(600).height(450).url()}
+                        src={urlFor(entry.image).width(800).auto("format").url()}
                         alt={`${entry.title} - ${entry.year}`}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        sizes="(max-width: 768px) 320px, (max-width: 1024px) 420px, 480px"
+                        width={800}
+                        height={600}
+                        className="w-auto h-auto max-w-full md:max-w-[500px] lg:max-w-[600px] transition-all duration-700"
+                        imageClassName="w-full h-full object-contain rounded-2xl shadow-none group-hover/img:shadow-xl group-hover/img:scale-[1.03] transition-all duration-700"
+                        priority
+                        quality={90}
+                        overflowVisible={true}
                       />
                     ) : (
-                      <div
-                        className="w-full h-full flex items-center justify-center"
-                        style={{
-                          background: "#f5f0e8",
-                        }}
-                      >
+                      <div className="w-80 h-60 flex items-center justify-center rounded-2xl border-2 border-dashed border-gold/20 bg-beige/30">
                         <div className="text-gold/20">
                           <svg
                             className="w-16 h-16"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
-                            aria-hidden="true"
                           >
                             <path
                               strokeLinecap="round"
@@ -159,89 +163,110 @@ export default function Timeline({ entries }: TimelineProps) {
                 </div>
               </motion.div>
 
-              {/* Center Timeline Element - Numbered Circle */}
+              {/* Center Timeline Element - "Blooming" Circle */}
               <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center z-20">
                 <motion.div
-                  className="w-10 h-10 rounded-full bg-gold flex items-center justify-center text-white font-bold text-lg shadow-lg ring-4 ring-white"
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: false, amount: 0.5 }}
-                  transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+                  className="w-12 h-12 rounded-full bg-gold flex items-center justify-center text-white font-bold text-lg shadow-xl ring-4 ring-white"
+                  initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20,
+                    delay: 0.3,
+                  }}
+                  whileHover={{ scale: 1.2, backgroundColor: "#3b2f2f", color: "#c5a059" }}
                 >
                   {stepNumber}
                 </motion.div>
+                <motion.div
+                  className="absolute -inset-2 rounded-full border border-gold/40 -z-10"
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1.5, opacity: 0 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                />
               </div>
 
-              {/* Content Side */}
+              {/* Content Side with Staggered Entrances */}
               <motion.div
-                className="w-full md:w-1/2 px-4 md:px-8"
+                className="w-full md:w-1/2 px-4 md:px-12"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.15,
+                    },
+                  },
+                }}
               >
                 <div
-                  className={`text-center ${isEven ? "md:text-left md:pl-8" : "md:text-right md:pr-8"}`}
+                  className={`text-center ${isEven ? "md:text-left md:pl-12" : "md:text-right md:pr-12"}`}
                 >
-                  {/* Decorative Icon - fades down */}
+                  {/* Decorative Icon - floating */}
                   <motion.div
-                    className={`mb-4 ${isEven ? "md:text-left" : "md:text-right"}`}
+                    className={`mb-6 ${isEven ? "" : "flex justify-end"}`}
                     variants={{
-                      hidden: { opacity: 0, y: -20 },
+                      hidden: { opacity: 0, y: 10 },
                       visible: { opacity: 1, y: 0 },
                     }}
-                    transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
                   >
-                    <div className={`inline-block ${isEven ? "" : "md:ml-auto"}`}>
-                      <div className="relative w-14 h-14 md:w-16 md:h-16">
+                    <motion.div
+                      animate={{ y: [0, -8, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <div className="relative w-16 h-16 md:w-20 md:h-20">
                         <OptimizedImage
                           src={decorativeImg?.src || ""}
                           alt=""
                           fill
-                          className="object-contain opacity-80 drop-shadow-md grayscale-[0.2]"
-                          sizes="(max-width: 768px) 56px, 64px"
+                          className="object-contain opacity-40 drop-shadow-xl grayscale-[0.2]"
+                          sizes="80px"
                         />
                       </div>
-                    </div>
+                    </motion.div>
                   </motion.div>
 
-                  {/* Year Badge - slides from one side */}
+                  {/* Year Badge - Premium Solid Style */}
                   <motion.div
-                    className={`inline-block mb-4 ${isEven ? "" : "md:ml-auto"}`}
+                    className={`inline-block mb-6 ${isEven ? "" : "md:ml-auto"}`}
                     variants={{
                       hidden: { opacity: 0, x: contentSlideX },
                       visible: { opacity: 1, x: 0 },
                     }}
-                    transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+                    whileHover={{ scale: 1.05 }}
                   >
-                    <div className="px-6 py-2 rounded-full border-2 border-gold bg-white shadow-sm">
-                      <span className="text-xl font-bold text-deep-brown font-heading">
+                    <div className="px-8 py-2 rounded-full bg-gold text-white flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                      <span className="text-2xl font-bold font-heading tracking-tighter">
                         {entry.year}
                       </span>
                     </div>
                   </motion.div>
 
-                  {/* Title - slides from opposite side */}
+                  {/* Title */}
                   <motion.h3
-                    className="text-2xl md:text-3xl font-bold text-deep-brown mb-4 font-heading"
+                    className="text-3xl md:text-5xl font-bold text-deep-brown mb-6 font-heading leading-tight"
                     variants={{
-                      hidden: { opacity: 0, x: -contentSlideX },
-                      visible: { opacity: 1, x: 0 },
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0 },
                     }}
-                    transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
                   >
                     {entry.title}
                   </motion.h3>
 
-                  {/* Description - fades up from bottom */}
+                  {/* Description */}
                   {entry.description ? (
                     <motion.p
-                      className="text-text-muted leading-relaxed text-base md:text-lg max-w-md mx-auto md:mx-0"
-                      style={{ marginLeft: isEven ? undefined : "auto" }}
+                      className="text-text-muted leading-relaxed text-lg md:text-xl max-w-xl mx-auto md:mx-0 font-medium"
                       variants={{
-                        hidden: { opacity: 0, y: 30 },
+                        hidden: { opacity: 0, y: 20 },
                         visible: { opacity: 1, y: 0 },
                       }}
-                      transition={{ duration: 0.6, delay: 0.55, ease: "easeOut" }}
                     >
                       {entry.description}
                     </motion.p>
@@ -249,9 +274,9 @@ export default function Timeline({ entries }: TimelineProps) {
                 </div>
               </motion.div>
 
-              {/* Mobile Step Number */}
-              <div className="md:hidden absolute top-0 left-1/2 -translate-x-1/2 -translate-y-6">
-                <div className="w-8 h-8 rounded-full bg-gold flex items-center justify-center text-white font-bold text-sm shadow-lg">
+              {/* Mobile Step Number Indicator */}
+              <div className="md:hidden absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 bg-white p-2 rounded-full shadow-md z-20">
+                <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center text-white font-bold text-sm">
                   {stepNumber}
                 </div>
               </div>

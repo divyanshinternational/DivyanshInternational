@@ -218,13 +218,16 @@ export default function Footer({
           {/* Brand Column (4 columns) */}
           <div className="lg:col-span-4 space-y-6">
             <div>
-              <Link href="/" className="inline-block mb-6 bg-ivory p-2 rounded-xl">
+              <Link href="/" className="inline-block mb-6 bg-ivory p-2 rounded-xl shadow-sm">
                 <OptimizedImage
                   src="/Logo.png"
                   alt={companyName}
                   width={400}
-                  height={400}
-                  className="w-20 h-20 md:w-24 md:h-24 object-contain"
+                  height={312}
+                  className="w-24 h-16 md:w-28 md:h-20 flex items-center shrink-0"
+                  imageClassName="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                  overflowVisible={true}
+                  priority
                   quality={100}
                 />
               </Link>
