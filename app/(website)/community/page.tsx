@@ -32,6 +32,8 @@ const tradeEventSchema = z
     name: z.string(),
     date: z.string(),
     location: z.string(),
+    description: z.string().optional(),
+    imageUrl: z.string().optional(),
   })
   .passthrough();
 

@@ -313,6 +313,7 @@ export default defineType({
             { name: "name", type: "string", title: "Event Name" },
             { name: "date", type: "date", title: "Event Date" },
             { name: "location", type: "string", title: "Location" },
+            { name: "description", type: "text", title: "Event Description", rows: 3 },
             { name: "imageUrl", type: "string", title: "Image URL (Google Drive)" },
             {
               name: "image",

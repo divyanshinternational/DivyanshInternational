@@ -1079,6 +1079,7 @@ export type Community = {
     name?: string;
     date?: string;
     location?: string;
+    description?: string;
     imageUrl?: string;
     image?: {
       asset?: SanityImageAssetReference;

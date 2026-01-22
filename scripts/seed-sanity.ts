@@ -1073,10 +1073,22 @@ const communityData = {
   },
   tradeEvents: [
     {
+      _key: "gulfood2026",
+      name: "Gulfood 2026",
+      date: "2026-01-26",
+      location: "Dubai World Trade Centre",
+      description:
+        "Participating in the world's largest annual food and beverage trade exhibition to expand our global reach and network.",
+      imageUrl:
+        "https://drive.google.com/file/d/12qTGJaGIbnLqT4u8y_mZAQYBD3kg5pZB/view?usp=sharing",
+    },
+    {
       _key: "aahar2024",
       name: "AAHAR International Food & Hospitality Fair",
       date: "2024-03-15",
       location: "New Delhi, India",
+      description:
+        "Showcasing our premium product range and connecting with industry leaders in the hospitality and food sectors.",
       imageUrl:
         "https://drive.google.com/file/d/1cWggNo_65X9v9qCWyTpVS1SFX5XCU19i/view?usp=sharing",
     },
@@ -1085,6 +1097,8 @@ const communityData = {
       name: "India International Trade Fair",
       date: "2024-11-14",
       location: "Pragati Maidan, New Delhi",
+      description:
+        "Engaging with a diverse audience to present our heritage, quality standards, and extensive dry fruit collection.",
       imageUrl:
         "https://drive.google.com/file/d/17ROsoFriSOK2T9z4Skl4GP0xvt2FBZz7/view?usp=sharing",
     },
@@ -1093,6 +1107,8 @@ const communityData = {
       name: "World Food India",
       date: "2024-09-20",
       location: "India",
+      description:
+        "Highlighting our processing capabilities and commitment to food safety at this premier global food event.",
       imageUrl:
         "https://drive.google.com/file/d/1bKlzKH0RVDKy0yoTWZtw5fNr9IzqiEMP/view?usp=sharing",
     },
@@ -1260,6 +1276,8 @@ const testimonialsSectionData = {
     ],
     note: "Virtual tour coming soon",
   },
+  backgroundImageUrl:
+    "https://drive.google.com/file/d/11bEMKk5NZ7XU93UXCs_0RjAgDTbgfpTE/view?usp=sharing",
 };
 
 const values = [
@@ -2166,7 +2184,8 @@ const homePageData = {
     certificationsTitle: "Certified Excellence",
     certificationsDescription:
       "We adhere to the highest global standards of food safety and quality management.",
-    backgroundImageUrl: "",
+    backgroundImageUrl:
+      "https://drive.google.com/file/d/1P7BswQdDh7LC3SqUq7rnJoACGiERAt5B/view?usp=sharing",
   },
   processSection: {
     eyebrow: "OUR PROCESS",
@@ -2208,7 +2227,7 @@ const homePageData = {
   spiralQuoteSection: {
     buttonText: "Discover Our Story",
     backgroundImageUrl:
-      "https://drive.google.com/file/d/12pzvApQHvuy1iAYxfL5OhalgUieHDY7l/view?usp=sharing",
+      "https://drive.google.com/file/d/1jwhqiXl17agiRrIgJWY2V2LBr3zx9t37/view?usp=sharing",
   },
 
   // =============================================================================
@@ -2391,7 +2410,7 @@ async function seed() {
     }
   }
 
-  const logoPath = path.join(process.cwd(), "public", "favicon.png");
+  const logoPath = path.join(process.cwd(), "public", "Logo.png");
   let logoAsset = null;
   if (fs.existsSync(logoPath)) {
     logoAsset = await uploadImage(logoPath);

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { z } from "zod";
 import type { SanityImageSource } from "@sanity/image-url";
 import { useLanguage } from "@/context/LanguageContext";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
@@ -217,6 +218,16 @@ export default function Footer({
           {/* Brand Column (4 columns) */}
           <div className="lg:col-span-4 space-y-6">
             <div>
+              <Link href="/" className="inline-block mb-6 bg-ivory p-2 rounded-xl">
+                <OptimizedImage
+                  src="/Logo.png"
+                  alt={companyName}
+                  width={400}
+                  height={400}
+                  className="w-20 h-20 md:w-24 md:h-24 object-contain"
+                  quality={100}
+                />
+              </Link>
               <h3 className="text-3xl font-bold mb-4 text-gold-light! font-heading tracking-wide">
                 {labels?.companyTitle || companyName}
               </h3>

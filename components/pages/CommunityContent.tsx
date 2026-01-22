@@ -57,6 +57,7 @@ const TradeEventSchema = z.object({
   name: z.string(),
   date: z.string(),
   location: z.string(),
+  description: z.string().optional(),
   imageUrl: z.string().optional(),
 });
 
@@ -720,7 +721,7 @@ function TradeEventCard({ event, index }: TradeEventCardProps) {
       transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
       className="relative"
     >
-      <div className="rounded-2xl transition-all duration-300 overflow-hidden">
+      <div className="rounded-2xl transition-all duration-300 overflow-hidden bg-white/50 border border-sand shadow-sm hover:shadow-md">
         {event.imageUrl ? (
           <div className="w-full relative">
             <OptimizedImage
@@ -734,19 +735,26 @@ function TradeEventCard({ event, index }: TradeEventCardProps) {
         ) : null}
         <div className="p-6">
           <div className="flex items-start space-x-4">
-            <div className="shrink-0 w-12 h-12 bg-gold rounded-full flex items-center justify-center text-white font-bold shadow-md">
-              📅
+            <div className="shrink-0 w-12 h-12 bg-gold rounded-full flex items-center justify-center text-white font-bold shadow-md text-xl">
+              {new Date(event.date).getDate()}
             </div>
             <div className="flex-1">
-              <h3 className="font-bold text-deep-brown mb-2">{event.name}</h3>
-              <p className="text-sm text-(--color-slate) mb-1">📍 {event.location}</p>
-              <p className="text-sm text-almond-gold font-semibold">
+              <h3 className="font-bold text-deep-brown mb-2 text-lg">{event.name}</h3>
+              <p className="text-sm text-(--color-slate) mb-2 flex items-center">
+                <span className="mr-1">📍</span> {event.location}
+              </p>
+              <p className="text-sm text-almond-gold font-semibold mb-3">
                 {new Date(event.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
                 })}
               </p>
+              {event.description ? (
+                <p className="text-sm text-(--color-slate)/80 leading-relaxed border-t border-sand/50 pt-3">
+                  {event.description}
+                </p>
+              ) : null}
             </div>
           </div>
         </div>

@@ -199,30 +199,6 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
             {/* Solid Overlay for Text Readability */}
             <div className="absolute inset-0 bg-black/10 pointer-events-none" />
 
-            {/* Video Info Card Overlay (Desktop Only) */}
-            <div className="hidden md:block absolute bottom-6 left-6 z-10 max-w-lg pointer-events-none">
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 md:p-6 shadow-2xl border border-white/10 pointer-events-auto transform transition-all hover:scale-[1.01]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`info-${activeIndex}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h3 className="text-lg md:text-xl font-bold text-white! mb-2 shadow-sm">
-                      {currentVideo?.title}
-                    </h3>
-                    {currentVideo?.description ? (
-                      <p className="text-white/90! text-sm leading-relaxed text-shadow-sm">
-                        {currentVideo.description}
-                      </p>
-                    ) : null}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-
             {/* Sound Control Button - Like Hero */}
             <button
               onClick={() => setIsMuted(!isMuted)}
@@ -257,8 +233,8 @@ export default function DroneDiaries({ sectionData }: DroneDiariesProps) {
             </button>
           </div>
 
-          {/* Mobile Info Block (Below Video) */}
-          <div className="block md:hidden mt-6 text-center px-4">
+          {/* Info Block (Below Video) - Visible on ALL screens now */}
+          <div className="block mt-6 text-center px-4">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`mobile-info-${activeIndex}`}

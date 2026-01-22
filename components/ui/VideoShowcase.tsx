@@ -155,27 +155,6 @@ export default function VideoShowcase({ data }: VideoShowcaseProps) {
             )}
           </AnimatePresence>
 
-          {/* Info Card Overlay - Premium Dark Glass (Desktop Only) */}
-          <div className="hidden md:block absolute bottom-6 left-6 z-10 max-w-lg pointer-events-none">
-            <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 md:p-6 shadow-2xl border border-white/10 pointer-events-auto transform transition-all hover:scale-[1.01]">
-              <motion.div
-                key={activeVideo?._key}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                <h4 className="text-lg md:text-xl font-bold text-white! mb-2 leading-tight shadow-sm">
-                  {activeVideo?.title}
-                </h4>
-                {activeVideo?.description ? (
-                  <p className="text-sm text-white/90! leading-relaxed text-shadow-sm">
-                    {activeVideo.description}
-                  </p>
-                ) : null}
-              </motion.div>
-            </div>
-          </div>
-
           {/* Mute Control */}
           <button
             onClick={handleToggleMute}
@@ -206,8 +185,8 @@ export default function VideoShowcase({ data }: VideoShowcaseProps) {
           ) : null}
         </div>
 
-        {/* Mobile Info Block (Below Video) */}
-        <div className="block md:hidden mt-4 text-center px-4">
+        {/* Info Block (Below Video) - Visible on ALL screens now */}
+        <div className="block mt-4 text-center px-4">
           <motion.div
             key={`mobile-${activeVideo?._key}`}
             initial={{ opacity: 0, y: 10 }}

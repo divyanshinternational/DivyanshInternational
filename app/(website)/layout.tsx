@@ -228,9 +228,7 @@ export default async function WebsiteLayout({
   const { headerData, footerData, productsData, siteSettings } = await getLayoutData();
 
   // Derive logo URL safely
-  const logoUrl = siteSettings?.seo?.siteUrl
-    ? `${siteSettings.seo.siteUrl}/favicon.png`
-    : "/favicon.png";
+  const logoUrl = siteSettings?.seo?.siteUrl ? `${siteSettings.seo.siteUrl}/Logo.png` : "/Logo.png";
 
   return (
     <>
