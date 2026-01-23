@@ -933,18 +933,56 @@ const testimonials = [
 const communityData = {
   _id: "community",
   _type: "community",
-  header: {
-    eyebrow: "BUILDING TOGETHER",
-    title: "Community",
-    subtitle:
-      "At Divyansh International, we believe in growing together with our community, supporting sustainable practices, and creating positive impact.",
+  // =============================================================================
+  // POSTER SLIDER SECTION
+  // =============================================================================
+  posterSliderSection: {
+    enabled: true,
+    autoPlayInterval: 6000,
+    posters: [
+      {
+        _key: "slider-1",
+        _type: "contentBanner",
+        eyebrow: "BUILDING TOGETHER",
+        title: "Community",
+        highlight: "A business does not grow in isolation.",
+        description:
+          "Every milestone we achieve carries a responsibility towards the people and ecosystems that make our growth possible. Our commitment begins with employees and extends to:",
+        features: [
+          "Employee Well-being",
+          "Family Support",
+          "Education Support",
+          "Industry Collaboration",
+          "Environmental Respect",
+        ],
+        layout: "text-only",
+        theme: "dark",
+      },
+      {
+        _key: "slider-2",
+        _type: "contentBanner",
+        eyebrow: "Growing With Purpose",
+        title: "Growing With Purpose",
+        highlight:
+          "Community responsibility is not a separate chapter from business, it is part of the same story.",
+        description:
+          "We build long-term value for our people, partners, and communities through dedicated initiatives:",
+        features: [
+          "Supporting Education",
+          "Empowering Women",
+          "Caring for Families",
+          "Industry Dialogue",
+          "Sustainability Investments",
+        ],
+        layout: "text-only",
+        theme: "dark",
+      },
+    ],
   },
-  corePhilosophy: {
-    paragraph:
-      "Divyansh International was built on the belief that a business does not grow in isolation. Every milestone achieved carries a responsibility towards the people and ecosystems that make that growth possible.",
-    highlight:
-      "Community, for the organisation, is not limited to external initiatives. It begins with employees, extends to their families, supports education, strengthens industry collaboration, and respects the environment. This people-first approach reflects the values that guide Divyansh International as a responsible and purpose-driven organisation.",
-  },
+
+  header: undefined,
+  closingMessage: undefined,
+  corePhilosophy: undefined,
   educationSection: {
     icon: "🎓",
     title: "Giving Back Through Education and Social Participation",
@@ -1021,15 +1059,7 @@ const communityData = {
       },
     ],
   },
-  closingMessage: {
-    title: "Growing With Purpose",
-    paragraphs: [
-      "At Divyansh International, community responsibility is not a separate chapter from business, it is part of the same story.",
-      "By supporting education, empowering women, caring for families, participating in industry dialogue, and investing in environmental sustainability, the organisation continues to grow with purpose, integrity, and empathy.",
-    ],
-    finalHighlight:
-      "This is how Divyansh International builds long-term value, for its people, its partners, and the communities it serves.",
-  },
+
   employeeStories: {
     eyebrow: "OUR TEAM",
     title: "Employee Stories",

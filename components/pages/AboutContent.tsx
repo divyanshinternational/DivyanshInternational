@@ -20,7 +20,7 @@ import OptimizedImage from "@/components/ui/OptimizedImage";
 import Timeline from "@/components/Timeline";
 import DecorativeBackground from "@/components/ui/DecorativeBackground";
 import InfographicsSection from "@/components/sections/InfographicsSection";
-import AboutPosterSlider from "@/components/sections/AboutPosterSlider";
+import PosterSlider from "@/components/sections/PosterSlider";
 
 // =============================================================================
 // ZOD VALIDATION SCHEMAS
@@ -256,7 +256,7 @@ export default function AboutContent({
   return (
     <>
       {/* Poster Slider */}
-      <AboutPosterSlider sliderData={posterSliderSection ?? null} />
+      <PosterSlider sliderData={posterSliderSection ?? null} />
 
       <div className="bg-ivory min-h-screen pt-16 md:pt-24 pb-16 md:pb-24 relative">
         {/* Decorative Background Icons */}

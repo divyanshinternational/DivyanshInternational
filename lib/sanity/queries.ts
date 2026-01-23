@@ -442,6 +442,7 @@ export const valuesQuery = groq`
 export const communityQuery = groq`
   *[_type == "community"][0] {
     _id,
+    posterSliderSection,
     header,
     corePhilosophy,
     educationSection {

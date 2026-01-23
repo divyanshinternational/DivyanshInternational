@@ -1029,6 +1029,15 @@ export type Community = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  posterSliderSection?: {
+    enabled?: boolean;
+    autoPlayInterval?: number;
+    posters?: Array<
+      {
+        _key: string;
+      } & ContentBanner
+    >;
+  };
   header?: {
     eyebrow?: string;
     title?: string;

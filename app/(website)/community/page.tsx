@@ -4,6 +4,7 @@ import { z } from "zod";
 import CommunityContent from "@/components/pages/CommunityContent";
 import { SectionVisualElements } from "@/components/VisualElements";
 import { VideoShowcaseSchema } from "@/components/ui/video-showcase-schema";
+import type { ContentBannerData } from "@/components/ui/ContentBanner";
 import { client } from "@/lib/sanity/client";
 import { communityQuery, siteSettingsQuery } from "@/lib/sanity/queries";
 
@@ -60,13 +61,13 @@ const communityDataSchema = z
         title: z.string(),
         subtitle: z.string(),
       })
-      .optional(),
+      .nullish(),
     corePhilosophy: z
       .object({
         paragraph: z.string(),
         highlight: z.string(),
       })
-      .optional(),
+      .nullish(),
     educationSection: z
       .object({
         icon: z.string(),
@@ -124,7 +125,15 @@ const communityDataSchema = z
         paragraphs: z.array(z.string()),
         finalHighlight: z.string(),
       })
-      .optional(),
+      .nullish(),
+    posterSliderSection: z
+      .object({
+        enabled: z.boolean().optional(),
+        autoPlayInterval: z.number().optional(),
+        posters: z.array(z.any()).optional(),
+      })
+      .optional()
+      .nullable(),
     csrInitiatives: z.array(csrInitiativeSchema).optional(),
   })
   .nullable();
@@ -157,6 +166,11 @@ const siteSettingsSchema = z
 
 interface CommunityDataProp {
   _id: string;
+  posterSliderSection?: {
+    enabled?: boolean;
+    autoPlayInterval?: number;
+    posters?: ContentBannerData[];
+  };
   header?: {
     eyebrow: string;
     title: string;

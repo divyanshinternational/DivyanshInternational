@@ -16,11 +16,11 @@ import { cn } from "@/lib/utils";
 // TYPE DEFINITIONS
 // =============================================================================
 
-interface AboutPosterSliderProps {
+interface PosterSliderProps {
   sliderData?: {
-    enabled?: boolean;
-    autoPlayInterval?: number;
-    posters?: ContentBannerData[];
+    enabled?: boolean | undefined;
+    autoPlayInterval?: number | undefined;
+    posters?: ContentBannerData[] | undefined;
   } | null;
 }
 
@@ -34,7 +34,7 @@ const DEFAULT_AUTOPLAY_INTERVAL = 6000;
 // COMPONENT
 // =============================================================================
 
-export default function AboutPosterSlider({ sliderData }: AboutPosterSliderProps) {
+export default function PosterSlider({ sliderData }: PosterSliderProps) {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const prefersReducedMotion = useSyncExternalStore(

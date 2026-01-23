@@ -12,19 +12,25 @@ import type { SanityImageSource } from "@sanity/image-url";
 // =============================================================================
 
 export interface ContentBannerData {
-  _key?: string;
-  eyebrow?: string;
-  title?: string;
-  highlight?: string;
-  description?: string;
-  features?: string[];
-  layout?: "bottom-image" | "right-image" | "left-image" | "background-image" | "text-only";
-  imageUrl?: string;
-  image?: SanityImageSource;
-  bgOverlay?: "none" | "black-10" | "black-20" | "black-40" | "white-10";
-  theme?: "light" | "dark";
-  paragraphs?: string[];
-  stats?: { value: string; label: string }[];
+  _key?: string | undefined;
+  eyebrow?: string | undefined;
+  title?: string | undefined;
+  highlight?: string | undefined;
+  description?: string | undefined;
+  features?: string[] | undefined;
+  layout?:
+    | "bottom-image"
+    | "right-image"
+    | "left-image"
+    | "background-image"
+    | "text-only"
+    | undefined;
+  imageUrl?: string | undefined;
+  image?: SanityImageSource | undefined;
+  bgOverlay?: "none" | "black-10" | "black-20" | "black-40" | "white-10" | undefined;
+  theme?: "light" | "dark" | undefined;
+  paragraphs?: string[] | undefined;
+  stats?: { value: string; label: string }[] | undefined;
 }
 
 interface ContentBannerProps {

@@ -5,6 +5,7 @@ export default defineType({
   title: "Community",
   type: "document",
   groups: [
+    { name: "posters", title: "Poster Slider" },
     { name: "header", title: "Page Header" },
     { name: "philosophy", title: "Core Philosophy" },
     { name: "education", title: "Education Section" },
@@ -17,6 +18,39 @@ export default defineType({
     { name: "closingMessage", title: "Closing Message" },
   ],
   fields: [
+    // =========================================================================
+    // POSTER SLIDER SECTION
+    // =========================================================================
+    defineField({
+      name: "posterSliderSection",
+      title: "Poster Slider Section",
+      type: "object",
+      group: "posters",
+      description: "Hero-like slider for promotional posters at the top of the Community page",
+      fields: [
+        {
+          name: "enabled",
+          type: "boolean",
+          title: "Enable Poster Slider",
+          description: "Show/hide the poster slider section",
+          initialValue: true,
+        },
+        {
+          name: "autoPlayInterval",
+          type: "number",
+          title: "Auto-play Interval (ms)",
+          description: "Time between slides in milliseconds (default: 5000)",
+          initialValue: 5000,
+        },
+        {
+          name: "posters",
+          title: "Posters",
+          type: "array",
+          of: [{ type: "contentBanner" }],
+        },
+      ],
+    }),
+
     // =========================================================================
     // PAGE HEADER
     // =========================================================================
