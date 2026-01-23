@@ -465,136 +465,135 @@ export default function AboutContent({
 
           {/* Our Brands */}
           {about.brandsSection ? (
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.2 }}
-              className="relative w-screen left-[calc(-50vw+50%)] py-16 md:py-24"
-            >
-              {/* Section blob background */}
-              <div className="absolute inset-0 z-0 opacity-5" />
+            <div className="py-16 md:py-24">
+              <motion.h2
+                className="text-3xl md:text-5xl font-bold text-deep-brown mb-16 md:mb-24 text-center font-heading"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                {about.brandsSection.title}
+              </motion.h2>
 
-              <div className="container mx-auto px-4 md:px-6 lg:px-10 relative z-10">
-                <motion.h2
-                  className="text-3xl md:text-5xl font-bold text-white mb-16 md:mb-24 text-center font-heading"
+              <div className="flex flex-col gap-16 md:gap-24">
+                {/* Partners Section */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.2 }}
+                  className="relative h-full"
                   variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0 },
+                    hidden: { opacity: 0, x: -40 },
+                    visible: { opacity: 1, x: 0 },
                   }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
                 >
-                  {about.brandsSection.title}
-                </motion.h2>
-
-                <div className="flex flex-col gap-16 md:gap-24">
-                  {/* Partners Section */}
-                  <motion.div
-                    className="relative"
-                    variants={{
-                      hidden: { opacity: 0, x: -40 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
-                    transition={{ duration: 0.7, ease: "easeOut" }}
-                  >
-                    <div className="rounded-2xl overflow-hidden flex flex-col md:flex-row">
-                      {about.brandsSection.partners.imageUrl ? (
-                        <div className="w-full md:w-1/2 relative flex items-center justify-center bg-gray-50/50">
-                          <OptimizedImage
-                            src={
-                              getGoogleDriveImageUrl(about.brandsSection.partners.imageUrl) || ""
-                            }
-                            alt={about.brandsSection.partners.title}
-                            width={600}
-                            height={400}
-                            className="w-auto h-auto max-h-[400px] max-w-full mix-blend-multiply"
-                            imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
-                            quality={100}
-                          />
-                        </div>
-                      ) : null}
-
-                      <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                        <div className="mb-6">
-                          <div className="w-12 h-12 mb-4 p-0">
-                            <OptimizedImage
-                              src="/raisin.png"
-                              alt=""
-                              fill
-                              className="object-scale-down opacity-80"
-                              sizes="48px"
-                              quality={100}
-                            />
-                          </div>
-                          <h2 className="text-3xl md:text-4xl font-bold text-deep-brown mb-4 font-heading">
-                            {about.brandsSection.partners.title}
-                          </h2>
-                        </div>
-
-                        <div className="space-y-4 mb-6">
-                          {about.brandsSection.partners.names.map((name) => (
-                            <p
-                              key={name}
-                              className="text-xl font-medium text-text-muted flex items-center gap-3"
-                            >
-                              <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                              {name}
-                            </p>
-                          ))}
-                        </div>
-
-                        <p className="text-lg text-text-muted/80 leading-relaxed">
-                          {about.brandsSection.partners.description}
-                        </p>
+                  <div className="rounded-2xl overflow-hidden flex flex-col md:flex-row">
+                    {about.brandsSection.partners.imageUrl ? (
+                      <div className="w-full md:w-1/2 relative flex items-center justify-center">
+                        <OptimizedImage
+                          src={getGoogleDriveImageUrl(about.brandsSection.partners.imageUrl) || ""}
+                          alt={about.brandsSection.partners.title}
+                          width={600}
+                          height={400}
+                          className="w-auto h-auto max-w-full"
+                          imageClassName="w-full h-auto hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                          quality={100}
+                        />
                       </div>
-                    </div>
-                  </motion.div>
+                    ) : null}
 
-                  {/* Retail Section */}
-                  <motion.div
-                    className="relative"
-                    variants={{
-                      hidden: { opacity: 0, x: 40 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
-                    transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-                  >
-                    <div className="rounded-2xl overflow-hidden flex flex-col md:flex-row-reverse">
-                      {about.brandsSection.retail.imageUrl ? (
-                        <div className="w-full md:w-1/2 relative flex items-center justify-center bg-gray-50/50">
+                    <div className="w-full md:w-1/2 p-8 md:p-12">
+                      <div className="mb-6">
+                        <div className="w-12 h-12 mb-4 p-0">
                           <OptimizedImage
-                            src={getGoogleDriveImageUrl(about.brandsSection.retail.imageUrl) || ""}
-                            alt={about.brandsSection.retail.title}
-                            width={600}
-                            height={400}
-                            className="w-auto h-auto max-h-[400px] max-w-full mix-blend-multiply"
-                            imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                            src="/raisin.png"
+                            alt=""
+                            fill
+                            className="object-scale-down opacity-80"
+                            sizes="48px"
                             quality={100}
                           />
                         </div>
-                      ) : null}
+                        <h2 className="text-2xl md:text-3xl font-bold text-deep-brown mb-4 font-heading">
+                          {about.brandsSection.partners.title}
+                        </h2>
+                      </div>
 
-                      <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                        <div className="mb-6">
-                          <div className="w-12 h-12 mb-4 p-0">
-                            <OptimizedImage
-                              src="/cashewsingle.png"
-                              alt=""
-                              fill
-                              className="object-scale-down opacity-80"
-                              sizes="48px"
-                              quality={100}
-                            />
-                          </div>
-                          <h2 className="text-3xl md:text-4xl font-bold text-deep-brown mb-4 font-heading">
-                            {about.brandsSection.retail.title}
-                          </h2>
+                      <div className="space-y-4 mb-6">
+                        {about.brandsSection.partners.names.map((name) => (
+                          <p
+                            key={name}
+                            className="text-xl font-medium text-(--color-slate) flex items-center gap-3"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                            {name}
+                          </p>
+                        ))}
+                      </div>
+
+                      <p className="text-lg text-(--color-slate) leading-relaxed">
+                        {about.brandsSection.partners.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Retail Section */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.2 }}
+                  className="relative h-full"
+                  variants={{
+                    hidden: { opacity: 0, x: 40 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
+                  transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                >
+                  <div className="rounded-2xl overflow-hidden flex flex-col md:flex-row-reverse">
+                    {about.brandsSection.retail.imageUrl ? (
+                      <div className="w-full md:w-1/2 relative flex items-center justify-center">
+                        <OptimizedImage
+                          src={getGoogleDriveImageUrl(about.brandsSection.retail.imageUrl) || ""}
+                          alt={about.brandsSection.retail.title}
+                          width={600}
+                          height={400}
+                          className="w-auto h-auto max-w-full"
+                          imageClassName="w-full h-auto hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                          quality={100}
+                        />
+                      </div>
+                    ) : null}
+
+                    <div className="w-full md:w-1/2 p-8 md:p-12">
+                      <div className="mb-6">
+                        <div className="w-12 h-12 mb-4 p-0">
+                          <OptimizedImage
+                            src="/cashewsingle.png"
+                            alt=""
+                            fill
+                            className="object-scale-down opacity-80"
+                            sizes="48px"
+                            quality={100}
+                          />
                         </div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-deep-brown mb-4 font-heading">
+                          {about.brandsSection.retail.title}
+                        </h2>
+                      </div>
 
+                      <div className="mb-6">
                         <a
                           href="https://thebetternut.co/"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-2xl font-semibold text-gold mb-6 hover:text-gold-dark transition-colors inline-flex items-center gap-2 group/link w-fit"
+                          className="text-2xl font-semibold text-gold hover:text-gold-dark transition-colors inline-flex items-center gap-2 group/link w-fit"
                         >
                           {about.brandsSection.retail.name}
                           <svg
@@ -611,16 +610,16 @@ export default function AboutContent({
                             />
                           </svg>
                         </a>
-
-                        <p className="text-lg text-text-muted/80 leading-relaxed">
-                          {about.brandsSection.retail.description}
-                        </p>
                       </div>
+
+                      <p className="text-lg text-(--color-slate) leading-relaxed">
+                        {about.brandsSection.retail.description}
+                      </p>
                     </div>
-                  </motion.div>
-                </div>
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
+            </div>
           ) : null}
         </div>
       </div>

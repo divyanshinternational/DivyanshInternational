@@ -397,7 +397,7 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
                       width={600}
                       height={400}
                       className="w-auto h-auto max-w-full"
-                      imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                      imageClassName="w-full h-auto hover:scale-[1.02] transition-transform duration-700 object-scale-down"
                       quality={100}
                     />
                   </div>
@@ -464,7 +464,7 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
                     width={600}
                     height={400}
                     className="w-auto h-auto max-w-full"
-                    imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                    imageClassName="w-full h-auto hover:scale-[1.02] transition-transform duration-700 object-scale-down"
                     quality={100}
                   />
                 </div>
@@ -543,7 +543,7 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
                       width={600}
                       height={400}
                       className="w-auto h-auto max-w-full"
-                      imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                      imageClassName="w-full h-auto hover:scale-[1.02] transition-transform duration-700 object-scale-down"
                       quality={100}
                     />
                   </div>
@@ -589,7 +589,7 @@ export default function CommunityContent({ initialCommunity }: CommunityContentP
                       width={600}
                       height={400}
                       className="w-auto h-auto max-w-full"
-                      imageClassName="hover:scale-[1.02] transition-transform duration-700 object-scale-down"
+                      imageClassName="w-full h-auto hover:scale-[1.02] transition-transform duration-700 object-scale-down"
                       quality={100}
                     />
                   </div>
@@ -745,8 +745,8 @@ function TradeEventCard({ event, index }: TradeEventCardProps) {
         ) : null}
         <div className="p-6">
           <div className="flex items-start space-x-4">
-            <div className="shrink-0 w-12 h-12 bg-gold rounded-full flex items-center justify-center text-white font-bold shadow-md text-xl">
-              {new Date(event.date).getDate()}
+            <div className="shrink-0 w-16 h-16 bg-gold rounded-full flex items-center justify-center text-white font-bold shadow-md text-lg">
+              {new Date(event.date).getFullYear()}
             </div>
             <div className="flex-1">
               <h3 className="font-bold text-deep-brown mb-2 text-lg">{event.name}</h3>
