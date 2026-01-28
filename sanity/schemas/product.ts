@@ -172,6 +172,53 @@ export default defineType({
       ],
     }),
 
+    defineField({
+      name: "applications",
+      title: "Applications",
+      type: "array",
+      group: "content",
+      of: [{ type: "string" }],
+    }),
+    defineField({
+      name: "pricing",
+      title: "Pricing",
+      type: "object",
+      group: "content",
+      fields: [
+        defineField({ name: "currentPrice", type: "number", title: "Current Price" }),
+        defineField({ name: "originalPrice", type: "number", title: "Original Price" }),
+        defineField({ name: "discount", type: "number", title: "Discount Percentage" }),
+      ],
+    }),
+    defineField({
+      name: "specifications",
+      title: "Specifications",
+      type: "object",
+      group: "content",
+      fields: [
+        defineField({ name: "origin", type: "string", title: "Origin" }),
+        defineField({ name: "variety", type: "string", title: "Variety" }),
+        defineField({ name: "packaging", type: "string", title: "Packaging" }),
+        defineField({ name: "shelfLife", type: "string", title: "Shelf Life" }),
+        defineField({ name: "storage", type: "string", title: "Storage" }),
+        defineField({ name: "qualitySealed", type: "string", title: "Quality Sealed" }),
+        defineField({ name: "logistics", type: "string", title: "Logistics" }),
+        defineField({
+          name: "standardDimensions",
+          title: "Standard Dimensions",
+          type: "object",
+          fields: [
+            defineField({ name: "cartonSize", type: "string", title: "Carton Size" }),
+            defineField({ name: "cartonType", type: "string", title: "Carton Type" }),
+            defineField({ name: "bagSize", type: "string", title: "Bag Size" }),
+            defineField({ name: "bagType", type: "string", title: "Bag Type" }),
+            defineField({ name: "shelfLife", type: "string", title: "Shelf Life" }),
+            defineField({ name: "storage", type: "string", title: "Storage" }),
+          ],
+        }),
+      ],
+    }),
+
     // =========================================================================
     // MEDIA
     // =========================================================================

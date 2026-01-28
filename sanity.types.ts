@@ -440,6 +440,29 @@ export type Product = {
     };
     _key: string;
   }>;
+  applications?: Array<string>;
+  pricing?: {
+    currentPrice?: number;
+    originalPrice?: number;
+    discount?: number;
+  };
+  specifications?: {
+    origin?: string;
+    variety?: string;
+    packaging?: string;
+    shelfLife?: string;
+    storage?: string;
+    qualitySealed?: string;
+    logistics?: string;
+    standardDimensions?: {
+      cartonSize?: string;
+      cartonType?: string;
+      bagSize?: string;
+      bagType?: string;
+      shelfLife?: string;
+      storage?: string;
+    };
+  };
   heroImage?: {
     asset?: SanityImageAssetReference;
     media?: unknown;

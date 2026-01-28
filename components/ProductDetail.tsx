@@ -78,6 +78,18 @@ const ProductSchema = z.object({
       packaging: z.string().optional(),
       shelfLife: z.string().optional(),
       storage: z.string().optional(),
+      qualitySealed: z.string().optional(),
+      logistics: z.string().optional(),
+      standardDimensions: z
+        .object({
+          cartonSize: z.string().optional(),
+          cartonType: z.string().optional(),
+          bagSize: z.string().optional(),
+          bagType: z.string().optional(),
+          shelfLife: z.string().optional(),
+          storage: z.string().optional(),
+        })
+        .optional(),
     })
     .optional(),
 
@@ -527,8 +539,18 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                           desc: product.specifications?.packaging || "Bulk Sacks",
                           icon: "📦",
                         },
-                        { title: "Quality Sealed", desc: "Vacuum / Nitrogen Flush", icon: "🔒" },
-                        { title: "Logistics", desc: "Palletized Shipping", icon: "🚛" },
+                        {
+                          title: "Quality Sealed",
+                          desc:
+                            product.specifications?.qualitySealed ||
+                            "Vacuum / Nitrogen Flush (On Request)",
+                          icon: "🔒",
+                        },
+                        {
+                          title: "Logistics",
+                          desc: product.specifications?.logistics || "",
+                          icon: "🚛",
+                        },
                       ].map((card, i) => (
                         <div
                           key={i}
@@ -545,19 +567,31 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                       <h3 className="font-semibold text-lg mb-4">Standard Dimensions</h3>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
                         <div className="p-3 bg-ivory rounded-lg">
-                          <div className="font-medium text-deep-brown">10 KG</div>
-                          <div className="text-text-muted">Carton</div>
+                          <div className="font-medium text-deep-brown">
+                            {product.specifications?.standardDimensions?.cartonSize || "10 KG"}
+                          </div>
+                          <div className="text-text-muted">
+                            {product.specifications?.standardDimensions?.cartonType || "Carton"}
+                          </div>
                         </div>
                         <div className="p-3 bg-ivory rounded-lg">
-                          <div className="font-medium text-deep-brown">25 KG</div>
-                          <div className="text-text-muted">PP Bag</div>
+                          <div className="font-medium text-deep-brown">
+                            {product.specifications?.standardDimensions?.bagSize || "25 KG"}
+                          </div>
+                          <div className="text-text-muted">
+                            {product.specifications?.standardDimensions?.bagType || "PP Bag"}
+                          </div>
                         </div>
                         <div className="p-3 bg-ivory rounded-lg">
-                          <div className="font-medium text-deep-brown">12 Months</div>
+                          <div className="font-medium text-deep-brown">
+                            {product.specifications?.standardDimensions?.shelfLife || "12 Months"}
+                          </div>
                           <div className="text-text-muted">Shelf Life</div>
                         </div>
                         <div className="p-3 bg-ivory rounded-lg">
-                          <div className="font-medium text-deep-brown">Ambient</div>
+                          <div className="font-medium text-deep-brown">
+                            {product.specifications?.standardDimensions?.storage || "Ambient"}
+                          </div>
                           <div className="text-text-muted">Storage</div>
                         </div>
                       </div>

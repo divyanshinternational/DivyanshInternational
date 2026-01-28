@@ -274,7 +274,10 @@ export const productsQuery = groq`
     introParagraphs,
     listSections,
     ctaLine,
-    description
+    description,
+    specifications,
+    pricing,
+    applications
   }
 `;
 
@@ -311,6 +314,9 @@ export const productBySlugQuery = groq`
     listSections,
     ctaLine,
     description,
+    specifications,
+    pricing,
+    applications,
     almondVarieties[] {
       _key,
       name,

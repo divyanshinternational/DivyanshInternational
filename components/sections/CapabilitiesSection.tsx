@@ -259,9 +259,7 @@ function CapabilityCard({ capability }: CapabilityCardProps) {
       className="bg-white p-6 h-full rounded-3xl border-2 border-border shadow-lg hover:shadow-xl hover:border-gold transition-all duration-300"
       variants={fadeInUp}
     >
-      <div className="text-sm uppercase tracking-[0.3em] text-text-muted mb-4 font-bold">
-        {capability.metric}
-      </div>
+      <div className="text-sm text-text-muted mb-4 font-bold">{capability.metric}</div>
       <motion.h3
         className="text-xl font-bold text-deep-brown mb-3"
         initial={{ opacity: 0, y: 10 }}

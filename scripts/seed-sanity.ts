@@ -76,7 +76,7 @@ const products = [
         "Divyansh International is one of India's most reliable importers of premium almonds, offering the finest varieties from California and around the world."
       ),
       createLocaleText(
-        "We directly source high-quality raw almonds from trusted growers worldwide — ensuring consistency, freshness and the best quality for our customers."
+        "We directly source high-quality raw almonds from trusted growers of Australia and Kashmir(India) — ensuring consistency, freshness and the best quality for our customers."
       ),
     ],
     listSections: [
@@ -92,7 +92,7 @@ const products = [
         _key: "ls-2",
         title: createLocaleString("Packaging Formats Available"),
         items: [
-          createLocaleString("Inshell 50 Lbs (22.680 Kg)"),
+          createLocaleString("Inshell 50 Lbs (22.68 Kg)"),
           createLocaleString("Vacuum pouches for professional supply"),
         ],
       },
@@ -148,11 +148,22 @@ const products = [
     ],
     pricing: { currentPrice: 1299, originalPrice: 1599, discount: 19 },
     specifications: {
-      origin: "California, USA / India",
-      variety: "Multiple Premium Grades",
-      packaging: "Bulk Packs (10-25 kg)",
+      origin: "India, California, Australia",
+      variety:
+        "Iran varieties: Mamra 3A, Mamra 5A, Mamra 7A, Afghan Varieties: Gurbandi and Sitar Bai",
+      packaging: "Bulk",
       shelfLife: "12 Months",
       storage: "Cool & Dry Place",
+      qualitySealed: "Vacuum / Nitrogen Flush (On Request)",
+      logistics: "",
+      standardDimensions: {
+        cartonSize: "10 KG",
+        cartonType: "Carton",
+        bagSize: "25 KG",
+        bagType: "PP Bag",
+        shelfLife: "9 Months",
+        storage: "Ambient",
+      },
     },
     applications: [
       "Food processing and manufacturing",
@@ -238,6 +249,9 @@ const products = [
         _key: "ls-cashew-1",
         title: createLocaleString("Grades Available"),
         items: [
+          createLocaleString(
+            'W150 (Exceptionally Larde) - Often called "Super Giant" or "Emperor cashews"'
+          ),
           createLocaleString("W180 (King Size) - The largest, most premium grade"),
           createLocaleString("W210 (Jumbo) - Popular for premium gifting"),
           createLocaleString("W240 (Standard) - Ideally balanced size and cost"),
@@ -273,11 +287,21 @@ const products = [
     gallery: [],
     pricing: { currentPrice: 950, originalPrice: 1350, discount: 20 },
     specifications: {
-      origin: "India / Africa",
-      variety: "W180, W210, W240, W320",
-      packaging: "10kg / 11.34kg",
-      shelfLife: "9 Months",
-      storage: "Cool & Dry Place",
+      origin: "India and Africa",
+      variety: "Premium",
+      packaging: "Bulk",
+      shelfLife: "12 Months",
+      storage: "Cool & Dry",
+      qualitySealed: "Vacuum / Nitrogen Flush (On Request)",
+      logistics: "",
+      standardDimensions: {
+        cartonSize: "10 KG",
+        cartonType: "Carton",
+        bagSize: "25 KG",
+        bagType: "PP Bag",
+        shelfLife: "12 Months",
+        storage: "Ambient",
+      },
     },
     applications: [
       "Sweets and Mithai",
@@ -371,11 +395,21 @@ const products = [
     ],
     pricing: { currentPrice: 899, originalPrice: 1199, discount: 25 },
     specifications: {
-      origin: "India (Kashmir) / Chile / USA",
-      variety: "Premium Grade",
-      packaging: "Bulk Packs",
-      shelfLife: "12 Months",
+      origin: "India (Kashmir), Chile, California",
+      variety: "Premium",
+      packaging: "Bulk",
+      shelfLife: "Upto 6 Months",
       storage: "Cool & Dry Place",
+      qualitySealed: "Vacuum / Nitrogen Flush (On Request)",
+      logistics: "",
+      standardDimensions: {
+        cartonSize: "10 KG",
+        cartonType: "Carton",
+        bagSize: "25 KG",
+        bagType: "PP Bag",
+        shelfLife: "6 Months",
+        storage: "Ambient",
+      },
     },
     applications: [
       "Food processing and manufacturing",
@@ -413,11 +447,7 @@ const products = [
           ),
         ],
       },
-      {
-        _key: "ls-9",
-        title: createLocaleString("Grades Offered"),
-        items: [createLocaleString("Whole Pistachios In-Shell")],
-      },
+
       {
         _key: "ls-10",
         title: createLocaleString("Packaging Formats"),
@@ -482,11 +512,21 @@ const products = [
     ],
     pricing: { currentPrice: 8999, originalPrice: 10499, discount: 14 },
     specifications: {
-      origin: "California, USA / Iran",
+      origin: "Iran and California",
       variety: "American & Iranian Grades",
-      packaging: "12 kg Bulk Packs",
-      shelfLife: "12 Months",
-      storage: "Cool & Dry Place",
+      packaging: "Bulk",
+      shelfLife: "9 Months",
+      storage: "Cool & Dry",
+      qualitySealed: "Vacuum / Nitrogen Flush (On Request)",
+      logistics: "",
+      standardDimensions: {
+        cartonSize: "10 KG",
+        cartonType: "Carton",
+        bagSize: "25 KG",
+        bagType: "PP Bag",
+        shelfLife: "9 Months",
+        storage: "Ambient",
+      },
     },
     applications: [
       "Food processing and manufacturing",
@@ -555,10 +595,20 @@ const products = [
     pricing: { currentPrice: 2499, originalPrice: 2999, discount: 17 },
     specifications: {
       origin: "India",
-      variety: "Premium Grade Desiccated",
-      packaging: "25 kg Bulk Packs",
-      shelfLife: "18 Months",
-      storage: "Cool & Dry Place",
+      variety: "Premium",
+      packaging: "Bulk",
+      shelfLife: "9 Months",
+      storage: "Cool & Dry",
+      qualitySealed: "Vacuum / Nitrogen Flush (On Request)",
+      logistics: "",
+      standardDimensions: {
+        cartonSize: "10 KG",
+        cartonType: "Carton",
+        bagSize: "25 KG",
+        bagType: "PP Bag",
+        shelfLife: "9 Months",
+        storage: "Ambient",
+      },
     },
     applications: [
       "Bakery products such as cakes and biscuits",
@@ -634,6 +684,16 @@ const products = [
       packaging: "Bulk Packs",
       shelfLife: "12 Months",
       storage: "Cool & Dry Place",
+      qualitySealed: "Vacuum / Nitrogen Flush (On Demand)",
+      logistics: "",
+      standardDimensions: {
+        cartonSize: "10 KG",
+        cartonType: "Carton",
+        bagSize: "25 KG",
+        bagType: "PP Bag",
+        shelfLife: "12 Months",
+        storage: "Ambient",
+      },
     },
     applications: [
       "Food processing and manufacturing",
@@ -647,11 +707,11 @@ const heroSlides = [
   {
     _id: "0",
     eyebrow: "Since 1999",
-    badge: "Leading ISO-certified importer",
+    badge: "Leading global importer",
     headline: "Premium Dry Fruits: Nature's Finest Harvest",
     paragraphs: [
-      "Since 1999, Divyansh International has been a trusted ISO-certified importer and distributor of premium almonds and high-quality dry fruits across Ludhiana, Punjab and North India.",
-      "Sourced directly from the finest orchards, we ensure every kernel meets our rigorous standards of purity and taste.",
+      "We source premium almonds and dry fruits directly from reputed global orchards, ensuring every kernel meets strict ISO & FSSAI safety standards.",
+      "With a robust international network and deep market expertise, we deliver consistent, certified quality to wholesalers and retailers across India.",
     ],
     primaryCta: { label: "Explore Our Collection", target: "/products" },
     secondaryCta: { label: "Contact Us", target: "contact" },
@@ -779,7 +839,7 @@ const capabilities = [
     title: "ISO-Certified Processing",
     description:
       "State-of-the-art facility with daily cleaning, sorting, and custom grading to meet professional and export standards.",
-    metric: "ISO 22000",
+    metric: "ISO 22000:2018",
     order: 2,
   },
   {
@@ -1251,7 +1311,7 @@ const ctaData = {
     emailPlaceholder: "Enter your business email",
   },
   backgroundImageUrl:
-    "https://drive.google.com/file/d/1Qk9xTJzUzo-7K_Sa_twzOManDxUEI1ap/view?usp=sharing",
+    "https://drive.google.com/file/d/1y1vzbs-XLG92z37EPKgYrVlMtE_2WMiS/view?usp=drive_link",
 };
 
 const testimonialsSectionData = {
@@ -1458,7 +1518,7 @@ const aboutData = {
     title: "Our Premium Brands",
     partners: {
       title: "Premium Quality",
-      names: ["Sethi Gold", "Sethi Mewa"],
+      names: ["Supreme", "Ridhi Sidhi", "Sethi Gold", "Sethi's Mewa"],
       description: "Premium quality solutions",
       imageUrl:
         "https://drive.google.com/file/d/15sEu65zqPJSS0gkZzu5ptftAfR-uaPLR/view?usp=sharing",
@@ -2554,6 +2614,9 @@ async function seed() {
             imageUrl: item.imageUrl || "",
             alt: item.alt || "",
           })) || [],
+        pricing: product.pricing,
+        specifications: product.specifications,
+        applications: product.applications,
         order: product.order,
       };
 
