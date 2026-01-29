@@ -889,7 +889,7 @@ const capabilities = [
     title: "ISO & FSSAI Certified",
     description:
       "State-of-the-art facility with daily cleaning, weighing, and custom grading. Fully compliant with ISO 22000:2018 & FSSAI standards.",
-    metric: "ISO 22000:2018 & FSSAI",
+    metric: "ISO 22000 & FSSAI",
     order: 2,
   },
   {
