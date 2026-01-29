@@ -15,6 +15,7 @@ import OptimizedImage from "@/components/ui/OptimizedImage";
 import ProductVarietiesSection, {
   type ProductVariety,
 } from "@/components/sections/AlmondVarietiesSection";
+import { Check } from "lucide-react";
 
 // =============================================================================
 // ZOD SCHEMAS & TYPES
@@ -218,12 +219,12 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
     { label: "Storage", value: product.specifications?.storage || "Cool & Dry" },
   ];
 
-  const pricing = {
-    current: product.pricing?.currentPrice,
-    original: product.pricing?.originalPrice,
-    discount: product.pricing?.discount,
-    currency: "₹",
-  };
+  // const pricing = {
+  //   current: product.pricing?.currentPrice,
+  //   original: product.pricing?.originalPrice,
+  //   discount: product.pricing?.discount,
+  //   currency: "₹",
+  // };
 
   // Handlers
   const handleAddToEnquiry = () => {
@@ -386,7 +387,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                 </div>
 
                 {/* Pricing */}
-                {pricing.current ? (
+                {/* {pricing.current ? (
                   <div className="flex items-center gap-3">
                     <span className="text-3xl font-bold text-gold">
                       {pricing.currency}
@@ -404,7 +405,7 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                       </span>
                     ) : null}
                   </div>
-                ) : null}
+                ) : null} */}
 
                 {/* Short Descriptions */}
                 <div className="space-y-3 text-text-muted leading-relaxed">
@@ -477,14 +478,23 @@ export default function ProductDetail({ product, labels }: ProductDetailProps) {
                           {getLocalized(section.title, language)}
                         </h3>
                         <ul className="space-y-2">
-                          {section.items?.map((item, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <span className="w-1.5 h-1.5 bg-gold rounded-full mt-2.5 shrink-0" />
-                              <span className="text-text-muted">
-                                {getLocalized(item, language)}
-                              </span>
-                            </li>
-                          ))}
+                          {section.items?.map((item, i) => {
+                            const title = getLocalized(section.title, language) || "";
+                            const isWhyChooseUs = title.toLowerCase().startsWith("why choose us");
+
+                            return (
+                              <li key={i} className="flex items-start gap-2">
+                                {isWhyChooseUs ? (
+                                  <Check className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+                                ) : (
+                                  <span className="w-1.5 h-1.5 bg-gold rounded-full mt-2.5 shrink-0" />
+                                )}
+                                <span className="text-text-muted">
+                                  {getLocalized(item, language)}
+                                </span>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     ))}

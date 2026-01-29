@@ -187,7 +187,7 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
           {/* Variety */}
           {varietySection ? (
             <div className="flex items-start gap-2">
-              <span className="text-almond-gold font-semibold text-xs uppercase tracking-wider min-w-12.5">
+              <span className="text-almond-gold font-semibold text-xs uppercase tracking-wider min-w-28 shrink-0">
                 {varietyLabel}
               </span>
               <span className="text-text-muted text-xs font-medium">
@@ -206,7 +206,7 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
           {/* Applications */}
           {product.applications && product.applications.length > 0 ? (
             <div className="flex items-start gap-2">
-              <span className="text-almond-gold font-semibold text-xs uppercase tracking-wider min-w-12.5">
+              <span className="text-almond-gold font-semibold text-xs uppercase tracking-wider min-w-28 shrink-0">
                 {appLabel}
               </span>
               <span className="text-text-muted text-xs font-medium">
@@ -219,7 +219,7 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
           {/* Packaging */}
           {packagingSection ? (
             <div className="flex items-start gap-2">
-              <span className="text-almond-gold font-semibold text-xs uppercase tracking-wider min-w-12.5">
+              <span className="text-almond-gold font-semibold text-xs uppercase tracking-wider min-w-28 shrink-0">
                 {packLabel}
               </span>
               <span className="text-text-muted text-xs font-medium">
@@ -237,7 +237,7 @@ export default function ProductCard({ product, onAddToEnquiry, labels }: Product
           {/* MOQ */}
           {product.MOQ ? (
             <div className="flex items-start gap-2">
-              <span className="text-almond-gold font-semibold text-xs uppercase tracking-wider min-w-12.5">
+              <span className="text-almond-gold font-semibold text-xs uppercase tracking-wider min-w-28 shrink-0">
                 {moqLabel}
               </span>
               <span className="text-text-muted text-xs font-medium">{product.MOQ}</span>

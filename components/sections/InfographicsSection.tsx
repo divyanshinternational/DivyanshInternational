@@ -105,7 +105,7 @@ function StatCard({ item, index }: { item: Capability; index: number }) {
                 <>
                   {prefix}
                   <Counter from={0} to={number} duration={2} start={isInView} />
-                  <span className="text-lg ml-1 text-gold font-serif italic">{suffix}</span>
+                  <span className="ml-1">{suffix}</span>
                 </>
               )}
             </div>

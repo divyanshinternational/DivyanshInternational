@@ -98,7 +98,7 @@ const products = [
       },
       {
         _key: "ls-3",
-        title: createLocaleString("Why Choose Us as Your Almond Partner?"),
+        title: createLocaleString("Why Choose Us As Your Almond Partner?"),
         items: [
           createLocaleString("ISO-certified quality"),
           createLocaleString("Consistent year-round supply"),
@@ -837,10 +837,10 @@ const capabilities = [
   },
   {
     _id: "2",
-    title: "ISO-Certified Processing",
+    title: "ISO & FSSAI Certified",
     description:
-      "State-of-the-art facility with daily cleaning, sorting, and custom grading to meet professional and export standards.",
-    metric: "ISO 22000:2018",
+      "State-of-the-art facility with daily cleaning, weighing, and custom grading. Fully compliant with ISO 22000:2018 & FSSAI standards.",
+    metric: "ISO 22000:2018 & FSSAI",
     order: 2,
   },
   {

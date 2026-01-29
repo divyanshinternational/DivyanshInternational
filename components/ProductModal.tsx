@@ -300,13 +300,13 @@ export default function ProductModal({
                   )}
 
                   {/* Price Tag Overlay if available */}
-                  {product.pricing?.currentPrice ? (
+                  {/* {product.pricing?.currentPrice ? (
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-white/50">
                       <span className="font-bold text-deep-brown">
                         ₹{product.pricing.currentPrice}
                       </span>
                     </div>
-                  ) : null}
+                  ) : null} */}
                 </div>
 
                 {/* Gallery */}
