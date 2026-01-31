@@ -76,8 +76,8 @@ export default function ProductsDropdown({ products, labels }: ProductsDropdownP
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen]);
 
-  const labelText = labels.navigation?.productsLabel || "Products";
-  const baseUrl = labels.navigation?.productsUrl || "/products";
+  const labelText = labels?.navigation?.productsLabel || "Products";
+  const baseUrl = labels?.navigation?.productsUrl || "/products";
 
   return (
     <div

@@ -278,26 +278,16 @@ export default function Footer({
               {labels?.quickLinksTitle || "Quick Links"}
             </h4>
             <ul className="space-y-1 md:space-y-3">
-              {footer.quickLinks
-                .filter((link) => link.label !== "Contact" && link.label !== "Make an Enquiry")
-                .map((link, index) => (
-                  <li key={index}>
-                    <Link
-                      href={link.url}
-                      className="text-ivory/80 hover:text-white hover:translate-x-1 transition-all duration-300 inline-block text-sm font-medium leading-tight py-1"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-ivory/80 hover:text-white hover:translate-x-1 transition-all duration-300 inline-block text-sm font-medium leading-tight py-1"
-                >
-                  Contact Us
-                </Link>
-              </li>
+              {footer.quickLinks.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    href={link.url}
+                    className="text-ivory/80 hover:text-white hover:translate-x-1 transition-all duration-300 inline-block text-sm font-medium leading-tight py-1"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

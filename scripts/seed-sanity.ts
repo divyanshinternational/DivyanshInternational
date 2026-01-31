@@ -1664,7 +1664,7 @@ const headerData = {
   _id: "header",
   _type: "header",
   navLinks: [
-    { _key: "nav-1", label: "About", url: "/about" },
+    { _key: "nav-1", label: "About Us", url: "/about" },
     { _key: "nav-2", label: "Community", url: "/community" },
     { _key: "nav-3", label: "Contact", url: "/contact" },
     { _key: "nav-4", label: "Gallery", url: "/gallery" },
@@ -1686,6 +1686,8 @@ const footerData = {
     { _key: "ql-2", label: "About Us", url: "/about" },
     { _key: "ql-3", label: "Products", url: "/products" },
     { _key: "ql-4", label: "Community", url: "/community" },
+    { _key: "ql-5", label: "Gallery", url: "/gallery" },
+    { _key: "ql-6", label: "Contact Us", url: "/contact" },
   ],
   certificationBadges: [],
   socialLinks: {
@@ -2931,18 +2933,6 @@ async function seed() {
       "https://drive.google.com/file/d/1xeFd5totKKHzmv3I-4Zl8SGpSMf-PH9v/view?usp=sharing", // 26
       "https://drive.google.com/file/d/1mOMkAlLJ8Gef1GBxWVByKBz3tbZs2v3z/view?usp=sharing", // 27
       "https://drive.google.com/file/d/1e-89nRAVMjaktCqDPHYFT6LYTep1xnyw/view?usp=sharing", // 28
-      "https://drive.google.com/file/d/12gx1W8sRCBHi79iJS2QIKZesShwyWXS7/view?usp=sharing", // 29
-      "https://drive.google.com/file/d/1lMmTpHtTe4BdOgTk1t6WAvjFEUctpWCf/view?usp=sharing", // 30
-      "https://drive.google.com/file/d/1Q5Qalco07gLJfh1wMGT2jxNZhnkMRXrf/view?usp=sharing", // 31
-      "https://drive.google.com/file/d/1oLz-DBw5PwTjwsBTUp_3fkZl9d8gF2cA/view?usp=sharing", // 32
-      "https://drive.google.com/file/d/1C2djRXzUqs2GP04HeX9CDCDQGC9JCiaG/view?usp=sharing", // 33
-      "https://drive.google.com/file/d/1vuMPgXXzWRyScP0SEx7Z7gwS1jjy42OO/view?usp=sharing", // 34
-      "https://drive.google.com/file/d/163beCoelPW0TS48LJTnyvbzFwHPOM22-/view?usp=sharing", // 35
-      "https://drive.google.com/file/d/1G0usel3Tnbx7wggF4R1n1Y2aJM6CM6zn/view?usp=sharing", // 36
-      "https://drive.google.com/file/d/17nLL3JJTGQbJnbZjHmEzSokG6FXttMr4/view?usp=sharing", // 37
-      "https://drive.google.com/file/d/1KmgRRAB0ELDKRikfgLdSzyKhzwYHBRYZ/view?usp=sharing", // 38
-      "https://drive.google.com/file/d/1oe2K30hnGjQDC2gwHkMlQ3EcIVRGcJ3J/view?usp=sharing", // 39
-      "https://drive.google.com/file/d/1utoOjtAyVD9ubt6xk53Cnr46tTWP8m3Y/view?usp=sharing", // 40
     ].map((url, index) => ({
       _type: "galleryImage",
       _key: `imported-img-${index}`,
