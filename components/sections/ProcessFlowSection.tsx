@@ -160,7 +160,8 @@ export default function ProcessFlowSection({
             src={bgImage}
             alt=""
             fill
-            className="pointer-events-none opacity-100 object-cover"
+            className="pointer-events-none opacity-100"
+            imageClassName="object-cover object-center md:object-[center_center]"
             sizes="100vw"
             quality={100}
           />

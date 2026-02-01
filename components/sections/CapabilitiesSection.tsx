@@ -147,7 +147,8 @@ export default function CapabilitiesSection({
             src={bgImage}
             alt=""
             fill
-            className="pointer-events-none scale-110 blur-[5px] opacity-100 object-cover"
+            className="pointer-events-none opacity-100"
+            imageClassName="object-cover object-center md:object-[center_center]"
             sizes="100vw"
             quality={100}
           />
