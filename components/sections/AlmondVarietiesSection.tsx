@@ -132,9 +132,9 @@ function VarietyCard({ variety, index }: { variety: ProductVariety; index: numbe
       </div>
 
       {/* Variety Name */}
-      <h3 className="mt-2 md:mt-4 text-deep-brown font-bold text-sm md:text-xl text-center font-heading group-hover:text-almond-gold transition-colors duration-300 w-full px-1 wrap-break-word leading-tight">
+      <p className="mt-2 md:mt-4 text-deep-brown font-bold text-[12px] sm:text-sm md:text-xl text-center font-heading group-hover:text-almond-gold transition-colors duration-300 leading-tight w-full whitespace-nowrap overflow-hidden text-ellipsis m-0!">
         {variety.name}
-      </h3>
+      </p>
     </motion.div>
   );
 }
