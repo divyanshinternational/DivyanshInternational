@@ -788,7 +788,7 @@ const timeline = [
     title: "The Beginning – Gujranwala",
     description:
       "A well-established quality spices business thrived in Gujranwala, Punjab (then part of undivided India, now Pakistan).",
-    imageUrl: "https://drive.google.com/file/d/1tUoOzsm3DoYFuw9PIpQzvb9K5Th1Cctq/view?usp=sharing",
+    imageUrl: "https://drive.google.com/file/d/1oqPstLKjvtUXREfta1k05Frnk7VguEJW/view?usp=sharing",
   },
   {
     _id: "2",
