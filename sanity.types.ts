@@ -420,11 +420,15 @@ export type Product = {
   >;
   listSections?: Array<{
     title?: LocaleString;
-    items?: Array<
-      {
-        _key: string;
-      } & LocaleString
-    >;
+    items?: Array<{
+      text?: LocaleString;
+      subItems?: Array<
+        {
+          _key: string;
+        } & LocaleString
+      >;
+      _key: string;
+    }>;
     _key: string;
   }>;
   ctaLine?: LocaleString;
